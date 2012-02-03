@@ -1,0 +1,162 @@
+{
+	"welcome": {
+		"message": {
+			"title": "First launch",
+			"message": "Welcome to %s! To control your Freebox, you must configure the app first. Do it now?"
+		},
+		"buttons": {
+			"yes": "Let's go!",
+			"no": "Later"
+		}
+	},
+	"network": {
+		"message": {
+			"title": "No network!",
+			"message": "You must be connected to a Freebox Wi-Fi network to make best use of %s.",
+			"epg": {
+				"connection": "You must be connected to Internet to use the program guide.",
+				"server": "An error occured when connecting to the server. Check your connection and try again."
+			}
+		},
+		"buttons": {
+			"ok": "OK"
+		}
+	},
+	"labels": {
+		"options": "Options",
+		"mosaic": "Mosaic",
+		"more": "More",
+		"epg": "EPG",
+		"code": "Code",
+		"config": "Config",
+		"box": "Box",
+		"help": "Help",
+		"imdb": "IMDb",
+		"volume": "Vol.",
+		"program": "Prog."
+	},
+	"epg": {
+		"searchHint": "Search a program...",
+		"now": "Currently",
+		"tonight": "Tonight",
+		"programNotFound": "Program not found",
+		"refresh": {
+			"pullToRefresh": "Pull to refresh...",
+			"releaseToRefresh": "Release to refresh...",
+			"loading": "Loading...",
+			"updated": "Updated : %s"
+		},
+		"details": {
+			"title": "Program Details",
+			"description": "Description :",
+			"buttons": {
+				"moreInfo": "More Info",
+				"watch": "Watch",
+				"imdb": "IMDb Page"
+			}
+		},
+		"tweet": "I'm watching \"%s\" on %s (via #%s)"
+	},
+	"buttons": {
+		"list": "List",
+		"hdd": "Hard Drive",
+		"pip": "PIP",
+		"epg": "EPG",
+		"mail": "Mail",
+		"aux": "AUX",
+		"close": "Close",
+		"mute": "Mute",
+		"ok": "OK"
+	},
+	"profile": {
+		"1": "Profile 1",
+		"2": "Profile 2",
+		"3": "Profile 3"
+	},
+	"more": {
+		"settings": {
+			"title": "Settings",
+			"profile": {
+				"title": "Profile",
+				"header": "Profile to modify",
+				"prefix": "Profile %s"
+			},
+			"code": {
+				"title": "Remote Code",
+				"header": "Profile Informations"
+			},
+			"hd": {
+				"title": "Box Number",
+				"prefix": "TV Box n°"
+			},
+			"model": "Model",
+			"otherHeader": "Other",
+			"reset": {
+				"title": "Default Settings",
+				"popupTitle": "Reset Settings",
+				"message": "Do you really want to delete all %s data ? This operation is not undoable.",
+				"yes": "Reset",
+				"cancel": "Cancel"
+			}
+		},
+		"help": {
+			"title": "Help",
+			"content": {
+				"config": {
+					"content": "<p>To configure %s so the app functions with your Freebox, you first have to get the remote code and the box number for each of them (see the sections of the corresponding helps).</p><p>Go to the <strong>More</strong> tab, and then in the <strong>Settings</strong> section.</p><p>%s ables you to use the different profiles so you can control three different Freebox and easily switch between them.</p><p><ul><li>Choose the profile to modify</li><li>Enter the remote code of the Freebox to control</li><li>Enter the ID of the box to control</li><li>Choose the model of the Freebox to control (Freebox HD (v5) or Freebox Révolution (v6))</li></ul><p>You can set <strong>advanced options</strong> in the <strong>Settings</strong> app of your device.</p><ul><li><strong>Volume repeat</strong>: if active, a press on one of the volume buttons will be repeated at a regular interval as long as you keep the finger on the button. The interval in question can be modified thanks to the corresponding slider.</li><br /><li><strong>Program repeat</strong>: if active, a press on one of the program buttons will be repeated at a regular interval as long as you keep the finger on the button. The interval in question can be modified thanks to the corresponding slider.</li><br /><li><strong>Long Press</strong>: if active, when you press a button a certain time, the press will be considered as long (the same way than with the original remote). The delay in question can be modified thanks to the corresponding slider.</li></ul>",
+					"height": "900"
+				},
+				"fbxHD": {
+					"code": {
+						"content": "<p>To find the remote code of your Freebox HD :</p><ul><li>Go to the Free menu by pressing the <strong>Free</strong> key of your original remote</li><li>Select <strong>Paramètres</strong></li><li>Select <strong>Informations Générales</strong></li></ul><p>The code is the 8-digit number you can find on the <strong>Code télécommande</strong> line.</p>",
+						"height": "207"
+					},
+					"hd": {
+						"content": "<p>To find the box ID of your Freebox HD  :</p><ul><li>Go to the Free menu by pressing the <strong>Free</strong> key of your original remote</li><li>Select <strong>Paramètres</strong></li><li>Select <strong>FTP</strong></li></ul><p>On the <strong>Serveur</strong> line, you will see an address of this shape :</p><p><strong>ftp://freebox@<span style=\"color:red\">hd1</span>.freebox.fr</strong></p><p>The part in red contains the box ID; in this example, the box ID is 1.</p>",
+						"height": "277"
+					}
+				},
+				"fbxRev": {
+					"code": {
+						"content": "<p>To find the remote code of your Freebox Player :</p><ul><li>Go to the home screen by pressing the <strong>Free</strong> key of your original remote</li><li>Browse to the left until <strong>Réglages</strong> is selected</li><li>Select <strong>Système</strong></li></ul><p>The code is the 8-digit number you can find on the <strong>Code télécommande à distance</strong> line.</p>",
+						"height": "245"
+					},
+					"hd": {
+						"content": "<p>To find the box ID of your Freebox Player :</p><ul><li>Go to the home screen by pressing the <strong>Free</strong> key of your original remote</li><li>Browse to the left until <strong>Réglages</strong> is selected</li><li>Select <strong>Système</strong></li></ul><p>The ID is on the line <strong>Identifiant du Freebox Player</strong>.</p>",
+						"height": "207"
+					}
+				}
+			},
+			"hd": {
+				"title": "Find the box number",
+				"winTitle": "TV Box"
+			},
+			"code": {
+				"title": "Find the remote code",
+				"winTitle": "Remote code"
+			},
+			"config": "Configure the app"
+		},
+		"website": "Website",
+		"twitter": "Twitter",
+		"contact": "Contact the developer",
+		"bugReport": {
+			"title": "Bug Report",
+			"subject": "Bug de %s %s",
+			"content": "App: %s <br />Version: %s<br />OS: %s %s<br />Model: %s<br />Titanium Version: %s<br /><br />Bug Description: "
+		},
+		"legal": {
+			"title": "Legal Notice",
+			"content": "<p><strong>Free</strong> and <strong>Freebox</strong> are registered trademarks of <strong>Illiad S.A.</strong></p><p>Evening and day program guides are respectively provided by <strong>Zap-Programme.fr</strong> and <strong>Orange.fr</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> is a registered trademark of <strong>Amazon.com, Inc</strong>.</p><p>The TV channel logos of the TNT and Freebox packs are the properties of their respective societies.</p><p><strong>%s</strong> is an app developped by <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> was developed thanks to <strong>Appcelerator Titanium</strong>.</p>",
+			"height": "450"
+		},
+		"about": "About...",
+		"preferences": "Preferences",
+		"webview": {
+			"error": {
+				"title": "Error...",
+				"message": "Error while loading %s: %s"
+			}
+		}
+	}
+}
