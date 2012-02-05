@@ -15,9 +15,11 @@ search.addEventListener('return', function(e)
 {
 	if(e.source.value.toLowerCase() == 'chuck norris ne change pas de chaussettes, ce sont les chaussettes qui changent chuck norris') {
 		var win = Ti.UI.createWindow({
-			url:'subviews/rickroll.js',
+			url:'subviews/website.js',
 			title:'RICK ROLL\'D ! :D',
-			barColor:'#464646'
+			barColor:'#464646',
+			isModalWin:true,
+			thisUrl:'http://m.youtube.com/watch?v=oHg5SJYRHA0'
 		});
 
 		win.open({
