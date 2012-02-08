@@ -206,7 +206,7 @@ b_imdb.addEventListener('click', function()
 		barColor:'#464646',
 		isModalWin:true
 	});
-	
+
 	w.open({
 		modal:true
 	});
@@ -235,8 +235,7 @@ b_tweet.addEventListener('click', function(e)
 
 var twitter;
 
-if(getMajorVersion() >= 5)
-{
+if(getMajorVersion() >= 5) {
 	twitter = require('de.marcelpociot.twitter');
 	win.setRightNavButton(b_tweet);
 }

@@ -30,7 +30,9 @@ tabbedBar.addEventListener('click', function(e)
 	updateProps();
 });
 
-win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {animated:false});
+win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {
+	animated:false
+});
 
 var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 	labels:['TNT', 'Bouquet Free'],
@@ -77,7 +79,7 @@ for(var i = 0;i < labelsFree.length;i++) {
 
 dashboardFree.setData(dataFree);
 loadingWin.close();
-			
+
 dashboardFree.addEventListener('click', function(e)
 {
 	if(e.item != null)

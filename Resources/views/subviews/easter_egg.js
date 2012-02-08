@@ -14,7 +14,8 @@ var b_close = Ti.UI.createButton({
 	style:Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
-function stopAndClose() {
+function stopAndClose()
+{
 	if(movie != null)
 		movie.stop();
 	win.close();
@@ -22,7 +23,8 @@ function stopAndClose() {
 
 b_close.addEventListener('click', stopAndClose);
 movie.addEventListener('complete', stopAndClose);
-movie.addEventListener('fullscreen', function(e) {
+movie.addEventListener('fullscreen', function(e)
+{
 	if(!e.entering)
 		stopAndClose();
 });

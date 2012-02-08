@@ -170,16 +170,13 @@ function getTonightRow(itemList, i)
 			category = itemList.item(i).getElementsByTagName('category').item(0).text;
 		} catch(e) {
 		}
-		
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('TF 1', 'TF1');
 		fullTitle = fullTitle.replace('La Chaîne Parlementaire', 'LCP');
 		fullTitle = fullTitle.replace('i Télé', 'i>TELE');
 		fullTitle = fullTitle.replace('NT 1', 'NT1');
 		fullTitle = fullTitle.replace('NRJ 12', 'NRJ12');
-		
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
-		
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = strip_tags(desc, null);
@@ -229,12 +226,10 @@ function getNowRow(itemList, i)
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
 		var fullUrl = itemList.item(i).getElementsByTagName('link').item(0).text;
 		var category = '';
-		
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('CANAL+', 'Canal+');
 		fullTitle = fullTitle.replace('ARTE', 'Arte');
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
-		
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = desc.replace('[...]', '');
@@ -397,12 +392,14 @@ function loadRSSFeed(url)
 			}
 		}
 
+
 		xhr.onerror = function()
 		{
 			displayError(Error.SERVER);
 			loadingWin.close();
 			endReloading();
 		}
+
 
 		xhr.send();
 	}

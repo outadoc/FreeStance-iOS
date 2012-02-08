@@ -142,6 +142,7 @@ else {
 							}
 						});
 
+
 						Ti.App.Properties.setString('lastMotd', motd.id);
 					}
 				} catch(e) {
@@ -149,6 +150,7 @@ else {
 			}
 		}
 	});
+
 
 	xhr.send();
 }

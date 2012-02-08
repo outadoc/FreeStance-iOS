@@ -57,7 +57,9 @@ function createLoadingWindow(height)
 		{
 			win.close();
 		}, 10000);
+
 	});
+
 
 	win.addEventListener('close', function(e)
 	{
@@ -98,23 +100,30 @@ function getDestructionView(title)
 		height:45,
 		width:300
 	});
-	
+
 	var lbl_title = Ti.UI.createLabel({
 		text:title,
 		shadowColor:'#8c2a31',
-		shadowOffset:{x:0,y:-1},
-		font:{fontSize:19, fontWeight:'bold', fontFamily:'Helvetica Neue'},
+		shadowOffset: {
+			x:0,
+			y:-1
+		},
+		font: {
+			fontSize:19,
+			fontWeight:'bold',
+			fontFamily:'Helvetica Neue'
+		},
 		color:'white',
 		width:300,
 		textAlign:'center'
 	});
-	
+
 	b_destruction.add(lbl_title);
 	var view = Ti.UI.createView({
 		height:b_destruction.height + 30
 	});
-	
+
 	view.add(b_destruction);
-	
+
 	return view;
 }
