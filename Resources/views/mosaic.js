@@ -1,7 +1,6 @@
 Ti.include('includes/callurl.js');
 Ti.include('includes/ui.js');
 Ti.include('includes/lib/json.i18n.js');
-//Ti.include('includes/utils.js');
 
 var win = Ti.UI.currentWindow;
 

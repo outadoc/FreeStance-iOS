@@ -1,5 +1,4 @@
 Ti.include('includes/callurl.js');
-//Ti.include('includes/enums.js');
 Ti.include('includes/lib/json.i18n.js');
 Ti.include('includes/ui.js');
 

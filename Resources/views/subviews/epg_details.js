@@ -1,5 +1,4 @@
-//a window that opens when you click on a row of the EPG, giving you exta
-// information on the program you chose
+//a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
 Ti.include('../includes/callurl.js');
 Ti.include('../includes/normalize_url.js');
 Ti.include('../includes/lib/json.i18n.js')

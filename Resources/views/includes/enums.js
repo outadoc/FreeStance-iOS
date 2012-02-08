@@ -1,5 +1,4 @@
-//enumerations for the config settings, more clear when you read the code
-//for the model...
+//enumerations for the config settings, more clear when you read the code for the model...
 var Model = {
 	FREEBOX_HD:1,
 	FREEBOX_REVOLUTION:2,
