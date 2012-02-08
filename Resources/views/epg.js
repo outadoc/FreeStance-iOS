@@ -13,13 +13,11 @@ var search = Titanium.UI.createSearchBar({
 
 search.addEventListener('return', function(e)
 {
-	if(e.source.value.toLowerCase() == 'chuck norris ne change pas de chaussettes, ce sont les chaussettes qui changent chuck norris') {
+	if(e.source.value.toLowerCase() == 'we do not forgive, we do not forget.') {
 		var win = Ti.UI.createWindow({
-			url:'subviews/website.js',
-			title:'RICK ROLL\'D ! :D',
+			url:'subviews/easter_egg.js',
+			title:'Expect us.',
 			barColor:'#464646',
-			isModalWin:true,
-			thisUrl:'http://m.youtube.com/watch?v=oHg5SJYRHA0'
 		});
 
 		win.open({
