@@ -19,7 +19,7 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	bottom:7,
 	height:'30',
 	width:'300',
-	backgroundColor:'#787878',
+	backgroundColor:'#787878'
 });
 
 tabbedBar.addEventListener('click', function(e)
@@ -41,8 +41,7 @@ var view = Ti.UI.createView({
 	height:260,
 	width:252,
 	top:60,
-	borderRadius:10,
-	opacity:0.90,
+	borderRadius:10
 });
 
 var win_more = Ti.UI.createWindow({
@@ -105,6 +104,7 @@ for(var i=0; i<buttonList.length; i++)
 	var button = Ti.UI.createButton(buttonList[i]);
 	button.setBackgroundImage('../img/button.png');
 	button.setBackgroundSelectedImage('../img/button_selected.png');
+	button.setBorderColor('gray');
 	
 	if(button.id == 'play')
 	{
@@ -226,6 +226,7 @@ function updateButtons()
 			button.setBackgroundImage('../img/button.png');
 			
 		button.setBackgroundSelectedImage('../img/button_selected.png');
+		button.setBorderColor('gray');
 		
 		//if we're setting one of the colored buttons...
 		if(button.isColor)
