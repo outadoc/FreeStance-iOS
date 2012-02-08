@@ -5,6 +5,7 @@ Ti.include('includes/ui.js');
 Ti.include('includes/lib/json.i18n.js')
 
 var win = Ti.UI.currentWindow;
+var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.NOW);
 
 var search = Titanium.UI.createSearchBar({
 	hintText:I('epg.searchHint'),
@@ -44,8 +45,8 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	backgroundColor:'#787878',
 	height:30,
 	width:300,
-	index:0,
-	lastIndex:0
+	index:defaultTab,
+	lastIndex:defaultTab
 });
 
 tabbedBar.addEventListener('click', function(e)
@@ -495,4 +496,8 @@ tableView.addEventListener('click', function(e)
 });
 
 loadingWin.open();
-loadRSSFeed(EPG.NOW_URL);
+
+if(defaultTab == EPG.NOW)
+	loadRSSFeed(EPG.NOW_URL);
+else
+	loadRSSFeed(EPG.TONIGHT_URL);

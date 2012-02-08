@@ -20,6 +20,8 @@ var HD = {
 };
 
 var EPG = {
+	NOW:0,
+	TONIGHT:1,
 	NOW_URL:'http://dev.outadoc.fr/freestance/xmlproxy.php?now',
 	TONIGHT_URL:'http://dev.outadoc.fr/freestance/xmlproxy.php?tonight'
 };
