@@ -17,6 +17,7 @@ Grâce aux fonctionnalités innovantes de FreeStance, vous pourrez...
 
 ***
 FreeStance est disponible dans l'[App Store](http://www.apple.com/iphone/from-the-app-store/)… pour seulement 0,79€ !
+<br /><br />
 
 ![FreeStance1](http://dev.outadoc.fr/img/FreeStance/0.png "FreeStance 1")
 ![FreeStance2](http://dev.outadoc.fr/img/FreeStance/1.png "FreeStance 2")
