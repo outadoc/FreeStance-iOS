@@ -7,9 +7,17 @@ Ti.include('../includes/ui.js');
 var win = Ti.UI.currentWindow;
 
 var profileField = addParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
-var codeField = addTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header'));
+var codeField = addTextFieldRow(I('more.settings.code.title'));
 var hdField = addParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
 var modelField = addParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
+
+var settingsSection = Ti.UI.createTableViewSection({
+	headerTitle:I('more.settings.code.header')
+});
+
+settingsSection.add(codeField);
+settingsSection.add(hdField);
+settingsSection.add(modelField);
 
 //values to store the properties
 var profile, code, hd, model;
@@ -50,10 +58,9 @@ function addParentRow(title, header, rowName, configID) {
 }
 
 //returns a row containing a text field
-function addTextFieldRow(text, header) {
+function addTextFieldRow(text) {
 	var row = Ti.UI.createTableViewRow({
 		title:text,
-		header:header,
 		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
 	});
 
@@ -78,17 +85,14 @@ function addTextFieldRow(text, header) {
 	return row;
 }
 
-var data = [profileField, codeField, hdField, modelField];
-
 var tableView = Ti.UI.createTableView({
-	data:data,
-	style:Ti.UI.iPhone.TableViewStyle.GROUPED
+	data:[profileField, settingsSection],
+	style:Ti.UI.iPhone.TableViewStyle.GROUPED,
+	footerView:getDestructionView(I('more.settings.reset.title'))
 });
 
-tableView.footerView = getDestructionView(I('more.settings.reset.title'));
 tableView.footerView.children[0].addEventListener('click', function(e) {
-	//if the user wants to reset the properties of the app
-	//asking if he's really sure
+	//if the user wants to reset the properties of the app asking if he's really sure
 	var alert = Ti.UI.createOptionDialog({
 		title:I('more.settings.reset.message', Ti.App.name),
 		options:[I('more.settings.reset.yes'), I('more.settings.reset.cancel')],
@@ -107,7 +111,7 @@ tableView.footerView.children[0].addEventListener('click', function(e) {
 				Titanium.App.Properties.removeProperty(props[i]);
 			}	
 			//get the updated values
-			getFields();
+			setFields();
 		}
 	});
 });
@@ -137,26 +141,26 @@ win.addEventListener('focus', function(e) {
 	model = Ti.App.Properties.getInt('profile' + profile + '.model', Model.FREEBOX_HD);
 	
 	//setting the fields with their respective values
-	getFields();
+	setFields();
 });
 
 win.addEventListener('blur', function(e) {
 	//writing in the properties that the settings have been filled
-	if(data[1].children[0].value != '')
+	if(codeField.children[0].getValue() != '')
 		Ti.App.Properties.setBool('hasBeenSet', true);
 	//saving the code value
-	Ti.App.Properties.setString('profile' + profile + '.code', data[1].children[0].value);
+	Ti.App.Properties.setString('profile' + profile + '.code', codeField.children[0].getValue());
 });
 
 win.setRightNavButton(b_help);
 win.add(tableView);
 
 //used to set all the data in their respective fields
-function getFields() {
-	data[0].children[0].text = I('more.settings.profile.prefix', profile.toString());
-	data[1].children[0].value = code;
-	data[2].children[0].text = I('more.settings.hd.prefix', hd.toString());
-	data[3].children[0].text = getModelString(model);
+function setFields() {
+	profileField.children[0].setText(I('more.settings.profile.prefix', profile.toString()));
+	codeField.children[0].setValue(code);
+	hdField.children[0].setText(I('more.settings.hd.prefix', hd.toString()));
+	modelField.children[0].setText(getModelString(model));
 }
 
 Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1);
