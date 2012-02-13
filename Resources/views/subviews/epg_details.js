@@ -57,7 +57,7 @@ var img = Ti.UI.createImageView({
 progInfo.add(img);
 
 if(win.thisImageUrl == null) {
-	img.image = '../../img/default_epg.png';
+	img.setImage('../../img/default_epg.png');
 }
 
 var logo = Ti.UI.createImageView({
@@ -221,21 +221,19 @@ win.addEventListener('focus', function(e)
 
 win.add(b_imdb);
 
-var b_tweet = Ti.UI.createButton({
-	image:'../../img/twitter.png'
-});
-
-b_tweet.addEventListener('click', function(e)
-{
-	twitter.tweet({
-		message:I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
-		urls:[win.thisUrl]
-	});
-});
-
-var twitter;
-
 if(getMajorVersion() >= 5) {
-	twitter = require('de.marcelpociot.twitter');
+	var twitterModule = require('de.marcelpociot.twitter');
+	var b_tweet = Ti.UI.createButton({
+		image:'../../img/twitter.png'
+	});
+	
 	win.setRightNavButton(b_tweet);
+	
+	b_tweet.addEventListener('click', function(e)
+	{
+		twitterModule.tweet({
+			message:I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
+			urls:[win.thisUrl]
+		});
+	});
 }

@@ -91,7 +91,7 @@ var tableView = Ti.UI.createTableView({
 	footerView:getDestructionView(I('more.settings.reset.title'))
 });
 
-tableView.footerView.children[0].addEventListener('click', function(e) {
+tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 	//if the user wants to reset the properties of the app asking if he's really sure
 	var alert = Ti.UI.createOptionDialog({
 		title:I('more.settings.reset.message', Ti.App.name),
@@ -146,10 +146,10 @@ win.addEventListener('focus', function(e) {
 
 win.addEventListener('blur', function(e) {
 	//writing in the properties that the settings have been filled
-	if(codeField.children[0].getValue() != '')
+	if(codeField.getChildren()[0].getValue() != '')
 		Ti.App.Properties.setBool('hasBeenSet', true);
 	//saving the code value
-	Ti.App.Properties.setString('profile' + profile + '.code', codeField.children[0].getValue());
+	Ti.App.Properties.setString('profile' + profile + '.code', codeField.getChildren()[0].getValue());
 });
 
 win.setRightNavButton(b_help);
@@ -157,10 +157,10 @@ win.add(tableView);
 
 //used to set all the data in their respective fields
 function setFields() {
-	profileField.children[0].setText(I('more.settings.profile.prefix', profile.toString()));
-	codeField.children[0].setValue(code);
-	hdField.children[0].setText(I('more.settings.hd.prefix', hd.toString()));
-	modelField.children[0].setText(getModelString(model));
+	profileField.getChildren()[0].setText(I('more.settings.profile.prefix', profile.toString()));
+	codeField.getChildren()[0].setValue(code);
+	hdField.getChildren()[0].setText(I('more.settings.hd.prefix', hd.toString()));
+	modelField.getChildren()[0].setText(getModelString(model));
 }
 
 Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1);

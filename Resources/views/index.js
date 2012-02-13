@@ -59,9 +59,10 @@ var t1 = Ti.UI.create2DMatrix();
 t1 = t1.scale(1.1);
 
 //create an animation with that that will last 0.1 second
-var a = Ti.UI.createAnimation();
-a.transform = t1;
-a.duration = 100;
+var a = Ti.UI.createAnimation({
+	transform:t1,
+	duration:100
+});
 
 a.addEventListener('complete', function() {
 	//when scaled to 1.1, scale it back to its original size
@@ -113,7 +114,7 @@ for(var i=0; i<buttonList.length; i++)
 			width:20,
 			top:6
 		});
-							
+		
 		button.add(img_button);
 	}
 						
@@ -289,8 +290,7 @@ function updateButtons()
 		
 		button.addEventListener('touchstart', function(e)
 		{
-			//if the button press can be repeated as long as the user keeps pressing it
-			//the functionnality is compatible only with the volume and program buttons
+			//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons
 			if(e.source.canRepeat)
 			{
 				var delay;
@@ -308,8 +308,7 @@ function updateButtons()
 				if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec'))
 					delay*=0.5;
 				
-				//set an interval so it will be repeated every *delay* milliseconds
-				//repeatIntervalID is so we can cancel the interval later
+				//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
 				repeatIntervalID = setInterval(function(){
 					hasBeenPressed = true;
 					//calling the key!

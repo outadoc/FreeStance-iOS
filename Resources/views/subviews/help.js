@@ -39,10 +39,10 @@ tableView.addEventListener('click', function(e)
 
 	//if the user needs help about config, we directly go to the help content page
 	if(e.rowData.helpTo == 'config')
-		win.url = 'info_display.js';
+		win.setUrl('info_display.js');
 	//else, open the model selection window
 	else
-		win.url = 'model_select.js';
+		win.setUrl('model_select.js');
 
 	Ti.UI.currentTab.open(win, {
 		animated:true

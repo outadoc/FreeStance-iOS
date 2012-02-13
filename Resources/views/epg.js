@@ -7,12 +7,12 @@ Ti.include('includes/lib/json.i18n.js')
 var win = Ti.UI.currentWindow;
 var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.NOW);
 
-var search = Titanium.UI.createSearchBar({
+var searchBar = Titanium.UI.createSearchBar({
 	hintText:I('epg.searchHint'),
 	barColor:'#464646'
 });
 
-search.addEventListener('return', function(e)
+searchBar.addEventListener('return', function(e)
 {
 	if(e.source.value.toLowerCase() == 'we do not forgive, we do not forget.') {
 		var win = Ti.UI.createWindow({
@@ -30,7 +30,7 @@ search.addEventListener('return', function(e)
 var tableView = Ti.UI.createTableView({
 	searchHidden:true,
 	filterAttribute:'thisSearchFilter',
-	search:search
+	search:searchBar
 });
 
 win.add(tableView);
@@ -58,18 +58,20 @@ tabbedBar.addEventListener('click', function(e)
 		loadRSSFeed(EPG.TONIGHT_URL);
 });
 
-win.titleControl = tabbedBar;
-
-var border = Ti.UI.createView({
-	backgroundColor:'#576c89',
-	height:1,
-	bottom:0
-});
+win.setTitleControl(tabbedBar);
 
 var tableHeader = Ti.UI.createView({
 	backgroundColor:'#e2e7ed',
 	width:320,
 	height:60
+});
+
+tableView.setHeaderPullView(tableHeader);
+
+var border = Ti.UI.createView({
+	backgroundColor:'#576c89',
+	height:1,
+	bottom:0
 });
 
 tableHeader.add(border);
@@ -81,6 +83,8 @@ var arrow = Ti.UI.createView({
 	bottom:10,
 	left:20
 });
+
+tableHeader.add(arrow);
 
 var statusLabel = Ti.UI.createLabel({
 	text:I('epg.refresh.pullToRefresh'),
@@ -101,6 +105,8 @@ var statusLabel = Ti.UI.createLabel({
 	}
 });
 
+tableHeader.add(statusLabel);
+
 var lastUpdatedLabel = Ti.UI.createLabel({
 	text:I('epg.refresh.updated', getFullDate()),
 	left:65,
@@ -119,6 +125,8 @@ var lastUpdatedLabel = Ti.UI.createLabel({
 	}
 });
 
+tableHeader.add(lastUpdatedLabel);
+
 var actInd = Ti.UI.createActivityIndicator({
 	left:20,
 	bottom:13,
@@ -127,19 +135,14 @@ var actInd = Ti.UI.createActivityIndicator({
 	style:Ti.UI.iPhone.ActivityIndicatorStyle.DARK
 });
 
-tableHeader.add(arrow);
-tableHeader.add(statusLabel);
-tableHeader.add(lastUpdatedLabel);
 tableHeader.add(actInd);
-
-tableView.headerPullView = tableHeader;
 
 var pulling = false;
 var reloading = false;
 
 function beginReloading()
 {
-	if(tabbedBar.index == 0)
+	if(tabbedBar.getIndex() == 0)
 		loadRSSFeed(EPG.NOW_URL);
 	else
 		loadRSSFeed(EPG.TONIGHT_URL);
@@ -148,8 +151,8 @@ function beginReloading()
 function endReloading()
 {
 	reloading = false;
-	lastUpdatedLabel.text = I('epg.refresh.updated', getFullDate());
-	statusLabel.text = I('epg.refresh.releaseToRefresh');
+	lastUpdatedLabel.setText(I('epg.refresh.updated', getFullDate()));
+	statusLabel.setText(I('epg.refresh.releaseToRefresh'));
 	actInd.hide();
 	arrow.show();
 	tableView.setContentInsets({
@@ -171,13 +174,16 @@ function getTonightRow(itemList, i)
 			category = itemList.item(i).getElementsByTagName('category').item(0).text;
 		} catch(e) {
 		}
+		
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('TF 1', 'TF1');
 		fullTitle = fullTitle.replace('La Chaîne Parlementaire', 'LCP');
 		fullTitle = fullTitle.replace('i Télé', 'i>TELE');
 		fullTitle = fullTitle.replace('NT 1', 'NT1');
 		fullTitle = fullTitle.replace('NRJ 12', 'NRJ12');
+		
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
+		
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = strip_tags(desc, null);
@@ -200,6 +206,7 @@ function getTonightRow(itemList, i)
 		var row = Ti.UI.createTableViewRow({
 			height:'auto',
 			hasChild:true,
+			selectedBackgroundColor:'#565656',
 
 			thisFullTitle:fullTitle,
 			thisTitle:title,
@@ -227,16 +234,20 @@ function getNowRow(itemList, i)
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
 		var fullUrl = itemList.item(i).getElementsByTagName('link').item(0).text;
 		var category = '';
+		
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('CANAL+', 'Canal+');
 		fullTitle = fullTitle.replace('ARTE', 'Arte');
+		
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
+		
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = desc.replace('[...]', '');
 		desc = strip_tags(desc, null);
 
 		var descParts = desc.split('. ');
+		
 		if(descParts[1] != null) {
 			category = descParts.shift();
 			desc = descParts.join('. ');
@@ -247,7 +258,7 @@ function getNowRow(itemList, i)
 		var itemParts = itemParts[1].split(' ');
 		var time = itemParts.shift();
 		var title = itemParts.join(' ');
-		time = time.replace('h', ':');
+			time = time.replace('h', ':');
 
 		if(channel == 'i>TELE')
 			desc = desc.split('/>')[1];
@@ -257,6 +268,7 @@ function getNowRow(itemList, i)
 		var row = Ti.UI.createTableViewRow({
 			hasChild:true,
 			height:'auto',
+			selectedBackgroundColor:'#565656',
 
 			thisFullTitle:fullTitle,
 			thisTitle:title,
@@ -278,12 +290,12 @@ function getNowRow(itemList, i)
 function displayItems(itemList)
 {
 	var lastChannelID;
-	tableView.data = null;
+	tableView.setData(null);
 
 	for(var i = 0;i < itemList.length;i++) {
 		var row;
 
-		if(tabbedBar.index == 0)
+		if(tabbedBar.getIndex() == 0)
 			row = getNowRow(itemList, i);
 		else
 			row = getTonightRow(itemList, i);
@@ -320,9 +332,11 @@ function displayItems(itemList)
 						y:1
 					}
 				});
+				
 				lastChannelID = row.thisChannel;
 				header.add(img);
 				header.add(lbl_channel);
+				
 				tableView.appendRow(header, {
 					animated:true
 				});
@@ -361,6 +375,7 @@ function displayItems(itemList)
 
 			row.add(row_time);
 			row.add(row_title);
+			
 			tableView.appendRow(row, {
 				animated:true
 			});
@@ -381,34 +396,32 @@ function loadRSSFeed(url)
 		});
 		xhr.open('GET', url);
 
-		xhr.onreadystatechange = function()
+		xhr.setOnreadystatechange(function()
 		{
 			if(xhr.readyState == 4 && xhr.status == 200) {
-				var xml = this.responseXML;
+				var xml = this.getResponseXML();
 				var itemList = xml.documentElement.getElementsByTagName('item');
 				displayItems(itemList);
-				tabbedBar.lastIndex = tabbedBar.index;
+				tabbedBar.lastIndex = tabbedBar.getIndex();
 				loadingWin.close();
 				endReloading();
 			}
-		}
+		});
 
-
-		xhr.onerror = function()
+		xhr.setOnerror(function()
 		{
 			displayError(Error.SERVER);
 			loadingWin.close();
 			endReloading();
-		}
-
-
+		});
+		
 		xhr.send();
 	}
 }
 
 function displayError(errorType)
 {
-	tabbedBar.index = tabbedBar.lastIndex;
+	tabbedBar.setIndex(tabbedBar.lastIndex);
 
 	var alert = Ti.UI.createAlertDialog({
 		title:I('network.message.title'),
@@ -416,13 +429,13 @@ function displayError(errorType)
 	});
 
 	if(errorType == Error.NETWORK)
-		alert.message = I('network.message.epg.connection');
+		alert.setMessage(I('network.message.epg.connection'));
 	else if(errorType == Error.SERVER)
-		alert.message = I('network.message.epg.server');
+		alert.setMessage(I('network.message.epg.server'));
 	else
 		errorType = Error.UNKNOWN;
 
-	alert.message = alert.message + ' (E' + errorType + ')';
+	alert.setMessage(alert.getMessage() + ' (E' + errorType + ')');
 	alert.show();
 }
 
@@ -433,20 +446,24 @@ tableView.addEventListener('scroll', function(e)
 		var t = Ti.UI.create2DMatrix();
 		t = t.rotate(-180);
 		pulling = true;
+		
 		arrow.animate({
 			transform:t,
 			duration:180
 		});
-		statusLabel.text = I('epg.refresh.releaseToRefresh');
+		
+		statusLabel.setText(I('epg.refresh.releaseToRefresh'));
 	}
 	else if(pulling && offset > -65.0 && offset < 0) {
 		pulling = false;
 		var t = Ti.UI.create2DMatrix();
+		
 		arrow.animate({
 			transform:t,
 			duration:180
 		});
-		statusLabel.text = I('epg.refresh.pullToRefresh');
+		
+		statusLabel.setText(I('epg.refresh.pullToRefresh'));
 	}
 });
 
@@ -457,13 +474,15 @@ tableView.addEventListener('scrollEnd', function(e)
 		pulling = false;
 		arrow.hide();
 		actInd.show();
-		statusLabel.text = I('epg.refresh.loading');
+		statusLabel.setText(I('epg.refresh.loading'));
+		
 		tableView.setContentInsets({
 			top:60
 		}, {
 			animated:true
 		});
-		arrow.transform = Ti.UI.create2DMatrix();
+		
+		arrow.setTransform(Ti.UI.create2DMatrix());
 		beginReloading();
 	}
 });

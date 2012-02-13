@@ -9,8 +9,7 @@ String.prototype.normalizeUrl = function()
 	return url;
 }
 
-//these are used by the normalizeUrl one
-
+//these are used by the normalizeUrl method
 String.prototype.trim = function()
 {
 	return this.replace(/^\s+|\s+$/g, "");

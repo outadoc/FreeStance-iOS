@@ -89,9 +89,9 @@ tableView.addEventListener('click', function(e)
 		});
 
 		if(e.rowData.bug) {
-			email.subject = I('more.bugReport.subject', Ti.App.name, Ti.App.version);
-			email.html = true;
-			email.messageBody = I('more.bugReport.content', Ti.App.name, Ti.App.version, Ti.Platform.name, Ti.Platform.version, Ti.Platform.model, Ti.version);
+			email.setSubject(I('more.bugReport.subject', Ti.App.name, Ti.App.version));
+			email.setHtml(true);
+			email.setMessageBody(I('more.bugReport.content', Ti.App.name, Ti.App.version, Ti.Platform.name, Ti.Platform.version, Ti.Platform.model, Ti.version));
 		}
 		email.open();
 	}

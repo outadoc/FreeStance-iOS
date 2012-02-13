@@ -9,9 +9,7 @@ var data = [];
 var profile = Ti.App.Properties.getInt('profileToModify', Profile.PROFILE_1);
 var selectedRow;
 
-//setting the selected row:
-//if we are modifying the profile itself, we use the previously got variable
-//the -1 thing is because the tableview index starts with 0
+//setting the selected row: the -1 thing is because the tableview index starts with 0
 if(win.configID == 'profile')
 	selectedRow = profile - 1;
 //else, we just get the value we need
@@ -21,16 +19,16 @@ else
 for(var i = 0; i <= 2; i++) {
 	var row = Ti.UI.createTableViewRow();
 	if(i == selectedRow)
-		row.hasCheck = true;
+		row.setHasCheck(true);
 
 	if(win.configID == 'model') {
 		//if we're setting the row, no need of any incrementation thing, just get the model name
-		row.title = getModelString(i+1);
+		row.setTitle(getModelString(i+1));
 		//we need only two rows here
 		if(i == 1)
 			i = 2;
 	} else
-		row.title = win.rowName + (i + 1);
+		row.setTitle(win.rowName + (i + 1));
 
 	data[i] = row;
 }
@@ -41,21 +39,18 @@ var tableView = Ti.UI.createTableView({
 });
 
 tableView.addEventListener('click', function(e) {
-	var index = e.index;
-	var section = e.section;
-	
 	//timeout so we check the row after a certain delay (more "realistic")
 	setTimeout(function() {
-		for(var i = 0; i < section.rows.length; i++) {
-			section.rows[i].hasCheck = false;
+		for(var i = 0; i < e.section.getRows().length; i++) {
+			e.section.getRows()[i].setHasCheck(false);
 		}
-		section.rows[index].hasCheck = true;
+		e.section.getRows()[e.index].setHasCheck(true);
 		
 		//setting the properties
 		if(win.configID == 'profile')
-			Ti.App.Properties.setInt('profileToModify', index + 1);
+			Ti.App.Properties.setInt('profileToModify', e.index + 1);
 		else
-			Ti.App.Properties.setInt('profile' + profile + '.' + win.configID, index + 1);
+			Ti.App.Properties.setInt('profile' + profile + '.' + win.configID, e.index + 1);
 	}, 150);
 });
 
