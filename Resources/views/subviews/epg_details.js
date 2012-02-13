@@ -1,7 +1,7 @@
 //a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
 Ti.include('../includes/callurl.js');
 Ti.include('../includes/normalize_url.js');
-Ti.include('../includes/lib/json.i18n.js')
+Ti.include('../includes/lib/json.i18n.js');
 Ti.include('../includes/utils.js');
 
 var win = Ti.UI.currentWindow;
@@ -56,7 +56,7 @@ var img = Ti.UI.createImageView({
 
 progInfo.add(img);
 
-if(win.thisImageUrl == null) {
+if(win.thisImageUrl === undefined) {
 	img.setImage('../../img/default_epg.png');
 }
 

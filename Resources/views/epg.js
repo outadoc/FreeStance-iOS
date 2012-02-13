@@ -2,7 +2,7 @@ Ti.include('includes/strip_tags.js');
 Ti.include('includes/utils.js');
 Ti.include('includes/enums.js');
 Ti.include('includes/ui.js');
-Ti.include('includes/lib/json.i18n.js')
+Ti.include('includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.NOW);
@@ -18,11 +18,11 @@ searchBar.addEventListener('return', function(e)
 		var win = Ti.UI.createWindow({
 			url:'subviews/easter_egg.js',
 			title:'Expect us.',
-			barColor:'#464646',
+			barColor:'#464646'
 		});
 
 		win.open({
-			modal:true,
+			modal:true
 		});
 	}
 });
@@ -52,10 +52,12 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 tabbedBar.addEventListener('click', function(e)
 {
 	loadingWin.open();
-	if(e.index == 0)
+	if(e.index === EPG.NOW) {
 		loadRSSFeed(EPG.NOW_URL);
-	else if(e.index == 1)
+	}
+	else if(e.index == EPG.TONIGHT) {
 		loadRSSFeed(EPG.TONIGHT_URL);
+	}
 });
 
 win.setTitleControl(tabbedBar);
@@ -142,10 +144,12 @@ var reloading = false;
 
 function beginReloading()
 {
-	if(tabbedBar.getIndex() == 0)
+	if(tabbedBar.getIndex() === EPG.NOW){
 		loadRSSFeed(EPG.NOW_URL);
-	else
+	}
+	else {
 		loadRSSFeed(EPG.TONIGHT_URL);
+	}
 }
 
 function endReloading()
@@ -198,8 +202,9 @@ function getTonightRow(itemList, i)
 		var imgUrl;
 
 		try {
-			if(itemList.item(i).getElementsByTagName('enclosure') != null)
+			if(itemList.item(i).getElementsByTagName('enclosure') != null) {
 				imgUrl = itemList.item(i).getElementsByTagName('enclosure').item(0).attributes.getNamedItem('url').text;
+			}
 		} catch(e) {
 		}
 
@@ -255,14 +260,15 @@ function getNowRow(itemList, i)
 
 		var itemParts = fullTitle.split(' : ');
 		var channel = itemParts[0];
-		var itemParts = itemParts[1].split(' ');
+			itemParts = itemParts[1].split(' ');
 		var time = itemParts.shift();
-		var title = itemParts.join(' ');
 			time = time.replace('h', ':');
+		var title = itemParts.join(' ');
 
-		if(channel == 'i>TELE')
+		if(channel == 'i>TELE') {
 			desc = desc.split('/>')[1];
-
+		}
+		
 		var channelID = getChannelID(channel);
 
 		var row = Ti.UI.createTableViewRow({
@@ -295,11 +301,12 @@ function displayItems(itemList)
 	for(var i = 0;i < itemList.length;i++) {
 		var row;
 
-		if(tabbedBar.getIndex() == 0)
+		if(tabbedBar.getIndex() === EPG.NOW) {
 			row = getNowRow(itemList, i);
-		else
+		} else {
 			row = getTonightRow(itemList, i);
-
+		}
+		
 		if(row != null) {
 			if(lastChannelID != row.thisChannel) {
 				var header = Ti.UI.createTableViewRow({
@@ -392,7 +399,7 @@ function loadRSSFeed(url)
 	}
 	else {
 		var xhr = Ti.Network.createHTTPClient({
-			timeout:15000,
+			timeout:15000
 		});
 		xhr.open('GET', url);
 
@@ -428,13 +435,14 @@ function displayError(errorType)
 		buttonNames:[I('network.buttons.ok')]
 	});
 
-	if(errorType == Error.NETWORK)
+	if(errorType == Error.NETWORK) {
 		alert.setMessage(I('network.message.epg.connection'));
-	else if(errorType == Error.SERVER)
+	} else if(errorType == Error.SERVER) {
 		alert.setMessage(I('network.message.epg.server'));
-	else
+	} else {
 		errorType = Error.UNKNOWN;
-
+	}
+	
 	alert.setMessage(alert.getMessage() + ' (E' + errorType + ')');
 	alert.show();
 }
@@ -505,7 +513,7 @@ tableView.addEventListener('click', function(e)
 			thisImageUrl:e.rowData.thisImageUrl,
 			thisUrl:e.rowData.thisUrl,
 			thisChannelID:e.rowData.thisChannelID,
-			thisCategory:e.rowData.thisCategory,
+			thisCategory:e.rowData.thisCategory
 		});
 
 		Ti.UI.currentTab.open(win, {
@@ -516,7 +524,8 @@ tableView.addEventListener('click', function(e)
 
 loadingWin.open();
 
-if(defaultTab == EPG.NOW)
+if(defaultTab == EPG.NOW) {
 	loadRSSFeed(EPG.NOW_URL);
-else
+} else {
 	loadRSSFeed(EPG.TONIGHT_URL);
+}

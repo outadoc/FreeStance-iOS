@@ -7,15 +7,16 @@ var hd, code, profile;
 function callKey(key, isLong, hd, code, model, profile)
 {
 	//checking if we call the function with already set config values; if we don't, get them
-	if(profile == null)
+	if(profile === undefined) {
 		profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
-	if(hd == null)
+	} if(hd === undefined) {
 		hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
-	if(code == null)
+	} if(code === undefined) {
 		code = Ti.App.Properties.getString('profile' + profile + '.code', '');
-	if(model == null)
+	} if(model === undefined) {
 		model = Model.FREEBOX_HD;
-
+	}
+	
 	var xhr = Ti.Network.createHTTPClient();
 
 	if(!Ti.App.Properties.getBool('debugmode', false)) {
@@ -24,7 +25,7 @@ function callKey(key, isLong, hd, code, model, profile)
 		xhr.send(null);
 	}
 	else {
-		//display the information sent
+		//if debugging, show the information that was about to be sent
 		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + getModelString(model) + '; the app is in debug mode so the request was not treated');
 	}
 }
@@ -35,9 +36,10 @@ function callMultiKeys(channel, hd, code, model, profile)
 	//we check the digits one by one using a loop, as you need to call all the first digits with a long press and the last with a short one
 	for(var i = 0;i < (channel.length);i++) {
 		//if this is the last digit of the number, call it as a short press
-		if(i == (channel.length - 1))
+		if(i == (channel.length - 1)) {
 			callKey(channel.charAt(i), false, hd, code, model, profile);
-		else
+		} else {
 			callKey(channel.charAt(i), true, hd, code, model, profile);
+		}
 	}
 }

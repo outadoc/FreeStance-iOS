@@ -10,26 +10,30 @@ var profile = Ti.App.Properties.getInt('profileToModify', Profile.PROFILE_1);
 var selectedRow;
 
 //setting the selected row: the -1 thing is because the tableview index starts with 0
-if(win.configID == 'profile')
+if(win.configID == 'profile') {
 	selectedRow = profile - 1;
+}
 //else, we just get the value we need
-else
+else {
 	selectedRow = Ti.App.Properties.getInt('profile' + profile + '.' + win.configID, Profile.PROFILE_1) - 1;
+}
 
 for(var i = 0; i <= 2; i++) {
 	var row = Ti.UI.createTableViewRow();
-	if(i == selectedRow)
+	if(i == selectedRow) {
 		row.setHasCheck(true);
-
+	}
 	if(win.configID == 'model') {
 		//if we're setting the row, no need of any incrementation thing, just get the model name
 		row.setTitle(getModelString(i+1));
 		//we need only two rows here
-		if(i == 1)
+		if(i == 1) {
 			i = 2;
-	} else
+		}
+	} else {
 		row.setTitle(win.rowName + (i + 1));
-
+	}
+	
 	data[i] = row;
 }
 
@@ -47,10 +51,11 @@ tableView.addEventListener('click', function(e) {
 		e.section.getRows()[e.index].setHasCheck(true);
 		
 		//setting the properties
-		if(win.configID == 'profile')
+		if(win.configID == 'profile') {
 			Ti.App.Properties.setInt('profileToModify', e.index + 1);
-		else
+		} else {
 			Ti.App.Properties.setInt('profile' + profile + '.' + win.configID, e.index + 1);
+		}
 	}, 150);
 });
 

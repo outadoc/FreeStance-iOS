@@ -134,8 +134,9 @@ for(var i=0; i<buttonList.length; i++)
 		{						
 			//checking if the button press can be long
 			var isLong = false;
-			if(e.source.isLong)
+			if(e.source.isLong) {
 				isLong = true;
+			}
 			//calling the key!
 			callKey(e.source.id, isLong, hd, code, model, profile);
 		}
@@ -189,7 +190,7 @@ function updateButtons()
 		{id:'power', height:35, width:95, left:200, top:175, canBeLong:false},
 		{id:'home', height:35, width:95, left:200, top:220, canBeLong:true},
 		{title:I('buttons.mute'), id:'mute', height:35, width:95, left:200, top:265, canBeLong:false},
-		{title:'...', id:'other', height:35, width:95, left:200, top:310, canBeLong:false},
+		{title:'...', id:'other', height:35, width:95, left:200, top:310, canBeLong:false}
 	];
 	
 	//those can't be placed above as they are not buttons but labels...
@@ -219,12 +220,14 @@ function updateButtons()
 		}
 		
 		//if we're setting one of the colored buttons, we change their background image
-		if(button.isColor)
+		if(button.isColor) {
 			button.setBackgroundImage('../img/button_' + button.id + '.png');
+		}
 		//else, we change it to the default one
-		else
+		else {
 			button.setBackgroundImage('../img/button.png');
-			
+		}
+		
 		button.setBackgroundSelectedImage('../img/button_selected.png');
 		button.setBorderColor('gray');
 		
@@ -234,14 +237,18 @@ function updateButtons()
 			//...and if it's a freebox hd, we just change the button title to the corresponding letter
 			if(model == Model.FREEBOX_HD)
 			{
-				if(button.id == 'red')
+				if(button.id == 'red') {
 					button.setTitle('B');
-				if(button.id == 'yellow')
+				}
+				if(button.id == 'yellow') {
 					button.setTitle('Y');
-				if(button.id == 'blue')
+				}
+				if(button.id == 'blue') {
 					button.setTitle('X');
-				if(button.id == 'green')
+				}
+				if(button.id == 'green') {
 					button.setTitle('A');
+				}
 			}
 			//...and if it's a freebox révolution, we add an image in it
 			else
@@ -278,15 +285,18 @@ function updateButtons()
 		}
 		
 		//if it's a volume/program button, we use the properties set by the user to determine if the press can be repeated as long as the user is pressing the button
-		if(button.id == 'vol_inc' || button.id == 'vol_dec')
+		if(button.id == 'vol_inc' || button.id == 'vol_dec') {
 				button.canRepeat = volumeRepeat;
+		}
 		
-		if(button.id == 'prgm_inc' || button.id == 'prgm_dec')
+		if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
 				button.canRepeat = progRepeat;
+		}
 		
 		//if the button press can be long, we use the properties to determine if the user WANTS it to be long
-		if(button.canBeLong)
+		if(button.canBeLong) {
 			button.canBeLong = longPress;
+		}
 		
 		button.addEventListener('touchstart', function(e)
 		{
@@ -295,18 +305,22 @@ function updateButtons()
 			{
 				var delay;
 				//if it's one of the volume buttons, get the volume repeat frequency
-				if(e.source.id == 'vol_inc' || e.source.id == 'vol_dec')
+				if(e.source.id == 'vol_inc' || e.source.id == 'vol_dec') {
 					delay = volumeRepeatFrequency;
+				}
 				//else if it's one of the program buttons, get the program repeat frequency
-				else if(e.source.id == 'prgm_inc' ||e.source.id == 'prgm_dec')
+				else if(e.source.id == 'prgm_inc' ||e.source.id == 'prgm_dec') {
 					delay = progRepeatFrequency;
+				}
 				//else, if it's not a volume button nor a program button
-				else
+				else {
 					delay = 200;
+				}
 				
 				//the freebox révolution volume button needs a shorter frequency than the freebox hd one
-				if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec'))
+				if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
 					delay*=0.5;
+				}
 				
 				//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
 				repeatIntervalID = setInterval(function(){

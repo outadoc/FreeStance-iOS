@@ -1,6 +1,6 @@
 //page containing a simple webview that is used to show the program dedicated page
 Ti.include('../includes/ui.js');
-Ti.include('../includes/lib/json.i18n.js')
+Ti.include('../includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
@@ -69,16 +69,17 @@ win.setToolbar([b_prev, getFixedSpace(25), b_fwd, getFlexibleSpace(), b_refresh]
 webView.addEventListener('beforeload', function()
 {
 	//set the back/forward buttons correct behavior
-	if(webView.canGoBack())
+	if(webView.canGoBack()) {
 		b_prev.enabled = true;
-	else
+	} else {
 		b_prev.enabled = false;
-
-	if(webView.canGoForward())
+	}
+	if(webView.canGoForward()) {
 		b_fwd.enabled = true;
-	else
+	} else {
 		b_fwd.enabled = false;
-
+	}
+	
 	win.setRightNavButton(loading_wheel);
 	win.setToolbar([b_prev, getFixedSpace(25), b_fwd, getFlexibleSpace(), b_cancel], {animated:false});
 });

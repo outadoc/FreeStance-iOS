@@ -21,7 +21,7 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	bottom:7,
 	height:'30',
 	width:'300',
-	backgroundColor:'#787878',
+	backgroundColor:'#787878'
 });
 
 tabbedBar.addEventListener('click', function(e)
@@ -55,8 +55,9 @@ var dashboardTNT = Ti.UI.createDashboardView({
 
 dashboardTNT.addEventListener('click', function(e)
 {
-	if(e.item != null)
+	if(e.item !== null) {
 		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+	}
 });
 
 for(var i = 0;i < labelsTNT.length;i++) {
@@ -82,8 +83,9 @@ loadingWin.close();
 
 dashboardFree.addEventListener('click', function(e)
 {
-	if(e.item != null)
+	if(e.item !== null) {
 		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+	}
 });
 
 win.add(dashboardFree);
@@ -95,7 +97,7 @@ dashboardTabs.addEventListener('click', function(e)
 		loadingWin.close();
 		dashboardFree.show();
 	}
-	else if(e.index == 0) {
+	else if(e.index === 0) {
 		dashboardFree.hide();
 		dashboardTNT.show();
 	}

@@ -1,30 +1,33 @@
 function isIpad()
 {
 	var model = Ti.Platform.osname;
-	if(model == 'ipad')
+	if(model == 'ipad') {
 		return true;
-	else
+	} else {
 		return false;
+	}
 }
 
 function isIphone()
 {
 	var model = Ti.Platform.osname;
-	if(model == 'iphone')
+	if(model == 'iphone') {
 		return true;
-	else
+	} else {
 		return false;
+	}
 }
 
 function getDefaultBackground()
 {
 	var model = Ti.Platform.osname;
-	if(isIphone())
+	if(isIphone()) {
 		return 'stripped';
-	else if(isIpad())
+	} else if(isIpad()) {
 		return '#d8dae0';
-	else
+	} else {
 		return null;
+	}
 }
 
 function createLoadingWindow(height)
@@ -57,7 +60,6 @@ function createLoadingWindow(height)
 		{
 			win.close();
 		}, 10000);
-
 	});
 
 
@@ -67,7 +69,7 @@ function createLoadingWindow(height)
 	});
 
 	var spinWheel = Ti.UI.createActivityIndicator({
-		style:Ti.UI.iPhone.ActivityIndicatorStyle.BIG,
+		style:Ti.UI.iPhone.ActivityIndicatorStyle.BIG
 	});
 
 	view.add(spinWheel);

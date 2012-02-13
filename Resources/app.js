@@ -65,7 +65,7 @@ tabGroup.addTab(tab2);
 tabGroup.addTab(tab3);
 tabGroup.addTab(tab4);
 
-Ti.UI.orientation = Ti.UI.PORTRAIT;
+Ti.UI.setOrientation(Ti.UI.PORTRAIT);
 tabGroup.open();
 
 if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
@@ -128,7 +128,7 @@ else {
 
 						motdAlert.addEventListener('click', function(e)
 						{
-							if(e.index == 1 && motd.url != null) {
+							if(e.index == 1 && motd.url !== null) {
 								var w = Ti.UI.createWindow({
 									url:'views/subviews/website.js',
 									isModalWin:true,
@@ -142,7 +142,6 @@ else {
 							}
 						});
 
-
 						Ti.App.Properties.setString('lastMotd', motd.id);
 					}
 				} catch(e) {
@@ -150,7 +149,6 @@ else {
 			}
 		}
 	});
-
 
 	xhr.send();
 }

@@ -1,4 +1,4 @@
-Ti.include('../includes/lib/json.i18n.js')
+Ti.include('../includes/lib/json.i18n.js');
 Ti.include('../includes/ui.js');
 
 var win = Ti.UI.currentWindow;
@@ -38,12 +38,14 @@ tableView.addEventListener('click', function(e)
 	});
 
 	//if the user needs help about config, we directly go to the help content page
-	if(e.rowData.helpTo == 'config')
+	if(e.rowData.helpTo == 'config') {
 		win.setUrl('info_display.js');
+	}
 	//else, open the model selection window
-	else
+	else {
 		win.setUrl('model_select.js');
-
+	}
+	
 	Ti.UI.currentTab.open(win, {
 		animated:true
 	});

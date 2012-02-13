@@ -231,20 +231,21 @@ function getChannelID(channel)
 //used to get the string equivalent of a given freebox model
 function getModelString(model)
 {
-	if(model == Model.FREEBOX_HD)
+	if(model == Model.FREEBOX_HD) {
 		return 'Freebox HD';
-	else if(model == Model.FREEBOX_REVOLUTION)
+	} else if(model == Model.FREEBOX_REVOLUTION) {
 		return 'Freebox Révolution';
-	else if(model == Model.FREEBOX_PLAYER)
+	} else if(model == Model.FREEBOX_PLAYER) {
 		return 'Freebox Player';
-	else
+	} else {
 		return 'Unknow model';
+	}
 }
 
 String.prototype.capitalize = function()
 {
 	return this.toLowerCase().charAt(0).toUpperCase() + this.toLowerCase().slice(1);
-}
+};
 
 function getMajorVersion()
 {

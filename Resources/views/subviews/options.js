@@ -61,7 +61,7 @@ function addParentRow(title, header, rowName, configID) {
 function addTextFieldRow(text) {
 	var row = Ti.UI.createTableViewRow({
 		title:text,
-		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
 
 	var textfield = Ti.UI.createTextField({
@@ -103,7 +103,7 @@ tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 	alert.show();
 	alert.addEventListener('click', function(e) {
 		//if we clicked the confirmation button
-		if(e.index == 0) {
+		if(e.index === 0) {
 			var props = Ti.App.Properties.listProperties();
 			//delete all properties using a loop
 			for(var i = 0; i < props.length; i++) {
@@ -119,7 +119,7 @@ tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 //a quick shorcut in case the user needs help
 var b_help = Ti.UI.createButton({
 	title:I('more.help.title')
-})
+});
 
 b_help.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
@@ -146,8 +146,10 @@ win.addEventListener('focus', function(e) {
 
 win.addEventListener('blur', function(e) {
 	//writing in the properties that the settings have been filled
-	if(codeField.getChildren()[0].getValue() != '')
+	if(codeField.getChildren()[0].getValue() !== '')
+	{
 		Ti.App.Properties.setBool('hasBeenSet', true);
+	}
 	//saving the code value
 	Ti.App.Properties.setString('profile' + profile + '.code', codeField.getChildren()[0].getValue());
 });

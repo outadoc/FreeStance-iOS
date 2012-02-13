@@ -16,8 +16,9 @@ var b_close = Ti.UI.createButton({
 
 function stopAndClose()
 {
-	if(movie != null)
+	if(movie != null) {
 		movie.stop();
+	}
 	win.close();
 }
 
@@ -25,10 +26,11 @@ b_close.addEventListener('click', stopAndClose);
 movie.addEventListener('complete', stopAndClose);
 movie.addEventListener('fullscreen', function(e)
 {
-	if(!e.entering)
+	if(!e.entering) {
 		stopAndClose();
+	}
 });
 
 win.setLeftNavButton(b_close);
-win.add(movie)
+win.add(movie);
 movie.play();

@@ -2,7 +2,7 @@
 Ti.include('../includes/lib/json.i18n.js');
 Ti.include('../includes/enums.js');
 
-var win = Ti.UI.currentWindow;;
+var win = Ti.UI.currentWindow;
 
 //we're displaying the webview inside a tableview row, the rendering is a lot better
 var tableViewRow = Ti.UI.createTableViewRow({

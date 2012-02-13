@@ -13,7 +13,7 @@ String.prototype.normalizeUrl = function()
 String.prototype.trim = function()
 {
 	return this.replace(/^\s+|\s+$/g, "");
-}
+};
 
 function stripVowelAccent(str)
 {
@@ -55,8 +55,8 @@ function stripVowelAccent(str)
 		ch:'n'
 	}];
 
-	for(var i = 0, len = rExps.length;i < len;i++)
-	str = str.replace(rExps[i].re, rExps[i].ch);
-
+	for(var i = 0, len = rExps.length;i < len;i++) {
+		str = str.replace(rExps[i].re, rExps[i].ch);
+	}
 	return str;
 }

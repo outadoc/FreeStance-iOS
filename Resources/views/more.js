@@ -1,4 +1,4 @@
-Ti.include('includes/lib/json.i18n.js')
+Ti.include('includes/lib/json.i18n.js');
 Ti.include('includes/ui.js');
 
 var win = Ti.UI.currentWindow;
@@ -17,7 +17,7 @@ var data = [{
 	title:I('more.website'),
 	hasChild:true,
 	path:'subviews/website.js',
-	thisUrl:'http://outadoc.fr',
+	thisUrl:'http://dev.outadoc.fr',
 	isWebsite:true,
 	header:I('more.about')
 }, {
@@ -25,11 +25,11 @@ var data = [{
 	hasChild:true,
 	path:'subviews/website.js',
 	thisUrl:'https://mobile.twitter.com/#!/outadev',
-	isWebsite:true,
+	isWebsite:true
 }, {
 	title:I('more.contact'),
 	hasChild:true,
-	email:'outadev@outadoc.fr',
+	email:'outadev@outadoc.fr'
 }, {
 	title:I('more.bugReport.title'),
 	hasChild:true,
@@ -55,7 +55,7 @@ var tableView = Ti.UI.createTableView({
 
 tableView.addEventListener('click', function(e)
 {
-	if(e.rowData.path != null) {
+	if(e.rowData.path !== undefined) {
 		var win;
 
 		if(e.rowData.isWebsite) {
@@ -82,13 +82,13 @@ tableView.addEventListener('click', function(e)
 			animated:true
 		});
 	}
-	else if(e.rowData.email) {
+	else if(e.rowData.email !== undefined) {
 		var email = Ti.UI.createEmailDialog({
 			toRecipients:[e.rowData.email],
 			barColor:'#464646'
 		});
 
-		if(e.rowData.bug) {
+		if(e.rowData.bug !== undefined) {
 			email.setSubject(I('more.bugReport.subject', Ti.App.name, Ti.App.version));
 			email.setHtml(true);
 			email.setMessageBody(I('more.bugReport.content', Ti.App.name, Ti.App.version, Ti.Platform.name, Ti.Platform.version, Ti.Platform.model, Ti.version));
