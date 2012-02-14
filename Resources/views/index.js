@@ -42,7 +42,8 @@ var win_more = Ti.UI.createWindow({
 	thisHd:hd,
 	thisCode:code,
 	thisModel:model,
-	thisProfile:profile
+	thisProfile:profile,
+	shadowControler:win.shadowControler
 });
 
 //make the window as small as possible
@@ -143,41 +144,35 @@ function updateButtons()
 			});
 			button.add(logo);
 		}
-		
-		//if we're setting one of the colored buttons, we change their background image
+
+		//if we're setting one of the colored buttons, we change their properties
 		if(button.isColor) {
 			button.setBackgroundImage('../img/button_' + button.id + '.png');
-		}
-		//else, we change it to the default one
-		else {
-			button.setBackgroundImage('../img/button.png');
-		}
-		
-		button.setBackgroundSelectedImage('../img/button_selected.png');
-		button.setBorderColor('gray');
-		
-		//if we're setting one of the colored buttons...
-		if(button.isColor)
-		{
-			//...and if it's a freebox hd, we just change the button title to the corresponding letter
+			button.setBackgroundSelectedImage('../img/button_ ' + button.id + '_selected.png');
+						
+			if(button.id == 'red') {
+				button.setBorderColor('#e20f07');
+			} else if(button.id == 'yellow') {
+				button.setBorderColor('#e1c400');
+			} else if(button.id == 'blue') {
+				button.setBorderColor('#058cf5');
+			} else if(button.id == 'green') {
+				button.setBorderColor('#5fb40d');
+			}
+			
+			//if it's a freebox hd, we just change the button title to the corresponding letter
 			if(model == Model.FREEBOX_HD)
 			{
 				if(button.id == 'red') {
 					button.setTitle('B');
-				}
-				if(button.id == 'yellow') {
+				} else if(button.id == 'yellow') {
 					button.setTitle('Y');
-				}
-				if(button.id == 'blue') {
+				} else if(button.id == 'blue') {
 					button.setTitle('X');
-				}
-				if(button.id == 'green') {
+				} else if(button.id == 'green') {
 					button.setTitle('A');
 				}
-			}
-			//...and if it's a freebox révolution, we add an image in it
-			else
-			{
+			} else if(model == Model.FREEBOX_REVOLUTION) {//...and if it's a freebox révolution, we add an image in it
 				var img_button = Ti.UI.createImageView({
 					image:'../img/fbx_rev_overlay_' + button.id + '.png',
 					height:35,
@@ -186,6 +181,10 @@ function updateButtons()
 				});
 				button.add(img_button);
 			}
+		} else { //else, we change it to the default ones
+			button.setBackgroundImage('../img/button.png');
+			button.setBackgroundSelectedImage('../img/button_selected.png');
+			button.setBorderColor('gray');
 		}
 		
 		if(button.isArrow)
@@ -212,9 +211,7 @@ function updateButtons()
 		//if it's a volume/program button, we use the properties set by the user to determine if the press can be repeated as long as the user is pressing the button
 		if(button.id == 'vol_inc' || button.id == 'vol_dec') {
 				button.canRepeat = volumeRepeat;
-		}
-		
-		if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
+		} if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
 				button.canRepeat = progRepeat;
 		}
 		
@@ -222,6 +219,12 @@ function updateButtons()
 		if(button.canBeLong) {
 			button.canBeLong = longPress;
 		}
+		
+		win.shadowController.Shadow(button, {
+			shadowRadius:1,
+			shadowOpacity:0.6,
+			shadowOffset:{x:1, y:1}
+		});
 		
 		button.addEventListener('touchstart', function(e)
 		{
