@@ -43,7 +43,7 @@ var win_more = Ti.UI.createWindow({
 	thisCode:code,
 	thisModel:model,
 	thisProfile:profile,
-	shadowControler:win.shadowControler
+	shadowController:win.shadowController
 });
 
 //make the window as small as possible
