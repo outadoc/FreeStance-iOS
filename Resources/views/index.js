@@ -148,8 +148,8 @@ function updateButtons()
 		//if we're setting one of the colored buttons, we change their properties
 		if(button.isColor) {
 			button.setBackgroundImage('../img/button_' + button.id + '.png');
-			button.setBackgroundSelectedImage('../img/button_ ' + button.id + '_selected.png');
-						
+			button.setBackgroundSelectedImage('../img/button_' + button.id + '_selected.png');
+			
 			if(button.id == 'red') {
 				button.setBorderColor('#e20f07');
 			} else if(button.id == 'yellow') {
