@@ -58,7 +58,7 @@ for(var i=0; i<buttonList.length; i++)
 	
 	win.shadowController.Shadow(button, {
 		shadowRadius:1,
-		shadowOpacity:0.6,
+		shadowOpacity:0.5,
 		shadowOffset:{x:1, y:1}
 	});
 						
