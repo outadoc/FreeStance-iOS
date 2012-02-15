@@ -45,33 +45,6 @@ var win_more = Ti.UI.createWindow({
 	shadowController:win.shadowController
 });
 
-/*
-//make the window as small as possible
-var t = Ti.UI.create2DMatrix();
-t = t.scale(0);
-
-//then scale it to 1.1 times its original size
-var t1 = Ti.UI.create2DMatrix();
-t1 = t1.scale(1.1);
-
-//create an animation with that that will last 0.1 second
-var a = Ti.UI.createAnimation({
-	transform:t1,
-	duration:100
-});
-
-a.addEventListener('complete', function() {
-	//when scaled to 1.1, scale it back to its original size
-	var t2 = Ti.UI.create2DMatrix();
-	t2 = t2.scale(1.0);
-
-	win_more.animate({
-		transform:t2,
-		duration:100
-	});
-});
-*/
-
 //the function resets the view so we can update it (to change buttons,..)
 function updateButtons()
 {
