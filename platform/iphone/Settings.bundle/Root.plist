@@ -94,7 +94,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Other</string>
+			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
