@@ -193,12 +193,6 @@ function updateButtons()
 			button.canBeLong = longPress;
 		}
 		
-		win.shadowController.Shadow(button, {
-			shadowRadius:1,
-			shadowOpacity:0.5,
-			shadowOffset:{x:1, y:1}
-		});
-		
 		button.addEventListener('touchstart', function(e)
 		{
 			//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons

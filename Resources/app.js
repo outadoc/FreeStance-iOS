@@ -3,7 +3,6 @@ Ti.include('views/includes/utils.js');
 Ti.include('views/includes/ui.js');
 Ti.include('views/includes/enums.js');
 
-var shadowController = require("com.infinery.ds");
 var tabGroup = Ti.UI.createTabGroup();
 
 var win1 = Ti.UI.createWindow({
@@ -11,8 +10,7 @@ var win1 = Ti.UI.createWindow({
 	backgroundImage:'img/remotebg.png',
 	navBarHidden:true,
 	orientationModes:[Ti.UI.PORTRAIT],
-	barColor:'#464646', 
-	shadowController:shadowController
+	barColor:'#464646'
 });
 
 var win2 = Ti.UI.createWindow({
