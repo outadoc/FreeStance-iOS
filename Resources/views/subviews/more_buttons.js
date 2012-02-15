@@ -66,12 +66,7 @@ for(var i=0; i<buttonList.length; i++)
 		//if we want to close the window
 		if(e.source.id == 'close')
 		{
-			var t3 = Ti.UI.create2DMatrix();
-			t3 = t3.scale(0);
-			win.close({
-				transform:t3,
-				duration:300
-			});
+			win.close({top:-320, duration:500});
 		}
 							
 		else if(e.source.id != null)

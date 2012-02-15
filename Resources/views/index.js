@@ -37,7 +37,6 @@ var win_more = Ti.UI.createWindow({
 	url:'subviews/more_buttons.js',
 	height:480,
 	width:320,
-	transform:t,
 	orientationModes:[Ti.UI.PORTRAIT],
 	thisHd:hd,
 	thisCode:code,
@@ -46,6 +45,7 @@ var win_more = Ti.UI.createWindow({
 	shadowController:win.shadowController
 });
 
+/*
 //make the window as small as possible
 var t = Ti.UI.create2DMatrix();
 t = t.scale(0);
@@ -70,6 +70,7 @@ a.addEventListener('complete', function() {
 		duration:100
 	});
 });
+*/
 
 //the function resets the view so we can update it (to change buttons,..)
 function updateButtons()
@@ -277,7 +278,8 @@ function updateButtons()
 			//if we're clicking the 'more' button, we have to open a popup window
 			if(e.source.id == 'other')
 			{
-				win_more.open(a);
+				win_more.setTop(-320);
+				win_more.open({top:'auto', duration:500});
 			}
 			
 			else if(e.source.canBeLong)
