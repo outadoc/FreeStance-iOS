@@ -100,7 +100,7 @@ if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
 if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 	var alert = Ti.UI.createAlertDialog({
 		title:I('network.message.title'),
-		message:String.format(I('network.message.message'), Ti.App.name) + ' (E' + Error.NETWORK + ')',
+		message:I('network.message.message', Ti.App.name) + ' (E' + Error.NETWORK + ')',
 		buttonNames:[I('network.buttons.ok')]
 	});
 
