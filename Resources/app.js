@@ -19,7 +19,8 @@ var win2 = Ti.UI.createWindow({
 	url:'views/mosaic.js',
 	barColor:'#464646',
 	backgroundImage:'img/remotebg.png',
-	orientationModes:[Ti.UI.PORTRAIT]
+	orientationModes:[Ti.UI.PORTRAIT],
+	shadowController:shadowController
 });
 
 var win3 = Ti.UI.createWindow({

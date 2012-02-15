@@ -124,6 +124,12 @@ function getItem(label)
 		width:65,
 		top:0
 	});
+	
+	win.shadowController.Shadow(img_icon, {
+		shadowRadius:1,
+		shadowOpacity:0.5,
+		shadowOffset:{x:1, y:1}
+	});
 
 	var img_logo = Ti.UI.createImageView({
 		image:'../img/logo/' + getChannelID(label) + '.png',
