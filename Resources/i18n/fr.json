@@ -147,8 +147,8 @@
 		},
 		"legal": {
 			"title": "Mentions légales",
-			"content": "<p><strong>Free</strong> et <strong>Freebox</strong> sont des marques déposées de <strong>Illiad S.A.</strong></p><p>Les programmes TV de la journée et de la soirée sont fournis respectivement par <strong>Zap-Programme.fr</strong> et <strong>Orange.fr</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> est une marque déposée de <strong>Amazon.com, Inc</strong>.</p><p>Les logos de chaînes de télévision des bouquets TNT et Freebox sont les propriétés de leurs sociétés respectives correspondantes.</p><p><strong>%s</strong> est une app développée par <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> a été développée grâce à <strong>Appcelerator Titanium</strong>.</p>",
-			"height": "450"
+			"content": "<p><strong>Free</strong> et <strong>Freebox</strong> sont des marques déposées de <strong>Illiad S.A.</strong></p><p>Les programmes TV de la journée et de la soirée sont fournis respectivement par <strong>Zap-Programme.fr</strong> et <strong>Orange.fr</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> est une marque déposée de <strong>Amazon.com, Inc</strong>.</p><p>Les logos de chaînes de télévision des bouquets TNT et Freebox sont les propriétés de leurs sociétés respectives correspondantes.</p><p><strong>%s</strong> est une app développée par <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> a été développée grâce à <strong>Appcelerator Titanium</strong>.</p><p>Modules Titanium utilisés :<ul><li><strong>iOS 5 Twitter Module</strong> par Marcel Pociot</li><li><strong>Drop Shadow</strong> par Infinery, inc.</ul></p>",
+			"height": "535"
 		},
 		"about": "À propos...",
 		"preferences": "Préférences",
