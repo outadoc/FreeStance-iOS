@@ -41,8 +41,7 @@ var win_more = Ti.UI.createWindow({
 	thisHd:hd,
 	thisCode:code,
 	thisModel:model,
-	thisProfile:profile,
-	shadowController:win.shadowController
+	thisProfile:profile
 });
 
 //the function resets the view so we can update it (to change buttons,..)

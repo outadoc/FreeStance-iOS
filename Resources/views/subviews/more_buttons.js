@@ -55,12 +55,6 @@ for(var i=0; i<buttonList.length; i++)
 		
 		button.add(img_button);
 	}
-	
-	win.shadowController.Shadow(button, {
-		shadowRadius:1,
-		shadowOpacity:0.5,
-		shadowOffset:{x:1, y:1}
-	});
 						
 	button.addEventListener('click', function(e) {
 		//if we want to close the window
