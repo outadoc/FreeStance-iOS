@@ -97,7 +97,7 @@ function getFixedSpace(width)
 function getDestructionView(title)
 {
 	var b_destruction = Ti.UI.createButton({
-		backgroundImage:'../../img/big_red_button.png',
+		backgroundImage:'/img/big_red_button.png',
 		top:10,
 		height:45,
 		width:300

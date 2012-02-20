@@ -1,8 +1,8 @@
-Ti.include('includes/strip_tags.js');
-Ti.include('includes/utils.js');
-Ti.include('includes/enums.js');
-Ti.include('includes/ui.js');
-Ti.include('includes/lib/json.i18n.js');
+Ti.include('/includes/strip_tags.js');
+Ti.include('/includes/utils.js');
+Ti.include('/includes/enums.js');
+Ti.include('/includes/ui.js');
+Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.NOW);
@@ -16,7 +16,7 @@ searchBar.addEventListener('return', function(e)
 {
 	if(e.source.value.toLowerCase() == 'we do not forgive, we do not forget.') {
 		var win = Ti.UI.createWindow({
-			url:'subviews/easter_egg.js',
+			url:'subviews/epg/easter_egg.js',
 			title:'Expect us.',
 			barColor:'#464646'
 		});
@@ -79,7 +79,7 @@ var border = Ti.UI.createView({
 tableHeader.add(border);
 
 var arrow = Ti.UI.createView({
-	backgroundImage:'../img/arrow.png',
+	backgroundImage:'/img/arrow.png',
 	width:23,
 	height:53,
 	bottom:10,
@@ -198,7 +198,7 @@ function getTonightRow(itemList, i)
 		var time = itemParts[1];
 		var title = itemParts[2];
 		var channelID = getChannelID(channel);
-		var defaultImg = '../img/logo/' + channelID + '.png';
+		var defaultImg = '/img/logo/' + channelID + '.png';
 		var imgUrl;
 
 		try {
@@ -312,12 +312,12 @@ function displayItems(itemList)
 				var header = Ti.UI.createTableViewRow({
 					height:30,
 					selectionStyle:'none',
-					backgroundImage:'../img/epg_row_bg.png',
+					backgroundImage:'/img/epg_row_bg.png',
 					isHeader:true
 				});
 
 				var img = Ti.UI.createImageView({
-					image:'../img/logo/' + row.thisChannelID + '.png',
+					image:'/img/logo/' + row.thisChannelID + '.png',
 					height:27,
 					width:27,
 					left:10
@@ -499,8 +499,8 @@ tableView.addEventListener('click', function(e)
 {
 	if(!e.rowData.isHeader && e.rowData.thisTitle != null) {
 		var win = Ti.UI.createWindow({
-			url:'subviews/epg_details.js',
-			backgroundImage:'../img/remotebg.png',
+			url:'subviews/epg/epg_details.js',
+			backgroundImage:'/img/remotebg.png',
 			title:I('epg.details.title'),
 			backButtonTitle:I('labels.epg'),
 			orientationModes:[Ti.UI.PORTRAIT],

@@ -1,6 +1,6 @@
 //displays the help corresponding to the chosen subject(s)
-Ti.include('../includes/lib/json.i18n.js');
-Ti.include('../includes/enums.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/enums.js');
 
 var win = Ti.UI.currentWindow;
 
@@ -33,7 +33,7 @@ if(win.helpTo == 'config') {
 
 else if(win.helpTo == 'legal') {
 	tableView.setMinRowHeight(I('more.legal.height'));
-	webView.setHtml(css + I('more.legal.content', Ti.App.name, Ti.App.name) + '<div style="text-align:center"><img height="53" width="150" src="../../img/outadev.png" alt="outa[dev]" /></div>');
+	webView.setHtml(css + I('more.legal.content', Ti.App.name, Ti.App.name) + '<div style="text-align:center"><img height="53" width="150" src="/img/outadev.png" alt="outa[dev]" /></div>');
 }
 
 else if(win.model == Model.FREEBOX_HD) {

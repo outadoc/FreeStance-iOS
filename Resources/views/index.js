@@ -1,6 +1,6 @@
-Ti.include('includes/callurl.js');
-Ti.include('includes/lib/json.i18n.js');
-Ti.include('includes/ui.js');
+Ti.include('/includes/callurl.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/ui.js');
 
 //the properties for the current profile
 var profile, model, hd, code;
@@ -112,7 +112,7 @@ function updateButtons()
 		if(button.id == 'home')
 		{
 			var logo = Ti.UI.createImageView({
-				image:'../img/free_logo.png',
+				image:'/img/free_logo.png',
 				height:25
 			});
 			button.add(logo);
@@ -120,8 +120,8 @@ function updateButtons()
 
 		//if we're setting one of the colored buttons, we change their properties
 		if(button.isColor) {
-			button.setBackgroundImage('../img/button_' + button.id + '.png');
-			button.setBackgroundSelectedImage('../img/button_' + button.id + '_selected.png');
+			button.setBackgroundImage('/img/button_' + button.id + '.png');
+			button.setBackgroundSelectedImage('/img/button_' + button.id + '_selected.png');
 			
 			if(button.id == 'red') {
 				button.setBorderColor('#e20f07');
@@ -147,7 +147,7 @@ function updateButtons()
 				}
 			} else if(model == Model.FREEBOX_REVOLUTION) {//...and if it's a freebox révolution, we add an image in it
 				var img_button = Ti.UI.createImageView({
-					image:'../img/fbx_rev_overlay_' + button.id + '.png',
+					image:'/img/fbx_rev_overlay_' + button.id + '.png',
 					height:35,
 					width:35,
 					touchEnabled:false
@@ -155,15 +155,15 @@ function updateButtons()
 				button.add(img_button);
 			}
 		} else { //else, we change it to the default ones
-			button.setBackgroundImage('../img/button.png');
-			button.setBackgroundSelectedImage('../img/button_selected.png');
+			button.setBackgroundImage('/img/button.png');
+			button.setBackgroundSelectedImage('/img/button_selected.png');
 			button.setBorderColor('gray');
 		}
 		
 		if(button.isArrow)
 		{
 			var img_button = Ti.UI.createImageView({
-				image:'../img/arrow_' + button.id + '.png',
+				image:'/img/arrow_' + button.id + '.png',
 				height:20,
 				width:20
 			});
@@ -173,7 +173,7 @@ function updateButtons()
 		if(button.id == 'power')
 		{
 			var img_button = Ti.UI.createImageView({
-				image:'../img/power.png',
+				image:'/img/power.png',
 				height:20,
 				width:20,
 				touchEnabled:false

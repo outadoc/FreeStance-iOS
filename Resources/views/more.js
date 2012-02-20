@@ -1,5 +1,5 @@
-Ti.include('includes/lib/json.i18n.js');
-Ti.include('includes/ui.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/ui.js');
 
 var win = Ti.UI.currentWindow;
 win.backgroundColor = getDefaultBackground();
@@ -7,12 +7,12 @@ win.backgroundColor = getDefaultBackground();
 var data = [{
 	title:I('more.settings.title'),
 	hasChild:true,
-	path:'subviews/options.js',
+	path:'subviews/options/options.js',
 	header:I('more.preferences')
 }, {
 	title:I('more.help.title'),
 	hasChild:true,
-	path:'subviews/help.js'
+	path:'subviews/help/help.js'
 }, {
 	title:I('more.website'),
 	hasChild:true,
@@ -24,7 +24,7 @@ var data = [{
 	title:I('more.twitter'),
 	hasChild:true,
 	path:'subviews/website.js',
-	thisUrl:'https://mobile.twitter.com/#!/outadev',
+	thisUrl:'http://mobile.twitter.com/#!/outadev',
 	isWebsite:true
 }, {
 	title:I('more.contact'),

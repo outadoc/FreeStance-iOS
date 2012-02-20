@@ -1,10 +1,10 @@
-Ti.include('../includes/lib/json.i18n.js');
-Ti.include('../includes/callurl.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/callurl.js');
 
 var win = Ti.UI.currentWindow;
 
 var view = Ti.UI.createView({
-	backgroundImage:'../../img/remotebg.png',
+	backgroundImage:'/img/remotebg.png',
 	borderWidth:5,
 	borderColor:'#999',
 	height:260,
@@ -40,14 +40,14 @@ var buttonList = [
 for(var i=0; i<buttonList.length; i++)
 {
 	var button = Ti.UI.createButton(buttonList[i]);
-	button.setBackgroundImage('../../img/button.png');
-	button.setBackgroundSelectedImage('../../img/button_selected.png');
+	button.setBackgroundImage('/img/button.png');
+	button.setBackgroundSelectedImage('/img/button_selected.png');
 	button.setBorderColor('gray');
 	
 	if(button.id == 'play')
 	{
 		var img_button = Ti.UI.createImageView({
-			image:'../../img/play_pause.png',
+			image:'/img/play_pause.png',
 			height:20,
 			width:20,
 			top:6

@@ -1,6 +1,6 @@
-Ti.include('includes/callurl.js');
-Ti.include('includes/ui.js');
-Ti.include('includes/lib/json.i18n.js');
+Ti.include('/includes/callurl.js');
+Ti.include('/includes/ui.js');
+Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
@@ -119,14 +119,14 @@ function getItem(label)
 	});
 
 	var img_icon = Ti.UI.createButton({
-		image:'../img/dashboard.png',
+		image:'/img/dashboard.png',
 		height:65,
 		width:65,
 		top:0
 	});
 
 	var img_logo = Ti.UI.createImageView({
-		image:'../img/logo/' + getChannelID(label) + '.png',
+		image:'/img/logo/' + getChannelID(label) + '.png',
 		height:50,
 		width:50
 	});

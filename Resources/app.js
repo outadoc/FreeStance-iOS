@@ -1,13 +1,13 @@
-Ti.include('views/includes/lib/json.i18n.js');
-Ti.include('views/includes/utils.js');
-Ti.include('views/includes/ui.js');
-Ti.include('views/includes/enums.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/utils.js');
+Ti.include('/includes/ui.js');
+Ti.include('/includes/enums.js');
 
 var tabGroup = Ti.UI.createTabGroup();
 
 var win1 = Ti.UI.createWindow({
 	url:'views/index.js',
-	backgroundImage:'img/remotebg.png',
+	backgroundImage:'/img/remotebg.png',
 	navBarHidden:true,
 	orientationModes:[Ti.UI.PORTRAIT],
 	barColor:'#464646'
@@ -16,7 +16,7 @@ var win1 = Ti.UI.createWindow({
 var win2 = Ti.UI.createWindow({
 	url:'views/mosaic.js',
 	barColor:'#464646',
-	backgroundImage:'img/remotebg.png',
+	backgroundImage:'/img/remotebg.png',
 	orientationModes:[Ti.UI.PORTRAIT]
 });
 
@@ -37,19 +37,19 @@ var win4 = Ti.UI.createWindow({
 
 //add tabs
 var tab1 = Ti.UI.createTab({
-	icon:'img/remote.png',
+	icon:'/img/remote.png',
 	title:Ti.App.name,
 	window:win1
 });
 
 var tab2 = Ti.UI.createTab({
-	icon:'img/planet.png',
+	icon:'/img/planet.png',
 	title:I('labels.mosaic'),
 	window:win2
 });
 
 var tab3 = Ti.UI.createTab({
-	icon:'img/tv.png',
+	icon:'/img/tv.png',
 	title:I('labels.epg'),
 	window:win3
 });
@@ -82,7 +82,7 @@ if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
 	{
 		if(e.index == 1) {
 			var helpwin = Ti.UI.createWindow({
-				url:'views/subviews/options.js',
+				url:'views/subviews/options/options.js',
 				title:I('labels.options'),
 				backgroundColor:'stripped',
 				barColor:'#464646'

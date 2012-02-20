@@ -1,8 +1,8 @@
 //the page used to configure the application
-Ti.include('../includes/enums.js');
-Ti.include('../includes/utils.js');
-Ti.include('../includes/lib/json.i18n.js');
-Ti.include('../includes/ui.js');
+Ti.include('/includes/enums.js');
+Ti.include('/includes/utils.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/ui.js');
 
 var win = Ti.UI.currentWindow;
 
@@ -123,7 +123,7 @@ var b_help = Ti.UI.createButton({
 
 b_help.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
-		url:'help.js',
+		url:'../help/help.js',
 		title:I('more.help.title'),
 		backgroundColor:getDefaultBackground(),
 		barColor:'#464646'

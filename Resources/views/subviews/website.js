@@ -1,6 +1,6 @@
 //page containing a simple webview that is used to show the program dedicated page
-Ti.include('../includes/ui.js');
-Ti.include('../includes/lib/json.i18n.js');
+Ti.include('/includes/ui.js');
+Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
@@ -24,11 +24,11 @@ if(win.isModalWin)
 }
 
 var b_prev = Ti.UI.createButton({
-	image:'../../img/arrow_left.png'
+	image:'/img/arrow_left.png'
 });
 
 var b_fwd = Ti.UI.createButton({
-	image:'../../img/arrow_right.png'
+	image:'/img/arrow_right.png'
 });
 
 var b_cancel = Ti.UI.createButton({

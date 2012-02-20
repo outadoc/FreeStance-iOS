@@ -1,7 +1,7 @@
-Ti.include('../includes/ui.js');
-Ti.include('../includes/enums.js');
-Ti.include('../includes/utils.js');
-Ti.include('../includes/lib/json.i18n.js');
+Ti.include('/includes/ui.js');
+Ti.include('/includes/enums.js');
+Ti.include('/includes/utils.js');
+Ti.include('/includes/lib/json.i18n.js');
 
 //page used when through the help process, to determine the user's freebox model
 var win = Ti.UI.currentWindow;
@@ -18,7 +18,7 @@ tableView.addEventListener('click', function(e)
 		model:e.rowData.model,
 		helpTo:win.helpTo,
 		title:e.rowData.getTitle(),
-		url:'info_display.js',
+		url:'../info_display.js',
 		barColor:'#464646',
 		backgroundColor:getDefaultBackground()
 	});

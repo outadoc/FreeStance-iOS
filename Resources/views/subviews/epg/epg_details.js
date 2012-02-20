@@ -1,8 +1,8 @@
 //a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
-Ti.include('../includes/callurl.js');
-Ti.include('../includes/normalize_url.js');
-Ti.include('../includes/lib/json.i18n.js');
-Ti.include('../includes/utils.js');
+Ti.include('/includes/callurl.js');
+Ti.include('/includes/normalize_url.js');
+Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/utils.js');
 
 var win = Ti.UI.currentWindow;
 var hd, code, profile;
@@ -22,7 +22,7 @@ var progInfo = Ti.UI.createView({
 	left:10,
 	width:300,
 	height:160,
-	backgroundImage:'../../img/prog_info.png'
+	backgroundImage:'/img/prog_info.png'
 });
 
 scrollView.add(progInfo);
@@ -51,17 +51,17 @@ var img = Ti.UI.createImageView({
 	left:20,
 	borderColor:'white',
 	borderWidth:1,
-	defaultImage:'../../img/default_epg.png'
+	defaultImage:'/img/default_epg.png'
 });
 
 progInfo.add(img);
 
 if(win.thisImageUrl === undefined) {
-	img.setImage('../../img/default_epg.png');
+	img.setImage('/img/default_epg.png');
 }
 
 var logo = Ti.UI.createImageView({
-	image:'../../img/logo/' + win.thisChannelID + '.png',
+	image:'/img/logo/' + win.thisChannelID + '.png',
 	top:25,
 	right:45,
 	width:60,
@@ -136,8 +136,8 @@ var b_openweb = Ti.UI.createButton({
 	font: {
 		fontSize:15
 	},
-	backgroundImage:'../../img/button.png',
-	backgroundSelectedImage:'../../img/button_selected.png'
+	backgroundImage:'/img/button.png',
+	backgroundSelectedImage:'/img/button_selected.png'
 });
 
 b_openweb.addEventListener('click', function()
@@ -147,7 +147,7 @@ b_openweb.addEventListener('click', function()
 		backgroundColor:'#336699',
 		title:win.thisTitle,
 		thisUrl:win.thisUrl,
-		url:'website.js',
+		url:'../website.js',
 		barColor:'#464646',
 		isModalWin:true
 	});
@@ -169,8 +169,8 @@ var b_watch = Ti.UI.createButton({
 	font: {
 		fontSize:17
 	},
-	backgroundImage:'../../img/button.png',
-	backgroundSelectedImage:'../../img/button_selected.png'
+	backgroundImage:'/img/button.png',
+	backgroundSelectedImage:'/img/button_selected.png'
 });
 
 b_watch.addEventListener('click', function()
@@ -191,8 +191,8 @@ var b_imdb = Ti.UI.createButton({
 	font: {
 		fontSize:15
 	},
-	backgroundImage:'../../img/button.png',
-	backgroundSelectedImage:'../../img/button_selected.png'
+	backgroundImage:'/img/button.png',
+	backgroundSelectedImage:'/img/button_selected.png'
 });
 
 b_imdb.addEventListener('click', function()
@@ -202,7 +202,7 @@ b_imdb.addEventListener('click', function()
 		backgroundColor:'#336699',
 		title:I('labels.imdb'),
 		thisUrl:'http://www.imdb.fr/find?s=all&q=' + win.thisTitle.normalizeUrl(),
-		url:'website.js',
+		url:'../website.js',
 		barColor:'#464646',
 		isModalWin:true
 	});
@@ -224,7 +224,7 @@ win.add(b_imdb);
 if(getMajorVersion() >= 5) {
 	var twitterModule = require('de.marcelpociot.twitter');
 	var b_tweet = Ti.UI.createButton({
-		image:'../../img/twitter.png'
+		image:'/img/twitter.png'
 	});
 	
 	win.setRightNavButton(b_tweet);
