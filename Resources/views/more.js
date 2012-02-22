@@ -42,10 +42,6 @@ var data = [{
 	header:''
 }];
 
-var tableViewOptions = {
-
-};
-
 var tableView = Ti.UI.createTableView({
 	data:data,
 	style:Ti.UI.iPhone.TableViewStyle.GROUPED,
