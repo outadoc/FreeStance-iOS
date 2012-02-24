@@ -10,7 +10,7 @@
     </deployment-targets>
     <id>fr.outadev.freestance</id>
     <name>FreeStance</name>
-    <version>0.1</version>
+    <version>1.0</version>
     <publisher>outa[dev]</publisher>
     <url>http://outadoc.fr</url>
     <description>Controlez votre Freebox a distance !</description>
