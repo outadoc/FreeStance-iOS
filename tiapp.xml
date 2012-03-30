@@ -14,7 +14,7 @@
     <publisher>outa[dev]</publisher>
     <url>http://outadoc.fr</url>
     <description>Controlez votre Freebox a distance !</description>
-    <copyright>Copyright 2011 Baptiste Candellier</copyright>
+    <copyright>2011 Baptiste Candellier</copyright>
     <icon>icon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
