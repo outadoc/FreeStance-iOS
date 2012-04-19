@@ -106,7 +106,7 @@ if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 }
 
 else {
-	var xhr = Ti.Network.createHTTPClient();
+	var xhr = Ti.Network.createHTTPClient({});
 	xhr.open('GET', 'http://dev.outadoc.fr/freestance/motd.json');
 
 	xhr.setOnreadystatechange(function()
