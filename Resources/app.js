@@ -78,8 +78,7 @@ if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
 
 	alert.show();
 
-	alert.addEventListener('click', function(e)
-	{
+	alert.addEventListener('click', function(e) {
 		if(e.index == 1) {
 			var helpwin = Ti.UI.createWindow({
 				url:'views/subviews/options/options.js',
@@ -103,16 +102,10 @@ if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 	});
 
 	alert.show();
-}
-
-else {
-	var xhr = Ti.Network.createHTTPClient({});
-	xhr.open('GET', 'http://dev.outadoc.fr/freestance/motd.json');
-
-	xhr.setOnreadystatechange(function()
-	{
-		if(xhr.readyState == Ti.Network.HTTPClient.DONE && xhr.status == 200) {
-			var motd = xhr.responseText;
+} else {
+	var xhr = Ti.Network.createHTTPClient({
+		onload: function() {
+			var motd = this.responseText;
 			motd = JSON.parse(motd);
 
 			if(motd != undefined) {
@@ -126,8 +119,7 @@ else {
 						});
 						motdAlert.show();
 
-						motdAlert.addEventListener('click', function(e)
-						{
+						motdAlert.addEventListener('click', function(e) {
 							if(e.index == 1 && motd.url !== null) {
 								var w = Ti.UI.createWindow({
 									url:'views/subviews/website.js',
@@ -150,5 +142,6 @@ else {
 		}
 	});
 
+	xhr.open('GET', 'http://dev.outadoc.fr/freestance/motd.json');
 	xhr.send();
 }
