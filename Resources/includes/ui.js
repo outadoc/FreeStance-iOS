@@ -30,23 +30,19 @@ function getDefaultBackground()
 	}
 }
 
-function createLoadingWindow(height)
+function createLoadingWindow()
 {
 	var timeoutID;
 
 	var win = Ti.UI.createWindow({
-		height:320,
-		width:480,
+		width:320,
+		height:480,
 		orientationModes:[Ti.UI.PORTRAIT]
 	});
 
 	var view = Ti.UI.createView({
 		height:60,
 		width:60,
-		top:height,
-		bottom:'auto',
-		left:'auto',
-		right:'auto',
 		borderRadius:10,
 		backgroundColor:'#000',
 		opacity:0.6

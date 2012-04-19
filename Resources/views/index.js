@@ -8,7 +8,7 @@ var profile, model, hd, code;
 var volumeRepeat, volumeRepeatFrequency, progRepeat, progRepeatFrequency, longPress, longPressLength;
 
 var win = Ti.UI.currentWindow;
-var loadingWin = createLoadingWindow(100);
+var loadingWin = createLoadingWindow();
 loadingWin.open();
 
 //a tabbed bar used to select the profile the user wants to use

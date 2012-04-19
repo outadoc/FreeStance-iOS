@@ -36,7 +36,7 @@ var tableView = Ti.UI.createTableView({
 win.add(tableView);
 
 //the window that will show a loading message while the epg is loading
-var loadingWin = createLoadingWindow('auto');
+var loadingWin = createLoadingWindow();
 
 //the tabbedbar used to select the program schedule
 var tabbedBar = Ti.UI.iOS.createTabbedBar({

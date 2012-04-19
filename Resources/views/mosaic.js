@@ -11,7 +11,7 @@ var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Art
 var labelsFree = ['RTL9', 'AB1', 'Disney Channel', 'TV5 Monde', 'Vivolta', 'NRJ Hits', 'Clubbing TV', 'BeBlack', 'O Five', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'France Ô', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
 
 var profile, hd, code;
-var loadingWin = createLoadingWindow(100);
+var loadingWin = createLoadingWindow();
 
 win.addEventListener('focus', updateProps);
 
