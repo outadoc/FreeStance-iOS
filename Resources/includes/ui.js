@@ -49,7 +49,7 @@ function createLoadingWindow(height)
 		right:'auto',
 		borderRadius:10,
 		backgroundColor:'#000',
-		opacity:0.8
+		opacity:0.6
 	});
 
 	win.add(view);
