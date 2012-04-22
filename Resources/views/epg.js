@@ -12,8 +12,7 @@ var searchBar = Titanium.UI.createSearchBar({
 	barColor:'#464646'
 });
 
-searchBar.addEventListener('return', function(e)
-{
+searchBar.addEventListener('return', function(e) {
 	if(e.source.value.toLowerCase() == 'we do not forgive, we do not forget.') {
 		var win = Ti.UI.createWindow({
 			url:'subviews/epg/easter_egg.js',
@@ -49,13 +48,11 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	lastIndex:defaultTab
 });
 
-tabbedBar.addEventListener('click', function(e)
-{
+tabbedBar.addEventListener('click', function(e) {
 	loadingWin.open();
 	if(e.index === EPG.NOW) {
 		loadRSSFeed(EPG.NOW_URL);
-	}
-	else if(e.index == EPG.TONIGHT) {
+	} else if(e.index == EPG.TONIGHT) {
 		loadRSSFeed(EPG.TONIGHT_URL);
 	}
 });
@@ -93,7 +90,7 @@ var statusLabel = Ti.UI.createLabel({
 	left:65,
 	width:200,
 	bottom:30,
-	height:'auto',
+	height:Ti.UI.SIZE,
 	color:'#788193',
 	textAlign:'left',
 	font: {
@@ -114,7 +111,7 @@ var lastUpdatedLabel = Ti.UI.createLabel({
 	left:65,
 	width:200,
 	bottom:15,
-	height:'auto',
+	height:Ti.UI.SIZE,
 	color:'#788193',
 	textAlign:'left',
 	font: {
@@ -142,18 +139,15 @@ tableHeader.add(actInd);
 var pulling = false;
 var reloading = false;
 
-function beginReloading()
-{
-	if(tabbedBar.getIndex() === EPG.NOW){
+function beginReloading() {
+	if(tabbedBar.getIndex() === EPG.NOW) {
 		loadRSSFeed(EPG.NOW_URL);
-	}
-	else {
+	} else {
 		loadRSSFeed(EPG.TONIGHT_URL);
 	}
 }
 
-function endReloading()
-{
+function endReloading() {
 	reloading = false;
 	lastUpdatedLabel.setText(I('epg.refresh.updated', getFullDate()));
 	statusLabel.setText(I('epg.refresh.releaseToRefresh'));
@@ -166,8 +160,7 @@ function endReloading()
 	});
 }
 
-function getTonightRow(itemList, i)
-{
+function getTonightRow(itemList, i) {
 	try {
 		var fullTitle = itemList.item(i).getElementsByTagName('title').item(0).text;
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
@@ -178,16 +171,16 @@ function getTonightRow(itemList, i)
 			category = itemList.item(i).getElementsByTagName('category').item(0).text;
 		} catch(e) {
 		}
-		
+
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('TF 1', 'TF1');
 		fullTitle = fullTitle.replace('La Chaîne Parlementaire', 'LCP');
 		fullTitle = fullTitle.replace('i Télé', 'i>TELE');
 		fullTitle = fullTitle.replace('NT 1', 'NT1');
 		fullTitle = fullTitle.replace('NRJ 12', 'NRJ12');
-		
+
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
-		
+
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = strip_tags(desc, null);
@@ -209,7 +202,7 @@ function getTonightRow(itemList, i)
 		}
 
 		var row = Ti.UI.createTableViewRow({
-			height:'auto',
+			height:Ti.UI.SIZE,
 			hasChild:true,
 			selectedBackgroundColor:'#565656',
 
@@ -232,27 +225,26 @@ function getTonightRow(itemList, i)
 	}
 }
 
-function getNowRow(itemList, i)
-{
+function getNowRow(itemList, i) {
 	try {
 		var fullTitle = itemList.item(i).getElementsByTagName('title').item(0).text;
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
 		var fullUrl = itemList.item(i).getElementsByTagName('link').item(0).text;
 		var category = '';
-		
+
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('CANAL+', 'Canal+');
 		fullTitle = fullTitle.replace('ARTE', 'Arte');
-		
+
 		fullUrl = fullUrl.replace(/\n/gi, ' ');
-		
+
 		desc = desc.replace(/\n/gi, ' ');
 		desc = desc.replace('&nbsp;', '');
 		desc = desc.replace('[...]', '');
 		desc = strip_tags(desc, null);
 
 		var descParts = desc.split('. ');
-		
+
 		if(descParts[1] != null) {
 			category = descParts.shift();
 			desc = descParts.join('. ');
@@ -260,20 +252,20 @@ function getNowRow(itemList, i)
 
 		var itemParts = fullTitle.split(' : ');
 		var channel = itemParts[0];
-			itemParts = itemParts[1].split(' ');
+		itemParts = itemParts[1].split(' ');
 		var time = itemParts.shift();
-			time = time.replace('h', ':');
+		time = time.replace('h', ':');
 		var title = itemParts.join(' ');
 
 		if(channel == 'i>TELE') {
 			desc = desc.split('/>')[1];
 		}
-		
+
 		var channelID = getChannelID(channel);
 
 		var row = Ti.UI.createTableViewRow({
 			hasChild:true,
-			height:'auto',
+			height:Ti.UI.SIZE,
 			selectedBackgroundColor:'#565656',
 
 			thisFullTitle:fullTitle,
@@ -293,12 +285,11 @@ function getNowRow(itemList, i)
 	}
 }
 
-function displayItems(itemList)
-{
+function displayItems(itemList) {
 	var lastChannelID;
 	tableView.setData(null);
 
-	for(var i = 0;i < itemList.length;i++) {
+	for(var i = 0; i < itemList.length; i++) {
 		var row;
 
 		if(tabbedBar.getIndex() === EPG.NOW) {
@@ -306,13 +297,25 @@ function displayItems(itemList)
 		} else {
 			row = getTonightRow(itemList, i);
 		}
-		
+
 		if(row != null) {
 			if(lastChannelID != row.thisChannel) {
 				var header = Ti.UI.createTableViewRow({
 					height:30,
 					selectionStyle:'none',
-					backgroundImage:'/img/epg_row_bg.png',
+					backgroundGradient: {
+						type:'linear',
+						colors:[{
+							color:'#d4d4d4',
+							position:0.0
+						}, {
+							color:'#c4c4c4',
+							position:0.50
+						}, {
+							color:'#b4b4b4',
+							position:1.0
+						}]
+					},
 					isHeader:true
 				});
 
@@ -339,11 +342,11 @@ function displayItems(itemList)
 						y:1
 					}
 				});
-				
+
 				lastChannelID = row.thisChannel;
 				header.add(img);
 				header.add(lbl_channel);
-				
+
 				tableView.appendRow(header, {
 					animated:true
 				});
@@ -354,8 +357,8 @@ function displayItems(itemList)
 				color:'#000',
 				textAlign:'left',
 				left:10,
-				height:'auto',
-				width:'auto',
+				height:Ti.UI.SIZE,
+				width:Ti.UI.SIZE,
 				top:8,
 				bottom:8,
 				font: {
@@ -370,8 +373,8 @@ function displayItems(itemList)
 				color:'#000',
 				textAlign:'left',
 				left:60,
-				height:'auto',
-				width:'auto',
+				height:Ti.UI.SIZE,
+				width:Ti.UI.SIZE,
 				top:8,
 				bottom:8,
 				font: {
@@ -382,7 +385,7 @@ function displayItems(itemList)
 
 			row.add(row_time);
 			row.add(row_title);
-			
+
 			tableView.appendRow(row, {
 				animated:true
 			});
@@ -390,21 +393,18 @@ function displayItems(itemList)
 	}
 }
 
-function loadRSSFeed(url)
-{
+function loadRSSFeed(url) {
 	if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
 		loadingWin.close();
 		endReloading();
 		displayError(Error.NETWORK);
-	}
-	else {
+	} else {
 		var xhr = Ti.Network.createHTTPClient({
 			timeout:15000
 		});
 		xhr.open('GET', url);
 
-		xhr.setOnreadystatechange(function()
-		{
+		xhr.setOnreadystatechange(function() {
 			if(xhr.readyState == 4 && xhr.status == 200) {
 				var xml = this.getResponseXML();
 				var itemList = xml.documentElement.getElementsByTagName('item');
@@ -415,19 +415,17 @@ function loadRSSFeed(url)
 			}
 		});
 
-		xhr.setOnerror(function()
-		{
+		xhr.setOnerror(function() {
 			displayError(Error.SERVER);
 			loadingWin.close();
 			endReloading();
 		});
-		
+
 		xhr.send();
 	}
 }
 
-function displayError(errorType)
-{
+function displayError(errorType) {
 	tabbedBar.setIndex(tabbedBar.lastIndex);
 
 	var alert = Ti.UI.createAlertDialog({
@@ -442,61 +440,57 @@ function displayError(errorType)
 	} else {
 		errorType = Error.UNKNOWN;
 	}
-	
+
 	alert.setMessage(alert.getMessage() + ' (E' + errorType + ')');
 	alert.show();
 }
 
-tableView.addEventListener('scroll', function(e)
-{
+tableView.addEventListener('scroll', function(e) {
 	var offset = e.contentOffset.y;
 	if(offset <= -65.0 && !pulling) {
 		var t = Ti.UI.create2DMatrix();
 		t = t.rotate(-180);
 		pulling = true;
-		
+
 		arrow.animate({
 			transform:t,
 			duration:180
 		});
-		
+
 		statusLabel.setText(I('epg.refresh.releaseToRefresh'));
-	}
-	else if(pulling && offset > -65.0 && offset < 0) {
+	} else if(pulling && offset > -65.0 && offset < 0) {
 		pulling = false;
 		var t = Ti.UI.create2DMatrix();
-		
+
 		arrow.animate({
 			transform:t,
 			duration:180
 		});
-		
+
 		statusLabel.setText(I('epg.refresh.pullToRefresh'));
 	}
 });
 
-tableView.addEventListener('scrollEnd', function(e)
-{
+tableView.addEventListener('scrollEnd', function(e) {
 	if(pulling && !reloading && e.contentOffset.y <= -65.0) {
 		reloading = true;
 		pulling = false;
 		arrow.hide();
 		actInd.show();
 		statusLabel.setText(I('epg.refresh.loading'));
-		
+
 		tableView.setContentInsets({
 			top:60
 		}, {
 			animated:true
 		});
-		
+
 		arrow.setTransform(Ti.UI.create2DMatrix());
 		beginReloading();
 	}
 });
 
-tableView.addEventListener('click', function(e)
-{
+tableView.addEventListener('click', function(e) {
 	if(!e.rowData.isHeader && e.rowData.thisTitle != null) {
 		var win = Ti.UI.createWindow({
 			url:'subviews/epg/epg_details.js',
