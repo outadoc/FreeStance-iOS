@@ -72,30 +72,30 @@ progInfo.add(logo);
 
 var lbl_time = Ti.UI.createLabel({
 	text:win.thisTime,
-	top:logo.top + logo.size.height + 4,
+	top:89,
 	right:10,
 	width:130,
-	height:Ti.UI.SIZE,
 	color:'white',
 	textAlign:'center',
 	font: {
 		fontSize:15
-	}
+	},
+	height:20
 });
 
 progInfo.add(lbl_time);
 
 var lbl_category = Ti.UI.createLabel({
 	text:win.thisCategory.capitalize(),
-	top:lbl_time.top + lbl_time.size.height + 5,
+	top:112,
 	right:5,
 	width:140,
-	height:33,
 	font: {
 		fontSize:15
 	},
 	textAlign:'center',
-	color:'white'
+	color:'white',
+	height:Ti.UI.SIZE
 });
 
 progInfo.add(lbl_category);
