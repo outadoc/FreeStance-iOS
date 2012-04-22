@@ -342,7 +342,8 @@ function displayItems(itemList) {
 					shadowOffset: {
 						x:0,
 						y:1
-					}
+					},
+					height:Ti.UI.FILL
 				});
 
 				lastChannelID = row.thisChannel;
