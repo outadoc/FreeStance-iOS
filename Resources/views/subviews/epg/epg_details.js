@@ -75,7 +75,7 @@ var lbl_time = Ti.UI.createLabel({
 	top:logo.top + logo.size.height + 4,
 	right:10,
 	width:130,
-	height:'auto',
+	height:Ti.UI.SIZE,
 	color:'white',
 	textAlign:'center',
 	font: {
@@ -120,7 +120,7 @@ var lbl_description = Ti.UI.createLabel({
 	top:lbl_description_title.top + lbl_description_title.height,
 	left:10,
 	color:'white',
-	height:'auto',
+	height:Ti.UI.SIZE,
 	width:300
 });
 

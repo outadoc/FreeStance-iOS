@@ -93,8 +93,8 @@ function updateButtons()
 	];
 	
 	//those can't be placed above as they are not buttons but labels...
-	var lbl_vol = Ti.UI.createLabel({text:I('labels.volume'), left:207, height:'auto', top:73, color:'white', font:{fontSize:14}});
-	var lbl_prgm = Ti.UI.createLabel({text:I('labels.program'), left:257, height:'auto', top:73, color:'white', font:{fontSize:14}});
+	var lbl_vol = Ti.UI.createLabel({text:I('labels.volume'), left:207, height:Ti.UI.SIZE, top:73, color:'white', font:{fontSize:14}});
+	var lbl_prgm = Ti.UI.createLabel({text:I('labels.program'), left:257, height:Ti.UI.SIZE, top:73, color:'white', font:{fontSize:14}});
 	
 	view.add(lbl_prgm);
 	view.add(lbl_vol);
@@ -245,7 +245,7 @@ function updateButtons()
 			if(e.source.id == 'other')
 			{
 				win_more.setTop(-320);
-				win_more.open({top:'auto', duration:500});
+				win_more.open({top:Ti.UI.SIZE, duration:500});
 			}
 			
 			else if(e.source.canBeLong)
