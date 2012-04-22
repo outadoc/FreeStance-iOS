@@ -316,6 +316,8 @@ function displayItems(itemList) {
 							position:1.0
 						}]
 					},
+					borderColor:'darkGray',
+					borderRadius:1,
 					isHeader:true
 				});
 
