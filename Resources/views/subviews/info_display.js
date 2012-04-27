@@ -11,7 +11,8 @@ var row_content = Ti.UI.createTableViewRow({
 
 var tableView = Ti.UI.createTableView({
 	data: [row_content],
-	style: Ti.UI.iPhone.TableViewStyle.GROUPED
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	backgroundImage: null
 });
 
 var webView = Ti.UI.createWebView({

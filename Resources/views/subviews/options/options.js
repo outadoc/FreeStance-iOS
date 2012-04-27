@@ -48,7 +48,7 @@ function addParentRow(title, header, rowName, configID) {
 			title: title,
 			rowName: rowName,
 			configID: configID,
-			backgroundColor: 'stripped',
+			backgroundColor: getDefaultBackground(),
 			barColor: '#464646'
 		});
 		Ti.UI.currentTab.open(win, {
@@ -90,7 +90,8 @@ var tableView = Ti.UI.createTableView({
 	data: [profileField, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: getDestructionView(I('more.settings.reset.title')),
-	rowHeight: 45
+	rowHeight: 45,
+	backgroundImage: null
 });
 
 tableView.footerView.getChildren()[0].addEventListener('click', function(e) {

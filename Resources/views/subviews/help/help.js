@@ -2,7 +2,6 @@ Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/ui.js');
 
 var win = Ti.UI.currentWindow;
-win.backgroundColor = getDefaultBackground();
 
 var data = [{
 	title: I('more.help.hd.title'),
@@ -24,8 +23,7 @@ var data = [{
 var tableView = Ti.UI.createTableView({
 	data: data,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	backgroundColor: 'transparent',
-	rowBackgroundColor: 'white'
+	backgroundImage: null
 });
 
 tableView.addEventListener('click', function(e) {

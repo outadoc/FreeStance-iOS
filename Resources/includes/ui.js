@@ -19,7 +19,8 @@ function isIphone() {
 function getDefaultBackground() {
 	var model = Ti.Platform.osname;
 	if(isIphone()) {
-		return 'stripped';
+		//return 'stripped';
+		return '#D8D8D8';
 	} else if(isIpad()) {
 		return '#d8dae0';
 	} else {

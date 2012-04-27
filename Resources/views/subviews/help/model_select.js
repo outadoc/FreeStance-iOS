@@ -17,7 +17,8 @@ var tableView = Ti.UI.createTableView({
 		hasChild: true,
 		model: Model.FREEBOX_REVOLUTION
 	}],
-	style: Ti.UI.iPhone.TableViewStyle.GROUPED
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	backgroundImage: null
 });
 
 tableView.addEventListener('click', function(e) {
