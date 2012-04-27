@@ -18,6 +18,7 @@ var tableView = Ti.UI.createTableView({
 		model: Model.FREEBOX_REVOLUTION
 	}],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY,
 	backgroundImage: null
 });
 

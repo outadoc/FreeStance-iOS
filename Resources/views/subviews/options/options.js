@@ -91,7 +91,8 @@ var tableView = Ti.UI.createTableView({
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: getDestructionView(I('more.settings.reset.title')),
 	rowHeight: 45,
-	backgroundImage: null
+	backgroundImage: null,
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
 });
 
 tableView.footerView.getChildren()[0].addEventListener('click', function(e) {

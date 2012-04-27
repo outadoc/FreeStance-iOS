@@ -44,7 +44,8 @@ var tableView = Ti.UI.createTableView({
 	}],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
-	rowBackgroundColor: 'white'
+	rowBackgroundColor: 'white',
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
 });
 
 tableView.addEventListener('click', function(e) {
