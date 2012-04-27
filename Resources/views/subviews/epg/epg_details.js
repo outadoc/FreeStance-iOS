@@ -116,7 +116,7 @@ scrollView.add(lbl_description_title);
 
 //the label that contains the program description
 var lbl_description = Ti.UI.createLabel({
-	text:win.thisDesc,
+	text:win.thisDesc + '\n ',
 	top:lbl_description_title.top + lbl_description_title.height,
 	left:10,
 	color:'white',
