@@ -341,7 +341,8 @@ function updateButtons() {
 		if(button.id == 'home') {
 			var logo = Ti.UI.createImageView({
 				image: '/img/free_logo.png',
-				height: 25
+				height: 25,
+				width: 60
 			});
 			button.add(logo);
 		}
