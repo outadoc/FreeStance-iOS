@@ -25,7 +25,7 @@ var tableView = Ti.UI.createTableView({
 		title:I('more.twitter'),
 		hasChild:true,
 		path:'subviews/website.js',
-		thisUrl:'http://mobile.twitter.com/#!/outadev',
+		thisUrl:'http://mobile.twitter.com/outadev',
 		isWebsite:true
 	}, {
 		title:I('more.contact'),
