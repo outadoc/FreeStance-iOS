@@ -222,7 +222,6 @@ win.addEventListener('focus', function(e)
 win.add(b_imdb);
 
 if(getMajorVersion() >= 5) {
-	var twitterModule = require('de.marcelpociot.twitter');
 	var b_tweet = Ti.UI.createButton({
 		image:'/img/twitter.png'
 	});
@@ -231,6 +230,7 @@ if(getMajorVersion() >= 5) {
 	
 	b_tweet.addEventListener('click', function(e)
 	{
+		var twitterModule = require('de.marcelpociot.twitter');
 		twitterModule.tweet({
 			message:I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
 			urls:[win.thisUrl]
