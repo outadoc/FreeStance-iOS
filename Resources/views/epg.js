@@ -27,7 +27,6 @@ searchBar.addEventListener('return', function(e) {
 });
 
 var tableView = Ti.UI.createTableView({
-	searchHidden: true,
 	filterAttribute: 'thisSearchFilter',
 	search: searchBar
 });
