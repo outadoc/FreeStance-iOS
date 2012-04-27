@@ -15,8 +15,7 @@ var tableView = Ti.UI.createTableView({
 });
 
 var webView = Ti.UI.createWebView({
-	backgroundColor:'transparent',
-	touchEnabled:false
+	backgroundColor:'transparent'
 });
 
 row_content.add(webView);
