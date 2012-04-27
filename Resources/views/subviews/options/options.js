@@ -33,6 +33,7 @@ function addParentRow(title, header, rowName, configID) {
 	//the label containing the value you want to display
 	var lbl = Ti.UI.createLabel({
 		right: 10,
+		height: 35,
 		textAlign: 'right',
 		width: 150,
 		highlightedColor: 'white',
@@ -88,7 +89,8 @@ function addTextFieldRow(text) {
 var tableView = Ti.UI.createTableView({
 	data: [profileField, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	footerView: getDestructionView(I('more.settings.reset.title'))
+	footerView: getDestructionView(I('more.settings.reset.title')),
+	rowHeight: 45
 });
 
 tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
