@@ -5,81 +5,78 @@ var win = Ti.UI.currentWindow;
 win.backgroundColor = getDefaultBackground();
 
 var tableView = Ti.UI.createTableView({
-	data:[{
-		title:I('more.settings.title'),
-		hasChild:true,
-		path:'subviews/options/options.js',
-		header:I('more.preferences')
+	data: [{
+		title: I('more.settings.title'),
+		hasChild: true,
+		path: 'subviews/options/options.js',
+		header: I('more.preferences')
 	}, {
-		title:I('more.help.title'),
-		hasChild:true,
-		path:'subviews/help/help.js'
+		title: I('more.help.title'),
+		hasChild: true,
+		path: 'subviews/help/help.js'
 	}, {
-		title:I('more.website'),
-		hasChild:true,
-		path:'subviews/website.js',
-		thisUrl:'http://dev.outadoc.fr',
-		isWebsite:true,
-		header:I('more.about')
+		title: I('more.website'),
+		hasChild: true,
+		path: 'subviews/website.js',
+		thisUrl: 'http://dev.outadoc.fr',
+		isWebsite: true,
+		header: I('more.about')
 	}, {
-		title:I('more.twitter'),
-		hasChild:true,
-		path:'subviews/website.js',
-		thisUrl:'http://mobile.twitter.com/outadev',
-		isWebsite:true
+		title: I('more.twitter'),
+		hasChild: true,
+		path: 'subviews/website.js',
+		thisUrl: 'http://mobile.twitter.com/outadev',
+		isWebsite: true
 	}, {
-		title:I('more.contact'),
-		hasChild:true,
-		email:'outadev@outadoc.fr'
+		title: I('more.contact'),
+		hasChild: true,
+		email: 'outadev@outadoc.fr'
 	}, {
-		title:I('more.bugReport.title'),
-		hasChild:true,
-		email:'bug-report@outadoc.fr',
-		bug:true
+		title: I('more.bugReport.title'),
+		hasChild: true,
+		email: 'bug-report@outadoc.fr',
+		bug: true
 	}, {
-		title:I('more.legal.title'),
-		hasChild:true,
-		path:'subviews/info_display.js',
-		header:''
+		title: I('more.legal.title'),
+		hasChild: true,
+		path: 'subviews/info_display.js',
+		header: ''
 	}],
-	style:Ti.UI.iPhone.TableViewStyle.GROUPED,
-	backgroundColor:'transparent',
-	rowBackgroundColor:'white'
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	backgroundColor: 'transparent',
+	rowBackgroundColor: 'white'
 });
 
-tableView.addEventListener('click', function(e)
-{
+tableView.addEventListener('click', function(e) {
 	if(e.rowData.path !== undefined) {
 		var win;
 
 		if(e.rowData.isWebsite) {
 			win = Ti.UI.createWindow({
-				url:e.rowData.path,
-				thisUrl:e.rowData.thisUrl,
-				title:e.rowData.title,
-				tabBarHidden:true,
-				backgroundColor:'#fff',
-				barColor:'#464646',
-				isModalWin:false
+				url: e.rowData.path,
+				thisUrl: e.rowData.thisUrl,
+				title: e.rowData.title,
+				tabBarHidden: true,
+				backgroundColor: '#fff',
+				barColor: '#464646',
+				isModalWin: false
 			});
-		}
-		else {
+		} else {
 			win = Ti.UI.createWindow({
-				url:e.rowData.path,
-				title:e.rowData.title,
-				barColor:'#464646',
-				backgroundColor:getDefaultBackground(),
-				helpTo:'legal'
+				url: e.rowData.path,
+				title: e.rowData.title,
+				barColor: '#464646',
+				backgroundColor: getDefaultBackground(),
+				helpTo: 'legal'
 			});
 		}
 		Ti.UI.currentTab.open(win, {
-			animated:true
+			animated: true
 		});
-	}
-	else if(e.rowData.email !== undefined) {
+	} else if(e.rowData.email !== undefined) {
 		var email = Ti.UI.createEmailDialog({
-			toRecipients:[e.rowData.email],
-			barColor:'#464646'
+			toRecipients: [e.rowData.email],
+			barColor: '#464646'
 		});
 
 		if(e.rowData.bug !== undefined) {

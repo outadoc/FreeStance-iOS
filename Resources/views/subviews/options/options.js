@@ -12,7 +12,7 @@ var hdField = addParentRow(I('more.settings.hd.title'), null, I('more.settings.h
 var modelField = addParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
 
 var settingsSection = Ti.UI.createTableViewSection({
-	headerTitle:I('more.settings.code.header')
+	headerTitle: I('more.settings.code.header')
 });
 
 settingsSection.add(codeField);
@@ -25,33 +25,33 @@ var profile, code, hd, model;
 //returns a row containing a title and a value. opens a window when clicked
 function addParentRow(title, header, rowName, configID) {
 	var row = Ti.UI.createTableViewRow({
-		title:title,
-		hasChild:true,
-		header:header
+		title: title,
+		hasChild: true,
+		header: header
 	});
 
 	//the label containing the value you want to display
 	var lbl = Ti.UI.createLabel({
-		right:10,
-		textAlign:'right',
-		width:150,
-		highlightedColor:'white',
-		color:'#336699'
+		right: 10,
+		textAlign: 'right',
+		width: 150,
+		highlightedColor: 'white',
+		color: '#336699'
 	});
 
 	row.add(lbl);
 
 	row.addEventListener('click', function(e) {
 		var win = Ti.UI.createWindow({
-			url:'options_select.js',
-			title:title,
-			rowName:rowName,
-			configID:configID,
-			backgroundColor:'stripped',
-			barColor:'#464646'
+			url: 'options_select.js',
+			title: title,
+			rowName: rowName,
+			configID: configID,
+			backgroundColor: 'stripped',
+			barColor: '#464646'
 		});
 		Ti.UI.currentTab.open(win, {
-			animated:true
+			animated: true
 		});
 	});
 	return row;
@@ -60,20 +60,20 @@ function addParentRow(title, header, rowName, configID) {
 //returns a row containing a text field
 function addTextFieldRow(text) {
 	var row = Ti.UI.createTableViewRow({
-		title:text,
-		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+		title: text,
+		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
 
 	var textfield = Ti.UI.createTextField({
-		color:'#336699',
-		height:35,
-		top:4,
-		right:20,
-		width:80,
-		borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,
-		keyboardType:Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-		appearance:Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
-		hintText:'12345678'
+		color: '#336699',
+		height: 35,
+		top: 4,
+		right: 20,
+		width: 80,
+		borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+		keyboardType: Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
+		hintText: '12345678'
 	});
 
 	textfield.addEventListener('change', function(e) {
@@ -86,18 +86,18 @@ function addTextFieldRow(text) {
 }
 
 var tableView = Ti.UI.createTableView({
-	data:[profileField, settingsSection],
-	style:Ti.UI.iPhone.TableViewStyle.GROUPED,
-	footerView:getDestructionView(I('more.settings.reset.title'))
+	data: [profileField, settingsSection],
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	footerView: getDestructionView(I('more.settings.reset.title'))
 });
 
 tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 	//if the user wants to reset the properties of the app asking if he's really sure
 	var alert = Ti.UI.createOptionDialog({
-		title:I('more.settings.reset.message', Ti.App.name),
-		options:[I('more.settings.reset.yes'), I('more.settings.reset.cancel')],
-		destructive:0,
-		cancel:1
+		title: I('more.settings.reset.message', Ti.App.name),
+		options: [I('more.settings.reset.yes'), I('more.settings.reset.cancel')],
+		destructive: 0,
+		cancel: 1
 	});
 
 	alert.show();
@@ -109,7 +109,7 @@ tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 			for(var i = 0; i < props.length; i++) {
 				var value = Titanium.App.Properties.getString(props[i]);
 				Titanium.App.Properties.removeProperty(props[i]);
-			}	
+			}
 			//get the updated values
 			setFields();
 		}
@@ -118,18 +118,18 @@ tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 
 //a quick shorcut in case the user needs help
 var b_help = Ti.UI.createButton({
-	title:I('more.help.title')
+	title: I('more.help.title')
 });
 
 b_help.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
-		url:'../help/help.js',
-		title:I('more.help.title'),
-		backgroundColor:getDefaultBackground(),
-		barColor:'#464646'
+		url: '../help/help.js',
+		title: I('more.help.title'),
+		backgroundColor: getDefaultBackground(),
+		barColor: '#464646'
 	});
 	Ti.UI.currentTab.open(win, {
-		animated:true
+		animated: true
 	});
 });
 
@@ -139,15 +139,14 @@ win.addEventListener('focus', function(e) {
 	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
 	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
 	model = Ti.App.Properties.getInt('profile' + profile + '.model', Model.FREEBOX_HD);
-	
+
 	//setting the fields with their respective values
 	setFields();
 });
 
 win.addEventListener('blur', function(e) {
 	//writing in the properties that the settings have been filled
-	if(codeField.getChildren()[0].getValue() !== '')
-	{
+	if(codeField.getChildren()[0].getValue() !== '') {
 		Ti.App.Properties.setBool('hasBeenSet', true);
 	}
 	//saving the code value
@@ -165,4 +164,4 @@ function setFields() {
 	modelField.getChildren()[0].setText(getModelString(model));
 }
 
-Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1);
+Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1); 

@@ -1,5 +1,4 @@
-function getFullDate()
-{
+function getFullDate() {
 	var date = new Date();
 
 	var year = date.getFullYear();
@@ -25,11 +24,9 @@ function getFullDate()
 	return datestr;
 }
 
-function getChannelID(channel)
-{
+function getChannelID(channel) {
 	var id;
-	switch(channel)
-	{
+	switch(channel) {
 		case 'TF1':
 			id = 1;
 			break;
@@ -229,8 +226,7 @@ function getChannelID(channel)
 }
 
 //used to get the string equivalent of a given freebox model
-function getModelString(model)
-{
+function getModelString(model) {
 	if(model == Model.FREEBOX_HD) {
 		return 'Freebox HD';
 	} else if(model == Model.FREEBOX_REVOLUTION) {
@@ -242,13 +238,11 @@ function getModelString(model)
 	}
 }
 
-String.prototype.capitalize = function()
-{
+String.prototype.capitalize = function() {
 	return this.toLowerCase().charAt(0).toUpperCase() + this.toLowerCase().slice(1);
 };
 
-function getMajorVersion()
-{
+function getMajorVersion() {
 	var version = Titanium.Platform.version.split(".");
 	var major = parseInt(version[0], 10);
 

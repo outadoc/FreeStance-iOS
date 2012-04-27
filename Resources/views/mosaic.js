@@ -16,51 +16,49 @@ var loadingWin = createLoadingWindow();
 win.addEventListener('focus', updateProps);
 
 var tabbedBar = Ti.UI.iOS.createTabbedBar({
-	labels:[I('profile.1'), I('profile.2'), I('profile.3')],
-	style:Ti.UI.iPhone.SystemButtonStyle.BAR,
-	bottom:7,
-	height:'30',
-	width:'300',
-	backgroundColor:'#787878'
+	labels: [I('profile.1'), I('profile.2'), I('profile.3')],
+	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
+	bottom: 7,
+	height: '30',
+	width: '300',
+	backgroundColor: '#787878'
 });
 
-tabbedBar.addEventListener('click', function(e)
-{
+tabbedBar.addEventListener('click', function(e) {
 	Ti.App.Properties.setInt('profileToUse', e.index + 1);
 	updateProps();
 });
 
 win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {
-	animated:false
+	animated: false
 });
 
 var dashboardTabs = Ti.UI.iOS.createTabbedBar({
-	labels:['TNT', 'Bouquet Free'],
-	style:Ti.UI.iPhone.SystemButtonStyle.BAR,
-	bottom:7,
-	height:'30',
-	width:'300',
-	backgroundColor:'#787878',
-	index:0
+	labels: ['TNT', 'Bouquet Free'],
+	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
+	bottom: 7,
+	height: '30',
+	width: '300',
+	backgroundColor: '#787878',
+	index: 0
 });
 
 win.setTitleControl(dashboardTabs);
 loadingWin.open();
 
 var dashboardTNT = Ti.UI.createDashboardView({
-	editable:false,
-	top:0,
-	height:350
+	editable: false,
+	top: 0,
+	height: 350
 });
 
-dashboardTNT.addEventListener('click', function(e)
-{
+dashboardTNT.addEventListener('click', function(e) {
 	if(e.item !== null) {
 		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
 	}
 });
 
-for(var i = 0;i < labelsTNT.length;i++) {
+for(var i = 0; i < labelsTNT.length; i++) {
 	dataTNT.push(getItem(labelsTNT[i]));
 }
 
@@ -68,21 +66,20 @@ dashboardTNT.setData(dataTNT);
 win.add(dashboardTNT);
 
 var dashboardFree = Ti.UI.createDashboardView({
-	editable:false,
-	top:0,
-	height:350,
-	visible:false
+	editable: false,
+	top: 0,
+	height: 350,
+	visible: false
 });
 
-for(var i = 0;i < labelsFree.length;i++) {
+for(var i = 0; i < labelsFree.length; i++) {
 	dataFree.push(getItem(labelsFree[i]));
 }
 
 dashboardFree.setData(dataFree);
 loadingWin.close();
 
-dashboardFree.addEventListener('click', function(e)
-{
+dashboardFree.addEventListener('click', function(e) {
 	if(e.item !== null) {
 		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
 	}
@@ -90,61 +87,58 @@ dashboardFree.addEventListener('click', function(e)
 
 win.add(dashboardFree);
 
-dashboardTabs.addEventListener('click', function(e)
-{
+dashboardTabs.addEventListener('click', function(e) {
 	if(e.index == 1) {
 		dashboardTNT.hide();
 		loadingWin.close();
 		dashboardFree.show();
-	}
-	else if(e.index === 0) {
+	} else if(e.index === 0) {
 		dashboardFree.hide();
 		dashboardTNT.show();
 	}
 });
 
-function getItem(label)
-{
+function getItem(label) {
 	var item = Ti.UI.createDashboardItem({
-		label:label,
-		canDelete:false,
-		channel:getChannelID(label),
-		height:85,
-		width:70
+		label: label,
+		canDelete: false,
+		channel: getChannelID(label),
+		height: 85,
+		width: 70
 	});
 
 	var view = Ti.UI.createView({
-		height:85,
-		width:70
+		height: 85,
+		width: 70
 	});
 
 	var img_icon = Ti.UI.createButton({
-		image:'/img/dashboard.png',
-		height:65,
-		width:65,
-		top:0
+		image: '/img/dashboard.png',
+		height: 65,
+		width: 65,
+		top: 0
 	});
 
 	var img_logo = Ti.UI.createImageView({
-		image:'/img/logo/' + getChannelID(label) + '.png',
-		height:50,
-		width:50
+		image: '/img/logo/' + getChannelID(label) + '.png',
+		height: 50,
+		width: 50
 	});
 
 	var lbl_channel = Ti.UI.createLabel({
-		text:label,
-		bottom:0,
-		color:'white',
-		width:70,
-		height:17,
-		textAlign:'center',
+		text: label,
+		bottom: 0,
+		color: 'white',
+		width: 70,
+		height: 17,
+		textAlign: 'center',
 		font: {
-			fontSize:14
+			fontSize: 14
 		},
-		shadowColor:'#505050 ',
+		shadowColor: '#505050 ',
 		shadowOffset: {
-			x:1,
-			y:2
+			x: 1,
+			y: 2
 		}
 	});
 
@@ -156,8 +150,7 @@ function getItem(label)
 	return item;
 }
 
-function updateProps()
-{
+function updateProps() {
 	profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
 	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
 	code = Ti.App.Properties.getInt('profile' + profile + '.code', '');

@@ -13,7 +13,7 @@ var selectedRow;
 if(win.configID == 'profile') {
 	selectedRow = profile - 1;
 }
-//else, we just get the value we need
+// else, we just get the value we need
 else {
 	selectedRow = Ti.App.Properties.getInt('profile' + profile + '.' + win.configID, Profile.PROFILE_1) - 1;
 }
@@ -25,7 +25,7 @@ for(var i = 0; i <= 2; i++) {
 	}
 	if(win.configID == 'model') {
 		//if we're setting the row, no need of any incrementation thing, just get the model name
-		row.setTitle(getModelString(i+1));
+		row.setTitle(getModelString(i + 1));
 		//we need only two rows here
 		if(i == 1) {
 			i = 2;
@@ -33,13 +33,13 @@ for(var i = 0; i <= 2; i++) {
 	} else {
 		row.setTitle(win.rowName + (i + 1));
 	}
-	
+
 	data[i] = row;
 }
 
 var tableView = Ti.UI.createTableView({
-	data:data,
-	style:Ti.UI.iPhone.TableViewStyle.GROUPED
+	data: data,
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED
 });
 
 tableView.addEventListener('click', function(e) {
@@ -49,7 +49,7 @@ tableView.addEventListener('click', function(e) {
 			e.section.getRows()[i].setHasCheck(false);
 		}
 		e.section.getRows()[e.index].setHasCheck(true);
-		
+
 		//setting the properties
 		if(win.configID == 'profile') {
 			Ti.App.Properties.setInt('profileToModify', e.index + 1);

@@ -1,6 +1,5 @@
 //used to normalize some HTML code
-function strip_tags(str, allowed_tags)
-{
+function strip_tags(str, allowed_tags) {
 	var key = '', allowed = false;
 	var matches = [];
 	var allowed_array = [];
@@ -9,8 +8,7 @@ function strip_tags(str, allowed_tags)
 	var k = '';
 	var html = '';
 
-	var replacer = function(search, replace, str)
-	{
+	var replacer = function(search, replace, str) {
 		return str.split(search).join(replace);
 	};
 
