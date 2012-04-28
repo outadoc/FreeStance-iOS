@@ -6,88 +6,21 @@ Ti.include('/includes/ui.js');
 
 var win = Ti.UI.currentWindow;
 
-var profileField = addParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
-var codeField = addTextFieldRow(I('more.settings.code.title'));
-var hdField = addParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
-var modelField = addParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
+var profileRow = getParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
+var codeRow = getTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header'));
+var hdRow = getParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
+var modelRow = getParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
 
 var settingsSection = Ti.UI.createTableViewSection({
-	headerTitle: I('more.settings.code.header')
+	headerTitle: I('more.settings.code.header'),
+	rows: [codeRow, hdRow, modelRow]
 });
-
-settingsSection.add(codeField);
-settingsSection.add(hdField);
-settingsSection.add(modelField);
 
 //values to store the properties
 var profile, code, hd, model;
 
-//returns a row containing a title and a value. opens a window when clicked
-function addParentRow(title, header, rowName, configID) {
-	var row = Ti.UI.createTableViewRow({
-		title: title,
-		hasChild: true,
-		header: header
-	});
-
-	//the label containing the value you want to display
-	var lbl = Ti.UI.createLabel({
-		right: 10,
-		height: 35,
-		textAlign: 'right',
-		width: 150,
-		highlightedColor: 'white',
-		color: '#336699'
-	});
-
-	row.add(lbl);
-
-	row.addEventListener('click', function(e) {
-		var win = Ti.UI.createWindow({
-			url: 'options_select.js',
-			title: title,
-			rowName: rowName,
-			configID: configID,
-			backgroundColor: getDefaultBackground(),
-			barColor: '#464646'
-		});
-		Ti.UI.currentTab.open(win, {
-			animated: true
-		});
-	});
-	return row;
-}
-
-//returns a row containing a text field
-function addTextFieldRow(text) {
-	var row = Ti.UI.createTableViewRow({
-		title: text,
-		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
-	});
-
-	var textfield = Ti.UI.createTextField({
-		color: '#336699',
-		height: 35,
-		top: 4,
-		right: 20,
-		width: 80,
-		borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
-		keyboardType: Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-		appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
-		hintText: '12345678'
-	});
-
-	textfield.addEventListener('change', function(e) {
-		//the value must be between 0 and 8 characters only
-		e.source.value = e.source.value.slice(0, 8);
-	});
-
-	row.add(textfield);
-	return row;
-}
-
 var tableView = Ti.UI.createTableView({
-	data: [profileField, settingsSection],
+	data: [profileRow, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: getDestructionView(I('more.settings.reset.title')),
 	rowHeight: 45,
@@ -150,11 +83,11 @@ win.addEventListener('focus', function(e) {
 
 win.addEventListener('blur', function(e) {
 	//writing in the properties that the settings have been filled
-	if(codeField.getChildren()[0].getValue() !== '') {
+	if(codeRow.getChildren()[0].getValue() !== '') {
 		Ti.App.Properties.setBool('hasBeenSet', true);
 	}
 	//saving the code value
-	Ti.App.Properties.setString('profile' + profile + '.code', codeField.getChildren()[0].getValue());
+	Ti.App.Properties.setString('profile' + profile + '.code', codeRow.getChildren()[0].getValue());
 });
 
 win.setRightNavButton(b_help);
@@ -162,10 +95,74 @@ win.add(tableView);
 
 //used to set all the data in their respective fields
 function setFields() {
-	profileField.getChildren()[0].setText(I('more.settings.profile.prefix', profile.toString()));
-	codeField.getChildren()[0].setValue(code);
-	hdField.getChildren()[0].setText(I('more.settings.hd.prefix', hd.toString()));
-	modelField.getChildren()[0].setText(getModelString(model));
+	profileRow.getChildren()[0].setText(I('more.settings.profile.prefix', profile.toString()));
+	codeRow.getChildren()[0].setValue(code);
+	hdRow.getChildren()[0].setText(I('more.settings.hd.prefix', hd.toString()));
+	modelRow.getChildren()[0].setText(getModelString(model));
+}
+
+//returns a row containing a title and a value. opens a window when clicked
+function getParentRow(title, header, rowName, configID) {
+	var row = Ti.UI.createTableViewRow({
+		title: title,
+		hasChild: true,
+		header: header
+	});
+
+	//the label containing the value you want to display
+	var lbl = Ti.UI.createLabel({
+		right: 10,
+		height: 35,
+		textAlign: 'right',
+		width: 150,
+		highlightedColor: 'white',
+		color: '#336699'
+	});
+
+	row.add(lbl);
+
+	row.addEventListener('click', function(e) {
+		var win = Ti.UI.createWindow({
+			url: 'options_select.js',
+			title: title,
+			rowName: rowName,
+			configID: configID,
+			backgroundColor: getDefaultBackground(),
+			barColor: '#464646'
+		});
+		Ti.UI.currentTab.open(win, {
+			animated: true
+		});
+	});
+	return row;
+}
+
+//returns a row containing a text field
+function getTextFieldRow(text) {
+	var row = Ti.UI.createTableViewRow({
+		title: text,
+		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+	});
+
+	var textfield = Ti.UI.createTextField({
+		color: '#336699',
+		height: 35,
+		top: 4,
+		right: 20,
+		width: 80,
+		borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+		keyboardType: Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
+		hintText: '12345678'
+	});
+
+	textfield.addEventListener('change', function(e) {
+		//the value must be between 0 and 8 characters only
+		e.source.value = e.source.value.slice(0, 8);
+	});
+
+	row.add(textfield);
+	return row;
 }
 
 Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1); 
