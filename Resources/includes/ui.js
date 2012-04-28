@@ -103,6 +103,7 @@ function getDestructionView(title) {
 		},
 		color: 'white',
 		width: 300,
+		height: 45,
 		textAlign: 'center'
 	});
 
