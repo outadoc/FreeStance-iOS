@@ -159,7 +159,7 @@ for(var i = 0; i < buttonList.length; i++) {
 		//if we want to close the window
 		if(e.source.id == 'close') {
 			win.close({
-				top: -320,
+				opacity: 0,
 				duration: 500
 			});
 		} else if(e.source.id != null) {

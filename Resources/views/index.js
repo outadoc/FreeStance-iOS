@@ -465,9 +465,9 @@ function updateButtons() {
 		function onTouchEnd(e) {
 			//if we're clicking the 'more' button, we have to open a popup window
 			if(e.source.id == 'other') {
-				win_more.setTop(-320);
+				win_more.setOpacity(0);
 				win_more.open({
-					top: Ti.UI.SIZE,
+					opacity: 1,
 					duration: 500
 				});
 			} else if(e.source.canBeLong) {
