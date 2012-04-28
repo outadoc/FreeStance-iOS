@@ -301,7 +301,8 @@ function displayItems(itemList) {
 			if(lastChannelID != row.thisChannel) {
 				var header = Ti.UI.createTableViewRow({
 					height: 30,
-					selectionStyle: 'none',
+					selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+					backgroundColor: '#d4d4d4',
 					backgroundGradient: {
 						type: 'linear',
 						colors: [{
