@@ -40,6 +40,7 @@ function createLoadingWindow() {
 	var view = Ti.UI.createView({
 		height: 60,
 		width: 60,
+		top: 170,
 		borderRadius: 10,
 		backgroundColor: '#000',
 		opacity: 0.6
