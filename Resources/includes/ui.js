@@ -28,9 +28,12 @@ function getDefaultBackground() {
 	}
 }
 
-function createLoadingWindow() {
+function createLoadingWindow(top) {
+	if(top === undefined) {
+		top = 170;
+	}
+	
 	var timeoutID;
-
 	var win = Ti.UI.createWindow({
 		width: 320,
 		height: 480,
@@ -40,7 +43,7 @@ function createLoadingWindow() {
 	var view = Ti.UI.createView({
 		height: 60,
 		width: 60,
-		top: 170,
+		top: top,
 		borderRadius: 10,
 		backgroundColor: '#000',
 		opacity: 0.6
