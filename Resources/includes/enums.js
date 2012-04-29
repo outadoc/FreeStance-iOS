@@ -22,8 +22,8 @@ var HD = {
 var EPG = {
 	NOW: 0,
 	TONIGHT: 1,
-	NOW_URL: 'http://dev.outadoc.fr/freestance/xmlproxy.php?now',
-	TONIGHT_URL: 'http://dev.outadoc.fr/freestance/xmlproxy.php?tonight'
+	NOW_URL: 'http://www.zap-programme.fr/rss/rss.php?bouquet=2&day=now',
+	TONIGHT_URL: 'http://programme-tv.orange.fr/rss/fluxRssProgrammeSoiree.xml'
 };
 
 var Error = {

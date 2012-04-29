@@ -403,27 +403,24 @@ function loadRSSFeed(url) {
 		displayError(Error.NETWORK);
 	} else {
 		var xhr = Ti.Network.createHTTPClient({
-			timeout: 15000
-		});
-		xhr.open('GET', url);
-
-		xhr.setOnreadystatechange(function() {
-			if(xhr.readyState == 4 && xhr.status == 200) {
-				var xml = this.getResponseXML();
+			timeout: 15000,
+			onload: function() {
+				var xml_txt = this.getResponseText();
+				xml_txt = xml_txt.replace(/(\r\n|\n|\r)/m, '');
+				var xml = Ti.XML.parseString(xml_txt);
 				var itemList = xml.documentElement.getElementsByTagName('item');
 				displayItems(itemList);
 				tabbedBar.lastIndex = tabbedBar.getIndex();
 				loadingWin.close();
 				endReloading();
+			},
+			onerror: function() {
+				displayError(Error.SERVER);
+				loadingWin.close();
+				endReloading();
 			}
 		});
-
-		xhr.setOnerror(function() {
-			displayError(Error.SERVER);
-			loadingWin.close();
-			endReloading();
-		});
-
+		xhr.open('GET', url);
 		xhr.send();
 	}
 }
