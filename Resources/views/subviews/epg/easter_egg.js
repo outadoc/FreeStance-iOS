@@ -16,7 +16,7 @@ if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
 	});
 } else {
 	var movie = Titanium.Media.createVideoPlayer({
-		url: 'http://dev.outadoc.fr/freestance/anonymous.mp4',
+		url: 'http://apps.outadoc.fr/freestance/anonymous.mp4',
 		backgroundColor: '#111',
 		scalingMode: Titanium.Media.VIDEO_SCALING_ASPECT_FIT
 	});

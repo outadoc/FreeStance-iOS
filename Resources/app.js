@@ -144,6 +144,6 @@ if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 		}
 	});
 
-	xhr.open('GET', 'http://dev.outadoc.fr/freestance/motd.json');
+	xhr.open('GET', 'http://apps.outadoc.fr/freestance/motd.json');
 	xhr.send();
 }
