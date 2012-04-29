@@ -459,10 +459,7 @@ function updateButtons() {
 		});
 
 		//two events with the same callback, as touchend and touchcancel are quite the same
-		button.addEventListener('click', onTouchEnd);
-		button.addEventListener('touchcancel', onTouchEnd);
-
-		function onTouchEnd(e) {
+		button.addEventListener('click', function(e) {
 			//if we're clicking the 'more' button, we have to open a popup window
 			if(e.source.id == 'other') {
 				win_more.setOpacity(0);
@@ -492,9 +489,16 @@ function updateButtons() {
 				callKey(e.source.id, false, hd, code, model, profile);
 			}
 			//hasn't been pressed anymore, heh ?
-			hasBeenPressed = null;
-		}
-
+			hasBeenPressed = false;
+		});
+		
+		button.addEventListener('touchcancel', function() {
+			clearInterval(repeatIntervalID);
+			clearTimeout(longPressTimeoutID);
+			longPressTimeoutID = null;
+			repeatIntervalID = null;
+			hasBeenPressed = false;
+		});
 
 		view.add(button);
 	}
