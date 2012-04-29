@@ -378,7 +378,7 @@ function displayItems(itemList) {
 				left: 60,
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
-				top: 8,
+				top: 7,
 				bottom: 8,
 				font: {
 					fontSize: 15
