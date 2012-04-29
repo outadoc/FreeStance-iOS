@@ -60,16 +60,11 @@ var buttonList = [{
 	top: 110,
 	left: 131
 }, {
-	title: '⚫',
 	id: 'rec',
 	height: 30,
 	width: 26,
 	top: 165,
 	left: 20,
-	color: 'red',
-	font: {
-		fontSize: 25
-	}
 }, {
 	title: '«',
 	id: 'prev',
@@ -100,15 +95,11 @@ var buttonList = [{
 		fontSize: 13
 	}
 }, {
-	title: '◼',
 	id: 'stop',
 	height: 30,
 	width: 26,
 	top: 165,
 	left: 144,
-	font: {
-		fontSize: 15
-	}
 }, {
 	title: '›',
 	id: 'fwd',
@@ -151,10 +142,25 @@ for(var i = 0; i < buttonList.length; i++) {
 			width: 20,
 			top: 6
 		});
-
+		button.add(img_button);
+	} else if(button.id == 'rec') {
+		var img_button = Ti.UI.createImageView({
+			image: '/img/rec.png',
+			height: 20,
+			width: 20,
+			top: 6
+		});
+		button.add(img_button);
+	} else if(button.id == 'stop') {
+		var img_button = Ti.UI.createImageView({
+			image: '/img/stop.png',
+			height: 20,
+			width: 20,
+			top: 6
+		});
 		button.add(img_button);
 	}
-
+	
 	button.addEventListener('click', function(e) {
 		//if we want to close the window
 		if(e.source.id == 'close') {
