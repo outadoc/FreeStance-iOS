@@ -336,6 +336,7 @@ function updateButtons() {
 		var longPressTimeoutID;
 
 		var button = Ti.UI.createButton(buttonList[i]);
+		button.setBorderRadius(2);
 
 		//if we're setting the home button, we add an image in it
 		if(button.id == 'home') {
@@ -351,7 +352,7 @@ function updateButtons() {
 		if(button.isColor) {
 			button.setBackgroundImage('/img/button_' + button.id + '.png');
 			button.setBackgroundSelectedImage('/img/button_' + button.id + '_selected.png');
-
+			
 			if(button.id == 'red') {
 				button.setBorderColor('#e20f07');
 			} else if(button.id == 'yellow') {

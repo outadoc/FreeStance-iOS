@@ -131,6 +131,8 @@ var buttonList = [{
 
 for(var i = 0; i < buttonList.length; i++) {
 	var button = Ti.UI.createButton(buttonList[i]);
+	
+	button.setBorderRadius(2);
 	button.setBackgroundImage('/img/button.png');
 	button.setBackgroundSelectedImage('/img/button_selected.png');
 	button.setBorderColor('gray');
