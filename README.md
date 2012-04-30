@@ -15,17 +15,15 @@ Grâce aux fonctionnalités innovantes de FreeStance, vous pourrez...
 
 * Partager des programmes intéressants avec le reste du monde, grâce à l'intégration de Twitter dans iOS 5.
 
-FreeStance est disponible dans l'[App Store](http://www.apple.com/iphone/from-the-app-store/)… pour seulement 0,79€ !  
-
-Captures d'écran
-----------------
-
-![FreeStance1](http://dev.outadoc.fr/img/FreeStance/0.png "FreeStance 1")
-![FreeStance2](http://dev.outadoc.fr/img/FreeStance/1.png "FreeStance 2")
-![FreeStance3](http://dev.outadoc.fr/img/FreeStance/2.png "FreeStance 3")
+FreeStance est disponible dans l'[App Store][4]… pour seulement 0,79€ !  
 
 Liens externes
 -------
-Développement : [http://dev.outadoc.fr](http://dev.outadoc.fr)  
-Blog personnel : [http://outadoc.fr](http://outadoc.fr)  
-Contact : [http://dev.outadoc.fr/contact](http://dev.outadoc.fr/contact)
+Développement : [http://dev.outadoc.fr][1]
+Blog personnel : [http://outadoc.fr][2]
+Contact : [http://dev.outadoc.fr/contact][3]
+
+[1]: http://dev.outadoc.fr
+[2]: http://outadoc.fr
+[3]: http://dev.outadoc.fr/contact
+[4]: http://www.apple.com/iphone/from-the-app-store/
