@@ -3,6 +3,10 @@
 * By: http://mattheworiordan.com/
 * Github: https://github.com/mattheworiordan/json.i18n-for-Titanium-Mobile
 *
+* Fork by outadoc
+* By: http://dev.outadoc.fr
+* Github: http://github.com/outadoc
+*
 * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
 */
 
@@ -100,7 +104,7 @@ var i18n = (function() {
     if (typeof obj === 'string') {
       return obj;
     } else {
-      return '';
+      return key;
     }
   }
 
