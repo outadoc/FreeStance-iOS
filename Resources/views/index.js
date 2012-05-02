@@ -1,13 +1,13 @@
 Ti.include('/includes/callurl.js');
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/ui.js');
+var win = Ti.UI.currentWindow;
 
 //the properties for the current profile
 var profile, model, hd, code;
 //advanced options
 var volumeRepeat, volumeRepeatFrequency, progRepeat, progRepeatFrequency, longPress, longPressLength;
 
-var win = Ti.UI.currentWindow;
 var loadingWin = createLoadingWindow();
 loadingWin.open();
 
@@ -45,6 +45,325 @@ var win_more = Ti.UI.createWindow({
 	thisProfile: profile
 });
 
+//the buttons and their placing
+var buttonList = [{
+	id: 'red',
+	height: 35,
+	width: 35,
+	left: 37,
+	top: 25,
+	canBeLong: false,
+	isColor: true
+}, {
+	id: 'up',
+	height: 40,
+	width: 40,
+	left: 77,
+	top: 20,
+	canBeLong: false,
+	isArrow: true
+}, {
+	id: 'blue',
+	height: 35,
+	width: 35,
+	left: 122,
+	top: 25,
+	canBeLong: false,
+	isColor: true
+}, {
+	id: 'left',
+	height: 40,
+	width: 40,
+	left: 32,
+	top: 65,
+	canBeLong: false,
+	isArrow: true
+}, {
+	title: I('buttons.ok'),
+	id: 'ok',
+	height: 40,
+	width: 40,
+	left: 77,
+	top: 65,
+	canBeLong: false
+}, {
+	id: 'right',
+	height: 40,
+	width: 40,
+	left: 122,
+	top: 65,
+	canBeLong: false,
+	isArrow: true
+}, {
+	id: 'green',
+	height: 35,
+	width: 35,
+	left: 37,
+	top: 110,
+	canBeLong: false,
+	isColor: true
+}, {
+	id: 'down',
+	height: 40,
+	width: 40,
+	left: 77,
+	top: 110,
+	canBeLong: false,
+	isArrow: true
+}, {
+	id: 'yellow',
+	height: 35,
+	width: 35,
+	left: 122,
+	top: 110,
+	canBeLong: false,
+	isColor: true
+}, {
+	title: '+',
+	id: 'vol_inc',
+	height: 50,
+	width: 40,
+	left: 200,
+	top: 23,
+	font: {
+		fontSize: 22
+	},
+	canRepeat: true
+}, {
+	title: '-',
+	id: 'vol_dec',
+	height: 50,
+	width: 40,
+	left: 200,
+	top: 93,
+	font: {
+		fontSize: 28
+	},
+	canRepeat: true
+}, {
+	title: '+',
+	id: 'prgm_inc',
+	height: 50,
+	width: 40,
+	left: 255,
+	top: 23,
+	font: {
+		fontSize: 22
+	},
+	canRepeat: false
+}, {
+	title: '-',
+	id: 'prgm_dec',
+	height: 50,
+	width: 40,
+	left: 255,
+	top: 93,
+	font: {
+		fontSize: 28
+	},
+	canRepeat: false
+}, {
+	title: '1',
+	id: '1',
+	height: 35,
+	width: 45,
+	left: 20,
+	top: 175,
+	canBeLong: true
+}, {
+	title: '2',
+	id: '2',
+	height: 35,
+	width: 45,
+	left: 75,
+	top: 175,
+	canBeLong: true
+}, {
+	title: '3',
+	id: '3',
+	height: 35,
+	width: 45,
+	left: 130,
+	top: 175,
+	canBeLong: true
+}, {
+	title: '4',
+	id: '4',
+	height: 35,
+	width: 45,
+	left: 20,
+	top: 220,
+	canBeLong: true
+}, {
+	title: '5',
+	id: '5',
+	height: 35,
+	width: 45,
+	left: 75,
+	top: 220,
+	canBeLong: true
+}, {
+	title: '6',
+	id: '6',
+	height: 35,
+	width: 45,
+	left: 130,
+	top: 220,
+	canBeLong: true
+}, {
+	title: '7',
+	id: '7',
+	height: 35,
+	width: 45,
+	left: 20,
+	top: 265,
+	canBeLong: true
+}, {
+	title: '8',
+	id: '8',
+	height: 35,
+	width: 45,
+	left: 75,
+	top: 265,
+	canBeLong: true
+}, {
+	title: '9',
+	id: '9',
+	height: 35,
+	width: 45,
+	left: 130,
+	top: 265,
+	canBeLong: true
+}, {
+	title: ' ←',
+	id: 'back',
+	height: 35,
+	width: 45,
+	left: 20,
+	top: 310,
+	font: {
+		fontSize: 23
+	},
+	canBeLong: false
+}, {
+	title: '0',
+	id: '0',
+	height: 35,
+	width: 45,
+	left: 75,
+	top: 310,
+	canBeLong: true
+}, {
+	title: '↻',
+	id: 'swap',
+	height: 35,
+	width: 45,
+	left: 130,
+	top: 310,
+	canBeLong: true
+}, {
+	id: 'power',
+	height: 35,
+	width: 95,
+	left: 200,
+	top: 175,
+	canBeLong: false
+}, {
+	id: 'home',
+	height: 35,
+	width: 95,
+	left: 200,
+	top: 220,
+	canBeLong: true
+}, {
+	title: I('buttons.mute'),
+	id: 'mute',
+	height: 35,
+	width: 95,
+	left: 200,
+	top: 265,
+	canBeLong: false
+}, {
+	title: '...',
+	id: 'other',
+	height: 35,
+	width: 95,
+	left: 200,
+	top: 310,
+	canBeLong: false
+}];
+
+function on_btn_touchstart(e) {
+	//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons
+	if(e.source.canRepeat) {
+		var delay;
+		//if it's one of the volume buttons, get the volume repeat frequency
+		if(e.source.id == 'vol_inc' || e.source.id == 'vol_dec') {
+			delay = volumeRepeatFrequency;
+		}
+		// else if it's one of the program buttons, get the program repeat frequency
+		else if(e.source.id == 'prgm_inc' || e.source.id == 'prgm_dec') {
+			delay = progRepeatFrequency;
+		}
+		// else, if it's not a volume button nor a program button
+		else {
+			delay = 200;
+		}
+
+		//the freebox révolution volume button needs a shorter frequency than the freebox hd one
+		if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
+			delay *= 0.5;
+		}
+
+		//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
+		repeatIntervalID = setInterval(function() {
+			hasBeenPressed = true;
+			//calling the key!
+			callKey(e.source.id, false, hd, code, model, profile);
+		}, delay);
+	} else if(e.source.canBeLong) {
+		//slightly more simple here, just having to use the longPressLength variable as the delay we're using a timeout here longPressTimeoutID is so we can eventually cancel the timeout
+		longPressTimeoutID = setTimeout(function() {
+			//calling the key!
+			callKey(e.source.id, true, hd, code, model, profile);
+			hasBeenPressed = true;
+		}, longPressLength);
+	}
+}
+
+function on_btn_click(e) {
+	//if we're clicking the 'more' button, we have to open a popup window
+	if(e.source.id == 'other') {
+		win_more.setOpacity(0);
+		win_more.open({
+			opacity: 1,
+			duration: 500
+		});
+	} else if(e.source.canBeLong) {
+		//if the button press can be long and hasn't been pressed already (by the timeout)
+		if(!hasBeenPressed) {
+			//clearing the timeout so it won't be pressed two times
+			clearTimeout(longPressTimeoutID);
+			longPressTimeoutID = null;
+			//calling the key!
+			callKey(e.source.id, false, hd, code, model, profile);
+		}
+	} else if(e.source.canRepeat) {
+		//if the button press can be repeated and hasn't been pressed already (by the interval)
+		if(!hasBeenPressed) {
+			//calling the key!
+			callKey(e.source.id, false, hd, code, model, profile);
+		}
+		clearInterval(repeatIntervalID);
+		repeatIntervalID = null;
+	} else {
+		//if it's a basic button, just call the key!
+		callKey(e.source.id, false, hd, code, model, profile);
+	}
+	//hasn't been pressed anymore, heh ?
+	hasBeenPressed = false;
+}
+
 //the function resets the view so we can update it (to change buttons,..)
 function updateButtons() {
 	//resetting the view
@@ -55,254 +374,6 @@ function updateButtons() {
 	hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
 	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
 	model = Ti.App.Properties.getInt('profile' + profile + '.model', Model.FREEBOX_HD);
-
-	//the buttons and their placing
-	var buttonList = [{
-		id: 'red',
-		height: 35,
-		width: 35,
-		left: 37,
-		top: 25,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'up',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 20,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'blue',
-		height: 35,
-		width: 35,
-		left: 122,
-		top: 25,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'left',
-		height: 40,
-		width: 40,
-		left: 32,
-		top: 65,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		title: I('buttons.ok'),
-		id: 'ok',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 65,
-		canBeLong: false
-	}, {
-		id: 'right',
-		height: 40,
-		width: 40,
-		left: 122,
-		top: 65,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'green',
-		height: 35,
-		width: 35,
-		left: 37,
-		top: 110,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'down',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 110,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'yellow',
-		height: 35,
-		width: 35,
-		left: 122,
-		top: 110,
-		canBeLong: false,
-		isColor: true
-	}, {
-		title: '+',
-		id: 'vol_inc',
-		height: 50,
-		width: 40,
-		left: 200,
-		top: 23,
-		font: {
-			fontSize: 22
-		},
-		canRepeat: true
-	}, {
-		title: '-',
-		id: 'vol_dec',
-		height: 50,
-		width: 40,
-		left: 200,
-		top: 93,
-		font: {
-			fontSize: 28
-		},
-		canRepeat: true
-	}, {
-		title: '+',
-		id: 'prgm_inc',
-		height: 50,
-		width: 40,
-		left: 255,
-		top: 23,
-		font: {
-			fontSize: 22
-		},
-		canRepeat: false
-	}, {
-		title: '-',
-		id: 'prgm_dec',
-		height: 50,
-		width: 40,
-		left: 255,
-		top: 93,
-		font: {
-			fontSize: 28
-		},
-		canRepeat: false
-	}, {
-		title: '1',
-		id: '1',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '2',
-		id: '2',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '3',
-		id: '3',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '4',
-		id: '4',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '5',
-		id: '5',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '6',
-		id: '6',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '7',
-		id: '7',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: '8',
-		id: '8',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: '9',
-		id: '9',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: ' ←',
-		id: 'back',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 310,
-		font: {
-			fontSize: 23
-		},
-		canBeLong: false
-	}, {
-		title: '0',
-		id: '0',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 310,
-		canBeLong: true
-	}, {
-		title: '↻',
-		id: 'swap',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 310,
-		canBeLong: true
-	}, {
-		id: 'power',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 175,
-		canBeLong: false
-	}, {
-		id: 'home',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: I('buttons.mute'),
-		id: 'mute',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 265,
-		canBeLong: false
-	}, {
-		title: '...',
-		id: 'other',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 310,
-		canBeLong: false
-	}];
 
 	//those can't be placed above as they are not buttons but labels...
 	var lbl_vol = Ti.UI.createLabel({
@@ -352,7 +423,7 @@ function updateButtons() {
 		if(button.isColor) {
 			button.setBackgroundImage('/img/button_' + button.id + '.png');
 			button.setBackgroundSelectedImage('/img/button_' + button.id + '_selected.png');
-			
+
 			if(button.id == 'red') {
 				button.setBorderColor('#e20f07');
 			} else if(button.id == 'yellow') {
@@ -422,77 +493,14 @@ function updateButtons() {
 		}
 
 		button.addEventListener('touchstart', function(e) {
-			//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons
-			if(e.source.canRepeat) {
-				var delay;
-				//if it's one of the volume buttons, get the volume repeat frequency
-				if(e.source.id == 'vol_inc' || e.source.id == 'vol_dec') {
-					delay = volumeRepeatFrequency;
-				}
-				// else if it's one of the program buttons, get the program repeat frequency
-				else if(e.source.id == 'prgm_inc' || e.source.id == 'prgm_dec') {
-					delay = progRepeatFrequency;
-				}
-				// else, if it's not a volume button nor a program button
-				else {
-					delay = 200;
-				}
-
-				//the freebox révolution volume button needs a shorter frequency than the freebox hd one
-				if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
-					delay *= 0.5;
-				}
-
-				//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
-				repeatIntervalID = setInterval(function() {
-					hasBeenPressed = true;
-					//calling the key!
-					callKey(e.source.id, false, hd, code, model, profile);
-				}, delay);
-			} else if(e.source.canBeLong) {
-				//slightly more simple here, just having to use the longPressLength variable as the delay we're using a timeout here longPressTimeoutID is so we can eventually cancel the timeout
-				longPressTimeoutID = setTimeout(function() {
-					//calling the key!
-					callKey(e.source.id, true, hd, code, model, profile);
-					hasBeenPressed = true;
-				}, longPressLength);
-			}
+			on_btn_touchstart(e);
 		});
 
 		//two events with the same callback, as touchend and touchcancel are quite the same
 		button.addEventListener('click', function(e) {
-			//if we're clicking the 'more' button, we have to open a popup window
-			if(e.source.id == 'other') {
-				win_more.setOpacity(0);
-				win_more.open({
-					opacity: 1,
-					duration: 500
-				});
-			} else if(e.source.canBeLong) {
-				//if the button press can be long and hasn't been pressed already (by the timeout)
-				if(!hasBeenPressed) {
-					//clearing the timeout so it won't be pressed two times
-					clearTimeout(longPressTimeoutID);
-					longPressTimeoutID = null;
-					//calling the key!
-					callKey(e.source.id, false, hd, code, model, profile);
-				}
-			} else if(e.source.canRepeat) {
-				//if the button press can be repeated and hasn't been pressed already (by the interval)
-				if(!hasBeenPressed) {
-					//calling the key!
-					callKey(e.source.id, false, hd, code, model, profile);
-				}
-				clearInterval(repeatIntervalID);
-				repeatIntervalID = null;
-			} else {
-				//if it's a basic button, just call the key!
-				callKey(e.source.id, false, hd, code, model, profile);
-			}
-			//hasn't been pressed anymore, heh ?
-			hasBeenPressed = false;
+			on_btn_click(e);
 		});
-		
+
 		button.addEventListener('touchcancel', function() {
 			clearInterval(repeatIntervalID);
 			clearTimeout(longPressTimeoutID);
