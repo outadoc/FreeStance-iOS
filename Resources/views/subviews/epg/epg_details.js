@@ -21,7 +21,7 @@ var progInfo = Ti.UI.createView({
 	top: 10,
 	left: 10,
 	width: 300,
-	height: 160,
+	height: 165,
 	backgroundImage: '/img/prog_info.png'
 });
 
@@ -75,7 +75,7 @@ if(win.thisImageUrl === undefined) {
 
 var logo = Ti.UI.createImageView({
 	image: '/img/logo/' + win.thisChannelID + '.png',
-	top: 25,
+	top: 30,
 	right: 45,
 	width: 60,
 	height: 60
@@ -85,7 +85,7 @@ progInfo.add(logo);
 
 var lbl_time = Ti.UI.createLabel({
 	text: win.thisTime,
-	top: 89,
+	top: 94,
 	right: 10,
 	width: 130,
 	color: 'white',
@@ -100,7 +100,7 @@ progInfo.add(lbl_time);
 
 var lbl_category = Ti.UI.createLabel({
 	text: win.thisCategory.capitalize(),
-	top: 112,
+	top: 117,
 	right: 5,
 	width: 140,
 	font: {
@@ -115,7 +115,7 @@ progInfo.add(lbl_category);
 
 var lbl_description_title = Ti.UI.createLabel({
 	text: I('epg.details.description'),
-	top: 180,
+	top: 185,
 	left: 10,
 	color: 'white',
 	height: 20,
