@@ -51,13 +51,26 @@ var img = Ti.UI.createImageView({
 	left: 20,
 	borderColor: 'white',
 	borderWidth: 1,
+	backgroundColor: 'darkGray',
+	borderRadius: 3,
 	defaultImage: '/img/default_epg.png'
 });
 
 progInfo.add(img);
 
 if(win.thisImageUrl === undefined) {
-	img.setImage('/img/default_epg.png');
+	var lbl_noImg = Ti.UI.createLabel({
+		text: I('epg.details.noPreview'),
+		height: Ti.UI.FILL,
+		width: Ti.UI.FILL,
+		color: 'white',
+		textAlign: 'center',
+		font: {
+			fontFamily: 'Helvetica-Oblique'
+		}
+	});
+	
+	img.add(lbl_noImg);
 }
 
 var logo = Ti.UI.createImageView({

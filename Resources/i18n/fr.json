@@ -49,6 +49,7 @@
 		"details": {
 			"title": "Détails programme",
 			"description": "Description :",
+			"noPreview": "Pas d'aperçu disponible",
 			"buttons": {
 				"moreInfo": "Plus d'infos",
 				"watch": "Regarder",

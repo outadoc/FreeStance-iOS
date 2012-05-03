@@ -49,6 +49,7 @@
 		"details": {
 			"title": "Program Details",
 			"description": "Description :",
+			"noPreview": "No preview available",
 			"buttons": {
 				"moreInfo": "More Info",
 				"watch": "Watch",
