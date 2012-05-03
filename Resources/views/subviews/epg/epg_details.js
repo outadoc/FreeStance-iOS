@@ -49,10 +49,10 @@ var img = Ti.UI.createImageView({
 	width: 128,
 	top: 40,
 	left: 20,
-	borderColor: 'white',
-	borderWidth: 1,
+	borderColor: '#404040',
+	borderWidth: 2,
 	backgroundColor: 'darkGray',
-	borderRadius: 3,
+	borderRadius: 5,
 	defaultImage: '/img/default_epg.png'
 });
 
