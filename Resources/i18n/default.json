@@ -65,7 +65,7 @@
 		"epg": "EPG",
 		"mail": "Mail",
 		"aux": "AUX",
-		"close": "Close",
+		"close": "Back",
 		"mute": "Mute",
 		"ok": "OK"
 	},

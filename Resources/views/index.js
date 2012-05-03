@@ -36,9 +36,8 @@ win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {
 //creating the window
 var win_more = Ti.UI.createWindow({
 	url: 'subviews/more_buttons.js',
-	height: 480,
-	width: 320,
-	orientationModes: [Ti.UI.PORTRAIT],
+	backgroundImage: '/img/remotebg.png',
+	navBarHidden: true,
 	thisHd: hd,
 	thisCode: code,
 	thisModel: model,
@@ -334,11 +333,10 @@ function on_btn_touchstart(e) {
 function on_btn_click(e) {
 	//if we're clicking the 'more' button, we have to open a popup window
 	if(e.source.id == 'other') {
-		win_more.setOpacity(0);
 		win_more.open({
-			opacity: 1,
-			duration: 500
-		});
+			modal: true,
+			modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_PARTIAL_CURL
+		})
 	} else if(e.source.canBeLong) {
 		//if the button press can be long and hasn't been pressed already (by the timeout)
 		if(!hasBeenPressed) {
