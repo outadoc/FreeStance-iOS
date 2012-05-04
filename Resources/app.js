@@ -6,7 +6,7 @@ Ti.include('/includes/enums.js');
 var tabGroup = Ti.UI.createTabGroup();
 
 var win1 = Ti.UI.createWindow({
-	url: 'views/index.js',
+	url: 'views/main.js',
 	backgroundImage: '/img/remotebg.png',
 	navBarHidden: true,
 	orientationModes: [Ti.UI.PORTRAIT],
