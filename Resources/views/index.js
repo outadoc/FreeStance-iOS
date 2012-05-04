@@ -342,7 +342,7 @@ function on_btn_click(e) {
 		win_more.open({
 			modal: true,
 			modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_PARTIAL_CURL
-		})
+		});
 	} else if(e.source.canBeLong) {
 		//if the button press can be long and hasn't been pressed already (by the timeout)
 		if(!e.source.hasBeenPressed) {
