@@ -5,8 +5,18 @@ var win = Ti.UI.currentWindow;
 
 //the properties for the current profile
 var profile, model, hd, code;
+
 //advanced options
-var volumeRepeat, volumeRepeatFrequency, progRepeat, progRepeatFrequency, longPress, longPressLength;
+var prefs = {
+	volumeRepeat: null,
+	volumeRepeatFrequency: null,
+	progRepeat: null,
+	progRepeatFrequency: null,
+	longPress: null,
+	longPressLength: null
+};
+
+var repeatIntervalID, longPressTimeoutID;
 
 var loadingWin = createLoadingWindow();
 loadingWin.open();
@@ -295,28 +305,24 @@ var buttonList = [{
 function on_btn_touchstart(e) {
 	//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons
 	if(e.source.canRepeat) {
-		var delay;
-		//if it's one of the volume buttons, get the volume repeat frequency
+		var delay = 200;
+		
 		if(e.source.id == 'vol_inc' || e.source.id == 'vol_dec') {
-			delay = volumeRepeatFrequency;
-		}
-		// else if it's one of the program buttons, get the program repeat frequency
-		else if(e.source.id == 'prgm_inc' || e.source.id == 'prgm_dec') {
-			delay = progRepeatFrequency;
-		}
-		// else, if it's not a volume button nor a program button
-		else {
-			delay = 200;
+			//if it's one of the volume buttons, get the volume repeat frequency
+			delay = prefs.volumeRepeatFrequency;
+		} else if(e.source.id == 'prgm_inc' || e.source.id == 'prgm_dec') {
+			// else if it's one of the program buttons, get the program repeat frequency
+			delay = prefs.progRepeatFrequency;
 		}
 
-		//the freebox révolution volume button needs a shorter frequency than the freebox hd one
 		if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
+			//the freebox révolution volume button needs a shorter frequency than the freebox hd one
 			delay *= 0.5;
 		}
 
 		//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
 		repeatIntervalID = setInterval(function() {
-			hasBeenPressed = true;
+			e.source.hasBeenPressed = true;
 			//calling the key!
 			callKey(e.source.id, false, hd, code, model, profile);
 		}, delay);
@@ -325,8 +331,8 @@ function on_btn_touchstart(e) {
 		longPressTimeoutID = setTimeout(function() {
 			//calling the key!
 			callKey(e.source.id, true, hd, code, model, profile);
-			hasBeenPressed = true;
-		}, longPressLength);
+			e.source.hasBeenPressed = true;
+		}, prefs.longPressLength);
 	}
 }
 
@@ -339,7 +345,7 @@ function on_btn_click(e) {
 		})
 	} else if(e.source.canBeLong) {
 		//if the button press can be long and hasn't been pressed already (by the timeout)
-		if(!hasBeenPressed) {
+		if(!e.source.hasBeenPressed) {
 			//clearing the timeout so it won't be pressed two times
 			clearTimeout(longPressTimeoutID);
 			longPressTimeoutID = null;
@@ -348,7 +354,7 @@ function on_btn_click(e) {
 		}
 	} else if(e.source.canRepeat) {
 		//if the button press can be repeated and hasn't been pressed already (by the interval)
-		if(!hasBeenPressed) {
+		if(!e.source.hasBeenPressed) {
 			//calling the key!
 			callKey(e.source.id, false, hd, code, model, profile);
 		}
@@ -359,7 +365,7 @@ function on_btn_click(e) {
 		callKey(e.source.id, false, hd, code, model, profile);
 	}
 	//hasn't been pressed anymore, heh ?
-	hasBeenPressed = false;
+	e.source.hasBeenPressed = false;
 }
 
 //the function resets the view so we can update it (to change buttons,..)
@@ -400,12 +406,10 @@ function updateButtons() {
 
 	//looping through each element of the array
 	for(var i = 0; i < buttonList.length; i++) {
-		var hasBeenPressed;
-		var repeatIntervalID;
-		var longPressTimeoutID;
-
 		var button = Ti.UI.createButton(buttonList[i]);
+		
 		button.setBorderRadius(2);
+		button.hasBeenPressed = false;
 
 		//if we're setting the home button, we add an image in it
 		if(button.id == 'home') {
@@ -452,7 +456,8 @@ function updateButtons() {
 				});
 				button.add(img_button);
 			}
-		} else {//else, we change it to the default ones
+		} else {
+			//else, we change it to the default ones
 			button.setBackgroundImage('/img/button.png');
 			button.setBackgroundSelectedImage('/img/button_selected.png');
 			button.setBorderColor('gray');
@@ -479,15 +484,15 @@ function updateButtons() {
 
 		//if it's a volume/program button, we use the properties set by the user to determine if the press can be repeated as long as the user is pressing the button
 		if(button.id == 'vol_inc' || button.id == 'vol_dec') {
-			button.canRepeat = volumeRepeat;
+			button.canRepeat = prefs.volumeRepeat;
 		}
 		if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
-			button.canRepeat = progRepeat;
+			button.canRepeat = prefs.progRepeat;
 		}
 
 		//if the button press can be long, we use the properties to determine if the user WANTS it to be long
 		if(button.canBeLong) {
-			button.canBeLong = longPress;
+			button.canBeLong = prefs.longPress;
 		}
 
 		button.addEventListener('touchstart', function(e) {
@@ -504,7 +509,7 @@ function updateButtons() {
 			clearTimeout(longPressTimeoutID);
 			longPressTimeoutID = null;
 			repeatIntervalID = null;
-			hasBeenPressed = false;
+			button.hasBeenPressed = false;
 		});
 
 		view.add(button);
@@ -516,12 +521,12 @@ function updateButtons() {
 
 win.addEventListener('focus', function(e) {
 	//on focus, we're checking for new data the user may have modified
-	volumeRepeat = Ti.App.Properties.getBool('volume.repeat', true);
-	volumeRepeatFrequency = Ti.App.Properties.getInt('volume.repeat.frequency', 200);
-	progRepeat = Ti.App.Properties.getBool('program.repeat', false);
-	progRepeatFrequency = Ti.App.Properties.getInt('program.repeat.frequency', 300);
-	longPress = Ti.App.Properties.getBool('longpress', true);
-	longPressLength = Ti.App.Properties.getInt('longpress.length', 600);
+	prefs.volumeRepeat = Ti.App.Properties.getBool('volume.repeat', true);
+	prefs.volumeRepeatFrequency = Ti.App.Properties.getInt('volume.repeat.frequency', 200);
+	prefs.progRepeat = Ti.App.Properties.getBool('program.repeat', false);
+	prefs.progRepeatFrequency = Ti.App.Properties.getInt('program.repeat.frequency', 300);
+	prefs.longPress = Ti.App.Properties.getBool('longpress', true);
+	prefs.longPressLength = Ti.App.Properties.getInt('longpress.length', 600);
 
 	//updating the buttons; the user can also have change the profile to use
 	updateButtons();
