@@ -12,20 +12,6 @@ var searchBar = Titanium.UI.createSearchBar({
 	barColor: '#464646'
 });
 
-searchBar.addEventListener('return', function(e) {
-	if(e.source.value.toLowerCase() == 'we do not forgive, we do not forget.') {
-		var win = Ti.UI.createWindow({
-			url: 'subviews/epg/easter_egg.js',
-			title: 'Expect us.',
-			barColor: '#464646'
-		});
-
-		win.open({
-			modal: true
-		});
-	}
-});
-
 var tableView = Ti.UI.createTableView({
 	filterAttribute: 'thisSearchFilter',
 	search: searchBar
