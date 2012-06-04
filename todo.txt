@@ -1,0 +1,2 @@
+problème de répétition du volume, reste parfois bloqué
+#compatibilité iOS 4
