@@ -27,7 +27,7 @@ function callKey(key, isLong, hd, code, model, profile) {
 		xhr.send(null);
 	} else {
 		//if debugging, show the information that was about to be sent
-		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + getModelString(model) + '; the app is in debug mode so the request was not treated');
+		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + getModelString(model));
 	}
 }
 
