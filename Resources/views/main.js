@@ -16,7 +16,10 @@ var prefs = {
 	longPressLength: null
 };
 
-var repeatIntervalID, longPressTimeoutID;
+var timeouts = {
+	repeatIntervalID: null,
+	longPressTimeoutID: null
+};
 
 var loadingWin = createLoadingWindow();
 loadingWin.open();
@@ -46,7 +49,7 @@ win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {
 //creating the window
 var win_more = Ti.UI.createWindow({
 	url: 'subviews/more_buttons.js',
-	backgroundImage: '/img/remotebg.png',
+	backgroundColor: '#323232',
 	navBarHidden: true,
 	thisHd: hd,
 	thisCode: code,
@@ -320,18 +323,24 @@ function on_btn_touchstart(e) {
 			delay *= 0.5;
 		}
 
-		//set an interval so it will be repeated every *delay* milliseconds repeatIntervalID is so we can cancel the interval later
-		repeatIntervalID = setInterval(function() {
+		//solves a bug where the interval would be called infinitely
+		if(timeouts.repeatIntervalID != null) {
+			clearInterval(timeouts.repeatIntervalID);
+			timeouts.repeatIntervalID = null;
+		}
+		
+		//set an interval so it will be repeated every *delay* repeatIntervalID milliseconds is so we can cancel the interval later
+		timeouts.repeatIntervalID = setInterval(function() {
 			e.source.hasBeenPressed = true;
 			//calling the key!
 			callKey(e.source.id, false, hd, code, model, profile);
 		}, delay);
 	} else if(e.source.canBeLong) {
 		//slightly more simple here, just having to use the longPressLength variable as the delay we're using a timeout here longPressTimeoutID is so we can eventually cancel the timeout
-		longPressTimeoutID = setTimeout(function() {
+		timeouts.longPressTimeoutID = setTimeout(function() {
+			e.source.hasBeenPressed = true;
 			//calling the key!
 			callKey(e.source.id, true, hd, code, model, profile);
-			e.source.hasBeenPressed = true;
 		}, prefs.longPressLength);
 	}
 }
@@ -347,8 +356,8 @@ function on_btn_click(e) {
 		//if the button press can be long and hasn't been pressed already (by the timeout)
 		if(!e.source.hasBeenPressed) {
 			//clearing the timeout so it won't be pressed two times
-			clearTimeout(longPressTimeoutID);
-			longPressTimeoutID = null;
+			clearTimeout(timeouts.longPressTimeoutID);
+			timeouts.longPressTimeoutID = null;
 			//calling the key!
 			callKey(e.source.id, false, hd, code, model, profile);
 		}
@@ -358,8 +367,9 @@ function on_btn_click(e) {
 			//calling the key!
 			callKey(e.source.id, false, hd, code, model, profile);
 		}
-		clearInterval(repeatIntervalID);
-		repeatIntervalID = null;
+		
+		clearInterval(timeouts.repeatIntervalID);
+		timeouts.repeatIntervalID = null;
 	} else {
 		//if it's a basic button, just call the key!
 		callKey(e.source.id, false, hd, code, model, profile);
@@ -485,8 +495,7 @@ function updateButtons() {
 		//if it's a volume/program button, we use the properties set by the user to determine if the press can be repeated as long as the user is pressing the button
 		if(button.id == 'vol_inc' || button.id == 'vol_dec') {
 			button.canRepeat = prefs.volumeRepeat;
-		}
-		if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
+		} else if(button.id == 'prgm_inc' || button.id == 'prgm_dec') {
 			button.canRepeat = prefs.progRepeat;
 		}
 
@@ -505,10 +514,10 @@ function updateButtons() {
 		});
 
 		button.addEventListener('touchcancel', function() {
-			clearInterval(repeatIntervalID);
-			clearTimeout(longPressTimeoutID);
-			longPressTimeoutID = null;
-			repeatIntervalID = null;
+			clearInterval(timeouts.repeatIntervalID);
+			clearTimeout(timeouts.longPressTimeoutID);
+			timeouts.longPressTimeoutID = null;
+			timeouts.repeatIntervalID = null;
 			button.hasBeenPressed = false;
 		});
 
