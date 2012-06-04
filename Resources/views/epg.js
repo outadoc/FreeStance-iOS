@@ -480,7 +480,7 @@ tableView.addEventListener('click', function(e) {
 	if(!e.rowData.isHeader && e.rowData.thisTitle != null) {
 		var win = Ti.UI.createWindow({
 			url: 'subviews/epg/epg_details.js',
-			backgroundImage: '/img/remotebg.png',
+			backgroundColor: '#323232',
 			title: I('epg.details.title'),
 			backButtonTitle: I('labels.epg'),
 			orientationModes: [Ti.UI.PORTRAIT],

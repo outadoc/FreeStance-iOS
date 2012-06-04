@@ -7,7 +7,7 @@ var tabGroup = Ti.UI.createTabGroup();
 
 var win1 = Ti.UI.createWindow({
 	url: 'views/main.js',
-	backgroundImage: '/img/remotebg.png',
+	backgroundColor: '#323232',
 	navBarHidden: true,
 	orientationModes: [Ti.UI.PORTRAIT],
 	barColor: '#464646'
@@ -16,7 +16,7 @@ var win1 = Ti.UI.createWindow({
 var win2 = Ti.UI.createWindow({
 	url: 'views/mosaic.js',
 	barColor: '#464646',
-	backgroundImage: '/img/remotebg.png',
+	backgroundColor: '#323232',
 	orientationModes: [Ti.UI.PORTRAIT]
 });
 
