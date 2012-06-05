@@ -16,14 +16,15 @@ var tableView = Ti.UI.createTableView({
 });
 
 var webView = Ti.UI.createWebView({
-	backgroundColor: 'transparent'
+	backgroundColor: 'transparent',
+	touchEnabled: false
 });
 
 row_content.add(webView);
 win.add(tableView);
 
 //so much better in Helvetica <3
-var css = '<style>body{font-family:Helvetica;font-size:15;}</style>';
+var css = '<style>body{font-family:Helvetica;font-size:15px;}</style>';
 
 //depending on the requested help, we display the corresponding information
 if(win.helpTo == 'config') {
