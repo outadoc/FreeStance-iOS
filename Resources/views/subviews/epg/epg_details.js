@@ -58,7 +58,7 @@ var img = Ti.UI.createImageView({
 
 progInfo.add(img);
 
-if(win.thisImageUrl === undefined) {
+if (win.thisImageUrl === undefined) {
 	var lbl_noImg = Ti.UI.createLabel({
 		text: I('epg.details.noPreview'),
 		height: Ti.UI.FILL,
@@ -69,7 +69,7 @@ if(win.thisImageUrl === undefined) {
 			fontFamily: 'Helvetica-Oblique'
 		}
 	});
-	
+
 	img.add(lbl_noImg);
 }
 
@@ -156,16 +156,16 @@ var b_openweb = Ti.UI.createButton({
 b_openweb.addEventListener('click', function() {
 	//creating a window to display the info page
 	var w = Ti.UI.createWindow({
-		backgroundColor: '#336699',
+		backgroundColor: 'white',
 		title: win.thisTitle,
 		thisUrl: win.thisUrl,
 		url: '../website.js',
 		barColor: '#464646',
-		isModalWin: true
+		isModalWin: false
 	});
 
-	w.open({
-		modal: true
+	Ti.UI.currentTab.open(w, {
+		animated: true
 	});
 });
 
@@ -209,16 +209,16 @@ var b_imdb = Ti.UI.createButton({
 b_imdb.addEventListener('click', function() {
 	//open a window with its URL
 	var w = Ti.UI.createWindow({
-		backgroundColor: '#336699',
+		backgroundColor: 'white',
 		title: I('labels.imdb'),
 		thisUrl: 'http://www.imdb.fr/find?s=all&q=' + win.thisTitle.normalizeUrl(),
 		url: '../website.js',
 		barColor: '#464646',
-		isModalWin: true
+		isModalWin: false
 	});
 
-	w.open({
-		modal: true
+	Ti.UI.currentTab.open(w, {
+		animated: true
 	});
 });
 
@@ -230,7 +230,7 @@ win.addEventListener('focus', function(e) {
 
 win.add(b_imdb);
 
-if(getMajorVersion() >= 5) {
+if (getMajorVersion() >= 5) {
 	var b_tweet = Ti.UI.createButton({
 		image: '/img/twitter.png'
 	});
