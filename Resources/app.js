@@ -68,7 +68,7 @@ tabGroup.addTab(tab4);
 Ti.UI.setOrientation(Ti.UI.PORTRAIT);
 tabGroup.open();
 
-if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
+if (!Ti.App.Properties.getBool('hasBeenSet', false)) {
 	var alert = Ti.UI.createAlertDialog({
 		title: I('welcome.message.title'),
 		message: I('welcome.message.message', Ti.App.name),
@@ -79,7 +79,7 @@ if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
 	alert.show();
 
 	alert.addEventListener('click', function(e) {
-		if(e.index == 1) {
+		if (e.index == 1) {
 			var helpwin = Ti.UI.createWindow({
 				url: 'views/subviews/options/options.js',
 				title: I('labels.options'),
@@ -91,10 +91,9 @@ if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
 			tabGroup.setActiveTab(3);
 		}
 	});
-
 }
 
-if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
+if (Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 	var alert = Ti.UI.createAlertDialog({
 		title: I('network.message.title'),
 		message: I('network.message.message', Ti.App.name) + ' (E' + Error.NETWORK + ')',
@@ -105,40 +104,38 @@ if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 } else {
 	var xhr = Ti.Network.createHTTPClient({
 		onload: function() {
-			if(this.getStatusCode() == 200) {
-				var motd = this.responseText;
-				motd = JSON.parse(motd);
+			var motd = this.responseText;
+			motd = JSON.parse(motd);
 
-				if(motd != null) {
-					try {
-						if(Ti.App.Properties.getString('lastMotd') != motd.id) {
-							var motdAlert = Ti.UI.createAlertDialog({
-								title: motd.title,
-								message: motd.message,
-								buttonNames: [motd.buttons.cancel, motd.buttons.accept],
-								cancel: 0
-							});
-							motdAlert.show();
+			if (motd != null) {
+				try {
+					if (Ti.App.Properties.getString('lastMotd') != motd.id && Ti.App.getVersion() != motd.lastVersion) {
+						var motdAlert = Ti.UI.createAlertDialog({
+							title: motd.title,
+							message: motd.message,
+							buttonNames: [motd.buttons.cancel, motd.buttons.accept],
+							cancel: 0
+						});
+						motdAlert.show();
 
-							motdAlert.addEventListener('click', function(e) {
-								if(e.index == 1 && motd.url !== null) {
-									var w = Ti.UI.createWindow({
-										url: 'views/subviews/website.js',
-										isModalWin: true,
-										thisUrl: motd.url,
-										barColor: '#464646'
-									});
+						motdAlert.addEventListener('click', function(e) {
+							if (e.index == 1 && motd.url !== null) {
+								var w = Ti.UI.createWindow({
+									url: 'views/subviews/website.js',
+									isModalWin: true,
+									thisUrl: motd.url,
+									barColor: '#464646'
+								});
 
-									w.open({
-										modal: true
-									});
-								}
-							});
+								w.open({
+									modal: true
+								});
+							}
+						});
 
-							Ti.App.Properties.setString('lastMotd', motd.id);
-						}
-					} catch(e) {
+						Ti.App.Properties.setString('lastMotd', motd.id);
 					}
+				} catch(e) {
 				}
 			}
 		}
