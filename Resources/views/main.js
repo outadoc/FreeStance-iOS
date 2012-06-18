@@ -6,6 +6,7 @@
 
 	//the properties for the current profile
 	var profile, model, hd, code;
+	var isConfShown = false;
 
 	//advanced options
 	var prefs = {
@@ -314,7 +315,11 @@
 
 		loadingWin.close();
 		win.add(view);
-		confCheck();
+		
+		if(!isConfShown) {
+			confCheck();
+			isConfShown = true;
+		}
 	}
 
 
