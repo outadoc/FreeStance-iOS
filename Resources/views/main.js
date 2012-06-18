@@ -526,6 +526,7 @@ function updateButtons() {
 
 	loadingWin.close();
 	win.add(view);
+	confCheck();
 }
 
 win.addEventListener('focus', function(e) {

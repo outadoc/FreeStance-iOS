@@ -248,3 +248,38 @@ function getMajorVersion() {
 
 	return major;
 }
+
+function confCheck() {
+	if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
+		var alert = Ti.UI.createAlertDialog({
+			title: I('network.message.title'),
+			message: I('network.message.message', Ti.App.name) + ' (E' + Error.NETWORK + ')',
+			buttonNames: [I('network.buttons.ok')]
+		});
+
+		alert.show();
+	} else if(!Ti.App.Properties.getBool('hasBeenSet', false)) {
+		var alert = Ti.UI.createAlertDialog({
+			title: I('welcome.message.title'),
+			message: I('welcome.message.message', Ti.App.name),
+			buttonNames: [I('welcome.buttons.no'), I('welcome.buttons.yes')],
+			cancel: 0
+		});
+
+		alert.show();
+
+		alert.addEventListener('click', function(e) {
+			if(e.index == 1) {
+				var helpwin = Ti.UI.createWindow({
+					url: 'views/subviews/options/options.js',
+					title: I('labels.options'),
+					backgroundColor: 'stripped',
+					barColor: '#464646'
+				});
+
+				tab4.open(helpwin);
+				tabGroup.setActiveTab(3);
+			}
+		});
+	}
+}
