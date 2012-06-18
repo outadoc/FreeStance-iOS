@@ -116,7 +116,7 @@
 			<key>Key</key>
 			<string>epg.defaultTab</string>
 			<key>DefaultValue</key>
-			<string>0</string>
+			<string>1</string>
 			<key>Titles</key>
 			<array>
 				<string>Now</string>
