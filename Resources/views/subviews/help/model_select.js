@@ -1,6 +1,6 @@
 var Ui = require('includes/ui');
 Ti.include('/includes/enums.js');
-Ti.include('/includes/utils.js');
+var Utils = require('includes/utils');
 Ti.include('/includes/lib/json.i18n.js');
 
 //page used when through the help process, to determine the user's freebox model
@@ -9,11 +9,11 @@ win.backgroundColor = Ui.getDefaultBackground();
 
 var tableView = Ti.UI.createTableView({
 	data: [{
-		title: getModelString(Model.FREEBOX_HD),
+		title: Utils.getModelString(Model.FREEBOX_HD),
 		hasChild: true,
 		model: Model.FREEBOX_HD
 	}, {
-		title: getModelString(Model.FREEBOX_PLAYER),
+		title: Utils.getModelString(Model.FREEBOX_PLAYER),
 		hasChild: true,
 		model: Model.FREEBOX_REVOLUTION
 	}],

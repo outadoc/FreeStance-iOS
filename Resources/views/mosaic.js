@@ -1,5 +1,7 @@
 var RequestHandler = require('includes/callurl');
 var Ui = require('includes/ui');
+var Utils = require('includes/utils');
+
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
@@ -102,7 +104,7 @@ function getItem(label) {
 	var item = Ti.UI.createDashboardItem({
 		label: label,
 		canDelete: false,
-		channel: getChannelID(label),
+		channel: Utils.getChannelID(label),
 		height: 85,
 		width: 70
 	});
@@ -120,7 +122,7 @@ function getItem(label) {
 	});
 
 	var img_logo = Ti.UI.createImageView({
-		image: '/img/logo/' + getChannelID(label) + '.png',
+		image: '/img/logo/' + Utils.getChannelID(label) + '.png',
 		height: 50,
 		width: 50
 	});

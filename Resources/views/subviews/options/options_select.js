@@ -1,6 +1,6 @@
 //page used to select a value in a simple tableview, like you would do with the picker element
 Ti.include('/includes/enums.js');
-Ti.include('/includes/utils.js');
+var Utils = require('includes/utils');
 
 var win = Ti.UI.currentWindow;
 var data = [];
@@ -25,7 +25,7 @@ for(var i = 0; i <= 2; i++) {
 	}
 	if(win.configID == 'model') {
 		//if we're setting the row, no need of any incrementation thing, just get the model name
-		row.setTitle(getModelString(i + 1));
+		row.setTitle(Utils.getModelString(i + 1));
 		//we need only two rows here
 		if(i == 1) {
 			i = 2;

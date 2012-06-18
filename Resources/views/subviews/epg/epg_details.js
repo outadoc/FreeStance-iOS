@@ -1,8 +1,9 @@
 //a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
 var RequestHandler = require('includes/callurl');
+var Utils = require('includes/utils');
+
 Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
-Ti.include('/includes/utils.js');
 
 var win = Ti.UI.currentWindow;
 var hd, code, profile;
@@ -123,7 +124,7 @@ var lbl_time = Ti.UI.createLabel({
 progInfo.add(lbl_time);
 
 var lbl_category = Ti.UI.createLabel({
-	text: win.thisCategory.capitalize(),
+	text: Utils.capitalize(win.thisCategory),
 	top: 117,
 	right: 5,
 	width: 140,

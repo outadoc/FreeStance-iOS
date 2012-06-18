@@ -1,8 +1,9 @@
-Ti.include('/includes/strip_tags.js');
-Ti.include('/includes/utils.js');
-Ti.include('/includes/enums.js');
+var Utils = require('includes/utils');
 var Ui = require('includes/ui');
+
+Ti.include('/includes/enums.js');
 Ti.include('/includes/lib/json.i18n.js');
+Ti.include('/includes/strip_tags.js');
 
 var win = Ti.UI.currentWindow;
 var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT);
@@ -92,7 +93,7 @@ var statusLabel = Ti.UI.createLabel({
 tableHeader.add(statusLabel);
 
 var lastUpdatedLabel = Ti.UI.createLabel({
-	text: I('epg.refresh.updated', getFullDate()),
+	text: I('epg.refresh.updated', Utils.getFullDate()),
 	left: 65,
 	width: 200,
 	bottom: 15,
@@ -134,7 +135,7 @@ function beginReloading() {
 
 function endReloading() {
 	reloading = false;
-	lastUpdatedLabel.setText(I('epg.refresh.updated', getFullDate()));
+	lastUpdatedLabel.setText(I('epg.refresh.updated', Utils.getFullDate()));
 	statusLabel.setText(I('epg.refresh.releaseToRefresh'));
 	actInd.hide();
 	arrow.show();
@@ -175,7 +176,7 @@ function getTonightRow(itemList, i) {
 		var channel = itemParts[0];
 		var time = itemParts[1];
 		var title = itemParts[2];
-		var channelID = getChannelID(channel);
+		var channelID = Utils.getChannelID(channel);
 		var defaultImg = '/img/logo/' + channelID + '.png';
 		var imgUrl;
 
@@ -245,7 +246,7 @@ function getNowRow(itemList, i) {
 			desc = desc.split('/>')[1];
 		}
 
-		var channelID = getChannelID(channel);
+		var channelID = Utils.getChannelID(channel);
 
 		var row = Ti.UI.createTableViewRow({
 			hasChild: true,

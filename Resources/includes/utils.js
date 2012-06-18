@@ -1,4 +1,4 @@
-function getFullDate() {
+exports.getFullDate = function() {
 	var date = new Date();
 
 	var year = date.getFullYear();
@@ -24,7 +24,7 @@ function getFullDate() {
 	return datestr;
 }
 
-function getChannelID(channel) {
+exports.getChannelID = function(channel) {
 	var id;
 	switch(channel) {
 		case 'TF1':
@@ -226,7 +226,7 @@ function getChannelID(channel) {
 }
 
 //used to get the string equivalent of a given freebox model
-function getModelString(model) {
+exports.getModelString = function(model) {
 	if(model == Model.FREEBOX_HD) {
 		return 'Freebox HD';
 	} else if(model == Model.FREEBOX_REVOLUTION) {
@@ -238,18 +238,18 @@ function getModelString(model) {
 	}
 }
 
-String.prototype.capitalize = function() {
-	return this.toLowerCase().charAt(0).toUpperCase() + this.toLowerCase().slice(1);
+exports.capitalize = function(string) {
+	return string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 };
 
-function getMajorVersion() {
+exports.getMajorVersion = function() {
 	var version = Titanium.Platform.version.split(".");
 	var major = parseInt(version[0], 10);
 
 	return major;
 }
 
-function confCheck() {
+exports.confCheck = function() {
 	if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 		var alert = Ti.UI.createAlertDialog({
 			title: I('network.message.title'),

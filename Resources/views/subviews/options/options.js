@@ -1,6 +1,6 @@
 //the page used to configure the application
 Ti.include('/includes/enums.js');
-Ti.include('/includes/utils.js');
+var Utils = require('includes/utils');
 Ti.include('/includes/lib/json.i18n.js');
 var Ui = require('includes/ui');
 
@@ -62,7 +62,7 @@ b_help.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
 		url: '../help/help.js',
 		title: I('more.help.title'),
-		backgroundColor: getDefaultBackground(),
+		backgroundColor: Ui.getDefaultBackground(),
 		barColor: '#464646'
 	});
 	Ti.UI.currentTab.open(win, {
@@ -98,7 +98,7 @@ function setFields() {
 	profileRow.getChildren()[0].setText(I('more.settings.profile.prefix', profile.toString()));
 	codeRow.getChildren()[0].setValue(code);
 	hdRow.getChildren()[0].setText(I('more.settings.hd.prefix', hd.toString()));
-	modelRow.getChildren()[0].setText(getModelString(model));
+	modelRow.getChildren()[0].setText(Utils.getModelString(model));
 }
 
 Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1); 

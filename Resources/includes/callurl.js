@@ -1,5 +1,5 @@
+var Utils = require('includes/utils');
 Ti.include('/includes/enums.js');
-Ti.include('/includes/utils.js');
 
 //can call any key, but it must be formatted as in the freebox API
 exports.callKey = function(key, isLong, hd, code, model, profile) {
@@ -22,7 +22,7 @@ exports.callKey = function(key, isLong, hd, code, model, profile) {
 		xhr.send(null);
 	} else {
 		//if debugging, show the information that was about to be sent
-		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + getModelString(model));
+		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + Utils.getModelString(model));
 	}
 }
 

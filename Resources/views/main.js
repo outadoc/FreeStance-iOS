@@ -1,7 +1,9 @@
 (function() {
 	var RequestHandler = require('includes/callurl');
-	Ti.include('/includes/lib/json.i18n.js');
+	var Utils = require('includes/utils');
 	var Ui = require('includes/ui');
+	
+	Ti.include('/includes/lib/json.i18n.js');
 	var win = Ti.UI.currentWindow;
 
 	//the properties for the current profile
@@ -317,7 +319,7 @@
 		win.add(view);
 		
 		if(!isConfShown) {
-			confCheck();
+			Utils.confCheck();
 			isConfShown = true;
 		}
 	}
