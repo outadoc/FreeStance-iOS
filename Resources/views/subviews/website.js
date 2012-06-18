@@ -1,5 +1,6 @@
 //page containing a simple webview that is used to show the program dedicated page
 var Ui = require('includes/ui');
+
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;

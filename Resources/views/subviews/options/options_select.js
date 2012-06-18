@@ -1,6 +1,7 @@
 //page used to select a value in a simple tableview, like you would do with the picker element
-Ti.include('/includes/enums.js');
 var Utils = require('includes/utils');
+
+Ti.include('/includes/enums.js');
 
 var win = Ti.UI.currentWindow;
 var data = [];

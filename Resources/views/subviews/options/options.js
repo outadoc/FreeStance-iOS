@@ -1,8 +1,9 @@
 //the page used to configure the application
-Ti.include('/includes/enums.js');
 var Utils = require('includes/utils');
-Ti.include('/includes/lib/json.i18n.js');
 var Ui = require('includes/ui');
+
+Ti.include('/includes/enums.js');
+Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 

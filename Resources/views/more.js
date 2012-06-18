@@ -1,8 +1,8 @@
-Ti.include('/includes/lib/json.i18n.js');
 var Ui = require('includes/ui');
 
+Ti.include('/includes/lib/json.i18n.js');
+
 var win = Ti.UI.currentWindow;
-win.backgroundColor = Ui.getDefaultBackground();
 
 var tableView = Ti.UI.createTableView({
 	/*@formatter:off*/

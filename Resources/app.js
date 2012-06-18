@@ -1,7 +1,8 @@
 (function() {
-	Ti.include('/includes/lib/json.i18n.js');
 	var Utils = require('includes/utils');
 	var Ui = require('includes/ui');
+	
+	Ti.include('/includes/lib/json.i18n.js');
 	Ti.include('/includes/enums.js');
 
 	var tabGroup = Ti.UI.createTabGroup();

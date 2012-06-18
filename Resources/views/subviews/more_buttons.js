@@ -1,6 +1,6 @@
 (function() {
-	Ti.include('/includes/lib/json.i18n.js');
 	var RequestHandler = require('includes/callurl');
+	Ti.include('/includes/lib/json.i18n.js');
 
 	var win = Ti.UI.currentWindow;
 
