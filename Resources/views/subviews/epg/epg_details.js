@@ -7,6 +7,30 @@ Ti.include('/includes/utils.js');
 var win = Ti.UI.currentWindow;
 var hd, code, profile;
 
+var sharekit = require("com.0x82.sharekit");
+
+sharekit.configure({
+	my_app_name: 'FreeStance',
+	my_app_url: 'http://dev.outadoc.fr/',
+	share_menu_alphabetical_order: false,
+	shared_with_signature: false,
+	sharers_plist_name: '/Sharers.plist',
+	allow_offline: false,
+	allow_auto_share: true,
+
+	twitter_consumer_key: '9c5oc1VXvcn1y7WvYfzxA',
+	twitter_consumer_secret: 'enh8OJVzNhb2kYB1lYHg6slht2b2yoA8ETKDajvoCA',
+	twitter_callback_url: 'http://dev.outadoc.fr/',
+	twitter_use_xauth: false,
+
+	bit_ly_login: '465eacd8035bacf82ac74b8037db3b6ad797b01c',
+	bit_ly_key: '7db68d159f2ca39e2c1c8f7adad6e2bcb03ad7e4',
+
+	facebook_key: '314611201964339',
+
+	readitlater_key: '9f3T9z22gq17bX082ed4982L35pfU4aX'
+});
+
 //the scrollview that will contain the program data
 var scrollView = Ti.UI.createScrollView({
 	height: 295,
@@ -58,7 +82,7 @@ var img = Ti.UI.createImageView({
 
 progInfo.add(img);
 
-if (win.thisImageUrl === undefined) {
+if(win.thisImageUrl === undefined) {
 	var lbl_noImg = Ti.UI.createLabel({
 		text: I('epg.details.noPreview'),
 		height: Ti.UI.FILL,
@@ -230,18 +254,16 @@ win.addEventListener('focus', function(e) {
 
 win.add(b_imdb);
 
-if (getMajorVersion() >= 5) {
-	var b_tweet = Ti.UI.createButton({
-		image: '/img/twitter.png'
-	});
+var b_share = Ti.UI.createButton({
+	systemButton: Ti.UI.iPhone.SystemButton.ACTION
+});
 
-	win.setRightNavButton(b_tweet);
+win.setRightNavButton(b_share);
 
-	b_tweet.addEventListener('click', function(e) {
-		var twitterModule = require('de.marcelpociot.twitter');
-		twitterModule.tweet({
-			message: I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
-			urls: [win.thisUrl]
-		});
+b_share.addEventListener('click', function(e) {
+	sharekit.share({
+		title: I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
+		view: win,
+		link: win.thisUrl
 	});
-}
+});

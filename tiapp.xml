@@ -22,6 +22,7 @@
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
+    <property name="ti.facebook.appid">314611201964339</property>
     <analytics>false</analytics>
     <guid>bf0a49c2-9481-4856-95b0-f71e5c75f7bd</guid>
     <iphone>
@@ -36,6 +37,6 @@
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <modules>
-        <module platform="iphone" version="1.2">de.marcelpociot.twitter</module>
+        <module platform="iphone" version="2.9">com.0x82.sharekit</module>
     </modules>
 </ti:app>
