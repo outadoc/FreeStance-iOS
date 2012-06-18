@@ -191,7 +191,6 @@ function getTonightRow(itemList, i) {
 			hasChild: true,
 			selectedBackgroundColor: '#565656',
 
-			thisFullTitle: fullTitle,
 			thisTitle: title,
 			thisDesc: desc,
 			thisUrl: fullUrl,
@@ -253,7 +252,6 @@ function getNowRow(itemList, i) {
 			height: Ti.UI.SIZE,
 			selectedBackgroundColor: '#565656',
 
-			thisFullTitle: fullTitle,
 			thisTitle: title,
 			thisDesc: desc,
 			thisUrl: fullUrl,
