@@ -247,8 +247,8 @@ b_imdb.addEventListener('click', function() {
 });
 
 win.addEventListener('focus', function(e) {
-	profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
-	hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
+	profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
+	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
 	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
 });
 

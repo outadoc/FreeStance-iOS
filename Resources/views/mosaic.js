@@ -153,7 +153,7 @@ function getItem(label) {
 function updateProps() {
 	profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
 	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
-	code = Ti.App.Properties.getInt('profile' + profile + '.code', '');
+	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
 
 	tabbedBar.setIndex(profile - 1);
 }

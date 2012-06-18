@@ -174,7 +174,7 @@
 
 		//getting fresh values for the properties each time we're calling the function
 		profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
-		hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
+		hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
 		code = Ti.App.Properties.getString('profile' + profile + '.code', '');
 		model = Ti.App.Properties.getInt('profile' + profile + '.model', Model.FREEBOX_HD);
 
