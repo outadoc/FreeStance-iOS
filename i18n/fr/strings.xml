@@ -36,8 +36,8 @@
   <string name="SK_Shorten_URL_Error">Erreur de réduction d'URL</string>
   <string name="SK_We_could_not_shorten_the_URL">L'URL n'a pu être réduite.</string>
 
-  <string name="SK_Create_a_free_account_at">Créer un compte gratuitement sur %s</string>
-  <string name="SK_Create_an_account_at">Créer un compte sur %s</string>
+  <string name="SK_Create_a_free_account_at">Créez un compte gratuitement sur %s</string>
+  <string name="SK_Create_an_account_at">Créez un compte sur %s</string>
   <string name="SK_Send_to_Twitter">Envoyer sur Twitter</string>
   <string name="SK_Message_is_too_long">Message trop long</string>
   <string name="SK_Twitter_posts_can_only_be_140_characters_in_length">Les messages Twitter ne peuvent dépasser 140 caractères.</string>
