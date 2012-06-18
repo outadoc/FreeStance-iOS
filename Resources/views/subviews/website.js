@@ -1,5 +1,5 @@
 //page containing a simple webview that is used to show the program dedicated page
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
@@ -58,7 +58,7 @@ b_cancel.addEventListener('click', function() {
 });
 
 //add the elements to the window toolbar
-win.setToolbar([b_prev, getFixedSpace(25), b_fwd, getFlexibleSpace(), b_refresh]);
+win.setToolbar([b_prev, Ui.createFixedSpace(25), b_fwd, Ui.createFlexibleSpace(), b_refresh]);
 
 webView.addEventListener('beforeload', function() {
 	//set the back/forward buttons correct behavior
@@ -74,12 +74,12 @@ webView.addEventListener('beforeload', function() {
 	}
 
 	win.setRightNavButton(loading_wheel);
-	win.setToolbar([b_prev, getFixedSpace(25), b_fwd, getFlexibleSpace(), b_cancel]);
+	win.setToolbar([b_prev, Ui.createFixedSpace(25), b_fwd, Ui.createFlexibleSpace(), b_cancel]);
 });
 
 function stoppedLoading() {
 	win.setRightNavButton();
-	win.setToolbar([b_prev, getFixedSpace(25), b_fwd, getFlexibleSpace(), b_refresh]);
+	win.setToolbar([b_prev, Ui.createFixedSpace(25), b_fwd, Ui.createFlexibleSpace(), b_refresh]);
 }
 
 webView.addEventListener('load', stoppedLoading);

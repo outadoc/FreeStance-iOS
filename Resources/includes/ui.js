@@ -1,38 +1,12 @@
-function isIpad() {
-	var model = Ti.Platform.osname;
-	if(model == 'ipad') {
-		return true;
-	} else {
-		return false;
-	}
+exports.getDefaultBackground = function() {
+	return '#D8D8D8';
 }
 
-function isIphone() {
-	var model = Ti.Platform.osname;
-	if(model == 'iphone') {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function getDefaultBackground() {
-	var model = Ti.Platform.osname;
-	if(isIphone()) {
-		//return 'stripped';
-		return '#D8D8D8';
-	} else if(isIpad()) {
-		return '#d8dae0';
-	} else {
-		return null;
-	}
-}
-
-function createLoadingWindow(top) {
+exports.createLoadingWindow = function(top) {
 	if(top === undefined) {
 		top = 170;
 	}
-	
+
 	var timeoutID;
 	var win = Ti.UI.createWindow({
 		width: 320,
@@ -72,20 +46,20 @@ function createLoadingWindow(top) {
 }
 
 //just a few UI elements, so they can be used painlessly
-function getFlexibleSpace() {
+exports.createFlexibleSpace = function() {
 	return Ti.UI.createButton({
 		systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 	});
 }
 
-function getFixedSpace(width) {
+exports.createFixedSpace = function(width) {
 	return Ti.UI.createButton({
 		systemButton: Ti.UI.iPhone.SystemButton.FIXED_SPACE,
 		width: width
 	});
 }
 
-function getDestructionView(title) {
+exports.createDestructionView = function(title) {
 	var b_destruction = Ti.UI.createButton({
 		backgroundImage: '/img/big_red_button.png',
 		top: 10,
@@ -119,4 +93,68 @@ function getDestructionView(title) {
 	view.add(b_destruction);
 
 	return view;
+}
+
+//returns a row containing a title and a value. opens a window when clicked
+exports.createParentRow = function(title, header, rowName, configID) {
+	var row = Ti.UI.createTableViewRow({
+		title: title,
+		hasChild: true,
+		header: header
+	});
+
+	//the label containing the value you want to display
+	var lbl = Ti.UI.createLabel({
+		right: 10,
+		height: 35,
+		textAlign: 'right',
+		width: 150,
+		highlightedColor: 'white',
+		color: '#336699'
+	});
+
+	row.add(lbl);
+
+	row.addEventListener('click', function(e) {
+		var win = Ti.UI.createWindow({
+			url: 'options_select.js',
+			title: title,
+			rowName: rowName,
+			configID: configID,
+			backgroundColor: exports.getDefaultBackground(),
+			barColor: '#464646'
+		});
+		Ti.UI.currentTab.open(win, {
+			animated: true
+		});
+	});
+	return row;
+}
+
+//returns a row containing a text field
+exports.createTextFieldRow = function(text) {
+	var row = Ti.UI.createTableViewRow({
+		title: text,
+		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+	});
+
+	var textfield = Ti.UI.createTextField({
+		color: '#336699',
+		height: 35,
+		top: 4,
+		right: 20,
+		width: 80,
+		borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+		keyboardType: Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
+		hintText: '12345678'
+	});
+
+	textfield.addEventListener('change', function(e) {
+		//the value must be between 0 and 8(-9?) characters only
+		e.source.value = e.source.value.slice(0, 9);
+	});
+
+	row.add(textfield);
+	return row;
 }

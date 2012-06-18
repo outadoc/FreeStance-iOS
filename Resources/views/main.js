@@ -1,7 +1,7 @@
 (function() {
 	Ti.include('/includes/callurl.js');
 	Ti.include('/includes/lib/json.i18n.js');
-	Ti.include('/includes/ui.js');
+	var Ui = require('includes/ui');
 	var win = Ti.UI.currentWindow;
 
 	//the properties for the current profile
@@ -22,7 +22,7 @@
 		longPressTimeoutID: null
 	};
 
-	var loadingWin = createLoadingWindow();
+	var loadingWin = Ui.createLoadingWindow();
 	loadingWin.open();
 
 	//a tabbed bar used to select the profile the user wants to use
@@ -43,7 +43,7 @@
 	});
 
 	//setting the toolbar
-	win.setToolbar([getFlexibleSpace(), tabbedBar, getFlexibleSpace()], {
+	win.setToolbar([Ui.createFlexibleSpace(), tabbedBar, Ui.createFlexibleSpace()], {
 		animated: false
 	});
 
@@ -59,252 +59,39 @@
 	});
 
 	//the buttons and their placing
-	var buttonList = [{
-		id: 'red',
-		height: 35,
-		width: 35,
-		left: 37,
-		top: 25,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'up',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 20,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'blue',
-		height: 35,
-		width: 35,
-		left: 122,
-		top: 25,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'left',
-		height: 40,
-		width: 40,
-		left: 32,
-		top: 65,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		title: I('buttons.ok'),
-		id: 'ok',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 65,
-		canBeLong: false
-	}, {
-		id: 'right',
-		height: 40,
-		width: 40,
-		left: 122,
-		top: 65,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'green',
-		height: 35,
-		width: 35,
-		left: 37,
-		top: 110,
-		canBeLong: false,
-		isColor: true
-	}, {
-		id: 'down',
-		height: 40,
-		width: 40,
-		left: 77,
-		top: 110,
-		canBeLong: false,
-		isArrow: true
-	}, {
-		id: 'yellow',
-		height: 35,
-		width: 35,
-		left: 122,
-		top: 110,
-		canBeLong: false,
-		isColor: true
-	}, {
-		title: '+',
-		id: 'vol_inc',
-		height: 50,
-		width: 40,
-		left: 200,
-		top: 23,
-		font: {
-			fontSize: 22
-		},
-		canRepeat: true
-	}, {
-		title: '-',
-		id: 'vol_dec',
-		height: 50,
-		width: 40,
-		left: 200,
-		top: 93,
-		font: {
-			fontSize: 28
-		},
-		canRepeat: true
-	}, {
-		title: '+',
-		id: 'prgm_inc',
-		height: 50,
-		width: 40,
-		left: 255,
-		top: 23,
-		font: {
-			fontSize: 22
-		},
-		canRepeat: false
-	}, {
-		title: '-',
-		id: 'prgm_dec',
-		height: 50,
-		width: 40,
-		left: 255,
-		top: 93,
-		font: {
-			fontSize: 28
-		},
-		canRepeat: false
-	}, {
-		title: '1',
-		id: '1',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '2',
-		id: '2',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '3',
-		id: '3',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 175,
-		canBeLong: true
-	}, {
-		title: '4',
-		id: '4',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '5',
-		id: '5',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '6',
-		id: '6',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: '7',
-		id: '7',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: '8',
-		id: '8',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: '9',
-		id: '9',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 265,
-		canBeLong: true
-	}, {
-		title: ' ←',
-		id: 'back',
-		height: 35,
-		width: 45,
-		left: 20,
-		top: 310,
-		font: {
-			fontSize: 23
-		},
-		canBeLong: false
-	}, {
-		title: '0',
-		id: '0',
-		height: 35,
-		width: 45,
-		left: 75,
-		top: 310,
-		canBeLong: true
-	}, {
-		title: '↻',
-		id: 'swap',
-		height: 35,
-		width: 45,
-		left: 130,
-		top: 310,
-		canBeLong: true
-	}, {
-		id: 'power',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 175,
-		canBeLong: false
-	}, {
-		id: 'home',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 220,
-		canBeLong: true
-	}, {
-		title: I('buttons.mute'),
-		id: 'mute',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 265,
-		canBeLong: false
-	}, {
-		title: '...',
-		id: 'other',
-		height: 35,
-		width: 95,
-		left: 200,
-		top: 310,
-		canBeLong: false
-	}];
+	/*@formatter:off*/
+	var buttonList = [
+		{id: 'red', height: 35, width: 35, left: 37, top: 25, canBeLong: false, isColor: true},
+		{id: 'up', height: 40, width: 40, left: 77, top: 20, canBeLong: false, isArrow: true},
+		{id: 'blue', height: 35, width: 35, left: 122, top: 25, canBeLong: false, isColor: true},
+		{id: 'left', height: 40, width: 40, left: 32, top: 65, canBeLong: false, isArrow: true},
+		{title: I('buttons.ok'), id: 'ok', height: 40, width: 40, left: 77, top: 65, canBeLong: false},
+		{id: 'right', height: 40, width: 40, left: 122, top: 65, canBeLong: false, isArrow: true},
+		{id: 'green', height: 35, width: 35, left: 37, top: 110, canBeLong: false, isColor: true},
+		{id: 'down', height: 40, width: 40, left: 77, top: 110, canBeLong: false, isArrow: true},
+		{id: 'yellow', height: 35, width: 35, left: 122, top: 110, canBeLong: false, isColor: true},
+		{title: '+', id: 'vol_inc', height: 50, width: 40, left: 200, top: 23, font: {fontSize: 22}, canRepeat: true},
+		{title: '-', id: 'vol_dec', height: 50, width: 40, left: 200, top: 93, font: {fontSize: 28}, canRepeat: true},
+		{title: '+', id: 'prgm_inc', height: 50, width: 40, left: 255, top: 23, font: {fontSize: 22}, canRepeat: false},
+		{title: '-', id: 'prgm_dec', height: 50, width: 40, left: 255, top: 93, font: {fontSize: 28}, canRepeat: false},
+		{title: '1', id: '1', height: 35, width: 45, left: 20, top: 175, canBeLong: true},
+		{title: '2', id: '2', height: 35, width: 45, left: 75, top: 175, canBeLong: true},
+		{title: '3', id: '3', height: 35, width: 45, left: 130, top: 175, canBeLong: true},
+		{title: '4', id: '4', height: 35, width: 45, left: 20, top: 220, canBeLong: true},
+		{title: '5', id: '5', height: 35, width: 45, left: 75, top: 220, canBeLong: true},
+		{title: '6', id: '6', height: 35, width: 45, left: 130, top: 220, canBeLong: true},
+		{title: '7', id: '7', height: 35, width: 45, left: 20, top: 265, canBeLong: true},
+		{title: '8', id: '8', height: 35, width: 45, left: 75, top: 265, canBeLong: true},
+		{title: '9', id: '9', height: 35, width: 45, left: 130, top: 265, canBeLong: true},
+		{title: ' ←', id: 'back', height: 35, width: 45, left: 20, top: 310, font: {fontSize: 23}, canBeLong: false},
+		{title: '0', id: '0', height: 35, width: 45, left: 75, top: 310, canBeLong: true },
+		{title: '↻', id: 'swap', height: 35, width: 45, left: 130, top: 310, canBeLong: true},
+		{id: 'power', height: 35, width: 95, left: 200, top: 175, canBeLong: false},
+		{id: 'home', height: 35, width: 95, left: 200, top: 220,canBeLong: true},
+		{title: I('buttons.mute'), id: 'mute', height: 35, width: 95, left: 200, top: 265, canBeLong: false},
+		{title: '...', id: 'other', height: 35, width: 95, left: 200, top: 310, canBeLong: false}
+	];
+	/*@formatter:on*/
 
 	function on_btn_touchstart(e) {
 		//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons

@@ -1,11 +1,11 @@
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 Ti.include('/includes/enums.js');
 Ti.include('/includes/utils.js');
 Ti.include('/includes/lib/json.i18n.js');
 
 //page used when through the help process, to determine the user's freebox model
 var win = Ti.UI.currentWindow;
-win.backgroundColor = getDefaultBackground();
+win.backgroundColor = Ui.getDefaultBackground();
 
 var tableView = Ti.UI.createTableView({
 	data: [{
@@ -29,7 +29,7 @@ tableView.addEventListener('click', function(e) {
 		title: e.rowData.getTitle(),
 		url: '../info_display.js',
 		barColor: '#464646',
-		backgroundColor: getDefaultBackground()
+		backgroundColor: Ui.getDefaultBackground()
 	});
 
 	if(newWin.helpTo == 'config') {

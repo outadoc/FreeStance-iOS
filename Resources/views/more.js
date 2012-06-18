@@ -1,47 +1,21 @@
 Ti.include('/includes/lib/json.i18n.js');
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 
 var win = Ti.UI.currentWindow;
-win.backgroundColor = getDefaultBackground();
+win.backgroundColor = Ui.getDefaultBackground();
 
 var tableView = Ti.UI.createTableView({
-	data: [{
-		title: I('more.settings.title'),
-		hasChild: true,
-		path: 'subviews/options/options.js',
-		header: I('more.preferences')
-	}, {
-		title: I('more.help.title'),
-		hasChild: true,
-		path: 'subviews/help/help.js'
-	}, {
-		title: I('more.website'),
-		hasChild: true,
-		path: 'subviews/website.js',
-		thisUrl: 'http://dev.outadoc.fr',
-		isWebsite: true,
-		header: I('more.about')
-	}, {
-		title: I('more.twitter'),
-		hasChild: true,
-		path: 'subviews/website.js',
-		thisUrl: 'http://mobile.twitter.com/outadev',
-		isWebsite: true
-	}, {
-		title: I('more.contact'),
-		hasChild: true,
-		email: 'outadev@outadoc.fr'
-	}, {
-		title: I('more.bugReport.title'),
-		hasChild: true,
-		email: 'bug-report@outadoc.fr',
-		bug: true
-	}, {
-		title: I('more.legal.title'),
-		hasChild: true,
-		path: 'subviews/info_display.js',
-		header: ''
-	}],
+	/*@formatter:off*/
+	data: [
+		{title: I('more.settings.title'), hasChild: true, path: 'subviews/options/options.js', header: I('more.preferences')},
+		{title: I('more.help.title'), hasChild: true, path: 'subviews/help/help.js'},
+		{title: I('more.website'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://dev.outadoc.fr', isWebsite: true, header: I('more.about')}, 
+		{title: I('more.twitter'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://mobile.twitter.com/outadev', isWebsite: true},
+		{title: I('more.contact'), hasChild: true, email: 'outadev@outadoc.fr'},
+		{title: I('more.bugReport.title'), hasChild: true, email: 'bug-report@outadoc.fr', bug: true},
+		{title: I('more.legal.title'), hasChild: true, path: 'subviews/info_display.js', header: ''}
+	],
+	/*@formatter:on*/
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
 	rowBackgroundColor: 'white',
@@ -67,7 +41,7 @@ tableView.addEventListener('click', function(e) {
 				url: e.rowData.path,
 				title: e.rowData.title,
 				barColor: '#464646',
-				backgroundColor: getDefaultBackground(),
+				backgroundColor: Ui.getDefaultBackground(),
 				helpTo: 'legal'
 			});
 		}

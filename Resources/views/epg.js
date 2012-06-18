@@ -1,7 +1,7 @@
 Ti.include('/includes/strip_tags.js');
 Ti.include('/includes/utils.js');
 Ti.include('/includes/enums.js');
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
@@ -20,7 +20,7 @@ var tableView = Ti.UI.createTableView({
 win.add(tableView);
 
 //the window that will show a loading message while the epg is loading
-var loadingWin = createLoadingWindow(200);
+var loadingWin = Ui.createLoadingWindow(200);
 
 //the tabbedbar used to select the program schedule
 var tabbedBar = Ti.UI.iOS.createTabbedBar({

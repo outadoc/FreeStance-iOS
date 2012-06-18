@@ -1,7 +1,7 @@
 (function() {
 	Ti.include('/includes/lib/json.i18n.js');
 	Ti.include('/includes/utils.js');
-	Ti.include('/includes/ui.js');
+	var Ui = require('includes/ui');
 	Ti.include('/includes/enums.js');
 
 	var tabGroup = Ti.UI.createTabGroup();
@@ -32,7 +32,7 @@
 		title: I('labels.more'),
 		url: 'views/more.js',
 		barColor: '#464646',
-		backgroundColor: getDefaultBackground(),
+		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 

@@ -2,14 +2,14 @@
 Ti.include('/includes/enums.js');
 Ti.include('/includes/utils.js');
 Ti.include('/includes/lib/json.i18n.js');
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 
 var win = Ti.UI.currentWindow;
 
-var profileRow = getParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
-var codeRow = getTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header'));
-var hdRow = getParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
-var modelRow = getParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
+var profileRow = Ui.createParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
+var codeRow = Ui.createTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header'));
+var hdRow = Ui.createParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
+var modelRow = Ui.createParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
 
 var settingsSection = Ti.UI.createTableViewSection({
 	headerTitle: I('more.settings.code.header'),
@@ -22,7 +22,7 @@ var profile, code, hd, model;
 var tableView = Ti.UI.createTableView({
 	data: [profileRow, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	footerView: getDestructionView(I('more.settings.reset.title')),
+	footerView: Ui.createDestructionView(I('more.settings.reset.title')),
 	rowHeight: 45,
 	backgroundImage: null,
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
@@ -99,70 +99,6 @@ function setFields() {
 	codeRow.getChildren()[0].setValue(code);
 	hdRow.getChildren()[0].setText(I('more.settings.hd.prefix', hd.toString()));
 	modelRow.getChildren()[0].setText(getModelString(model));
-}
-
-//returns a row containing a title and a value. opens a window when clicked
-function getParentRow(title, header, rowName, configID) {
-	var row = Ti.UI.createTableViewRow({
-		title: title,
-		hasChild: true,
-		header: header
-	});
-
-	//the label containing the value you want to display
-	var lbl = Ti.UI.createLabel({
-		right: 10,
-		height: 35,
-		textAlign: 'right',
-		width: 150,
-		highlightedColor: 'white',
-		color: '#336699'
-	});
-
-	row.add(lbl);
-
-	row.addEventListener('click', function(e) {
-		var win = Ti.UI.createWindow({
-			url: 'options_select.js',
-			title: title,
-			rowName: rowName,
-			configID: configID,
-			backgroundColor: getDefaultBackground(),
-			barColor: '#464646'
-		});
-		Ti.UI.currentTab.open(win, {
-			animated: true
-		});
-	});
-	return row;
-}
-
-//returns a row containing a text field
-function getTextFieldRow(text) {
-	var row = Ti.UI.createTableViewRow({
-		title: text,
-		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
-	});
-
-	var textfield = Ti.UI.createTextField({
-		color: '#336699',
-		height: 35,
-		top: 4,
-		right: 20,
-		width: 80,
-		borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
-		keyboardType: Ti.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-		appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
-		hintText: '12345678'
-	});
-
-	textfield.addEventListener('change', function(e) {
-		//the value must be between 0 and 8 characters only
-		e.source.value = e.source.value.slice(0, 8);
-	});
-
-	row.add(textfield);
-	return row;
 }
 
 Ti.App.Properties.setInt('profileToModify', Profile.PROFILE_1); 

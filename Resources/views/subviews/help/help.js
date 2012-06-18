@@ -1,5 +1,5 @@
 Ti.include('/includes/lib/json.i18n.js');
-Ti.include('/includes/ui.js');
+var Ui = require('includes/ui');
 
 var win = Ti.UI.currentWindow;
 
@@ -31,7 +31,7 @@ tableView.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
 		title: e.rowData.thisTitle,
 		helpTo: e.rowData.helpTo,
-		backgroundColor: getDefaultBackground(),
+		backgroundColor: Ui.getDefaultBackground(),
 		barColor: '#464646'
 	});
 
