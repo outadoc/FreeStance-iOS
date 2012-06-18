@@ -1,19 +1,16 @@
-Ti.include('enums.js');
-Ti.include('utils.js');
+Ti.include('/includes/enums.js');
+Ti.include('/includes/utils.js');
 
 //can call any key, but it must be formatted as in the freebox API
-function callKey(key, isLong, hd, code, model, profile) {
+exports.callKey = function(key, isLong, hd, code, model, profile) {
 	//checking if we call the function with already set config values; if we don't, get them
 	if(profile === undefined) {
 		profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
-	}
-	if(hd === undefined) {
+	} if(hd === undefined) {
 		hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
-	}
-	if(code === undefined) {
+	} if(code === undefined) {
 		code = Ti.App.Properties.getString('profile' + profile + '.code', '');
-	}
-	if(model === undefined) {
+	} if(model === undefined) {
 		model = Model.FREEBOX_HD;
 	}
 
@@ -30,14 +27,14 @@ function callKey(key, isLong, hd, code, model, profile) {
 }
 
 //can call a precise channel (1 digit or more)
-function callMultiKeys(channel, hd, code, model, profile) {
+exports.callMultiKeys = function(channel, hd, code, model, profile) {
 	//we check the digits one by one using a loop, as you need to call all the first digits with a long press and the last with a short one
 	for(var i = 0; i < (channel.length); i++) {
 		//if this is the last digit of the number, call it as a short press
 		if(i == (channel.length - 1)) {
-			callKey(channel.charAt(i), false, hd, code, model, profile);
+			RequestHandler.callKey(channel.charAt(i), false, hd, code, model, profile);
 		} else {
-			callKey(channel.charAt(i), true, hd, code, model, profile);
+			RequestHandler.callKey(channel.charAt(i), true, hd, code, model, profile);
 		}
 	}
 }

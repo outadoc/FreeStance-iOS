@@ -1,5 +1,5 @@
 (function() {
-	Ti.include('/includes/callurl.js');
+	var RequestHandler = require('includes/callurl');
 	Ti.include('/includes/lib/json.i18n.js');
 	var Ui = require('includes/ui');
 	var win = Ti.UI.currentWindow;
@@ -122,14 +122,14 @@
 			timeouts.repeatIntervalID = setInterval(function() {
 				e.source.hasBeenPressed = true;
 				//calling the key!
-				callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
 			}, delay);
 		} else if(e.source.canBeLong) {
 			//slightly more simple here, just having to use the longPressLength variable as the delay we're using a timeout here longPressTimeoutID is so we can eventually cancel the timeout
 			timeouts.longPressTimeoutID = setTimeout(function() {
 				e.source.hasBeenPressed = true;
 				//calling the key!
-				callKey(e.source.id, true, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, true, hd, code, model, profile);
 			}, prefs.longPressLength);
 		}
 	}
@@ -148,20 +148,20 @@
 				clearTimeout(timeouts.longPressTimeoutID);
 				timeouts.longPressTimeoutID = null;
 				//calling the key!
-				callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
 			}
 		} else if(e.source.canRepeat) {
 			//if the button press can be repeated and hasn't been pressed already (by the interval)
 			if(!e.source.hasBeenPressed) {
 				//calling the key!
-				callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
 			}
 
 			clearInterval(timeouts.repeatIntervalID);
 			timeouts.repeatIntervalID = null;
 		} else {
 			//if it's a basic button, just call the key!
-			callKey(e.source.id, false, hd, code, model, profile);
+			RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
 		}
 		//hasn't been pressed anymore, heh ?
 		e.source.hasBeenPressed = false;

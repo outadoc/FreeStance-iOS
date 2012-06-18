@@ -1,6 +1,6 @@
 (function() {
 	Ti.include('/includes/lib/json.i18n.js');
-	Ti.include('/includes/callurl.js');
+	var RequestHandler = require('includes/callurl');
 
 	var win = Ti.UI.currentWindow;
 
@@ -171,7 +171,7 @@
 					isLong = true;
 				}
 				//calling the key!
-				callKey(e.source.id, isLong, win.thisHd, win.thisCode, win.thisModel, win.thisProfile);
+				RequestHandler.callKey(e.source.id, isLong, win.thisHd, win.thisCode, win.thisModel, win.thisProfile);
 			}
 		});
 

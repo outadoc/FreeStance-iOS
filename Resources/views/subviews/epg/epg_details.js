@@ -1,5 +1,5 @@
 //a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
-Ti.include('/includes/callurl.js');
+var RequestHandler = require('includes/callurl');
 Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/utils.js');
@@ -211,7 +211,7 @@ var b_watch = Ti.UI.createButton({
 
 b_watch.addEventListener('click', function() {
 	//call the channel corresponding to the program
-	callMultiKeys(win.thisChannelID.toString(), hd, code);
+	RequestHandler.callMultiKeys(win.thisChannelID.toString(), hd, code);
 });
 
 win.add(b_watch);

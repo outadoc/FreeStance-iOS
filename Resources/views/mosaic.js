@@ -1,4 +1,4 @@
-Ti.include('/includes/callurl.js');
+var RequestHandler = require('includes/callurl');
 var Ui = require('includes/ui');
 Ti.include('/includes/lib/json.i18n.js');
 
@@ -54,7 +54,7 @@ var dashboardTNT = Ti.UI.createDashboardView({
 
 dashboardTNT.addEventListener('click', function(e) {
 	if(e.item !== null) {
-		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+		RequestHandler.callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
 	}
 });
 
@@ -81,7 +81,7 @@ loadingWin.close();
 
 dashboardFree.addEventListener('click', function(e) {
 	if(e.item !== null) {
-		callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+		RequestHandler.callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
 	}
 });
 
