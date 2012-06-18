@@ -5,7 +5,7 @@ Ti.include('/includes/ui.js');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
-var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.NOW);
+var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT);
 
 var searchBar = Titanium.UI.createSearchBar({
 	hintText: I('epg.searchHint'),
