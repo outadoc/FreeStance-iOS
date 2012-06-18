@@ -1,8 +1,6 @@
 Ti.include('enums.js');
 Ti.include('utils.js');
 
-var hd, code, profile;
-
 //can call any key, but it must be formatted as in the freebox API
 function callKey(key, isLong, hd, code, model, profile) {
 	//checking if we call the function with already set config values; if we don't, get them
