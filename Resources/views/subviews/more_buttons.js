@@ -3,6 +3,11 @@
 	Ti.include('/includes/lib/json.i18n.js');
 
 	var win = Ti.UI.currentWindow;
+	
+	RequestHandler.setProfile(win.thisProfile);
+	RequestHandler.setHd(win.thisHd);
+	RequestHandler.setCode(win.thisCode);
+	RequestHandler.setModel(win.thisModel);
 
 	var view = Ti.UI.createView({
 		height: 250,
@@ -171,7 +176,7 @@
 					isLong = true;
 				}
 				//calling the key!
-				RequestHandler.callKey(e.source.id, isLong, win.thisHd, win.thisCode, win.thisModel, win.thisProfile);
+				RequestHandler.callKey(e.source.id, isLong);
 			}
 		});
 

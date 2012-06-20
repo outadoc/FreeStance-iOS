@@ -12,7 +12,6 @@ var dataFree = [];
 var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Arte', 'Direct 8', 'W9', 'TMC', 'NT1', 'NRJ12', 'LCP', 'France 4', 'BFM TV', 'i>TELE', 'Direct Star', 'Gulli'];
 var labelsFree = ['RTL9', 'AB1', 'Disney Channel', 'TV5 Monde', 'Vivolta', 'NRJ Hits', 'Clubbing TV', 'BeBlack', 'O Five', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'France Ô', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
 
-var profile, hd, code;
 var loadingWin = Ui.createLoadingWindow();
 
 win.addEventListener('focus', updateProps);
@@ -56,7 +55,7 @@ var dashboardTNT = Ti.UI.createDashboardView({
 
 dashboardTNT.addEventListener('click', function(e) {
 	if(e.item !== null) {
-		RequestHandler.callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+		RequestHandler.callMultiKeys(e.item.channel.toString());
 	}
 });
 
@@ -83,7 +82,7 @@ loadingWin.close();
 
 dashboardFree.addEventListener('click', function(e) {
 	if(e.item !== null) {
-		RequestHandler.callMultiKeys(e.item.channel.toString(), hd, code, null, profile);
+		RequestHandler.callMultiKeys(e.item.channel.toString());
 	}
 });
 
@@ -153,9 +152,9 @@ function getItem(label) {
 }
 
 function updateProps() {
-	profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
-	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
-	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
+	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
+	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
+	RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
 
-	tabbedBar.setIndex(profile - 1);
+	tabbedBar.setIndex(RequestHandler.getProfile() - 1);
 }

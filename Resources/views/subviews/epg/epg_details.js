@@ -6,7 +6,6 @@ Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
-var hd, code, profile;
 
 var sharekit = require("com.0x82.sharekit");
 
@@ -212,7 +211,7 @@ var b_watch = Ti.UI.createButton({
 
 b_watch.addEventListener('click', function() {
 	//call the channel corresponding to the program
-	RequestHandler.callMultiKeys(win.thisChannelID.toString(), hd, code);
+	RequestHandler.callMultiKeys(win.thisChannelID.toString());
 });
 
 win.add(b_watch);
@@ -248,9 +247,9 @@ b_imdb.addEventListener('click', function() {
 });
 
 win.addEventListener('focus', function(e) {
-	profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
-	hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
-	code = Ti.App.Properties.getString('profile' + profile + '.code', '');
+	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
+	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
+	RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
 });
 
 win.add(b_imdb);

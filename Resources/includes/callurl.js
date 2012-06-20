@@ -1,16 +1,18 @@
 var Utils = require('includes/utils');
 Ti.include('/includes/enums.js');
 
+var hd, code, model, profile;
+
 //can call any key, but it must be formatted as in the freebox API
-exports.callKey = function(key, isLong, hd, code, model, profile) {
+exports.callKey = function(key, isLong) {
 	//checking if we call the function with already set config values; if we don't, get them
-	if(profile === undefined) {
+	if(this.profile === null) {
 		profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
-	} if(hd === undefined) {
-		hd = Ti.App.Properties.getString('profile' + profile + '.hd', HD.HD_1);
-	} if(code === undefined) {
-		code = Ti.App.Properties.getString('profile' + profile + '.code', '');
-	} if(model === undefined) {
+	} if(this.hd === null) {
+		hd = Ti.App.Properties.getString('profile' + this.profile + '.hd', HD.HD_1);
+	} if(this.code === null) {
+		code = Ti.App.Properties.getString('profile' + this.profile + '.code', '');
+	} if(this.model === null) {
 		model = Model.FREEBOX_HD;
 	}
 
@@ -18,23 +20,57 @@ exports.callKey = function(key, isLong, hd, code, model, profile) {
 
 	if(!Ti.App.Properties.getBool('debugmode', false)) {
 		//this is the url used for calling remote keys, as specified in the API
-		xhr.open('GET', 'http://' + 'hd' + hd + '.freebox.fr/pub/remote_control?code=' + code + '&key=' + key + '&long=' + isLong.toString(), true);
+		xhr.open('GET', 'http://' + 'hd' + this.hd + '.freebox.fr/pub/remote_control?code=' + this.code + '&key=' + key + '&long=' + isLong.toString(), true);
 		xhr.send(null);
 	} else {
 		//if debugging, show the information that was about to be sent
-		Ti.API.info('requested call for profile:' + profile + ', hd:' + hd + ', code:' + code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + Utils.getModelString(model));
+		Ti.API.info('requested call for profile:' + this.profile + ', hd:' + this.hd + ', code:' + this.code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + Utils.getModelString(this.model));
 	}
 }
 
 //can call a precise channel (1 digit or more)
-exports.callMultiKeys = function(channel, hd, code, model, profile) {
+exports.callMultiKeys = function(channel) {
 	//we check the digits one by one using a loop, as you need to call all the first digits with a long press and the last with a short one
 	for(var i = 0; i < (channel.length); i++) {
 		//if this is the last digit of the number, call it as a short press
 		if(i == (channel.length - 1)) {
-			RequestHandler.callKey(channel.charAt(i), false, hd, code, model, profile);
+			this.callKey(channel.charAt(i), false);
 		} else {
-			RequestHandler.callKey(channel.charAt(i), true, hd, code, model, profile);
+			this.callKey(channel.charAt(i), true);
 		}
 	}
+}
+
+//getters
+exports.getHd = function() {
+	return this.hd;
+}
+
+exports.getCode = function() {
+	return this.code;
+}
+
+exports.getModel = function() {
+	return this.model;
+}
+
+exports.getProfile = function() {
+	return this.profile;
+}
+
+//setters
+exports.setHd = function(value) {
+	this.hd = value;
+}
+
+exports.setCode = function(value) {
+	this.code = value;
+}
+
+exports.setModel = function(value) {
+	this.model = value;
+}
+
+exports.setProfile = function(value) {
+	this.profile = value;
 }

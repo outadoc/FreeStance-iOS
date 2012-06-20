@@ -2,12 +2,11 @@
 	var RequestHandler = require('includes/callurl');
 	var Utils = require('includes/utils');
 	var Ui = require('includes/ui');
-	
+
 	Ti.include('/includes/lib/json.i18n.js');
 	var win = Ti.UI.currentWindow;
 
 	//the properties for the current profile
-	var profile, model, hd, code;
 	var isConfShown = false;
 
 	//advanced options
@@ -48,17 +47,6 @@
 	//setting the toolbar
 	win.setToolbar([Ui.createFlexibleSpace(), tabbedBar, Ui.createFlexibleSpace()], {
 		animated: false
-	});
-
-	//creating the window
-	var win_more = Ti.UI.createWindow({
-		url: 'subviews/more_buttons.js',
-		backgroundColor: '#323232',
-		navBarHidden: true,
-		thisHd: hd,
-		thisCode: code,
-		thisModel: model,
-		thisProfile: profile
 	});
 
 	//the buttons and their placing
@@ -124,14 +112,14 @@
 			timeouts.repeatIntervalID = setInterval(function() {
 				e.source.hasBeenPressed = true;
 				//calling the key!
-				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false);
 			}, delay);
 		} else if(e.source.canBeLong) {
 			//slightly more simple here, just having to use the longPressLength variable as the delay we're using a timeout here longPressTimeoutID is so we can eventually cancel the timeout
 			timeouts.longPressTimeoutID = setTimeout(function() {
 				e.source.hasBeenPressed = true;
 				//calling the key!
-				RequestHandler.callKey(e.source.id, true, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, true);
 			}, prefs.longPressLength);
 		}
 	}
@@ -139,6 +127,17 @@
 	function on_btn_click(e) {
 		//if we're clicking the 'more' button, we have to open a popup window
 		if(e.source.id == 'other') {
+			//creating the window
+			var win_more = Ti.UI.createWindow({
+				url: 'subviews/more_buttons.js',
+				backgroundColor: '#323232',
+				navBarHidden: true,
+				thisHd: RequestHandler.getHd(),
+				thisCode: RequestHandler.getCode(),
+				thisModel: RequestHandler.getModel(),
+				thisProfile: RequestHandler.getProfile()
+			});
+
 			win_more.open({
 				modal: true,
 				modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_PARTIAL_CURL
@@ -150,20 +149,20 @@
 				clearTimeout(timeouts.longPressTimeoutID);
 				timeouts.longPressTimeoutID = null;
 				//calling the key!
-				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false);
 			}
 		} else if(e.source.canRepeat) {
 			//if the button press can be repeated and hasn't been pressed already (by the interval)
 			if(!e.source.hasBeenPressed) {
 				//calling the key!
-				RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
+				RequestHandler.callKey(e.source.id, false);
 			}
 
 			clearInterval(timeouts.repeatIntervalID);
 			timeouts.repeatIntervalID = null;
 		} else {
 			//if it's a basic button, just call the key!
-			RequestHandler.callKey(e.source.id, false, hd, code, model, profile);
+			RequestHandler.callKey(e.source.id, false);
 		}
 		//hasn't been pressed anymore, heh ?
 		e.source.hasBeenPressed = false;
@@ -175,10 +174,10 @@
 		view = Ti.UI.createView();
 
 		//getting fresh values for the properties each time we're calling the function
-		profile = Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1);
-		hd = Ti.App.Properties.getInt('profile' + profile + '.hd', HD.HD_1);
-		code = Ti.App.Properties.getString('profile' + profile + '.code', '');
-		model = Ti.App.Properties.getInt('profile' + profile + '.model', Model.FREEBOX_HD);
+		RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
+		RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
+		RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
+		RequestHandler.setModel(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.model', Model.FREEBOX_HD));
 
 		//those can't be placed above as they are not buttons but labels...
 		var lbl_vol = Ti.UI.createLabel({
@@ -238,7 +237,7 @@
 				}
 
 				//if it's a freebox hd, we just change the button title to the corresponding letter
-				if(model == Model.FREEBOX_HD) {
+				if(RequestHandler.getModel() == Model.FREEBOX_HD) {
 					if(button.id == 'red') {
 						button.setTitle('B');
 					} else if(button.id == 'yellow') {
@@ -248,7 +247,7 @@
 					} else if(button.id == 'green') {
 						button.setTitle('A');
 					}
-				} else if(model == Model.FREEBOX_REVOLUTION) {//...and if it's a freebox révolution, we add an image in it
+				} else if(RequestHandler.getModel() == Model.FREEBOX_REVOLUTION) {//...and if it's a freebox révolution, we add an image in it
 					var img_button = Ti.UI.createImageView({
 						image: '/img/fbx_rev_overlay_' + button.id + '.png',
 						height: 35,
@@ -317,7 +316,7 @@
 
 		loadingWin.close();
 		win.add(view);
-		
+
 		if(!isConfShown) {
 			Utils.confCheck();
 			isConfShown = true;
@@ -337,6 +336,6 @@
 		//updating the buttons; the user can also have change the profile to use
 		updateButtons();
 		//updating the tabbed bar to reflect the new profile
-		tabbedBar.index = profile - 1;
+		tabbedBar.index = RequestHandler.getProfile() - 1;
 	});
 })();
