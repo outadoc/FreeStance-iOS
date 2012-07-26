@@ -432,7 +432,7 @@ function displayError(errorType) {
 
 tableView.addEventListener('scroll', function(e) {
 	var offset = e.contentOffset.y;
-	if(offset <= -65.0 && !pulling) {
+	if(offset < -65.0 && !pulling && !reloading) {
 		var t = Ti.UI.create2DMatrix();
 		t = t.rotate(-180);
 		pulling = true;
@@ -443,7 +443,7 @@ tableView.addEventListener('scroll', function(e) {
 		});
 
 		statusLabel.setText(I('epg.refresh.releaseToRefresh'));
-	} else if(pulling && offset > -65.0 && offset < 0) {
+	} else if((offset > -65.0 && offset < 0 ) && pulling && !reloading) {
 		pulling = false;
 		var t = Ti.UI.create2DMatrix();
 
@@ -456,8 +456,8 @@ tableView.addEventListener('scroll', function(e) {
 	}
 });
 
-tableView.addEventListener('scrollEnd', function(e) {
-	if(pulling && !reloading && e.contentOffset.y <= -65.0) {
+tableView.addEventListener('dragEnd', function() {
+	if(pulling && !reloading) {
 		reloading = true;
 		pulling = false;
 		arrow.hide();
@@ -469,7 +469,8 @@ tableView.addEventListener('scrollEnd', function(e) {
 		}, {
 			animated: true
 		});
-
+		
+		tableView.scrollToTop(-60,true);
 		arrow.setTransform(Ti.UI.create2DMatrix());
 		beginReloading();
 	}
