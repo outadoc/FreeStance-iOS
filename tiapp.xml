@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <sdk-version>2.0.2.GA</sdk-version>
+    <sdk-version>2.1.0.GA</sdk-version>
     <deployment-targets>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
@@ -37,6 +37,6 @@
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <modules>
-        <module platform="iphone" version="2.9">com.0x82.sharekit</module>
+        <module platform="iphone" version="3.0">com.0x82.sharekit</module>
     </modules>
 </ti:app>
