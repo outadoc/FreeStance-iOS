@@ -216,6 +216,18 @@ exports.getChannelID = function(channel) {
 		case 'Radio':
 			id = 199;
 			break;
+		case 'C+ Cinéma':
+			id = 41;
+			break;
+		case 'C+ Sport':
+			id = 42;
+			break;
+		case 'C+ Décalé':
+			id = 43;
+			break;
+		case 'C+ Family':
+			id = 44;
+			break;
 		default:
 			Ti.API.error('could not find channel ID for ' + channel);
 			id = null;
@@ -224,7 +236,6 @@ exports.getChannelID = function(channel) {
 
 	return id;
 }
-
 //used to get the string equivalent of a given freebox model
 exports.getModelString = function(model) {
 	if(model == Model.FREEBOX_HD) {

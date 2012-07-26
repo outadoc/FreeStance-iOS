@@ -8,9 +8,11 @@ var win = Ti.UI.currentWindow;
 
 var dataTNT = [];
 var dataFree = [];
+var dataCanal = [];
 
 var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Arte', 'Direct 8', 'W9', 'TMC', 'NT1', 'NRJ12', 'LCP', 'France 4', 'BFM TV', 'i>TELE', 'Direct Star', 'Gulli'];
 var labelsFree = ['RTL9', 'AB1', 'Disney Channel', 'TV5 Monde', 'Vivolta', 'NRJ Hits', 'Clubbing TV', 'BeBlack', 'O Five', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'France Ô', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
+var labelsCanal = ['Canal+', 'C+ Cinéma', 'C+ Sport', 'C+ Décalé', 'C+ Family'];
 
 var loadingWin = Ui.createLoadingWindow();
 
@@ -35,7 +37,7 @@ win.setToolbar([Ui.createFlexibleSpace(), tabbedBar, Ui.createFlexibleSpace()], 
 });
 
 var dashboardTabs = Ti.UI.iOS.createTabbedBar({
-	labels: ['TNT', 'Bouquet Free'],
+	labels: ['TNT', 'Bouquet Free', 'Bouquet Canal'],
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
 	bottom: 7,
 	height: '30',
@@ -53,17 +55,12 @@ var dashboardTNT = Ti.UI.createDashboardView({
 	height: 350
 });
 
-dashboardTNT.addEventListener('click', function(e) {
-	if(e.item !== null) {
-		RequestHandler.callMultiKeys(e.item.channel.toString());
-	}
-});
-
 for(var i = 0; i < labelsTNT.length; i++) {
 	dataTNT.push(getItem(labelsTNT[i]));
 }
 
 dashboardTNT.setData(dataTNT);
+dashboardTNT.addEventListener('click', clickHandler);
 win.add(dashboardTNT);
 
 var dashboardFree = Ti.UI.createDashboardView({
@@ -78,26 +75,48 @@ for(var i = 0; i < labelsFree.length; i++) {
 }
 
 dashboardFree.setData(dataFree);
-loadingWin.close();
+dashboardFree.addEventListener('click', clickHandler);
+win.add(dashboardFree);
 
-dashboardFree.addEventListener('click', function(e) {
-	if(e.item !== null) {
-		RequestHandler.callMultiKeys(e.item.channel.toString());
-	}
+var dashboardCanal = Ti.UI.createDashboardView({
+	editable: false,
+	top: 0,
+	height: 350,
+	visible: false
 });
 
-win.add(dashboardFree);
+for(var i = 0; i < labelsCanal.length; i++) {
+	dataCanal.push(getItem(labelsCanal[i]));
+}
+
+dashboardCanal.setData(dataCanal);
+loadingWin.close();
+dashboardCanal.addEventListener('click', clickHandler);
+win.add(dashboardCanal);
 
 dashboardTabs.addEventListener('click', function(e) {
 	if(e.index == 1) {
 		dashboardTNT.hide();
+		dashboardCanal.hide();
 		loadingWin.close();
 		dashboardFree.show();
+	}  else if(e.index === 2) {
+		dashboardTNT.hide();
+		dashboardFree.hide();
+		loadingWin.close();
+		dashboardCanal.show();
 	} else if(e.index === 0) {
 		dashboardFree.hide();
+		dashboardCanal.hide();
 		dashboardTNT.show();
 	}
 });
+
+function clickHandler(e) {
+	if(e.item !== null) {
+		RequestHandler.callMultiKeys(e.item.channel.toString());
+	}
+}
 
 function getItem(label) {
 	var item = Ti.UI.createDashboardItem({
