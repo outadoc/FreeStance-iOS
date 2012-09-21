@@ -146,71 +146,7 @@ function endReloading() {
 	});
 }
 
-function getTonightRow(itemList, i) {
-	try {
-		var fullTitle = itemList.item(i).getElementsByTagName('title').item(0).text;
-		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
-		var fullUrl = itemList.item(i).getElementsByTagName('link').item(0).text;
-		var category;
-
-		try {
-			category = itemList.item(i).getElementsByTagName('category').item(0).text;
-		} catch(e) {
-		}
-
-		fullTitle = fullTitle.replace(/\n/gi, ' ');
-		fullTitle = fullTitle.replace('TF 1', 'TF1');
-		fullTitle = fullTitle.replace('La Chaîne Parlementaire', 'LCP');
-		fullTitle = fullTitle.replace('i Télé', 'i>TELE');
-		fullTitle = fullTitle.replace('NT 1', 'NT1');
-		fullTitle = fullTitle.replace('NRJ 12', 'NRJ12');
-
-		fullUrl = fullUrl.replace(/\n/gi, ' ');
-
-		desc = desc.replace(/\n/gi, ' ');
-		desc = desc.replace('&nbsp;', '');
-		desc = strip_tags(desc, null);
-
-		var itemParts = fullTitle.split(' - ');
-
-		var channel = itemParts[0];
-		var time = itemParts[1];
-		var title = itemParts[2];
-		var channelID = Utils.getChannelID(channel);
-		var defaultImg = '/img/logo/' + channelID + '.png';
-		var imgUrl;
-
-		try {
-			if(itemList.item(i).getElementsByTagName('enclosure') != null) {
-				imgUrl = itemList.item(i).getElementsByTagName('enclosure').item(0).attributes.getNamedItem('url').text;
-			}
-		} catch(e) {
-		}
-
-		var row = Ti.UI.createTableViewRow({
-			height: Ti.UI.SIZE,
-			hasChild: true,
-			selectedBackgroundColor: '#565656',
-
-			thisTitle: title,
-			thisDesc: desc,
-			thisUrl: fullUrl,
-			thisImageUrl: imgUrl,
-			thisChannel: channel,
-			thisTime: time,
-			thisChannelID: channelID,
-			thisSearchFilter: title + ' ' + channel,
-			thisDefaultImg: defaultImg,
-			thisCategory: category
-		});
-
-		return row;
-	} catch(e) {
-		return null;
-	}
-}
-
-function getNowRow(itemList, i) {
+function parseEPGRow(itemList, i) {
 	try {
 		var fullTitle = itemList.item(i).getElementsByTagName('title').item(0).text;
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
@@ -274,13 +210,7 @@ function displayItems(itemList) {
 	tableView.setData(null);
 
 	for(var i = 0; i < itemList.length; i++) {
-		var row;
-
-		if(tabbedBar.getIndex() === EPG.NOW) {
-			row = getNowRow(itemList, i);
-		} else {
-			row = getTonightRow(itemList, i);
-		}
+		var row = parseEPGRow(itemList, i);
 
 		if(row != null) {
 			if(lastChannelID != row.thisChannel) {

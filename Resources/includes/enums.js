@@ -22,8 +22,8 @@ var HD = {
 var EPG = {
 	NOW: 0,
 	TONIGHT: 1,
-	NOW_URL: 'http://www.zap-programme.fr/rss/rss.php?bouquet=2&day=now',
-	TONIGHT_URL: 'http://programme-tv.orange.fr/rss/fluxRssProgrammeSoiree.xml'
+	NOW_URL: 'http://www.zap-programme.fr/rss/rss.php?bouquet=3&day=now',
+	TONIGHT_URL: 'http://www.zap-programme.fr/rss/rss.php?bouquet=3'
 };
 
 var Error = {
