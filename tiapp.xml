@@ -14,11 +14,11 @@
     <publisher>Baptiste Candellier</publisher>
     <url>http://dev.outadoc.fr</url>
     <description>Controlez votre Freebox a distance !</description>
-    <copyright>2011 Baptiste Candellier</copyright>
+    <copyright>2011-2012 Baptiste Candellier</copyright>
     <icon>icon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
-    <statusbar-style>opaque</statusbar-style>
+    <statusbar-style>default</statusbar-style>
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
