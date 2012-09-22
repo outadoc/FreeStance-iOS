@@ -30,16 +30,6 @@ sharekit.configure({
 	readitlater_key: '9f3T9z22gq17bX082ed4982L35pfU4aX'
 });
 
-var progInfo = Ti.UI.createView({
-	top: 10,
-	left: 10,
-	width: 300,
-	height: 90,
-	backgroundImage: '/img/prog_info.png'
-});
-
-win.add(progInfo);
-
 //the label for the program title
 var lbl_title = Ti.UI.createLabel({
 	text: win.data.title,
@@ -53,14 +43,24 @@ var lbl_title = Ti.UI.createLabel({
 	}
 });
 
-progInfo.add(lbl_title);
+win.add(lbl_title);
+
+var progInfo = Ti.UI.createView({
+	top: 30,
+	left: 10,
+	width: 300,
+	height: 70,
+	backgroundImage: '/img/prog_info.png'
+});
+
+win.add(progInfo);
 
 //a little image to improve it a bit
 var img = Ti.UI.createImageView({
 	image: '/img/logo/' + win.data.channelID + '.png',
 	height: Ti.UI.FILL,
 	width: 100,
-	top: 30,
+	top: 10,
 	bottom: 10,
 	left: 8,
 	//defaultImage: '/img/default_epg.png'
@@ -70,7 +70,7 @@ progInfo.add(img);
 
 var lbl_time_title = Ti.UI.createLabel({
 	text: 'Heure :',
-	top: 30,
+	top: 12,
 	left: 115,
 	width: Ti.UI.SIZE,
 	color: 'white',
@@ -85,7 +85,7 @@ progInfo.add(lbl_time_title);
 
 var lbl_time = Ti.UI.createLabel({
 	text: win.data.startTime.replace(':', 'h'),
-	top: 30,
+	top: 12,
 	right: 10,
 	width: Ti.UI.SIZE,
 	color: 'white',
@@ -100,7 +100,7 @@ progInfo.add(lbl_time);
 
 var lbl_category_title = Ti.UI.createLabel({
 	text: 'Catégorie :',
-	top: 55,
+	top: 35,
 	left: 115,
 	width: Ti.UI.SIZE,
 	color: 'white',
@@ -115,23 +115,23 @@ progInfo.add(lbl_category_title);
 
 var lbl_category = Ti.UI.createLabel({
 	text: win.data.category,
-	top: 55,
+	top: 35,
 	right: 10,
-	width: Ti.UI.SIZE,
+	width: 95,
+	height: 20,
 	font: {
 		fontSize: 15
 	},
 	textAlign: 'right',
-	color: 'white',
-	height: Ti.UI.SIZE
+	color: 'white'
 });
 
 progInfo.add(lbl_category);
 
 //the scrollview that will contain the program description
 var scrollView = Ti.UI.createScrollView({
-	height: 295,
-	top: 0,
+	height: 190,
+	top: 110,
 	contentHeight: 'auto',
 	showVerticalScrollIndicator: true
 });
@@ -140,7 +140,7 @@ win.add(scrollView);
 
 var lbl_description_title = Ti.UI.createLabel({
 	text: I('epg.details.description'),
-	top: 120,
+	top: 0,
 	left: 10,
 	color: 'white',
 	height: 20,
@@ -236,7 +236,7 @@ b_imdb.addEventListener('click', function() {
 	var w = Ti.UI.createWindow({
 		backgroundColor: 'white',
 		title: I('labels.imdb'),
-		thisUrl: 'http://www.imdb.fr/find?s=all&q=' + win.thisTitle.normalizeUrl(),
+		thisUrl: 'http://www.imdb.fr/find?s=all&q=' + win.data.title.normalizeUrl(),
 		url: '../website.js',
 		barColor: '#464646',
 		isModalWin: false
@@ -263,8 +263,8 @@ win.setRightNavButton(b_share);
 
 b_share.addEventListener('click', function(e) {
 	sharekit.share({
-		title: I('epg.tweet', win.thisTitle, win.thisChannel, Ti.App.name),
+		title: I('epg.tweet', win.data.title, win.data.channelString, Ti.App.name),
 		view: win,
-		link: win.thisUrl
+		link: win.data.url
 	});
 });

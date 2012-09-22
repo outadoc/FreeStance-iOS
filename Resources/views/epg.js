@@ -35,7 +35,6 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 });
 
 tabbedBar.addEventListener('click', function(e) {
-	loadingWin.open();
 	if(e.index === EPG.NOW) {
 		loadRSSFeed(EPG.NOW_URL);
 	} else if(e.index == EPG.TONIGHT) {
@@ -314,10 +313,10 @@ function displayItems(itemList) {
 
 function loadRSSFeed(url) {
 	if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
-		loadingWin.close();
 		endReloading();
 		displayError(Error.NETWORK);
 	} else {
+		loadingWin.open();
 		var xhr = Ti.Network.createHTTPClient({
 			timeout: 15000,
 			onload: function() {
@@ -326,7 +325,9 @@ function loadRSSFeed(url) {
 				var xml = Ti.XML.parseString(xml_txt);
 				var itemList = xml.documentElement.getElementsByTagName('item');
 				displayItems(itemList);
+				
 				tabbedBar.lastIndex = tabbedBar.getIndex();
+				
 				loadingWin.close();
 				endReloading();
 			},
@@ -424,8 +425,6 @@ tableView.addEventListener('click', function(e) {
 		});
 	}
 });
-
-loadingWin.open();
 
 if(defaultTab == EPG.NOW) {
 	loadRSSFeed(EPG.NOW_URL);
