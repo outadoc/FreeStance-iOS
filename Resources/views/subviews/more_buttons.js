@@ -18,118 +18,24 @@
 	win.add(view);
 
 	//another button array, for the popup this time
-	var buttonList = [{
-		title: I('buttons.list'),
-		id: 'list',
-		height: 40,
-		width: 113,
-		top: 20,
-		left: 0
-	}, {
-		title: I('buttons.hdd'),
-		id: 'mail',
-		height: 40,
-		width: 114,
-		top: 20,
-		left: 122,
-		isLong: true
-	}, {
-		title: I('buttons.epg'),
-		id: 'epg',
-		height: 40,
-		width: 113,
-		top: 65,
-		left: 0
-	}, {
-		title: I('buttons.pip'),
-		id: 'pip',
-		height: 40,
-		width: 114,
-		top: 65,
-		left: 122
-	}, {
-		title: I('buttons.mail'),
-		id: 'mail',
-		height: 40,
-		width: 113,
-		top: 110,
-		left: 0
-	}, {
-		title: I('buttons.aux'),
-		id: 'tv',
-		height: 40,
-		width: 114,
-		top: 110,
-		left: 122
-	}, {
-		id: 'rec',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 0,
-	}, {
-		title: '«',
-		id: 'prev',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 33,
-		font: {
-			fontSize: 25
-		}
-	}, {
-		title: '‹',
-		id: 'bwd',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 68,
-		font: {
-			fontSize: 27
-		}
-	}, {
-		id: 'play',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 103,
-		font: {
-			fontSize: 13
-		}
-	}, {
-		id: 'stop',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 138,
-	}, {
-		title: '›',
-		id: 'fwd',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 173,
-		font: {
-			fontSize: 27
-		}
-	}, {
-		title: '»',
-		id: 'next',
-		height: 30,
-		width: 28,
-		top: 165,
-		left: 208,
-		font: {
-			fontSize: 25
-		}
-	}, {
-		title: I('buttons.close'),
-		id: 'close',
-		height: 40,
-		width: 237,
-		bottom: 0,
-		left: 0
-	}];
+	/*@formatter:off*/
+	var buttonList = [
+		{title: I('buttons.list'), id: 'list', height: 40, width: 113, top: 20, left: 0},
+		{title: I('buttons.hdd'), id: 'mail', height: 40, width: 114, top: 20, left: 122, isLong: true},
+		{title: I('buttons.epg'), id: 'epg', height: 40, width: 113, top: 65, left: 0},
+		{title: I('buttons.pip'), id: 'pip', height: 40, width: 114, top: 65, left: 122},
+		{title: I('buttons.mail'), id: 'mail', height: 40, width: 113, top: 110, left: 0},
+		{title: I('buttons.aux'), id: 'tv', height: 40, width: 114, top: 110, left: 122},
+		{id: 'rec', height: 30, width: 28, top: 165, left: 0},
+		{title: '«', id: 'prev', height: 30, width: 28, top: 165, left: 33, font: {fontSize: 25}},
+		{title: '‹', id: 'bwd', height: 30, width: 28, top: 165, left: 68, font: {fontSize: 27}},
+		{id: 'play', height: 30, width: 28, top: 165, left: 103, font: {fontSize:13}},
+		{id: 'stop', height: 30, width: 28, top: 165, left: 138},
+		{title: '›', id: 'fwd', height: 30, width: 28, top: 165, left: 173, font: {fontSize: 27}},
+		{title: '»', id: 'next', height: 30, width: 28, top: 165, left: 208, font: {fontSize: 25}},
+		{title: I('buttons.close'), id: 'close', height: 40, width: 237, bottom: 0, left: 0}
+	];
+	/*@formatter:on*/
 
 	for(var i = 0; i < buttonList.length; i++) {
 		var button = Ti.UI.createButton(buttonList[i]);
