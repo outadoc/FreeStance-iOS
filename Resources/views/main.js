@@ -78,10 +78,22 @@
 		{title: '0', id: '0', height: 35, width: 45, left: 75, top: 310, canBeLong: true },
 		{title: '↻', id: 'swap', height: 35, width: 45, left: 130, top: 310, canBeLong: true},
 		{id: 'power', height: 35, width: 95, left: 200, top: 175, canBeLong: false},
-		{id: 'home', height: 35, width: 95, left: 200, top: 220,canBeLong: true},
+		{id: 'home', height: 35, width: 95, left: 200, top: 220, canBeLong: true},
 		{title: I('buttons.mute'), id: 'mute', height: 35, width: 95, left: 200, top: 265, canBeLong: false},
 		{title: '...', id: 'other', height: 35, width: 95, left: 200, top: 310, canBeLong: false}
 	];
+	
+	if(Ti.Platform.displayCaps.platformHeight >= 568) {
+		buttonList.push(
+			{title: I('buttons.list'), id: 'list', height: 30, width: 85, bottom: 60, left: 20, font: {fontWidth: 22}, canBeLong: false},
+			{title: I('buttons.hdd'), id: 'mail', height: 30, width: 85, bottom: 60, left: 115, font: {fontWidth: 22}, canBeLong: false, isLong: true},
+			{title: I('buttons.mail'), id: 'mail', height: 30, width: 85, bottom: 60, left: 210, font: {fontWidth: 22}, canBeLong: false},
+			{title: I('buttons.epg'), id: 'epg', height: 30, width: 85, bottom: 20, left: 20, font: {fontWidth: 22}, canBeLong: false},
+			{title: I('buttons.pip'), id: 'pip', height: 30, width: 85, bottom: 20, left: 115, font: {fontWidth: 22}, canBeLong: false},
+			{title: I('buttons.aux'), id: 'tv', height: 30, width: 85, bottom: 20, left: 210, font: {fontWidth: 22}, canBeLong: false}
+		);
+	}
+	
 	/*@formatter:on*/
 
 	function on_btn_touchstart(e) {
@@ -160,6 +172,9 @@
 
 			clearInterval(timeouts.repeatIntervalID);
 			timeouts.repeatIntervalID = null;
+		} else if(e.source.isLong) {
+			//always long if it MUST be a long press
+			RequestHandler.callKey(e.source.id, true);
 		} else {
 			//if it's a basic button, just call the key!
 			RequestHandler.callKey(e.source.id, false);
