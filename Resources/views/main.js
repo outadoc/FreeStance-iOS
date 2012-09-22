@@ -109,7 +109,7 @@
 				delay = prefs.progRepeatFrequency;
 			}
 
-			if(model == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
+			if(RequestHandler.getModel() == Model.FREEBOX_REVOLUTION && (e.source.id == 'vol_inc' || e.source.id == 'vol_dec')) {
 				//the freebox révolution volume button needs a shorter frequency than the freebox hd one
 				delay *= 0.5;
 			}
