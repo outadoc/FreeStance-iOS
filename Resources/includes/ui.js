@@ -1,5 +1,5 @@
 exports.getDefaultBackground = function() {
-	return '#D8D8D8';
+	return '#d8d8d8';
 }
 
 exports.createLoadingWindow = function(top) {
@@ -10,7 +10,7 @@ exports.createLoadingWindow = function(top) {
 	var timeoutID;
 	var win = Ti.UI.createWindow({
 		width: 320,
-		height: 480,
+		height: Ti.Platform.displayCaps.platformHeight,
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
