@@ -52,7 +52,7 @@ loadingWin.open();
 var dashboardTNT = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
-	height: 350
+	height: Ti.UI.FILL
 });
 
 for(var i = 0; i < labelsTNT.length; i++) {
@@ -66,7 +66,7 @@ win.add(dashboardTNT);
 var dashboardFree = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
-	height: 350,
+	height: Ti.UI.FILL,
 	visible: false
 });
 
@@ -81,7 +81,7 @@ win.add(dashboardFree);
 var dashboardCanal = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
-	height: 350,
+	height: Ti.UI.FILL,
 	visible: false
 });
 
