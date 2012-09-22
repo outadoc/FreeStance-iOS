@@ -1,4 +1,4 @@
-//a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
+//a window that opens when you click on a row of the EPG, giving you extra information on the program you chose
 var RequestHandler = require('includes/callurl');
 var Utils = require('includes/utils');
 var sharekit = require("com.0x82.sharekit");
@@ -7,8 +7,6 @@ Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
-
-Ti.API.info(JSON.stringify(win.data));
 
 sharekit.configure({
 	my_app_name: 'FreeStance',
