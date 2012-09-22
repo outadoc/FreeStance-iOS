@@ -14,7 +14,7 @@ var searchBar = Titanium.UI.createSearchBar({
 });
 
 var tableView = Ti.UI.createTableView({
-	filterAttribute: 'data.searchFilter',
+	filterAttribute: 'searchFilter',
 	search: searchBar
 });
 
@@ -166,7 +166,7 @@ function parseEPGRow(itemList, i) {
 		var descParts = desc.split('. ');
 
 		if(descParts[1] != null) {
-			category = descParts.shift();
+			category = Utils.capitalize(descParts.shift());
 			desc = descParts.join('. ');
 		}
 
@@ -187,6 +187,7 @@ function parseEPGRow(itemList, i) {
 			hasChild: true,
 			height: Ti.UI.SIZE,
 			selectedBackgroundColor: '#565656',
+			searchFilter: title + ' ' + channel,
 			data: {
 				title: title,
 				description: desc,
@@ -194,8 +195,7 @@ function parseEPGRow(itemList, i) {
 				startTime: time,
 				channelString: channel,
 				channelID: channelID,
-				searchFilter: title + ' ' + channel,
-				category: Utils.capitalize(category)
+				category: category
 			}
 		});
 
