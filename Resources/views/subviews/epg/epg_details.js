@@ -1,17 +1,18 @@
 //a window that opens when you click on a row of the EPG, giving you exta information on the program you chose
 var RequestHandler = require('includes/callurl');
 var Utils = require('includes/utils');
+var sharekit = require("com.0x82.sharekit");
 
 Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
-var sharekit = require("com.0x82.sharekit");
+Ti.API.info(JSON.stringify(win.data));
 
 sharekit.configure({
 	my_app_name: 'FreeStance',
-	my_app_url: 'http://dev.outadoc.fr/',
+	my_app_url: 'http://dev.outadoc.fr/project/freestance/',
 	share_menu_alphabetical_order: false,
 	shared_with_signature: false,
 	sharers_plist_name: '/Sharers.plist',
@@ -20,7 +21,7 @@ sharekit.configure({
 
 	twitter_consumer_key: '9c5oc1VXvcn1y7WvYfzxA',
 	twitter_consumer_secret: 'enh8OJVzNhb2kYB1lYHg6slht2b2yoA8ETKDajvoCA',
-	twitter_callback_url: 'http://dev.outadoc.fr/',
+	twitter_callback_url: 'http://dev.outadoc.fr/project/freestance/',
 	twitter_use_xauth: false,
 
 	bit_ly_login: '465eacd8035bacf82ac74b8037db3b6ad797b01c',
@@ -31,29 +32,19 @@ sharekit.configure({
 	readitlater_key: '9f3T9z22gq17bX082ed4982L35pfU4aX'
 });
 
-//the scrollview that will contain the program data
-var scrollView = Ti.UI.createScrollView({
-	height: 295,
-	top: 0,
-	contentHeight: 'auto',
-	showVerticalScrollIndicator: true
-});
-
-win.add(scrollView);
-
 var progInfo = Ti.UI.createView({
 	top: 10,
 	left: 10,
 	width: 300,
-	height: 165,
+	height: 90,
 	backgroundImage: '/img/prog_info.png'
 });
 
-scrollView.add(progInfo);
+win.add(progInfo);
 
 //the label for the program title
 var lbl_title = Ti.UI.createLabel({
-	text: win.thisTitle,
+	text: win.data.title,
 	color: 'white',
 	top: 5,
 	left: 10,
@@ -68,78 +59,90 @@ progInfo.add(lbl_title);
 
 //a little image to improve it a bit
 var img = Ti.UI.createImageView({
-	image: win.thisImageUrl,
-	height: 100,
-	width: 128,
-	top: 40,
-	left: 20,
-	borderColor: '#404040',
-	borderWidth: 2,
-	backgroundColor: 'darkGray',
-	borderRadius: 5,
-	defaultImage: '/img/default_epg.png'
+	image: '/img/logo/' + win.data.channelID + '.png',
+	height: Ti.UI.FILL,
+	width: 100,
+	top: 30,
+	bottom: 10,
+	left: 8,
+	//defaultImage: '/img/default_epg.png'
 });
 
 progInfo.add(img);
 
-if(win.thisImageUrl === undefined) {
-	var lbl_noImg = Ti.UI.createLabel({
-		text: I('epg.details.noPreview'),
-		height: Ti.UI.FILL,
-		width: Ti.UI.FILL,
-		color: 'white',
-		textAlign: 'center',
-		font: {
-			fontFamily: 'Helvetica-Oblique'
-		}
-	});
-
-	img.add(lbl_noImg);
-}
-
-var logo = Ti.UI.createImageView({
-	image: '/img/logo/' + win.thisChannelID + '.png',
+var lbl_time_title = Ti.UI.createLabel({
+	text: 'Heure :',
 	top: 30,
-	right: 45,
-	width: 60,
-	height: 60
+	left: 115,
+	width: Ti.UI.SIZE,
+	color: 'white',
+	font: {
+		fontSize: 15,
+		fontWeight: 'bold'
+	},
+	height: 20
 });
 
-progInfo.add(logo);
+progInfo.add(lbl_time_title);
 
 var lbl_time = Ti.UI.createLabel({
-	text: win.thisTime,
-	top: 94,
+	text: win.data.startTime.replace(':', 'h'),
+	top: 30,
 	right: 10,
-	width: 130,
+	width: Ti.UI.SIZE,
 	color: 'white',
-	textAlign: 'center',
+	textAlign: 'right',
 	font: {
-		fontSize: 15
+		fontSize: 16
 	},
 	height: 20
 });
 
 progInfo.add(lbl_time);
 
+var lbl_category_title = Ti.UI.createLabel({
+	text: 'Catégorie :',
+	top: 55,
+	left: 115,
+	width: Ti.UI.SIZE,
+	color: 'white',
+	font: {
+		fontSize: 15,
+		fontWeight: 'bold'
+	},
+	height: 20
+});
+
+progInfo.add(lbl_category_title);
+
 var lbl_category = Ti.UI.createLabel({
-	text: Utils.capitalize(win.thisCategory),
-	top: 117,
-	right: 5,
-	width: 140,
+	text: win.data.category,
+	top: 55,
+	right: 10,
+	width: Ti.UI.SIZE,
 	font: {
 		fontSize: 15
 	},
-	textAlign: 'center',
+	textAlign: 'right',
 	color: 'white',
 	height: Ti.UI.SIZE
 });
 
 progInfo.add(lbl_category);
 
+//the scrollview that will contain the program description
+var scrollView = Ti.UI.createScrollView({
+	height: 295,
+	top: 0,
+	contentHeight: 'auto',
+	showVerticalScrollIndicator: true
+});
+
+win.add(scrollView);
+
 var lbl_description_title = Ti.UI.createLabel({
 	text: I('epg.details.description'),
-	top: 185,
+	top: 120,
 	left: 10,
 	color: 'white',
 	height: 20,
@@ -153,7 +156,7 @@ scrollView.add(lbl_description_title);
 
 //the label that contains the program description
 var lbl_description = Ti.UI.createLabel({
-	text: win.thisDesc + '\n ',
+	text: win.data.description + '\n ',
 	top: lbl_description_title.top + lbl_description_title.height,
 	left: 10,
 	color: 'white',
@@ -181,8 +184,8 @@ b_openweb.addEventListener('click', function() {
 	//creating a window to display the info page
 	var w = Ti.UI.createWindow({
 		backgroundColor: 'white',
-		title: win.thisTitle,
-		thisUrl: win.thisUrl,
+		title: win.data.title,
+		thisUrl: win.data.url,
 		url: '../website.js',
 		barColor: '#464646',
 		isModalWin: false
@@ -211,7 +214,7 @@ var b_watch = Ti.UI.createButton({
 
 b_watch.addEventListener('click', function() {
 	//call the channel corresponding to the program
-	RequestHandler.callMultiKeys(win.thisChannelID.toString());
+	RequestHandler.callMultiKeys(win.data.channelID.toString());
 });
 
 win.add(b_watch);

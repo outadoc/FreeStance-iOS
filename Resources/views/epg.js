@@ -14,7 +14,7 @@ var searchBar = Titanium.UI.createSearchBar({
 });
 
 var tableView = Ti.UI.createTableView({
-	filterAttribute: 'thisSearchFilter',
+	filterAttribute: 'data.searchFilter',
 	search: searchBar
 });
 
@@ -151,7 +151,7 @@ function parseEPGRow(itemList, i) {
 		var fullTitle = itemList.item(i).getElementsByTagName('title').item(0).text;
 		var desc = itemList.item(i).getElementsByTagName('description').item(0).text;
 		var fullUrl = itemList.item(i).getElementsByTagName('link').item(0).text;
-		var category = '';
+		var category = 'N/A';
 
 		fullTitle = fullTitle.replace(/\n/gi, ' ');
 		fullTitle = fullTitle.replace('CANAL+', 'Canal+');
@@ -188,15 +188,16 @@ function parseEPGRow(itemList, i) {
 			hasChild: true,
 			height: Ti.UI.SIZE,
 			selectedBackgroundColor: '#565656',
-
-			thisTitle: title,
-			thisDesc: desc,
-			thisUrl: fullUrl,
-			thisChannel: channel,
-			thisTime: time,
-			thisChannelID: channelID,
-			thisSearchFilter: title + ' ' + channel,
-			thisCategory: category
+			data: {
+				title: title,
+				description: desc,
+				url: fullUrl,
+				startTime: time,
+				channelString: channel,
+				channelID: channelID,
+				searchFilter: title + ' ' + channel,
+				category: Utils.capitalize(category)
+			}
 		});
 
 		return row;
@@ -213,7 +214,7 @@ function displayItems(itemList) {
 		var row = parseEPGRow(itemList, i);
 
 		if(row != null) {
-			if(lastChannelID != row.thisChannel) {
+			if(lastChannelID != row.data.channelID) {
 				var header = Ti.UI.createTableViewRow({
 					height: 30,
 					selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
@@ -237,14 +238,14 @@ function displayItems(itemList) {
 				});
 
 				var img = Ti.UI.createImageView({
-					image: '/img/logo/' + row.thisChannelID + '.png',
+					image: '/img/logo/' + row.data.channelID + '.png',
 					height: 27,
 					width: 27,
 					left: 10
 				});
 
 				var lbl_channel = Ti.UI.createLabel({
-					text: row.thisChannel,
+					text: row.data.channelString,
 					left: 50,
 					top: 1,
 					color: '#484848',
@@ -261,7 +262,7 @@ function displayItems(itemList) {
 					height: Ti.UI.FILL
 				});
 
-				lastChannelID = row.thisChannel;
+				lastChannelID = row.data.channelID;
 				header.add(img);
 				header.add(lbl_channel);
 
@@ -271,7 +272,7 @@ function displayItems(itemList) {
 			}
 
 			var row_time = Ti.UI.createLabel({
-				text: row.thisTime,
+				text: row.data.startTime,
 				color: '#000',
 				textAlign: 'left',
 				left: 10,
@@ -287,7 +288,7 @@ function displayItems(itemList) {
 			});
 
 			var row_title = Ti.UI.createLabel({
-				text: row.thisTitle,
+				text: row.data.title,
 				color: '#000',
 				textAlign: 'left',
 				left: 60,
@@ -407,7 +408,7 @@ tableView.addEventListener('dragEnd', function() {
 });
 
 tableView.addEventListener('click', function(e) {
-	if(!e.rowData.isHeader && e.rowData.thisTitle != null) {
+	if(!e.rowData.isHeader && e.rowData.data.title != null) {
 		var win = Ti.UI.createWindow({
 			url: 'subviews/epg/epg_details.js',
 			backgroundColor: '#323232',
@@ -415,15 +416,7 @@ tableView.addEventListener('click', function(e) {
 			backButtonTitle: I('labels.epg'),
 			orientationModes: [Ti.UI.PORTRAIT],
 			barColor: '#464646',
-
-			thisTitle: e.rowData.thisTitle,
-			thisChannel: e.rowData.thisChannel,
-			thisTime: e.rowData.thisTime,
-			thisDesc: e.rowData.thisDesc,
-			thisImageUrl: e.rowData.thisImageUrl,
-			thisUrl: e.rowData.thisUrl,
-			thisChannelID: e.rowData.thisChannelID,
-			thisCategory: e.rowData.thisCategory
+			data: e.rowData.data
 		});
 
 		Ti.UI.currentTab.open(win, {
