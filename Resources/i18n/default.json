@@ -148,7 +148,7 @@
 		},
 		"legal": {
 			"title": "Legal Notice",
-			"content": "<p><strong>Free</strong> and <strong>Freebox</strong> are registered trademarks of <strong>Illiad S.A.</strong></p><p>Evening and day program guides are respectively provided by <strong>Zap-Programme.fr</strong> and <strong>Orange.fr</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> is a registered trademark of <strong>Amazon.com, Inc</strong>.</p><p>The TV channel logos of the TNT and Freebox packs are the properties of their respective societies.</p><p><strong>%s</strong> is an app developped by <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> was developed thanks to <strong>Appcelerator Titanium</strong>.</p><p>Used Titanium Modules:<ul><li><strong>ShareKit</strong> by 0x82</li></ul></p>",
+			"content": "<p><strong>Free</strong> and <strong>Freebox</strong> are registered trademarks of <strong>Illiad S.A.</strong></p><p>Evening and day program guides are provided by <strong>Zap-Programme.fr</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> is a registered trademark of <strong>Amazon.com, Inc</strong>.</p><p>The TV channel logos of the TNT and Freebox packs are the properties of their respective societies.</p><p><strong>%s</strong> is an app developped by <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> was developed thanks to <strong>Appcelerator Titanium</strong>.</p><p>Used Titanium Modules:<ul><li><strong>ShareKit</strong> by 0x82</li></ul></p>",
 			"height": "555"
 		},
 		"about": "About...",
