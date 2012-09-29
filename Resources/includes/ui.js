@@ -3,9 +3,8 @@ exports.getDefaultBackground = function() {
 }
 
 exports.createLoadingWindow = function(top) {
-	if(top === undefined) {
-		top = 170;
-	}
+	if(top === undefined) { top = 170; }
+	if(Ti.Platform.displayCaps.platformHeight >= 568) { top += 40; }
 
 	var timeoutID;
 	var win = Ti.UI.createWindow({
