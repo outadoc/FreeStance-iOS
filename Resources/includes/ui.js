@@ -3,7 +3,7 @@ exports.getDefaultBackground = function() {
 }
 
 exports.createLoadingWindow = function(top) {
-	if(top === undefined) { top = '40%'; }
+	if(top === undefined) { top = '38%'; }
 
 	var timeoutID;
 	var win = Ti.UI.createWindow({
