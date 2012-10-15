@@ -260,7 +260,7 @@ exports.getMajorVersion = function() {
 	return major;
 }
 
-exports.confCheck = function() {
+exports.confCheck = function(tabGroup) {
 	if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 		var alert = Ti.UI.createAlertDialog({
 			title: I('network.message.title'),
@@ -282,13 +282,13 @@ exports.confCheck = function() {
 		alert.addEventListener('click', function(e) {
 			if(e.index == 1) {
 				var helpwin = Ti.UI.createWindow({
-					url: 'views/subviews/options/options.js',
+					url: '/views/subviews/options/options.js',
 					title: I('labels.options'),
-					backgroundColor: 'stripped',
+					backgroundColor: '#d8d8d8',
 					barColor: '#464646'
 				});
 
-				tab4.open(helpwin);
+				tabGroup.tabs[3].open(helpwin);
 				tabGroup.setActiveTab(3);
 			}
 		});

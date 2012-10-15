@@ -67,6 +67,8 @@
 	tabGroup.addTab(tab3);
 	tabGroup.addTab(tab4);
 
+	win1.tabGroup = tabGroup;
+	
 	Ti.UI.setOrientation(Ti.UI.PORTRAIT);
 	tabGroup.open();
 })();

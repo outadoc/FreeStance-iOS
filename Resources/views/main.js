@@ -333,7 +333,7 @@
 		win.add(view);
 
 		if(!isConfShown) {
-			Utils.confCheck();
+			Utils.confCheck(win.tabGroup);
 			isConfShown = true;
 		}
 	}
