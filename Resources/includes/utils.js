@@ -51,7 +51,7 @@ exports.getChannelID = function(channel) {
 		case 'France 5':
 			id = 5;
 			break;
-		case 'Direct 8':
+		case 'D8':
 			id = 8;
 			break;
 		case 'W9':
@@ -75,7 +75,7 @@ exports.getChannelID = function(channel) {
 		case 'i>TELE':
 			id = 16;
 			break;
-		case 'Direct Star':
+		case 'D17':
 			id = 17;
 			break;
 		case 'Gulli':
