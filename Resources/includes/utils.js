@@ -253,13 +253,6 @@ exports.capitalize = function(string) {
 	return string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 };
 
-exports.getMajorVersion = function() {
-	var version = Titanium.Platform.version.split(".");
-	var major = parseInt(version[0], 10);
-
-	return major;
-}
-
 exports.confCheck = function(tabGroup) {
 	if(Ti.Network.networkType != Ti.Network.NETWORK_WIFI) {
 		var alert = Ti.UI.createAlertDialog({
