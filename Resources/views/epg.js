@@ -238,6 +238,7 @@ function displayItems(itemList) {
 
 				var img = Ti.UI.createImageView({
 					image: '/img/logo/' + row.data.channelID + '.png',
+					defaultImage: '/img/default_epg.png',
 					height: 27,
 					width: 27,
 					left: 10

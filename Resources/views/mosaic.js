@@ -141,6 +141,7 @@ function getItem(label) {
 
 	var img_logo = Ti.UI.createImageView({
 		image: '/img/logo/' + Utils.getChannelID(label) + '.png',
+		defaultImage: '/img/default_epg.png',
 		height: 50,
 		width: 50
 	});
