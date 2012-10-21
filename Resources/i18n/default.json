@@ -88,7 +88,7 @@
 			},
 			"hd": {
 				"title": "Box Number",
-				"prefix": "TV Box n°"
+				"prefix": "TV Box n°%s"
 			},
 			"model": "Model",
 			"otherHeader": "Other",
