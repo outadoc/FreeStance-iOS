@@ -7,13 +7,13 @@ var win = Ti.UI.currentWindow;
 var tableView = Ti.UI.createTableView({
 	/*@formatter:off*/
 	data: [
-		{title: I('more.settings.title'), hasChild: true, path: 'subviews/options/options.js', header: I('more.preferences')},
-		{title: I('more.help.title'), hasChild: true, path: 'subviews/help/help.js'},
-		{title: I('more.website'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://dev.outadoc.fr', isWebsite: true, header: I('more.about')}, 
-		{title: I('more.twitter'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://mobile.twitter.com/outadev', isWebsite: true},
-		{title: I('more.contact'), hasChild: true, email: 'outadev@outadoc.fr'},
-		{title: I('more.bugReport.title'), hasChild: true, email: 'bug-report@outadoc.fr', bug: true},
-		{title: I('more.legal.title'), hasChild: true, path: 'subviews/info_display.js', header: ''}
+		{leftImage: '/img/icon_settings.png', title: I('more.settings.title'), hasChild: true, path: 'subviews/options/options.js', header: I('more.preferences')},
+		{leftImage: '/img/icon_help.png',title: I('more.help.title'), hasChild: true, path: 'subviews/help/help.js'},
+		{leftImage: '/img/icon_website.png',title: I('more.website'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://dev.outadoc.fr', isWebsite: true, header: I('more.about')}, 
+		{leftImage: '/img/icon_info.png',title: I('more.twitter'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://mobile.twitter.com/outadev', isWebsite: true},
+		{leftImage: '/img/icon_contact.png',title: I('more.contact'), hasChild: true, email: 'outadev@outadoc.fr'},
+		{leftImage: '/img/icon_bug.png',title: I('more.bugReport.title'), hasChild: true, email: 'bug-report@outadoc.fr', bug: true},
+		{leftImage: '/img/icon_heart.png',title: I('more.legal.title'), hasChild: true, path: 'subviews/info_display.js', header: ''}
 	],
 	/*@formatter:on*/
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
