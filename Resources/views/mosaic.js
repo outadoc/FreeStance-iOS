@@ -123,27 +123,28 @@ function getItem(label) {
 		label: label,
 		canDelete: false,
 		channel: Utils.getChannelID(label),
-		height: 85,
+		height: 90,
 		width: 70
 	});
 
 	var view = Ti.UI.createView({
-		height: 85,
+		height: 90,
 		width: 70
 	});
 
 	var img_icon = Ti.UI.createButton({
 		image: '/img/dashboard.png',
-		height: 65,
-		width: 65,
+		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
+		height: 70,
+		width: 70,
 		top: 0
 	});
 
 	var img_logo = Ti.UI.createImageView({
 		image: '/img/logo/' + Utils.getChannelID(label) + '.png',
 		defaultImage: '/img/default_epg.png',
-		height: 50,
-		width: 50
+		height: 40,
+		width: 40
 	});
 
 	var lbl_channel = Ti.UI.createLabel({
@@ -154,7 +155,7 @@ function getItem(label) {
 		height: 17,
 		textAlign: 'center',
 		font: {
-			fontSize: 14
+			fontSize: 13
 		},
 		shadowColor: '#505050 ',
 		shadowOffset: {
