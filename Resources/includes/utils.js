@@ -86,6 +86,7 @@ exports.getChannelID = function(channel) {
 			break;
 		case 'HD1':
 			id = 20;
+			break;
 		case 'L\'Equipe 21':
 			id = 21;
 			break;
@@ -122,6 +123,7 @@ exports.getChannelID = function(channel) {
 		case 'BeBlack':
 			id = 78;
 			break;
+		case 'TV5 Monde':
 		case 'O Five':
 			id = 79;
 			break;
