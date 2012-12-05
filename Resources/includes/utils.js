@@ -81,20 +81,37 @@ exports.getChannelID = function(channel) {
 		case 'Gulli':
 			id = 18;
 			break;
-		case 'RTL9':
+		case 'France Ô':
+			id = 19;
+			break;
+		case 'HD1':
+			id = 20;
+		case 'L\'Equipe 21':
 			id = 21;
 			break;
-		case 'AB1':
+		case '6Ter':
 			id = 22;
 			break;
-		case 'Disney Channel':
+		case 'Numero23':
 			id = 23;
 			break;
-		case 'TV5 Monde':
+		case 'RMC Découverte':
+			id = 24;
+			break;
+		case 'Chérie 25':
 			id = 25;
 			break;
+		case 'RTL9':
+			id = 28;
+			break;
 		case 'Vivolta':
-			id = 47;
+			id = 38;
+			break;
+		case 'AB1':
+			id = 39;
+			break;
+		case 'Disney Channel':
+			id = 48;
 			break;
 		case 'NRJ Hits':
 			id = 59;
@@ -173,9 +190,6 @@ exports.getChannelID = function(channel) {
 			break;
 		case 'Poker Channel':
 			id = 145;
-			break;
-		case 'France Ô':
-			id = 152;
 			break;
 		case 'Liberty TV':
 			id = 154;
