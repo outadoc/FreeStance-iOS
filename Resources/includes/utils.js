@@ -120,11 +120,13 @@ exports.getChannelID = function(channel) {
 		case 'Clubbing TV':
 			id = 72;
 			break;
+		case 'O Five':
+			id = 74;
+			break;
 		case 'BeBlack':
 			id = 78;
 			break;
 		case 'TV5 Monde':
-		case 'O Five':
 			id = 79;
 			break;
 		case 'BFM Business':
