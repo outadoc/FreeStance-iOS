@@ -89,10 +89,10 @@ exports.getChannelID = function(channel) {
 		case 'L\'Equipe 21':
 			id = 21;
 			break;
-		case '6Ter':
+		case '6ter':
 			id = 22;
 			break;
-		case 'Numero23':
+		case 'Numéro 23':
 			id = 23;
 			break;
 		case 'RMC Découverte':
