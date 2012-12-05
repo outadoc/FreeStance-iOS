@@ -11,7 +11,7 @@ var dataFree = [];
 var dataCanal = [];
 
 var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Arte', 'D8', 'W9', 'TMC', 'NT1', 'NRJ12', 'LCP', 'France 4', 'BFM TV', 'i>TELE', 'D17', 'Gulli', 'France Ô', 'HD1', 'L\'Equipe 21', '6ter', 'Numéro 23', 'RMC Découverte', 'Chérie 25'];
-var labelsFree = ['RTL9', 'AB1', 'Disney Channel', 'TV5 Monde', 'Vivolta', 'NRJ Hits', 'Clubbing TV', 'BeBlack', 'O Five', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'France Ô', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
+var labelsFree = ['RTL9', 'Vivolta', 'AB1', 'Disney Channel', 'NRJ Hits', 'Clubbing TV', 'O Five', 'BeBlack', 'TV5 Monde', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'France Ô', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
 var labelsCanal = ['Canal+', 'C+ Cinéma', 'C+ Sport', 'C+ Décalé', 'C+ Family'];
 
 var loadingWin = Ui.createLoadingWindow();
