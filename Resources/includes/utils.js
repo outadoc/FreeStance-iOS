@@ -232,7 +232,7 @@ exports.getChannelID = function(channel) {
 			id = 195;
 			break;
 		case 'Radio':
-			id = 199;
+			id = 997;
 			break;
 		case 'C+ Cinéma':
 			id = 41;
