@@ -52,7 +52,8 @@ loadingWin.open();
 var dashboardTNT = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
-	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430
+	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
+	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4
 });
 
 for(var i = 0; i < labelsTNT.length; i++) {
@@ -67,6 +68,7 @@ var dashboardFree = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
 	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
+	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
 	visible: false
 });
 
@@ -82,6 +84,7 @@ var dashboardCanal = Ti.UI.createDashboardView({
 	editable: false,
 	top: 0,
 	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
+	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
 	visible: false
 });
 
