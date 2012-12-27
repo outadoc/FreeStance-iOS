@@ -59,10 +59,11 @@ win.add(progInfo);
 var img = Ti.UI.createImageView({
 	image: '/img/logo/' + win.data.channelID + '.png',
 	height: Ti.UI.FILL,
-	width: 100,
+	width: Ti.UI.FIT,
 	top: 10,
 	bottom: 10,
-	left: 8,
+	left: 15,
+	right: 193,
 	defaultImage: '/img/default_epg.png'
 });
 
