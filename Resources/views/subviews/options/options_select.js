@@ -41,7 +41,8 @@ for(var i = 0; i <= 2; i++) {
 var tableView = Ti.UI.createTableView({
 	data: data,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	backgroundImage: null,
+	backgroundColor: 'transparent',
+	rowBackgroundColor: 'white',
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
 });
 

@@ -25,7 +25,8 @@ var tableView = Ti.UI.createTableView({
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: Ui.createDestructionView(I('more.settings.reset.title')),
 	rowHeight: 45,
-	backgroundImage: null,
+	rowBackgroundColor: 'white',
+	backgroundColor: 'transparent',
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
 });
 
