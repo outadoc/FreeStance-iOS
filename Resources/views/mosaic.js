@@ -127,49 +127,31 @@ function getItem(label) {
 		canDelete: false,
 		channel: Utils.getChannelID(label),
 		height: 90,
-		width: 70
+		width: 90
 	});
 
 	var view = Ti.UI.createView({
 		height: 90,
-		width: 70
+		width: 90
 	});
 
 	var img_icon = Ti.UI.createButton({
 		image: '/img/dashboard.png',
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
-		height: 70,
-		width: 70,
+		height: 90,
+		width: 90,
 		top: 0
 	});
 
 	var img_logo = Ti.UI.createImageView({
 		image: '/img/logo/' + Utils.getChannelID(label) + '.png',
 		defaultImage: '/img/default_epg.png',
-		height: 40,
-		width: 40
-	});
-
-	var lbl_channel = Ti.UI.createLabel({
-		text: label,
-		bottom: 0,
-		color: 'white',
-		width: 70,
-		height: 17,
-		textAlign: 'center',
-		font: {
-			fontSize: 13
-		},
-		shadowColor: '#505050 ',
-		shadowOffset: {
-			x: 1,
-			y: 2
-		}
+		height: Ti.UI.SIZE,
+		width: 55
 	});
 
 	img_icon.add(img_logo);
 	view.add(img_icon);
-	view.add(lbl_channel);
 	item.add(view);
 
 	return item;
