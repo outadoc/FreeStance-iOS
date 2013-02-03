@@ -6,14 +6,11 @@ Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
-var dataTNT = [];
-var dataFree = [];
-var dataCanal = [];
-
 var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Arte', 'D8', 'W9', 'TMC', 'NT1', 'NRJ12', 'LCP', 'France 4', 'BFM TV', 'i>TELE', 'D17', 'Gulli', 'France Ô', 'HD1', 'L\'Equipe 21', '6ter', 'Numéro 23', 'RMC Découverte', 'Chérie 25'];
 var labelsFree = ['RTL9', 'Vivolta', 'AB1', 'Disney Channel', 'NRJ Hits', 'Clubbing TV', 'O Five', 'BeBlack', 'TV5 Monde', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
 var labelsCanal = ['Canal+', 'C+ Cinéma', 'C+ Sport', 'C+ Décalé', 'C+ Family'];
 
+var dashboards = [];
 var loadingWin = Ui.createLoadingWindow();
 
 win.addEventListener('focus', updateProps);
@@ -49,69 +46,31 @@ var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 win.setTitleControl(dashboardTabs);
 loadingWin.open();
 
-var dashboardTNT = Ti.UI.createDashboardView({
-	editable: false,
-	top: 0,
-	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
-	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4
-});
+dashboards[0] = getDashboard(labelsTNT, true);
+dashboards[1] = getDashboard(labelsFree, false);
+dashboards[2] = getDashboard(labelsCanal, false);
 
-for(var i = 0; i < labelsTNT.length; i++) {
-	dataTNT.push(getItem(labelsTNT[i]));
+for(var i = 0; i < dashboards.length; i++) {
+	win.add(dashboards[i]);
 }
 
-dashboardTNT.setData(dataTNT);
-dashboardTNT.addEventListener('click', clickHandler);
-win.add(dashboardTNT);
-
-var dashboardFree = Ti.UI.createDashboardView({
-	editable: false,
-	top: 0,
-	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
-	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
-	visible: false
-});
-
-for(var i = 0; i < labelsFree.length; i++) {
-	dataFree.push(getItem(labelsFree[i]));
-}
-
-dashboardFree.setData(dataFree);
-dashboardFree.addEventListener('click', clickHandler);
-win.add(dashboardFree);
-
-var dashboardCanal = Ti.UI.createDashboardView({
-	editable: false,
-	top: 0,
-	height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
-	rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
-	visible: false
-});
-
-for(var i = 0; i < labelsCanal.length; i++) {
-	dataCanal.push(getItem(labelsCanal[i]));
-}
-
-dashboardCanal.setData(dataCanal);
 loadingWin.close();
-dashboardCanal.addEventListener('click', clickHandler);
-win.add(dashboardCanal);
 
 dashboardTabs.addEventListener('click', function(e) {
-	if(e.index == 1) {
-		dashboardTNT.hide();
-		dashboardCanal.hide();
-		loadingWin.close();
-		dashboardFree.show();
-	}  else if(e.index === 2) {
-		dashboardTNT.hide();
-		dashboardFree.hide();
-		loadingWin.close();
-		dashboardCanal.show();
-	} else if(e.index === 0) {
-		dashboardFree.hide();
-		dashboardCanal.hide();
-		dashboardTNT.show();
+	if(e.index != null) {
+		for(var i = 0; i < dashboards.length; i++) {
+			if(i != e.index) {
+				dashboards[i].hide();
+			}
+		}
+
+		dashboards[e.index].setOpacity(0);
+		dashboards[e.index].show();
+		dashboards[e.index].animate({
+			opacity: 1,
+			duration: 400,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT
+		});
 	}
 });
 
@@ -155,6 +114,27 @@ function getItem(label) {
 	item.add(view);
 
 	return item;
+}
+
+function getDashboard(labels, visible) {
+	var dashboard = Ti.UI.createDashboardView({
+		editable: false,
+		top: 0,
+		height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
+		rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
+		visible: visible
+	});
+
+	var data = [];
+
+	for(var i = 0; i < labels.length; i++) {
+		data.push(getItem(labels[i]));
+	}
+
+	dashboard.setData(data);
+	dashboard.addEventListener('click', clickHandler);
+
+	return dashboard;
 }
 
 function updateProps() {
