@@ -10,7 +10,6 @@ var labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Art
 var labelsFree = ['RTL9', 'Vivolta', 'AB1', 'Disney Channel', 'NRJ Hits', 'Clubbing TV', 'O Five', 'BeBlack', 'TV5 Monde', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'Renault TV', 'AB Moteurs', 'Poker Channel', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Astro Center', 'Radio'];
 var labelsCanal = ['Canal+', 'C+ Cinéma', 'C+ Sport', 'C+ Décalé', 'C+ Family'];
 
-var dashboards = [];
 var loadingWin = Ui.createLoadingWindow();
 
 win.addEventListener('focus', updateProps);
@@ -44,26 +43,33 @@ var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 });
 
 win.setTitleControl(dashboardTabs);
+
+//we're loading things
 loadingWin.open();
 
-dashboards[0] = getDashboard(labelsTNT, true);
-dashboards[1] = getDashboard(labelsFree, false);
-dashboards[2] = getDashboard(labelsCanal, false);
+//get all three dashboards, one is visible, the others are not
+var dashboards = [getDashboard(labelsTNT, true), getDashboard(labelsFree, false), getDashboard(labelsCanal, false)];
 
+//add all of them to the window
 for(var i = 0; i < dashboards.length; i++) {
 	win.add(dashboards[i]);
 }
 
+//stop loading
 loadingWin.close();
 
+//if we want to switch to another dashboard
 dashboardTabs.addEventListener('click', function(e) {
+	//if we actually clicked on a button
 	if(e.index != null) {
 		for(var i = 0; i < dashboards.length; i++) {
 			if(i != e.index) {
+				//hide all the ones we don't want to display
 				dashboards[i].hide();
 			}
 		}
-
+		
+		//set the opacity of the one we want to display to 0, and then fade in
 		dashboards[e.index].setOpacity(0);
 		dashboards[e.index].show();
 		dashboards[e.index].animate({
@@ -74,21 +80,16 @@ dashboardTabs.addEventListener('click', function(e) {
 	}
 });
 
-function clickHandler(e) {
-	if(e.item !== null) {
-		RequestHandler.callMultiKeys(e.item.channel.toString());
-	}
-}
-
+//get a single dashboarditem
 function getItem(label) {
 	var item = Ti.UI.createDashboardItem({
-		label: label,
 		canDelete: false,
 		channel: Utils.getChannelID(label),
 		height: 90,
 		width: 90
 	});
 
+	//add a view with custom icons to it
 	var view = Ti.UI.createView({
 		height: 90,
 		width: 90
@@ -116,6 +117,7 @@ function getItem(label) {
 	return item;
 }
 
+//get a single dashboard with an array of labels to display as items
 function getDashboard(labels, visible) {
 	var dashboard = Ti.UI.createDashboardView({
 		editable: false,
@@ -127,16 +129,24 @@ function getDashboard(labels, visible) {
 
 	var data = [];
 
+	//iterate through the labels and add corresponding items to the dashboard
 	for(var i = 0; i < labels.length; i++) {
 		data.push(getItem(labels[i]));
 	}
 
 	dashboard.setData(data);
-	dashboard.addEventListener('click', clickHandler);
+	
+	//when we click, this should happen
+	dashboard.addEventListener('click', function(e) {
+		if(e.item !== null) {
+			RequestHandler.callMultiKeys(e.item.channel.toString());
+		}
+	});
 
 	return dashboard;
 }
 
+//get properties
 function updateProps() {
 	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
 	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
