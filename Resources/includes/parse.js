@@ -1,21 +1,9 @@
 (function() {
 	exports.parseSingleProgram = function(item) {
 		try {
-			var fullTitle = item.getElementsByTagName('title').item(0).text;
-			var desc = item.getElementsByTagName('description').item(0).text;
-			var fullUrl = item.getElementsByTagName('link').item(0).text;
+			var fullTitle = (item.getElementsByTagName('title').item(0).text).replace(/\n/gi, ' ').replace('CANAL+', 'Canal+').replace('ARTE', 'Arte');
+			var desc = strip_tags(((item.getElementsByTagName('description').item(0).text).replace(/\n/gi, ' ').replace('&nbsp;', '').replace('[...]', '').split('/>'))[1], null);
 			var category = 'N/A';
-
-			fullTitle = fullTitle.replace(/\n/gi, ' ');
-			fullTitle = fullTitle.replace('CANAL+', 'Canal+');
-			fullTitle = fullTitle.replace('ARTE', 'Arte');
-
-			fullUrl = fullUrl.replace(/\n/gi, ' ');
-
-			desc = desc.replace(/\n/gi, ' ');
-			desc = desc.replace('&nbsp;', '');
-			desc = desc.replace('[...]', '');
-			desc = strip_tags(desc, null);
 
 			var descParts = desc.split('. ');
 
@@ -23,27 +11,16 @@
 				category = Utils.capitalize(descParts.shift());
 				desc = descParts.join('. ');
 			}
-
-			var itemParts = fullTitle.split(' : ');
-			var channel = itemParts[0];
-			itemParts = itemParts[1].split(' ');
-			var time = itemParts.shift();
-			time = time.replace('h', ':');
-			var title = itemParts.join(' ');
-
-			if(channel == 'i>TELE') {
-				desc = desc.split('/>')[1];
-			}
-
-			var channelID = Utils.getChannelID(channel);
+			
+			var titleComps = fullTitle.match(/(.*) : ([0-9]{2}h[0-9]{2}) (.*)/);
 
 			return {
-				title: title,
+				title: titleComps[3],
 				description: desc,
-				url: fullUrl,
-				startTime: time,
-				channelString: channel,
-				channelID: channelID,
+				url: (item.getElementsByTagName('link').item(0).text).replace(/\n/gi, ' '),
+				startTime: titleComps[2],
+				channelString: titleComps[1],
+				channelID: Utils.getChannelID(titleComps[1]),
 				category: category
 			};
 		} catch(e) {
