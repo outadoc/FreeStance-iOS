@@ -67,6 +67,7 @@ function loadRSSFeed() {
 				var xml = Ti.XML.parseString(xml_txt);
 				var itemList = xml.documentElement.getElementsByTagName('item');
 				
+				tableView.setData([]);
 				Parser.getAllRows(itemList, function(row) {
 					tableView.appendRow(row, {
 						animated: true
