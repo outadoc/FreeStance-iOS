@@ -8,6 +8,7 @@ Ti.include('/includes/strip_tags.js');
 
 var win = Ti.UI.currentWindow;
 var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT);
+var cachedData = [];
 
 var searchBar = Titanium.UI.createSearchBar({
 	hintText: I('epg.searchHint'),
@@ -37,57 +38,69 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 
 tabbedBar.addEventListener('click', function(e) {
 	if(e.index != null) {
-		loadRSSFeed();
+		loadRSSFeed(true);
 	}
 });
 
 win.setTitleControl(tabbedBar);
 
-Ti.App.addEventListener('beginreload', loadRSSFeed);
+Ti.App.addEventListener('beginreload', function(e) {
+	loadRSSFeed(false);
+});
 
-function loadRSSFeed() {
+function loadRSSFeed(useCache) {
 	if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
 		Ti.App.fireEvent('endreload', null);
 		displayError(Error.NETWORK);
 	} else {
 		loadingWin.open();
 		var url = null;
-		
+
 		if(tabbedBar.getIndex() === EPG.NOW) {
 			url = EPG.NOW_URL;
 		} else if(tabbedBar.getIndex() == EPG.TONIGHT) {
 			url = EPG.TONIGHT_URL;
 		}
-		
-		var xhr = Ti.Network.createHTTPClient({
-			timeout: 15000,
-			onload: function() {
-				var xml_txt = this.getResponseText();
-				xml_txt = xml_txt.replace(/(\r\n|\n|\r)/m, '');
-				var xml = Ti.XML.parseString(xml_txt);
-				var itemList = xml.documentElement.getElementsByTagName('item');
-				
-				tableView.setData([]);
-				Parser.getAllRows(itemList, function(row) {
-					tableView.appendRow(row, {
-						animated: true
-					});
-				})
-				
-				tabbedBar.lastIndex = tabbedBar.getIndex();
-				
-				loadingWin.close();
-				Ti.App.fireEvent('endreload', null);
-			},
-			onerror: function() {
-				displayError(Error.SERVER);
-				loadingWin.close();
-				Ti.App.fireEvent('endreload', null);
-			}
-		});
-		
-		xhr.open('GET', url);
-		xhr.send();
+
+		if(useCache && cachedData[tabbedBar.getIndex()] != null) {
+			tableView.setData(cachedData[tabbedBar.getIndex()]);
+			tabbedBar.lastIndex = tabbedBar.getIndex();
+			loadingWin.close();
+			Ti.App.fireEvent('endreload', null);
+		} else {
+			var xhr = Ti.Network.createHTTPClient({
+				timeout: 15000,
+				onload: function() {
+					var xml_txt = this.getResponseText();
+					xml_txt = xml_txt.replace(/(\r\n|\n|\r)/m, '');
+					var xml = Ti.XML.parseString(xml_txt);
+					var itemList = xml.documentElement.getElementsByTagName('item');
+
+					tableView.setData([]);
+					cachedData[tabbedBar.getIndex()] = [];
+					
+					Parser.getAllRows(itemList, function(row) {
+						tableView.appendRow(row, {
+							animated: true
+						});
+						cachedData[tabbedBar.getIndex()].push(row);
+					})
+
+					tabbedBar.lastIndex = tabbedBar.getIndex();
+
+					loadingWin.close();
+					Ti.App.fireEvent('endreload', null);
+				},
+				onerror: function() {
+					displayError(Error.SERVER);
+					loadingWin.close();
+					Ti.App.fireEvent('endreload', null);
+				}
+			});
+
+			xhr.open('GET', url);
+			xhr.send();
+		}
 	}
 }
 
