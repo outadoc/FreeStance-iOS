@@ -30,9 +30,6 @@ var css = '<style>body{font-family:Helvetica;font-size:15px;}</style>';
 if(win.helpTo == 'config') {
 	row_content.setHeight(I('more.help.content.config.height'));
 	webView.setHtml(css + I('more.help.content.config.content', Ti.App.name, Ti.App.name));
-} else if(win.helpTo == 'legal') {
-	row_content.setHeight(I('more.legal.height'));
-	webView.setHtml(css + I('more.legal.content', Ti.App.name, Ti.App.name) + '<div style="text-align:center"><img height="53" width="150" src="/img/outadev.png" alt="outa[dev]" /></div>');
 } else if(win.model == Model.FREEBOX_HD) {
 	if(win.helpTo == 'code') {
 		row_content.setHeight(I('more.help.content.fbxHD.code.height'));

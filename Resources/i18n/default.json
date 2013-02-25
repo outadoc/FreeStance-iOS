@@ -146,10 +146,11 @@
 			"subject": "Bug de %s %s",
 			"content": "App: %s <br />Version: %s<br />OS: %s %s<br />Modèle: %s<br />Version de Titanium: %s<br /><br />Description du bug: "
 		},
-		"legal": {
-			"title": "Mentions légales",
-			"content": "<p><strong>Free</strong> et <strong>Freebox</strong> sont des marques déposées de <strong>Illiad S.A.</strong></p><p>Les programmes TV de la journée et de la soirée sont fournis par <strong>Zap-Programme.fr</strong>.</p><p>Certaines icônes sont fournies par <strong>Sallee Design</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> est une marque déposée de <strong>Amazon.com, Inc</strong>.</p><p>Les logos de chaînes de télévision des bouquets TNT et Freebox sont les propriétés de leurs sociétés respectives correspondantes.</p><p><strong>%s</strong> est une app développée par <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> a été développée grâce à <strong>Appcelerator Titanium</strong>.</p><p>Modules Titanium utilisés :<ul><li><strong>ShareKit</strong> par 0x82</li></ul></p>",
-			"height": "535"
+		"credits": {
+			"title": "Crédits",
+			"developer": "Développeur : ",
+			"platform": "Plateforme : ",
+			"modules": "Modules : "
 		},
 		"about": "À propos...",
 		"preferences": "Préférences",
