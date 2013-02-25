@@ -82,19 +82,7 @@ dashboardTabs.addEventListener('click', function(e) {
 
 //get a single dashboarditem
 function getItem(label) {
-	var item = Ti.UI.createDashboardItem({
-		canDelete: false,
-		channel: Utils.getChannelID(label),
-		height: 90,
-		width: 90
-	});
-
 	//add a view with custom icons to it
-	var view = Ti.UI.createView({
-		height: 90,
-		width: 90
-	});
-
 	var img_icon = Ti.UI.createButton({
 		image: '/img/dashboard.png',
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
@@ -111,8 +99,14 @@ function getItem(label) {
 	});
 
 	img_icon.add(img_logo);
-	view.add(img_icon);
-	item.add(view);
+	
+	var item = Ti.UI.createDashboardItem({
+		canDelete: false,
+		image: img_icon.toImage(null, true),
+		channel: Utils.getChannelID(label),
+		height: 90,
+		width: 90
+	});
 
 	return item;
 }
