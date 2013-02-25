@@ -110,7 +110,7 @@
 				"fbxHD": {
 					"code": {
 						"content": "<p>Pour trouver le code télécommande de votre Freebox HD :</p><ol><li>Allez dans le menu Free en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Sélectionnez <strong>Paramètres</strong></li><li>Séléctionnez <strong>Informations Générales</strong></li></ol><p>Le code est le numéro à 8 chiffres se trouvant sur la ligne <strong>Code télécommande</strong>.</p>",
-						"height": "258"
+						"height": "263"
 					},
 					"hd": {
 						"content": "<p>Pour connaître l'identifiant du boîtier de votre Freebox HD  :</p><ol><li>Allez dans le menu Free en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Sélectionnez <strong>Paramètres</strong></li><li>Séléctionnez <strong>FTP</strong></li></ol><p>Sur la ligne <strong>Serveur</strong>, vous verrez une adresse sous la forme :</p><p><strong>ftp://freebox@<span style=\"color:red\">hd1</span>.freebox.fr</strong></p><p>La partie en rouge contient le numéro du boîtier; dans cet exemple, l'identifiant du boîtier est 1.</p>",
@@ -120,7 +120,7 @@
 				"fbxRev": {
 					"code": {
 						"content": "<p>Pour trouver le code télécommande de votre Freebox Player :</p><ol><li>Allez sur l'écran d'accueil en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Naviguez vers la gauche jusqu'à <strong>Réglages</strong></li><li>Séléctionnez <strong>Système</strong></li></ol><p>Le code est le numéro à 8 chiffres se trouvant sur la ligne <strong>Code télécommande à distance</strong>.</p>",
-						"height": "260"
+						"height": "270"
 					},
 					"hd": {
 						"content": "<p>L'identifiant du Freebox player n'est désormais plus affiché sur ce dernier.<br />Essayez d'utiliser les numéros de boîtier un par un dans FreeStance, puis déduisez-en celui qui fonctionne.</p>",
