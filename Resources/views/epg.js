@@ -53,21 +53,20 @@ function loadRSSFeed(useCache) {
 		Ti.App.fireEvent('endreload', null);
 		displayError(Error.NETWORK);
 	} else {
-		loadingWin.open();
-		var url = null;
-
-		if(tabbedBar.getIndex() === EPG.NOW) {
-			url = EPG.NOW_URL;
-		} else if(tabbedBar.getIndex() == EPG.TONIGHT) {
-			url = EPG.TONIGHT_URL;
-		}
-
 		if(useCache && cachedData[tabbedBar.getIndex()] != null) {
 			tableView.setData(cachedData[tabbedBar.getIndex()]);
 			tabbedBar.lastIndex = tabbedBar.getIndex();
-			loadingWin.close();
 			Ti.App.fireEvent('endreload', null);
 		} else {
+			loadingWin.open();
+			var url = null;
+
+			if(tabbedBar.getIndex() === EPG.NOW) {
+				url = EPG.NOW_URL;
+			} else if(tabbedBar.getIndex() == EPG.TONIGHT) {
+				url = EPG.TONIGHT_URL;
+			}
+
 			var xhr = Ti.Network.createHTTPClient({
 				timeout: 15000,
 				onload: function() {
@@ -78,7 +77,7 @@ function loadRSSFeed(useCache) {
 
 					tableView.setData([]);
 					cachedData[tabbedBar.getIndex()] = [];
-					
+
 					Parser.getAllRows(itemList, function(row) {
 						tableView.appendRow(row, {
 							animated: true
