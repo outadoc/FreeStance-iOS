@@ -5,7 +5,6 @@ exports.getDefaultBackground = function() {
 exports.createLoadingWindow = function(top) {
 	if(top === undefined) { top = '38%'; }
 
-	var timeoutID;
 	var win = Ti.UI.createWindow({
 		width: 320,
 		height: Ti.Platform.displayCaps.platformHeight,
@@ -22,16 +21,6 @@ exports.createLoadingWindow = function(top) {
 	});
 
 	win.add(view);
-
-	win.addEventListener('open', function(e) {
-		timeoutID = setTimeout(function() {
-			win.close();
-		}, 10000);
-	});
-
-	win.addEventListener('close', function(e) {
-		clearTimeout(timeoutID);
-	});
 
 	var spinWheel = Ti.UI.createActivityIndicator({
 		style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
