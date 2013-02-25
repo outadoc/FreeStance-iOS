@@ -82,7 +82,6 @@ dashboardTabs.addEventListener('click', function(e) {
 
 //get a single dashboarditem
 function getItem(label) {
-	//add a view with custom icons to it
 	var img_icon = Ti.UI.createButton({
 		image: '/img/dashboard.png',
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
