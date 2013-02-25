@@ -13,7 +13,7 @@ var searchBar = Titanium.UI.createSearchBar({
 	barColor: '#464646'
 });
 
-var tableView = Ti.UI.createTableView({
+var tableView = require('/includes/pull_to_refresh')({
 	filterAttribute: 'searchFilter',
 	search: searchBar
 });
@@ -44,106 +44,13 @@ tabbedBar.addEventListener('click', function(e) {
 
 win.setTitleControl(tabbedBar);
 
-var tableHeader = Ti.UI.createView({
-	backgroundColor: '#e2e7ed',
-	width: 320,
-	height: 60
-});
-
-tableView.setHeaderPullView(tableHeader);
-
-var border = Ti.UI.createView({
-	backgroundColor: '#576c89',
-	height: 1,
-	bottom: 0
-});
-
-tableHeader.add(border);
-
-var arrow = Ti.UI.createView({
-	backgroundImage: '/img/arrow.png',
-	width: 23,
-	height: 53,
-	bottom: 10,
-	left: 20
-});
-
-tableHeader.add(arrow);
-
-var statusLabel = Ti.UI.createLabel({
-	text: I('epg.refresh.pullToRefresh'),
-	left: 65,
-	width: 200,
-	bottom: 30,
-	height: Ti.UI.SIZE,
-	color: '#788193',
-	textAlign: 'left',
-	font: {
-		fontSize: 14,
-		fontWeight: 'bold'
-	},
-	shadowColor: '#f6f8fa',
-	shadowOffset: {
-		x: 0,
-		y: 1
-	}
-});
-
-tableHeader.add(statusLabel);
-
-var lastUpdatedLabel = Ti.UI.createLabel({
-	text: I('epg.refresh.updated', Utils.getFullDate()),
-	left: 65,
-	width: 200,
-	bottom: 15,
-	height: Ti.UI.SIZE,
-	color: '#788193',
-	textAlign: 'left',
-	font: {
-		fontSize: 13
-	},
-	shadowColor: '#f6f8fa',
-	shadowOffset: {
-		x: 0,
-		y: 1
-	}
-});
-
-tableHeader.add(lastUpdatedLabel);
-
-var actInd = Ti.UI.createActivityIndicator({
-	left: 20,
-	bottom: 13,
-	width: 30,
-	height: 30,
-	style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK
-});
-
-tableHeader.add(actInd);
-
-var pulling = false;
-var reloading = false;
-
-function beginReloading() {
+Ti.App.addEventListener('beginreload', function() {
 	if(tabbedBar.getIndex() === EPG.NOW) {
 		loadRSSFeed(EPG.NOW_URL);
 	} else {
 		loadRSSFeed(EPG.TONIGHT_URL);
 	}
-}
-
-function endReloading() {
-	reloading = false;
-	lastUpdatedLabel.setText(I('epg.refresh.updated', Utils.getFullDate()));
-	statusLabel.setText(I('epg.refresh.releaseToRefresh'));
-	actInd.hide();
-	arrow.show();
-	tableView.setContentInsets({
-		top: 0
-	}, {
-		animated: true
-	});
-}
+});
 
 function parseEPGRow(itemList, i) {
 	try {
@@ -314,7 +221,7 @@ function displayItems(itemList) {
 
 function loadRSSFeed(url) {
 	if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
-		endReloading();
+		Ti.App.fireEvent('endreload', null);
 		displayError(Error.NETWORK);
 	} else {
 		loadingWin.open();
@@ -330,12 +237,12 @@ function loadRSSFeed(url) {
 				tabbedBar.lastIndex = tabbedBar.getIndex();
 				
 				loadingWin.close();
-				endReloading();
+				Ti.App.fireEvent('endreload', null);
 			},
 			onerror: function() {
 				displayError(Error.SERVER);
 				loadingWin.close();
-				endReloading();
+				Ti.App.fireEvent('endreload', null);
 			}
 		});
 		xhr.open('GET', url);
@@ -362,52 +269,6 @@ function displayError(errorType) {
 	alert.setMessage(alert.getMessage() + ' (E' + errorType + ')');
 	alert.show();
 }
-
-tableView.addEventListener('scroll', function(e) {
-	var offset = e.contentOffset.y;
-	if(offset < -65.0 && !pulling && !reloading) {
-		var t = Ti.UI.create2DMatrix();
-		t = t.rotate(-180);
-		pulling = true;
-
-		arrow.animate({
-			transform: t,
-			duration: 180
-		});
-
-		statusLabel.setText(I('epg.refresh.releaseToRefresh'));
-	} else if((offset > -65.0 && offset < 0 ) && pulling && !reloading) {
-		pulling = false;
-		var t = Ti.UI.create2DMatrix();
-
-		arrow.animate({
-			transform: t,
-			duration: 180
-		});
-
-		statusLabel.setText(I('epg.refresh.pullToRefresh'));
-	}
-});
-
-tableView.addEventListener('dragEnd', function() {
-	if(pulling && !reloading) {
-		reloading = true;
-		pulling = false;
-		arrow.hide();
-		actInd.show();
-		statusLabel.setText(I('epg.refresh.loading'));
-
-		tableView.setContentInsets({
-			top: 60
-		}, {
-			animated: true
-		});
-		
-		tableView.scrollToTop(-60,true);
-		arrow.setTransform(Ti.UI.create2DMatrix());
-		beginReloading();
-	}
-});
 
 tableView.addEventListener('click', function(e) {
 	if(!e.rowData.isHeader && e.rowData.data.title != null) {
