@@ -1,21 +1,21 @@
 {
 	"welcome": {
 		"message": {
-			"title": "First launch",
-			"message": "Welcome to %s! To control your Freebox, you must configure the app first. Do it now?"
+			"title": "Premier lancement",
+			"message": "Bienvenue dans %s ! Pour contrôler votre Freebox, vous devez d'abord configurer l'app. Le faire maintenant ?"
 		},
 		"buttons": {
-			"yes": "Let's go!",
-			"no": "Later"
+			"yes": "C'est parti !",
+			"no": "Plus tard"
 		}
 	},
 	"network": {
 		"message": {
-			"title": "No network!",
-			"message": "You must be connected to a Freebox Wi-Fi network to make best use of %s.",
+			"title": "Pas de réseau !",
+			"message": "Vous devez être connecté à un réseau wifi Freebox pour utiliser au mieux %s.",
 			"epg": {
-				"connection": "You must be connected to Internet to use the program guide.",
-				"server": "An error occured when connecting to the server. Check your connection and try again."
+				"connection": "Vous devez être connecté à Internet pour utiliser le guide des programmes.",
+				"server": "Une erreur est survenue lors de la connexion au serveur. Vérifiez votre connection internet et réessayez."
 			}
 		},
 		"buttons": {
@@ -24,139 +24,139 @@
 	},
 	"labels": {
 		"options": "Options",
-		"mosaic": "Mosaic",
-		"more": "More",
-		"epg": "EPG",
+		"mosaic": "Mosaïque",
+		"more": "Plus",
+		"epg": "Guide",
 		"code": "Code",
 		"config": "Config",
-		"box": "Box",
-		"help": "Help",
+		"box": "Boîtier",
+		"help": "Aide",
 		"imdb": "IMDb",
 		"volume": "Vol.",
 		"program": "Prog."
 	},
 	"epg": {
-		"searchHint": "Search a program...",
-		"now": "Currently",
-		"tonight": "Tonight",
-		"programNotFound": "Program not found",
+		"searchHint": "Rechercher un programme...",
+		"now": "En ce moment",
+		"tonight": "Ce soir",
+		"programNotFound": "Programme non trouvé",
 		"refresh": {
-			"pullToRefresh": "Pull to refresh...",
-			"releaseToRefresh": "Release to refresh...",
-			"loading": "Loading...",
-			"updated": "Updated : %s"
+			"pullToRefresh": "Tirez pour actualiser...",
+			"releaseToRefresh": "Relâchez pour actualiser...",
+			"loading": "Chargement...",
+			"updated": "Actualisé : %s"
 		},
 		"details": {
-			"title": "Program Details",
+			"title": "Détails programme",
 			"description": "Description :",
-			"noPreview": "No preview available",
+			"noPreview": "Pas d'aperçu disponible",
 			"buttons": {
-				"moreInfo": "More Info",
-				"watch": "Watch",
-				"imdb": "IMDb Page"
+				"moreInfo": "Plus d'infos",
+				"watch": "Regarder",
+				"imdb": "Fiche IMDb"
 			}
 		},
-		"tweet": "I'm watching \"%s\" on %s (via #%s)"
+		"tweet": "Je regarde \"%s\" sur %s (via #%s)"
 	},
 	"buttons": {
-		"list": "List",
-		"hdd": "Hard Drive",
+		"list": "Liste",
+		"hdd": "HDD",
 		"pip": "PIP",
-		"epg": "EPG",
-		"mail": "Mail",
+		"epg": "Guide",
+		"mail": "Répondeur",
 		"aux": "AUX",
-		"close": "Back",
-		"mute": "Mute",
+		"close": "Retour",
+		"mute": "Muet",
 		"ok": "OK"
 	},
 	"profile": {
-		"1": "Profile 1",
-		"2": "Profile 2",
-		"3": "Profile 3"
+		"1": "Profil 1",
+		"2": "Profil 2",
+		"3": "Profil 3"
 	},
 	"more": {
 		"settings": {
-			"title": "Settings",
+			"title": "Réglages",
 			"profile": {
-				"title": "Profile",
-				"header": "Profile to modify",
-				"prefix": "Profile %s"
+				"title": "Profil",
+				"header": "Profil à modifier",
+				"prefix": "Profil %s"
 			},
 			"code": {
-				"title": "Remote Code",
-				"header": "Profile Informations"
+				"title": "Code télécommande",
+				"header": "Informations du profil"
 			},
 			"hd": {
-				"title": "Box Number",
-				"prefix": "TV Box n°%s"
+				"title": "N° du boîtier TV",
+				"prefix": "Boîtier TV n°%s"
 			},
-			"model": "Model",
-			"otherHeader": "Other",
+			"model": "Modèle",
+			"otherHeader": "Autres",
 			"reset": {
-				"title": "Default Settings",
-				"popupTitle": "Reset Settings",
-				"message": "Do you really want to delete all %s data ? This operation is not undoable.",
-				"yes": "Reset",
-				"cancel": "Cancel"
+				"title": "Réglages par défaut",
+				"popupTitle": "Réinitialiser les réglages",
+				"message": "Voulez-vous vraiment supprimer toutes les données de %s ? Cette opération est irréversible.",
+				"yes": "Réinitialiser",
+				"cancel": "Annuler"
 			}
 		},
 		"help": {
-			"title": "Help",
+			"title": "Aide",
 			"content": {
 				"config": {
-					"content": "<p>To configure %s so the app functions with your Freebox, you first have to get the remote code and the box number for each of them (see the sections of the corresponding helps).</p><p>Go to the <strong>More</strong> tab, and then in the <strong>Settings</strong> section.</p><p>%s ables you to use the different profiles so you can control three different Freebox and easily switch between them.</p><p><ol><li>Choose the profile to modify</li><li>Enter the remote code of the Freebox to control</li><li>Enter the ID of the box to control</li><li>Choose the model of the Freebox to control (Freebox HD (v5) or Freebox Révolution (v6))</li></ol><p>You can set <strong>advanced options</strong> in the <strong>Settings</strong> app of your device.</p><ul><li><strong>Volume repeat</strong>: if active, a press on one of the volume buttons will be repeated at a regular interval as long as you keep the finger on the button. The interval in question can be modified thanks to the corresponding slider.</li><br /><li><strong>Program repeat</strong>: if active, a press on one of the program buttons will be repeated at a regular interval as long as you keep the finger on the button. The interval in question can be modified thanks to the corresponding slider.</li><br /><li><strong>Long Press</strong>: if active, when you press a button a certain time, the press will be considered as long (the same way than with the original remote). The delay in question can be modified thanks to the corresponding slider.</li></ul>",
-					"height": "900"
+					"content": "<p>Pour configurer %s afin que l'app fonctionne avec vos Freebox, il vous faut d'abord récupérer le code télécommande et le numéro du boîtier TV pour chacune d'entre elles (voir les sections de l'aide correspondantes).</p><p>Rendez-vous ensuite dans l'onglet <strong>Plus</strong> de l'app, et enfin dans la section <strong>Options</strong>.</p><p>%s vous permet d'utiliser trois profils différents afin de contrôler trois Freebox différentes et d'en changer facilement.</p><p><ol><li>Choisissez le profil à modifier</li><li>Tapez le code télécommande de la Freebox à contrôler</li><li>Tapez le numéro du boîtier à contrôler</li><li>Choisissez le modèle de la Freebox à contrôler (Freebox HD v5 ou Freebox Révolution v6)</li></ol><p>Vous disposez d'<strong>options avancées</strong> dans l'application <strong>Réglages</strong> de votre appareil.</p><ul><li><strong>Répétition du volume</strong>: si activé, l'appui sur un bouton du volume sera répété à intervalle régulière tant que vous gardez le doigt sur le bouton. L'intervalle en question est modifiable grâce au curseur correspondant.</li><br /><li><strong>Répétition du programme</strong>: si activé, l'appui sur un bouton \"programme\" sera répété à intervalle régulière tant que vous gardez le doigt sur le bouton. L'intervalle en question est modifiable grâce au curseur correspondant.</li><br /><li><strong>Appui long</strong>: si activé, lorsque vous appuierez un certain temps sur un bouton, l'appui sera considéré comme long (de la même façon qu'avec la télécommande d'origine). Le délai en question est modifiable grâce au curseur correspondant.</li></ul>",
+					"height": "980"
 				},
 				"fbxHD": {
 					"code": {
-						"content": "<p>To find the remote code of your Freebox HD :</p><ol><li>Go to the Free menu by pressing the <strong>Free</strong> key of your original remote</li><li>Select <strong>Paramètres</strong></li><li>Select <strong>Informations Générales</strong></li></ol><p>The code is the 8-digit number you can find on the <strong>Code télécommande</strong> line.</p>",
-						"height": "207"
+						"content": "<p>Pour trouver le code télécommande de votre Freebox HD :</p><ol><li>Allez dans le menu Free en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Sélectionnez <strong>Paramètres</strong></li><li>Séléctionnez <strong>Informations Générales</strong></li></ol><p>Le code est le numéro à 8 chiffres se trouvant sur la ligne <strong>Code télécommande</strong>.</p>",
+						"height": "258"
 					},
 					"hd": {
-						"content": "<p>To find the box ID of your Freebox HD  :</p><ol><li>Go to the Free menu by pressing the <strong>Free</strong> key of your original remote</li><li>Select <strong>Paramètres</strong></li><li>Select <strong>FTP</strong></li></ol><p>On the <strong>Serveur</strong> line, you will see an address of this shape :</p><p><strong>ftp://freebox@<span style=\"color:red\">hd1</span>.freebox.fr</strong></p><p>The part in red contains the box ID; in this example, the box ID is 1.</p>",
-						"height": "277"
+						"content": "<p>Pour connaître l'identifiant du boîtier de votre Freebox HD  :</p><ol><li>Allez dans le menu Free en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Sélectionnez <strong>Paramètres</strong></li><li>Séléctionnez <strong>FTP</strong></li></ol><p>Sur la ligne <strong>Serveur</strong>, vous verrez une adresse sous la forme :</p><p><strong>ftp://freebox@<span style=\"color:red\">hd1</span>.freebox.fr</strong></p><p>La partie en rouge contient le numéro du boîtier; dans cet exemple, l'identifiant du boîtier est 1.</p>",
+						"height": "335"
 					}
 				},
 				"fbxRev": {
 					"code": {
-						"content": "<p>To find the remote code of your Freebox Player :</p><ol><li>Go to the home screen by pressing the <strong>Free</strong> key of your original remote</li><li>Browse to the left until <strong>Réglages</strong> is selected</li><li>Select <strong>Système</strong></li></ol><p>The code is the 8-digit number you can find on the <strong>Code télécommande à distance</strong> line.</p>",
-						"height": "245"
+						"content": "<p>Pour trouver le code télécommande de votre Freebox Player :</p><ol><li>Allez sur l'écran d'accueil en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Naviguez vers la gauche jusqu'à <strong>Réglages</strong></li><li>Séléctionnez <strong>Système</strong></li></ol><p>Le code est le numéro à 8 chiffres se trouvant sur la ligne <strong>Code télécommande à distance</strong>.</p>",
+						"height": "260"
 					},
 					"hd": {
-						"content": "<p>To find the box ID of your Freebox Player :</p><ol><li>Go to the home screen by pressing the <strong>Free</strong> key of your original remote</li><li>Browse to the left until <strong>Réglages</strong> is selected</li><li>Select <strong>Système</strong></li></ol><p>The ID is on the line <strong>Identifiant du Freebox Player</strong>.</p>",
-						"height": "207"
+						"content": "<p>Pour connaître l'identifiant de votre Freebox Player :</p><ol><li>Allez sur l'écran d'accueil en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Naviguez vers la gauche jusqu'à <strong>Réglages</strong></li><li>Séléctionnez <strong>Système</strong></li></ol><p>L'identifiant se trouve sur la ligne <strong>Identifiant du Freebox Player</strong>.</p>",
+						"height": "240"
 					}
 				}
 			},
 			"hd": {
-				"title": "Find the box number",
-				"winTitle": "TV Box"
+				"title": "Trouver le numéro du boîtier",
+				"winTitle": "Boîtier TV"
 			},
 			"code": {
-				"title": "Find the remote code",
-				"winTitle": "Remote code"
+				"title": "Trouver le code télécommande",
+				"winTitle": "Code télécommande"
 			},
-			"config": "Configure the app"
+			"config": "Configurer l'application"
 		},
-		"website": "Website",
+		"website": "Site web",
 		"twitter": "Twitter",
-		"contact": "Contact the developer",
+		"contact": "Contacter le développeur",
 		"bugReport": {
-			"title": "Bug Report",
+			"title": "Reporter un bug",
 			"subject": "Bug de %s %s",
-			"content": "App: %s <br />Version: %s<br />OS: %s %s<br />Model: %s<br />Titanium Version: %s<br /><br />Bug Description: "
+			"content": "App: %s <br />Version: %s<br />OS: %s %s<br />Modèle: %s<br />Version de Titanium: %s<br /><br />Description du bug: "
 		},
 		"legal": {
-			"title": "Legal Notice",
-			"content": "<p><strong>Free</strong> and <strong>Freebox</strong> are registered trademarks of <strong>Illiad S.A.</strong></p><p>Evening and day program guides are provided by <strong>Zap-Programme.fr</strong>.</p><p>Some icons were provided by <strong>Sallee Design</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> is a registered trademark of <strong>Amazon.com, Inc</strong>.</p><p>The TV channel logos of the TNT and Freebox packs are the properties of their respective societies.</p><p><strong>%s</strong> is an app developped by <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> was developed thanks to <strong>Appcelerator Titanium</strong>.</p><p>Used Titanium Modules:<ul><li><strong>ShareKit</strong> by 0x82</li></ul></p>",
-			"height": "555"
+			"title": "Mentions légales",
+			"content": "<p><strong>Free</strong> et <strong>Freebox</strong> sont des marques déposées de <strong>Illiad S.A.</strong></p><p>Les programmes TV de la journée et de la soirée sont fournis par <strong>Zap-Programme.fr</strong>.</p><p>Certaines icônes sont fournies par <strong>Sallee Design</strong>.</p><p><strong>IMDb (Internet Movie Database)</strong> est une marque déposée de <strong>Amazon.com, Inc</strong>.</p><p>Les logos de chaînes de télévision des bouquets TNT et Freebox sont les propriétés de leurs sociétés respectives correspondantes.</p><p><strong>%s</strong> est une app développée par <strong>Baptiste Candellier (outadoc)</strong>.</p><p><strong>%s</strong> a été développée grâce à <strong>Appcelerator Titanium</strong>.</p><p>Modules Titanium utilisés :<ul><li><strong>ShareKit</strong> par 0x82</li></ul></p>",
+			"height": "535"
 		},
-		"about": "About...",
-		"preferences": "Preferences",
+		"about": "À propos...",
+		"preferences": "Préférences",
 		"webview": {
 			"error": {
-				"title": "Error...",
-				"message": "Error while loading %s: %s"
+				"title": "Erreur...",
+				"message": "Erreur lors du chargement de %s: %s"
 			}
 		}
 	}
