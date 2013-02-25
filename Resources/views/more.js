@@ -13,7 +13,7 @@ var tableView = Ti.UI.createTableView({
 		{leftImage: '/img/icon_info.png',title: I('more.twitter'), hasChild: true, path: 'subviews/website.js', thisUrl: 'http://mobile.twitter.com/outadev', isWebsite: true},
 		{leftImage: '/img/icon_contact.png',title: I('more.contact'), hasChild: true, email: 'outadev@outadoc.fr'},
 		{leftImage: '/img/icon_bug.png',title: I('more.bugReport.title'), hasChild: true, email: 'bug-report@outadoc.fr', bug: true},
-		{leftImage: '/img/icon_heart.png',title: I('more.credits.title'), hasChild: true, path: 'subviews/credits.js', header: ''}
+		{leftImage: '/img/icon_heart.png',title: I('more.credits.title'), hasChild: true, path: 'subviews/credits.js', header: '', isCredits: true}
 	],
 	/*@formatter:on*/
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
@@ -41,7 +41,7 @@ tableView.addEventListener('click', function(e) {
 				url: e.rowData.path,
 				title: e.rowData.title,
 				barColor: '#464646',
-				backgroundColor: '#323232'
+				backgroundColor: (e.rowData.isCredits) ? '#323232' : Ui.getDefaultBackground()
 			});
 		}
 		Ti.UI.currentTab.open(win, {
