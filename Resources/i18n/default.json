@@ -123,8 +123,8 @@
 						"height": "260"
 					},
 					"hd": {
-						"content": "<p>L'identifiant du Freebox player n'est désormais plus affiché sur ce dernier.<br />Essayez d'utiliser les identifiants un par un dans FreeStance, puis déduisez-en celui qui fonctionne.</p>",
-						"height": "240"
+						"content": "<p>L'identifiant du Freebox player n'est désormais plus affiché sur ce dernier.<br />Essayez d'utiliser les numéros de boîtier un par un dans FreeStance, puis déduisez-en celui qui fonctionne.</p>",
+						"height": "120"
 					}
 				}
 			},
