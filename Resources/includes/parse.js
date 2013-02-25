@@ -38,7 +38,7 @@
 				hasChild: true,
 				height: Ti.UI.SIZE,
 				selectedBackgroundColor: '#565656',
-				searchFilter: progData.title + ' ' + progData.channel,
+				searchFilter: progData.title + ' ' + progData.channelString,
 				data: progData
 			});
 
