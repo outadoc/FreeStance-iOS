@@ -319,7 +319,7 @@
 
 			button.addEventListener('touchstart', on_btn_touchstart);
 			button.addEventListener('touchend', on_btn_cancel);
-			button.addEventListener('click', on_btn_click);
+			button.addEventListener('singletap', on_btn_click);
 			button.addEventListener('touchcancel', on_btn_cancel);
 
 			view.add(button);
