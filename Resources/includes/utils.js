@@ -186,9 +186,6 @@ exports.getChannelID = function(channel) {
 		case 'Equidia Life':
 			id = 138;
 			break;
-		case 'Renault TV':
-			id = 139;
-			break;
 		case 'AB Moteurs':
 			id = 143;
 			break;
@@ -227,6 +224,9 @@ exports.getChannelID = function(channel) {
 			break;
 		case 'Best of Shopping':
 			id = 193;
+			break;
+		case 'Renault TV':
+			id = 194;
 			break;
 		case 'Astro Center':
 			id = 195;
