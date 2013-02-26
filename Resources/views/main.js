@@ -182,6 +182,14 @@
 		//hasn't been pressed anymore, heh ?
 		e.source.hasBeenPressed = false;
 	}
+	
+	function on_btn_cancel(e) {
+		clearInterval(timeouts.repeatIntervalID);
+		clearTimeout(timeouts.longPressTimeoutID);
+		timeouts.longPressTimeoutID = null;
+		timeouts.repeatIntervalID = null;
+		e.source.hasBeenPressed = false;
+	}
 
 	//the function resets the view so we can update it (to change buttons,..)
 	function updateButtons() {
@@ -309,22 +317,10 @@
 				button.canBeLong = prefs.longPress;
 			}
 
-			button.addEventListener('touchstart', function(e) {
-				on_btn_touchstart(e);
-			});
-
-			//two events with the same callback, as touchend and touchcancel are quite the same
-			button.addEventListener('click', function(e) {
-				on_btn_click(e);
-			});
-
-			button.addEventListener('touchcancel', function() {
-				clearInterval(timeouts.repeatIntervalID);
-				clearTimeout(timeouts.longPressTimeoutID);
-				timeouts.longPressTimeoutID = null;
-				timeouts.repeatIntervalID = null;
-				button.hasBeenPressed = false;
-			});
+			button.addEventListener('touchstart', on_btn_touchstart);
+			button.addEventListener('touchend', on_btn_cancel);
+			button.addEventListener('click', on_btn_click);
+			button.addEventListener('touchcancel', on_btn_cancel);
 
 			view.add(button);
 		}
