@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>Keys Repetition</string>
+			<string>Répétition des touches</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -26,7 +26,7 @@
 			<key>Key</key>
 			<string>volume.repeat</string>
 			<key>Title</key>
-			<string>Volume Repetition</string>
+			<string>Répétition du volume</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -48,7 +48,7 @@
 			<key>Key</key>
 			<string>program.repeat</string>
 			<key>Title</key>
-			<string>Program Repetition</string>
+			<string>Répétition du programme</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -66,7 +66,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Long Press Simulation</string>
+			<string>Simulation de l'appui long</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -76,7 +76,7 @@
 			<key>Key</key>
 			<string>longpress</string>
 			<key>Title</key>
-			<string>Long Press</string>
+			<string>Appui long</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -104,7 +104,7 @@
 			<key>Key</key>
 			<string>debugmode</string>
 			<key>Title</key>
-			<string>Debug Mode</string>
+			<string>Mode débug</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -112,15 +112,15 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>EPG Default Tab</string>
+			<string>Onglet par défaut guide</string>
 			<key>Key</key>
 			<string>epg.defaultTab</string>
 			<key>DefaultValue</key>
 			<string>1</string>
 			<key>Titles</key>
 			<array>
-				<string>Now</string>
-				<string>Tonight</string>
+				<string>Maintenant</string>
+				<string>Ce soir</string>
 			</array>
 			<key>Values</key>
 			<array>
