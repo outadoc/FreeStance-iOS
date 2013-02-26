@@ -205,7 +205,8 @@ var b_watch = Ti.UI.createButton({
 	bottom: 10,
 	left: 105,
 	font: {
-		fontSize: 17
+		fontSize: 17,
+		fontWeight: 'bold'
 	},
 	backgroundImage: '/img/button.png',
 	backgroundSelectedImage: '/img/button_selected.png'
