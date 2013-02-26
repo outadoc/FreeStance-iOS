@@ -18,6 +18,9 @@ exports.callKey = function(key, isLong, callback) {
 	if(this.model == null) {
 		this.model = Model.UNKNOWN;
 	}
+	if(callback === undefined) {
+		callback = function(){};
+	}
 
 	var xhr = Ti.Network.createHTTPClient({
 		onload: callback
@@ -37,7 +40,7 @@ exports.callKey = function(key, isLong, callback) {
 exports.callMultiKeys = function(channel) {
 	//if there's only one digit, call it simply
 	if(channel.length == 1) {
-		exports.callKey(channel.charAt(0), false, function(){});
+		exports.callKey(channel.charAt(0), false);
 	} else {
 		//if there's more than one digit, call the first one
 		exports.callKey(channel.charAt(0), true, function(e) {
