@@ -104,7 +104,7 @@
 					text: row.data.startTime,
 					color: '#000',
 					textAlign: 'left',
-					left: 10,
+					left: 7,
 					height: Ti.UI.SIZE,
 					width: Ti.UI.SIZE,
 					top: 8,
