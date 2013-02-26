@@ -2,7 +2,8 @@
 var Model = {
 	FREEBOX_HD: 1,
 	FREEBOX_REVOLUTION: 2,
-	FREEBOX_PLAYER: 2.1
+	FREEBOX_PLAYER: 2.1,
+	UNKNOWN: 0
 };
 
 //the profile...

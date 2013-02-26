@@ -6,14 +6,14 @@ var hd, code, model, profile;
 //can call any key, but it must be formatted as in the freebox API
 exports.callKey = function(key, isLong) {
 	//checking if we call the function with already set config values; if we don't, get them
-	if(this.profile === null) {
-		profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
-	} if(this.hd === null) {
-		hd = Ti.App.Properties.getString('profile' + this.profile + '.hd', HD.HD_1);
-	} if(this.code === null) {
-		code = Ti.App.Properties.getString('profile' + this.profile + '.code', '');
-	} if(this.model === null) {
-		model = Model.FREEBOX_HD;
+	if(this.profile == null) {
+		this.profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
+	} if(this.hd == null) {
+		this.hd = Ti.App.Properties.getString('profile' + this.profile + '.hd', HD.HD_1);
+	} if(this.code == null) {
+		this.code = Ti.App.Properties.getString('profile' + this.profile + '.code', '');
+	} if(this.model == null) {
+		this.model = Model.UNKNOWN;
 	}
 
 	var xhr = Ti.Network.createHTTPClient();
