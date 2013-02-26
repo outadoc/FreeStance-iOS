@@ -50,7 +50,7 @@ tableView.footerView.getChildren()[0].addEventListener('click', function(e) {
 				Titanium.App.Properties.removeProperty(props[i]);
 			}
 			//get the updated values
-			setFields();
+			win.fireEvent('focus', {});
 		}
 	});
 });
