@@ -38,17 +38,17 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 
 tabbedBar.addEventListener('click', function(e) {
 	if(e.index != null) {
-		loadRSSFeed(true);
+		loadRSSFeed(true, true);
 	}
 });
 
 win.setTitleControl(tabbedBar);
 
 Ti.App.addEventListener('beginreload', function(e) {
-	loadRSSFeed(false);
+	loadRSSFeed(false, false);
 });
 
-function loadRSSFeed(useCache) {
+function loadRSSFeed(useCache, displayLoad) {
 	if(Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
 		Ti.App.fireEvent('endreload', null);
 		displayError(Error.NETWORK);
@@ -58,7 +58,10 @@ function loadRSSFeed(useCache) {
 			tabbedBar.lastIndex = tabbedBar.getIndex();
 			Ti.App.fireEvent('endreload', null);
 		} else {
-			loadingWin.open();
+			if(displayLoad) {
+				loadingWin.open();
+			}
+			
 			var url = null;
 
 			if(tabbedBar.getIndex() === EPG.NOW) {
@@ -141,4 +144,4 @@ tableView.addEventListener('click', function(e) {
 	}
 });
 
-loadRSSFeed();
+loadRSSFeed(false, true);
