@@ -208,7 +208,7 @@
 			left: 207,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: 'white',
+			color: '#aeaeae',
 			font: {
 				fontSize: 14
 			}
@@ -218,7 +218,7 @@
 			left: 257,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: 'white',
+			color: '#aeaeae',
 			font: {
 				fontSize: 14
 			}
@@ -231,7 +231,8 @@
 		for(var i = 0; i < buttonList.length; i++) {
 			var button = Ti.UI.createButton(buttonList[i]);
 
-			button.setBorderRadius(2);
+			button.setBorderRadius(1);
+			button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
 			button.hasBeenPressed = false;
 
 			//if we're setting the home button, we add an image in it
@@ -246,17 +247,14 @@
 
 			//if we're setting one of the colored buttons, we change their properties
 			if(button.isColor) {
-				button.setBackgroundImage('/img/button_' + button.id + '.png');
-				button.setBackgroundSelectedImage('/img/button_' + button.id + '_selected.png');
-
 				if(button.id == 'red') {
-					button.setBorderColor('#e20f07');
+					button.setBackgroundColor('#e20f07');
 				} else if(button.id == 'yellow') {
-					button.setBorderColor('#e1c400');
+					button.setBackgroundColor('#e1c400');
 				} else if(button.id == 'blue') {
-					button.setBorderColor('#058cf5');
+					button.setBackgroundColor('#058cf5');
 				} else if(button.id == 'green') {
-					button.setBorderColor('#5fb40d');
+					button.setBackgroundColor('#5fb40d');
 				}
 
 				//if it's a freebox hd, we just change the button title to the corresponding letter
@@ -281,9 +279,8 @@
 				}
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundImage('/img/button.png');
-				button.setBackgroundSelectedImage('/img/button_selected.png');
-				button.setBorderColor('gray');
+				button.setBackgroundColor('#aeaeae');
+				button.setBorderColor('#a5a5a5');
 			}
 
 			if(button.isArrow) {

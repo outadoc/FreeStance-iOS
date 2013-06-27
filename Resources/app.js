@@ -9,7 +9,7 @@
 
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
-		backgroundColor: '#323232',
+		backgroundColor: '#efefef',
 		navBarHidden: true,
 		orientationModes: [Ti.UI.PORTRAIT],
 		barColor: '#464646'
