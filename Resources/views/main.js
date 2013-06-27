@@ -43,9 +43,7 @@
 	});
 
 	//setting the toolbar
-	win.setToolbar([Ui.createFlexibleSpace(), tabbedBar, Ui.createFlexibleSpace()], {
-		animated: false
-	});
+	win.setTitleControl(tabbedBar);
 
 	//the buttons and their placing
 	/*@formatter:off*/

@@ -17,9 +17,8 @@ win.addEventListener('focus', updateProps);
 var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	labels: [I('profile.1'), I('profile.2'), I('profile.3')],
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
-	bottom: 7,
-	height: '30',
-	width: '300',
+	height: 30,
+	width: 300,
 	backgroundColor: '#787878'
 });
 
@@ -28,21 +27,20 @@ tabbedBar.addEventListener('click', function(e) {
 	updateProps();
 });
 
-win.setToolbar([Ui.createFlexibleSpace(), tabbedBar, Ui.createFlexibleSpace()], {
-	animated: false
-});
-
 var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 	labels: ['TNT', 'Bouquet Free', 'Bouquet Canal'],
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
-	bottom: 7,
-	height: '30',
-	width: '300',
+	height: 30,
+	width: 300,
 	backgroundColor: '#787878',
 	index: 0
 });
 
-win.setTitleControl(dashboardTabs);
+win.setToolbar([Ui.createFlexibleSpace(), dashboardTabs, Ui.createFlexibleSpace()], {
+	animated: false
+});
+
+win.setTitleControl(tabbedBar);
 
 //we're loading things
 loadingWin.open();
@@ -83,11 +81,13 @@ dashboardTabs.addEventListener('click', function(e) {
 //get a single dashboarditem
 function getItem(label) {
 	var img_icon = Ti.UI.createButton({
-		image: '/img/dashboard.png',
+		//image: '/img/dashboard.png',
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
-		height: 90,
-		width: 90,
-		top: 0
+		backgroundColor: '#c7c7c7',
+		borderColor: '#c8c8c8',
+		borderRadius: 43,
+		height: 85,
+		width: 85
 	});
 
 	var img_logo = Ti.UI.createImageView({

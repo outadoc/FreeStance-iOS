@@ -10,7 +10,6 @@
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
 		backgroundColor: '#f5f5f5',
-		navBarHidden: true,
 		orientationModes: [Ti.UI.PORTRAIT],
 		barColor: '#464646'
 	});
@@ -18,7 +17,7 @@
 	var win2 = Ti.UI.createWindow({
 		url: 'views/mosaic.js',
 		barColor: '#464646',
-		backgroundColor: '#323232',
+		backgroundColor: '#f5f5f5',
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
