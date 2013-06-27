@@ -23,7 +23,8 @@ exports.callKey = function(key, isLong, callback) {
 	}
 
 	var xhr = Ti.Network.createHTTPClient({
-		onload: callback
+		onload: callback,
+		timeout: 3
 	});
 
 	if(!Ti.App.Properties.getBool('debugmode', false)) {
