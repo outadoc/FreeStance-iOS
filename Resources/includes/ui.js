@@ -1,5 +1,5 @@
 exports.getDefaultBackground = function() {
-	return '#d8d8d8';
+	return '#dfdfdf';
 }
 
 exports.createLoadingWindow = function(top) {
