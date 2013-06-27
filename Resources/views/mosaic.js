@@ -19,7 +19,7 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
 	height: 30,
 	width: 300,
-	backgroundColor: '#787878'
+	backgroundColor: Ui.getBarColor()
 });
 
 tabbedBar.addEventListener('click', function(e) {
@@ -32,7 +32,7 @@ var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
 	height: 30,
 	width: 300,
-	backgroundColor: '#787878',
+	backgroundColor: Ui.getBarColor(),
 	index: 0
 });
 
@@ -81,10 +81,9 @@ dashboardTabs.addEventListener('click', function(e) {
 //get a single dashboarditem
 function getItem(label) {
 	var img_icon = Ti.UI.createButton({
-		//image: '/img/dashboard.png',
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
-		backgroundColor: '#c7c7c7',
-		borderColor: '#c8c8c8',
+		backgroundColor: '#c5c5c5',
+		borderColor: '#c1c1c1',
 		borderRadius: 43,
 		height: 85,
 		width: 85
@@ -114,9 +113,9 @@ function getItem(label) {
 function getDashboard(labels, visible) {
 	var dashboard = Ti.UI.createDashboardView({
 		editable: false,
-		top: 0,
 		height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
 		rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
+		top: 5,
 		visible: visible
 	});
 
