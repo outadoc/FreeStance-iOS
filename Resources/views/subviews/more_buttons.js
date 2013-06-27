@@ -41,9 +41,9 @@
 		var button = Ti.UI.createButton(buttonList[i]);
 
 		button.setBorderRadius(2);
-		button.setBackgroundImage('/img/button.png');
-		button.setBackgroundSelectedImage('/img/button_selected.png');
-		button.setBorderColor('gray');
+		button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
+		button.setBackgroundColor('#aeaeae');
+		button.setBorderColor('#a5a5a5');
 
 		if(button.id == 'play') {
 			var img_button = Ti.UI.createImageView({

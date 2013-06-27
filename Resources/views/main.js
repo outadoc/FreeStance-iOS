@@ -140,7 +140,7 @@
 			//creating the window
 			var win_more = Ti.UI.createWindow({
 				url: 'subviews/more_buttons.js',
-				backgroundColor: '#323232',
+				backgroundColor: '#f5f5f5',
 				navBarHidden: true,
 				thisHd: RequestHandler.getHd(),
 				thisCode: RequestHandler.getCode(),
