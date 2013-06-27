@@ -40,8 +40,6 @@
 	tabbedBar.addEventListener('click', function(e) {
 		//setting the new profile to use
 		Ti.App.Properties.setInt('profileToUse', e.index + 1);
-		//updating the buttons so they can adapt themselves to the new profile
-		updateButtons();
 	});
 
 	//setting the toolbar
@@ -231,7 +229,7 @@
 		for(var i = 0; i < buttonList.length; i++) {
 			var button = Ti.UI.createButton(buttonList[i]);
 
-			button.setBorderRadius(1);
+			button.setBorderRadius(2);
 			button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
 			button.hasBeenPressed = false;
 
@@ -257,26 +255,14 @@
 					button.setBackgroundColor('#5fb40d');
 				}
 
-				//if it's a freebox hd, we just change the button title to the corresponding letter
-				if(RequestHandler.getModel() == Model.FREEBOX_HD) {
-					if(button.id == 'red') {
-						button.setTitle('B');
-					} else if(button.id == 'yellow') {
-						button.setTitle('Y');
-					} else if(button.id == 'blue') {
-						button.setTitle('X');
-					} else if(button.id == 'green') {
-						button.setTitle('A');
-					}
-				} else if(RequestHandler.getModel() == Model.FREEBOX_REVOLUTION) {//...and if it's a freebox révolution, we add an image in it
-					var img_button = Ti.UI.createImageView({
-						image: '/img/fbx_rev_overlay_' + button.id + '.png',
-						height: 35,
-						width: 35,
-						touchEnabled: false
-					});
-					button.add(img_button);
-				}
+				var img_button = Ti.UI.createImageView({
+					image: '/img/fbx_rev_overlay_' + button.id + '.png',
+					height: 35,
+					width: 35,
+					touchEnabled: false
+				});
+				
+				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
 				button.setBackgroundColor('#aeaeae');
@@ -341,9 +327,9 @@
 		prefs.longPress = Ti.App.Properties.getBool('longpress', true);
 		prefs.longPressLength = Ti.App.Properties.getInt('longpress.length', 600);
 
-		//updating the buttons; the user can also have change the profile to use
-		updateButtons();
 		//updating the tabbed bar to reflect the new profile
 		tabbedBar.index = RequestHandler.getProfile() - 1;
 	});
+	
+	updateButtons();
 })();
