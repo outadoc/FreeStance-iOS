@@ -1,6 +1,7 @@
 //a window that opens when you click on a row of the EPG, giving you extra information on the program you chose
 var RequestHandler = require('includes/callurl');
 var Utils = require('includes/utils');
+var Ui = require('includes/ui');
 var sharekit = require("com.0x82.sharekit");
 
 Ti.include('/includes/normalize_url.js');
@@ -33,7 +34,7 @@ sharekit.configure({
 //the label for the program title
 var lbl_title = Ti.UI.createLabel({
 	text: win.data.title,
-	color: 'white',
+	color: '#505050',
 	top: 5,
 	left: 10,
 	height: 20,
@@ -50,7 +51,9 @@ var progInfo = Ti.UI.createView({
 	left: 10,
 	width: 300,
 	height: 70,
-	backgroundImage: '/img/prog_info.png'
+	backgroundColor: '#909090',
+	borderColor: '#808080',
+	borderRadius: 4,
 });
 
 win.add(progInfo);
@@ -143,7 +146,7 @@ var lbl_description_title = Ti.UI.createLabel({
 	text: I('epg.details.description'),
 	top: 0,
 	left: 10,
-	color: 'white',
+	color: '#505050',
 	height: 20,
 	width: 300,
 	font: {
@@ -158,7 +161,7 @@ var lbl_description = Ti.UI.createLabel({
 	text: win.data.description + '\n ',
 	top: lbl_description_title.top + lbl_description_title.height,
 	left: 10,
-	color: 'white',
+	color: '#505050',
 	height: Ti.UI.SIZE,
 	width: 300
 });
@@ -175,8 +178,11 @@ var b_openweb = Ti.UI.createButton({
 	font: {
 		fontSize: 15
 	},
-	backgroundImage: '/img/button.png',
-	backgroundSelectedImage: '/img/button_selected.png'
+	backgroundColor: '#a5a5a5',
+	borderColor: '#9b9b9b',
+	selectedColor: '#3f3f3f',
+	borderRadius: 2,
+	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
 b_openweb.addEventListener('click', function() {
@@ -208,8 +214,11 @@ var b_watch = Ti.UI.createButton({
 		fontSize: 17,
 		fontWeight: 'bold'
 	},
-	backgroundImage: '/img/button.png',
-	backgroundSelectedImage: '/img/button_selected.png'
+	backgroundColor: '#a5a5a5',
+	borderColor: '#9b9b9b',
+	selectedColor: '#3f3f3f',
+	borderRadius: 2,
+	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
 b_watch.addEventListener('click', function() {
@@ -229,8 +238,11 @@ var b_imdb = Ti.UI.createButton({
 	font: {
 		fontSize: 15
 	},
-	backgroundImage: '/img/button.png',
-	backgroundSelectedImage: '/img/button_selected.png'
+	backgroundColor: '#a5a5a5',
+	borderColor: '#9b9b9b',
+	selectedColor: '#3f3f3f',
+	borderRadius: 2,
+	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
 b_imdb.addEventListener('click', function() {

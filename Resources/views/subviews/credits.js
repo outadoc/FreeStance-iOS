@@ -20,12 +20,12 @@ scrollView.add(img_logo);
 var lbl_app = Ti.UI.createLabel({
 	text: Ti.App.getName() + ' v' + Ti.App.getVersion(),
 	top: 0,
-	color: '#F8F8F8',
+	color: '#656565',
 	font: {
 		fontSize: 20,
 		fontWeight: 'bold'
 	},
-	shadowColor: 'black',
+	shadowColor: 'white',
 	shadowOffset: {
 		x: 0,
 		y: 1
@@ -37,10 +37,10 @@ scrollView.add(lbl_app);
 var lbl_credits = Ti.UI.createLabel({
 	text: I('more.credits.developer') + ' Baptiste Candellier (outadoc) for outa[dev]\n\n' + I('more.credits.platform') + ' Appcelerator Titanium\n\n' + I('more.credits.modules') + ' ShareKit par 0x82\n\nFree et Freebox sont des marques déposées de Illiad S.A.\nLes guides des programmes de la journée et de la soirée sont fournis par Zap-Programme.fr.\nCertaines icônes sont fournies par Sallee Design.\nIMDb (Internet Movie Database) est une marque déposée de Amazon.com, Inc.\nLes logos de chaînes de télévision des bouquets TNT et Freebox sont les propriétés de leurs sociétés respectives.',
 	font: {
-		fontSize: 16
+		fontSize: 15
 	},
-	color: 'white',
-	shadowColor: 'black',
+	color: '#707070',
+	shadowColor: 'white',
 	shadowOffset: {
 		x: 0,
 		y: 1
