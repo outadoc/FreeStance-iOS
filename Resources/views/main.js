@@ -4,6 +4,8 @@
 	var Ui = require('includes/ui');
 
 	Ti.include('/includes/lib/json.i18n.js');
+	Ti.include('/includes/enums.js');
+	
 	var win = Ti.UI.currentWindow;
 
 	//the properties for the current profile
