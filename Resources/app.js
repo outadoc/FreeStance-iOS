@@ -9,29 +9,29 @@
 
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
-		backgroundColor: '#f5f5f5',
-		orientationModes: [Ti.UI.PORTRAIT],
-		barColor: '#464646'
+		barColor: Ui.getBarColor(),
+		backgroundColor: Ui.getDefaultBackground(),
+		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win2 = Ti.UI.createWindow({
 		url: 'views/mosaic.js',
-		barColor: '#464646',
-		backgroundColor: '#f5f5f5',
+		barColor: Ui.getBarColor(),
+		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win3 = Ti.UI.createWindow({
 		url: 'views/epg.js',
-		backgroundColor: '#fff',
-		barColor: '#464646',
+		barColor: Ui.getBarColor(),
+		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win4 = Ti.UI.createWindow({
 		title: I('labels.more'),
 		url: 'views/more.js',
-		barColor: '#464646',
+		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});

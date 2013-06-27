@@ -3,6 +3,10 @@
 		return '#dfdfdf';
 	}
 	
+	exports.getBarColor = function() {
+		return '#909090';
+	}
+	
 	exports.createLoadingWindow = function(top) {
 		if(top === undefined) { top = '38%'; }
 	

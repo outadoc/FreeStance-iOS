@@ -36,7 +36,7 @@
 		bottom: 7,
 		height: '30',
 		width: '300',
-		backgroundColor: '#787878'
+		backgroundColor: Ui.getBarColor()
 	});
 
 	tabbedBar.addEventListener('click', function(e) {
@@ -206,7 +206,7 @@
 			left: 207,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#aeaeae',
+			color: '#a2a2a2',
 			font: {
 				fontSize: 14
 			}
@@ -216,7 +216,7 @@
 			left: 257,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#aeaeae',
+			color: '#a2a2a2',
 			font: {
 				fontSize: 14
 			}
@@ -265,8 +265,8 @@
 				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundColor('#aeaeae');
-				button.setBorderColor('#a5a5a5');
+				button.setBackgroundColor('#a5a5a5');
+				button.setBorderColor('#9b9b9b');
 			}
 
 			if(button.isArrow) {

@@ -12,7 +12,7 @@ var cachedData = [];
 
 var searchBar = Titanium.UI.createSearchBar({
 	hintText: I('epg.searchHint'),
-	barColor: '#464646'
+	barColor: Ui.getBarColor()
 });
 
 var tableView = require('/includes/pull_to_refresh')({
@@ -29,7 +29,7 @@ var loadingWin = Ui.createLoadingWindow('45%');
 var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	labels: [I('epg.now'), I('epg.tonight')],
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
-	backgroundColor: '#787878',
+	backgroundColor: Ui.getBarColor(),
 	height: 30,
 	width: 300,
 	index: defaultTab,
