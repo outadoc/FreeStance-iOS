@@ -114,7 +114,7 @@
 				rowName: rowName,
 				configID: configID,
 				backgroundColor: exports.getDefaultBackground(),
-				barColor: '#464646'
+				barColor: Ui.getBarColor()
 			});
 			Ti.UI.currentTab.open(win, {
 				animated: true

@@ -33,7 +33,7 @@ tableView.addEventListener('click', function(e) {
 		title: e.rowData.thisTitle,
 		helpTo: e.rowData.helpTo,
 		backgroundColor: Ui.getDefaultBackground(),
-		barColor: '#464646'
+		barColor: Ui.getBarColor()
 	});
 
 	//if the user needs help about config, we directly go to the help content page

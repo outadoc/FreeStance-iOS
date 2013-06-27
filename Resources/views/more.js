@@ -33,15 +33,15 @@ tableView.addEventListener('click', function(e) {
 				title: e.rowData.title,
 				tabBarHidden: true,
 				backgroundColor: '#fff',
-				barColor: '#464646',
+				barColor: Ui.getBarColor(),
 				isModalWin: false
 			});
 		} else {
 			win = Ti.UI.createWindow({
 				url: e.rowData.path,
 				title: e.rowData.title,
-				barColor: '#464646',
-				backgroundColor: (e.rowData.isCredits) ? '#323232' : Ui.getDefaultBackground()
+				barColor: Ui.getBarColor(),
+				backgroundColor: Ui.getDefaultBackground()
 			});
 		}
 		Ti.UI.currentTab.open(win, {
@@ -50,7 +50,7 @@ tableView.addEventListener('click', function(e) {
 	} else if(e.rowData.email !== undefined) {
 		var email = Ti.UI.createEmailDialog({
 			toRecipients: [e.rowData.email],
-			barColor: '#464646'
+			barColor: Ui.getBarColor()
 		});
 
 		if(e.rowData.bug !== undefined) {

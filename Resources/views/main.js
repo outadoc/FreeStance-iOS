@@ -248,7 +248,7 @@
 				if(button.id == 'red') {
 					button.setBackgroundColor('#e20f07');
 				} else if(button.id == 'yellow') {
-					button.setBackgroundColor('#e1c400');
+					button.setBackgroundColor('#fff200');
 				} else if(button.id == 'blue') {
 					button.setBackgroundColor('#058cf5');
 				} else if(button.id == 'green') {
@@ -267,6 +267,7 @@
 				//else, we change it to the default ones
 				button.setBackgroundColor('#a5a5a5');
 				button.setBorderColor('#9b9b9b');
+				button.setSelectedColor('#3f3f3f');
 			}
 
 			if(button.isArrow) {

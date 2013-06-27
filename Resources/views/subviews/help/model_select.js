@@ -29,7 +29,7 @@ tableView.addEventListener('click', function(e) {
 		helpTo: win.helpTo,
 		title: e.rowData.getTitle(),
 		url: '../info_display.js',
-		barColor: '#464646',
+		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDefaultBackground()
 	});
 

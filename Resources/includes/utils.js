@@ -297,7 +297,7 @@
 						url: '/views/subviews/options/options.js',
 						title: I('labels.options'),
 						backgroundColor: '#d8d8d8',
-						barColor: '#464646'
+						barColor: Ui.getBarColor()
 					});
 	
 					tabGroup.tabs[3].open(helpwin);

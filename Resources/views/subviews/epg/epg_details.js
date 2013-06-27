@@ -186,7 +186,7 @@ b_openweb.addEventListener('click', function() {
 		title: win.data.title,
 		thisUrl: win.data.url,
 		url: '../website.js',
-		barColor: '#464646',
+		barColor: Ui.getBarColor(),
 		isModalWin: false
 	});
 
@@ -240,7 +240,7 @@ b_imdb.addEventListener('click', function() {
 		title: I('labels.imdb'),
 		thisUrl: 'http://www.imdb.fr/find?s=all&q=' + win.data.title.normalizeUrl(),
 		url: '../website.js',
-		barColor: '#464646',
+		barColor: Ui.getBarColor(),
 		isModalWin: false
 	});
 

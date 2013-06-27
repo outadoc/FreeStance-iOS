@@ -65,7 +65,7 @@ b_help.addEventListener('click', function(e) {
 		url: '../help/help.js',
 		title: I('more.help.title'),
 		backgroundColor: Ui.getDefaultBackground(),
-		barColor: '#464646'
+		barColor: Ui.getBarColor()
 	});
 	Ti.UI.currentTab.open(win, {
 		animated: true
