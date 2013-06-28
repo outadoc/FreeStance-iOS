@@ -47,20 +47,7 @@
 					var header = Ti.UI.createTableViewRow({
 						height: 30,
 						selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
-						backgroundColor: '#d4d4d4',
-						backgroundGradient: {
-							type: 'linear',
-							colors: [{
-								color: '#d4d4d4',
-								position: 0.0
-							}, {
-								color: '#c4c4c4',
-								position: 0.50
-							}, {
-								color: '#b4b4b4',
-								position: 1.0
-							}]
-						},
+						backgroundColor: '#d0d0d0',
 						borderColor: 'darkGray',
 						borderRadius: 1,
 						isHeader: true
@@ -78,16 +65,11 @@
 						text: row.data.channelString,
 						left: 50,
 						top: 1,
-						color: '#484848',
+						color: '#606060',
 						font: {
 							fontSize: 15,
 							fontFamily: 'Helvetica Neue',
 							fontWeight: 'bold'
-						},
-						shadowColor: 'white',
-						shadowOffset: {
-							x: 0,
-							y: 1
 						},
 						height: Ti.UI.FILL
 					});
