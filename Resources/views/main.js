@@ -26,9 +26,6 @@
 		longPressTimeoutID: null
 	};
 
-	var loadingWin = Ui.createLoadingWindow();
-	loadingWin.open();
-
 	//a tabbed bar used to select the profile the user wants to use
 	var tabbedBar = Ti.UI.iOS.createTabbedBar({
 		labels: [I('profile.1'), I('profile.2'), I('profile.3')],
@@ -291,8 +288,8 @@
 			}
 
 			//if the button press can be long, we use the properties to determine if the user WANTS it to be long
-			if(button.canBeLong) {
-				button.canBeLong = prefs.longPress;
+			if(button.canBeLong && !prefs.longPress) {
+				button.canBeLong = false;
 			}
 
 			button.addEventListener('touchstart', on_btn_touchstart);
@@ -303,7 +300,6 @@
 			view.add(button);
 		}
 
-		loadingWin.close();
 		win.add(view);
 
 		if(!isConfShown) {
@@ -311,10 +307,9 @@
 			isConfShown = true;
 		}
 	}
-
-
-	win.addEventListener('focus', function(e) {
-		//on focus, we're checking for new data the user may have modified
+	
+	function loadPrefs() {
+		//checking for new data the user may have modified
 		prefs.volumeRepeat = Ti.App.Properties.getBool('volume.repeat', true);
 		prefs.volumeRepeatFrequency = Ti.App.Properties.getInt('volume.repeat.frequency', 200);
 		prefs.progRepeat = Ti.App.Properties.getBool('program.repeat', false);
@@ -329,7 +324,11 @@
 
 		//updating the tabbed bar to reflect the new profile
 		tabbedBar.index = RequestHandler.getProfile() - 1;
-	});
+	}
 	
+	loadPrefs();
 	updateButtons();
+	
+	win.addEventListener('focus', loadPrefs);
+	
 })();
