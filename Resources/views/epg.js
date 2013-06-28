@@ -130,11 +130,12 @@ tableView.addEventListener('click', function(e) {
 	if(!e.rowData.isHeader && e.rowData.data.title != null) {
 		var win = Ti.UI.createWindow({
 			url: 'subviews/epg/epg_details.js',
-			backgroundColor: Ui.getDefaultBackground(),
 			title: I('epg.details.title'),
 			backButtonTitle: I('labels.epg'),
 			orientationModes: [Ti.UI.PORTRAIT],
+			backgroundColor: Ui.getDefaultBackground(),
 			barColor: Ui.getBarColor(),
+			layout: 'vertical',
 			data: e.rowData.data
 		});
 

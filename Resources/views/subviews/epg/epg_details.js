@@ -35,9 +35,9 @@ sharekit.configure({
 var lbl_title = Ti.UI.createLabel({
 	text: win.data.title,
 	color: '#505050',
-	top: 5,
+	top: 10,
 	left: 10,
-	height: 20,
+	right: 10,
 	font: {
 		fontSize: 16,
 		fontWeight: 'bold'
@@ -47,9 +47,9 @@ var lbl_title = Ti.UI.createLabel({
 win.add(lbl_title);
 
 var progInfo = Ti.UI.createView({
-	top: 30,
+	top: 10,
 	left: 10,
-	width: 300,
+	right: 10,
 	height: 70,
 	backgroundColor: '#909090',
 	borderColor: '#808080',
@@ -134,21 +134,21 @@ progInfo.add(lbl_category);
 
 //the scrollview that will contain the program description
 var scrollView = Ti.UI.createScrollView({
-	height: 190,
-	top: 110,
+	height: (Ti.Platform.displayCaps.platformHeight >= 568) ? 250 : 190,
+	top: 10,
 	contentHeight: 'auto',
-	showVerticalScrollIndicator: true
+	showVerticalScrollIndicator: true,
+	layout: 'vertical',
+	verticalBounce: true
 });
 
 win.add(scrollView);
 
 var lbl_description_title = Ti.UI.createLabel({
 	text: I('epg.details.description'),
-	top: 0,
+	top: 5,
 	left: 10,
 	color: '#505050',
-	height: 20,
-	width: 300,
 	font: {
 		fontWeight: 'bold'
 	}
@@ -159,14 +159,20 @@ scrollView.add(lbl_description_title);
 //the label that contains the program description
 var lbl_description = Ti.UI.createLabel({
 	text: win.data.description + '\n ',
-	top: lbl_description_title.top + lbl_description_title.height,
+	top: 10,
 	left: 10,
+	right: 10,
 	color: '#505050',
-	height: Ti.UI.SIZE,
-	width: 300
+	height: Ti.UI.SIZE
 });
 
 scrollView.add(lbl_description);
+
+var view_btn_container = Ti.UI.createView({
+	bottom: 10,
+	left: 0,
+	right: 0
+});
 
 //the button used to get more info about the program
 var b_openweb = Ti.UI.createButton({
@@ -201,7 +207,7 @@ b_openweb.addEventListener('click', function() {
 	});
 });
 
-win.add(b_openweb);
+view_btn_container.add(b_openweb);
 
 //the button used to watch the channel concerned
 var b_watch = Ti.UI.createButton({
@@ -226,7 +232,7 @@ b_watch.addEventListener('click', function() {
 	RequestHandler.callMultiKeys(win.data.channelID.toString());
 });
 
-win.add(b_watch);
+view_btn_container.add(b_watch);
 
 //the button used to open the IMDb post of the program
 var b_imdb = Ti.UI.createButton({
@@ -261,14 +267,11 @@ b_imdb.addEventListener('click', function() {
 	});
 });
 
-win.addEventListener('focus', function(e) {
-	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
-	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
-	RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
-});
+view_btn_container.add(b_imdb);
 
-win.add(b_imdb);
+win.add(view_btn_container);
 
+//share button
 var b_share = Ti.UI.createButton({
 	systemButton: Ti.UI.iPhone.SystemButton.ACTION
 });
@@ -281,4 +284,10 @@ b_share.addEventListener('click', function(e) {
 		view: win,
 		link: win.data.url
 	});
+});
+
+win.addEventListener('focus', function(e) {
+	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
+	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
+	RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
 });
