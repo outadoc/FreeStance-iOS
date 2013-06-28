@@ -138,6 +138,10 @@ tableView.addEventListener('click', function(e) {
 			layout: 'vertical',
 			data: e.rowData.data
 		});
+		
+		win.addEventListener('close', function() {
+			win = null;
+		});
 
 		Ti.UI.currentTab.open(win, {
 			animated: true
