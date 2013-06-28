@@ -144,6 +144,10 @@
 				thisModel: RequestHandler.getModel(),
 				thisProfile: RequestHandler.getProfile()
 			});
+			
+			win_more.addEventListener('close', function() {
+				win_more = null
+			});
 
 			win_more.open({
 				modal: true,
