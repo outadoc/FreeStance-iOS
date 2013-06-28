@@ -194,12 +194,6 @@
 		//resetting the view
 		view = Ti.UI.createView();
 
-		//getting fresh values for the properties each time we're calling the function
-		RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
-		RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
-		RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
-		RequestHandler.setModel(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.model', Model.FREEBOX_HD));
-
 		//those can't be placed above as they are not buttons but labels...
 		var lbl_vol = Ti.UI.createLabel({
 			text: I('labels.volume'),
@@ -327,6 +321,11 @@
 		prefs.progRepeatFrequency = Ti.App.Properties.getInt('program.repeat.frequency', 300);
 		prefs.longPress = Ti.App.Properties.getBool('longpress', true);
 		prefs.longPressLength = Ti.App.Properties.getInt('longpress.length', 600);
+		
+		RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
+		RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
+		RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
+		RequestHandler.setModel(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.model', Model.FREEBOX_HD));
 
 		//updating the tabbed bar to reflect the new profile
 		tabbedBar.index = RequestHandler.getProfile() - 1;
