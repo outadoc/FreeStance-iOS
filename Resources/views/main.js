@@ -248,7 +248,7 @@
 				if(button.id == 'red') {
 					button.setBackgroundColor('#e20f07');
 				} else if(button.id == 'yellow') {
-					button.setBackgroundColor('#fff200');
+					button.setBackgroundColor('#f4e916');
 				} else if(button.id == 'blue') {
 					button.setBackgroundColor('#058cf5');
 				} else if(button.id == 'green') {
@@ -265,8 +265,8 @@
 				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundColor('#a5a5a5');
-				button.setBorderColor('#9b9b9b');
+				button.setBackgroundColor('#d0d0d0');
+				button.setBorderColor('#c5c5c5');
 				button.setSelectedColor('#3f3f3f');
 			}
 

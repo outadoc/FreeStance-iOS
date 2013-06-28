@@ -42,8 +42,8 @@
 
 		button.setBorderRadius(2);
 		button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
-		button.setBackgroundColor('#a5a5a5');
-		button.setBorderColor('#9b9b9b');
+		button.setBackgroundColor('#b0b0b0');
+		button.setBorderColor('#a5a5a5');
 		button.setSelectedColor('#3f3f3f');
 
 		if(button.id == 'play') {

@@ -3,6 +3,10 @@
 		return '#dfdfdf';
 	}
 	
+	exports.getWhitishBackground = function() {
+		return '#f5f5f5';
+	}
+	
 	exports.getBarColor = function() {
 		return '#909090';
 	}

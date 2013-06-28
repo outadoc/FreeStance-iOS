@@ -82,9 +82,10 @@ dashboardTabs.addEventListener('click', function(e) {
 function getItem(label) {
 	var img_icon = Ti.UI.createButton({
 		style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
-		backgroundColor: '#c5c5c5',
-		borderColor: '#c1c1c1',
+		backgroundColor: '#e0e0e0',
+		borderColor: '#d9d9d9',
 		borderRadius: 43,
+		borderWidth: 3,
 		height: 85,
 		width: 85
 	});
