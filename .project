@@ -17,7 +17,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.aptana.projects.webnature</nature>
 		<nature>com.appcelerator.titanium.mobile.nature</nature>
 	</natures>
 </projectDescription>
