@@ -258,7 +258,7 @@
 	//used to get the string equivalent of a given freebox model
 	exports.getModelString = function(model) {
 		if(model == Model.FREEBOX_HD) {
-			return 'Freebox HD';
+			return 'Freebox HD/Crystal';
 		} else if(model == Model.FREEBOX_REVOLUTION) {
 			return 'Freebox Révolution';
 		} else if(model == Model.FREEBOX_PLAYER) {
