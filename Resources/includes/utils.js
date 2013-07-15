@@ -293,6 +293,8 @@
 	
 			alert.addEventListener('click', function(e) {
 				if(e.index == 1) {
+					var Ui = require('includes/ui');
+					
 					var helpwin = Ti.UI.createWindow({
 						url: '/views/subviews/options/options.js',
 						title: I('labels.options'),
