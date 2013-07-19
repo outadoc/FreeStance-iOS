@@ -4,7 +4,7 @@
 	}
 	
 	exports.getWhitishBackground = function() {
-		return '#f5f5f5';
+		return '#f9f9f9';
 	}
 	
 	exports.getBarColor = function() {

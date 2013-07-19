@@ -56,10 +56,10 @@
 		{id: 'green', height: 35, width: 35, left: 37, top: 110, canBeLong: false, isColor: true},
 		{id: 'down', height: 40, width: 40, left: 77, top: 110, canBeLong: false, isArrow: true},
 		{id: 'yellow', height: 35, width: 35, left: 122, top: 110, canBeLong: false, isColor: true},
-		{title: '+', id: 'vol_inc', height: 50, width: 40, left: 200, top: 23, font: {fontSize: 22}, canRepeat: true},
-		{title: '-', id: 'vol_dec', height: 50, width: 40, left: 200, top: 93, font: {fontSize: 28}, canRepeat: true},
-		{title: '+', id: 'prgm_inc', height: 50, width: 40, left: 255, top: 23, font: {fontSize: 22}, canRepeat: false},
-		{title: '-', id: 'prgm_dec', height: 50, width: 40, left: 255, top: 93, font: {fontSize: 28}, canRepeat: false},
+		{title: '+', id: 'vol_inc', height: 50, width: 40, left: 200, top: 23, bFontSize: 23, canRepeat: true},
+		{title: '-', id: 'vol_dec', height: 50, width: 40, left: 200, top: 93, bFontSize: 28, canRepeat: true},
+		{title: '+', id: 'prgm_inc', height: 50, width: 40, left: 255, top: 23, bFontSize: 23, canRepeat: false},
+		{title: '-', id: 'prgm_dec', height: 50, width: 40, left: 255, top: 93, bFontSize: 28, canRepeat: false},
 		{title: '1', id: '1', height: 35, width: 45, left: 20, top: 175, canBeLong: true},
 		{title: '2', id: '2', height: 35, width: 45, left: 75, top: 175, canBeLong: true},
 		{title: '3', id: '3', height: 35, width: 45, left: 130, top: 175, canBeLong: true},
@@ -69,7 +69,7 @@
 		{title: '7', id: '7', height: 35, width: 45, left: 20, top: 265, canBeLong: true},
 		{title: '8', id: '8', height: 35, width: 45, left: 75, top: 265, canBeLong: true},
 		{title: '9', id: '9', height: 35, width: 45, left: 130, top: 265, canBeLong: true},
-		{title: ' ←', id: 'back', height: 35, width: 45, left: 20, top: 310, font: {fontSize: 23}, canBeLong: false},
+		{title: ' ←', id: 'back', height: 35, width: 45, left: 20, top: 310, bFontSize: 23, canBeLong: false},
 		{title: '0', id: '0', height: 35, width: 45, left: 75, top: 310, canBeLong: true },
 		{title: '↻', id: 'swap', height: 35, width: 45, left: 130, top: 310, canBeLong: true},
 		{id: 'power', height: 35, width: 95, left: 200, top: 175, canBeLong: false},
@@ -80,12 +80,12 @@
 	
 	if(Ti.Platform.displayCaps.platformHeight >= 568) {
 		buttonList.push(
-			{title: I('buttons.list'), id: 'list', height: 30, width: 85, bottom: 60, left: 20, font: {fontWidth: 22}, canBeLong: false},
-			{title: I('buttons.hdd'), id: 'mail', height: 30, width: 85, bottom: 60, left: 115, font: {fontWidth: 22}, canBeLong: false, isLong: true},
-			{title: I('buttons.mail'), id: 'mail', height: 30, width: 85, bottom: 60, left: 210, font: {fontWidth: 22}, canBeLong: false},
-			{title: I('buttons.epg'), id: 'epg', height: 30, width: 85, bottom: 20, left: 20, font: {fontWidth: 22}, canBeLong: false},
-			{title: I('buttons.pip'), id: 'pip', height: 30, width: 85, bottom: 20, left: 115, font: {fontWidth: 22}, canBeLong: false},
-			{title: I('buttons.aux'), id: 'tv', height: 30, width: 85, bottom: 20, left: 210, font: {fontWidth: 22}, canBeLong: false}
+			{title: I('buttons.list'), id: 'list', height: 30, width: 85, bottom: 60, left: 20, bFontSize: 15, canBeLong: false},
+			{title: I('buttons.hdd'), id: 'mail', height: 30, width: 85, bottom: 60, left: 115, bFontSize: 15, canBeLong: false, isLong: true},
+			{title: I('buttons.mail'), id: 'mail', height: 30, width: 85, bottom: 60, left: 210, bFontSize: 15, canBeLong: false},
+			{title: I('buttons.epg'), id: 'epg', height: 30, width: 85, bottom: 20, left: 20, bFontSize: 15, canBeLong: false},
+			{title: I('buttons.pip'), id: 'pip', height: 30, width: 85, bottom: 20, left: 115, bFontSize: 15, canBeLong: false},
+			{title: I('buttons.aux'), id: 'tv', height: 30, width: 85, bottom: 20, left: 210, bFontSize: 15, canBeLong: false}
 		);
 	}
 	
@@ -224,6 +224,11 @@
 		for(var i = 0; i < buttonList.length; i++) {
 			var button = Ti.UI.createButton(buttonList[i]);
 
+			button.setFont({
+				fontFamily: 'Helvetica Neue',
+				fontSize: (button.bFontSize !== undefined) ? button.bFontSize : 19
+			});
+			
 			button.setBorderRadius(2);
 			button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
 			button.hasBeenPressed = false;
@@ -243,7 +248,7 @@
 				if(button.id == 'red') {
 					button.setBackgroundColor('#e20f07');
 				} else if(button.id == 'yellow') {
-					button.setBackgroundColor('#f4e916');
+					button.setBackgroundColor('#fce60f');
 				} else if(button.id == 'blue') {
 					button.setBackgroundColor('#058cf5');
 				} else if(button.id == 'green') {
@@ -260,8 +265,7 @@
 				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundColor('#d0d0d0');
-				button.setBorderColor('#c5c5c5');
+				button.setBackgroundColor('#cccccc');
 				button.setSelectedColor('#3f3f3f');
 			}
 
