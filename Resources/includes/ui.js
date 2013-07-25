@@ -8,7 +8,7 @@
 	}
 	
 	exports.getBarColor = function() {
-		return '#909090';
+		return '#bbbbbb';
 	}
 	
 	exports.createLoadingWindow = function(top) {
