@@ -5,7 +5,9 @@
 	Ti.include('/includes/lib/json.i18n.js');
 	Ti.include('/includes/enums.js');
 
-	var tabGroup = Ti.UI.createTabGroup();
+	var tabGroup = Ti.UI.createTabGroup({
+		activeTabIconTint: '#bbbbbb'
+	});
 
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
