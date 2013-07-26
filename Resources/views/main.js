@@ -39,6 +39,9 @@
 	tabbedBar.addEventListener('click', function(e) {
 		//setting the new profile to use
 		Ti.App.Properties.setInt('profileToUse', e.index + 1);
+		Ti.App.fireEvent('changeProfile', {
+			profile: e.index + 1
+		});
 	});
 
 	//setting the toolbar

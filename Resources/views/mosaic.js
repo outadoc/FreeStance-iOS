@@ -13,6 +13,7 @@ var labelsCanal = ['Canal+', 'C+ Cinéma', 'C+ Sport', 'C+ Décalé', 'C+ Family
 var loadingWin = Ui.createLoadingWindow();
 
 win.addEventListener('focus', updateProps);
+Ti.App.addEventListener('changeProfile', updateProps);
 
 var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	labels: [I('profile.1'), I('profile.2'), I('profile.3')],

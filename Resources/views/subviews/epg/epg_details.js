@@ -9,6 +9,9 @@ Ti.include('/includes/lib/json.i18n.js');
 
 var win = Ti.UI.currentWindow;
 
+win.addEventListener('focus', updateProps);
+Ti.App.addEventListener('changeProfile', updateProps);
+
 sharekit.configure({
 	my_app_name: 'FreeStance',
 	my_app_url: 'http://dev.outadoc.fr/project/freestance/',
@@ -283,8 +286,8 @@ b_share.addEventListener('click', function(e) {
 	});
 });
 
-win.addEventListener('focus', function(e) {
+function updateProps() {
 	RequestHandler.setProfile(Ti.App.Properties.getInt('profileToUse', Profile.PROFILE_1));
 	RequestHandler.setHd(Ti.App.Properties.getInt('profile' + RequestHandler.getProfile() + '.hd', HD.HD_1));
 	RequestHandler.setCode(Ti.App.Properties.getString('profile' + RequestHandler.getProfile() + '.code', ''));
-});
+}
