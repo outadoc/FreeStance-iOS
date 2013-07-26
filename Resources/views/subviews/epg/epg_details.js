@@ -127,7 +127,7 @@ lbl_description = Ti.UI.createLabel({
 
 view_btn_container = Ti.UI.createView({
 	bottom: 10,
-	height: 50,
+	height: 70,
 	left: 10,
 	right: 10
 }),
