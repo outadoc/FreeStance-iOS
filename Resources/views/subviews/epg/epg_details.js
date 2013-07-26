@@ -1,13 +1,13 @@
 //a window that opens when you click on a row of the EPG, giving you extra information on the program you chose
-var RequestHandler = require('includes/callurl');
-var Utils = require('includes/utils');
-var Ui = require('includes/ui');
-var sharekit = require("com.0x82.sharekit");
+var RequestHandler = require('includes/callurl'),
+	Utils = require('includes/utils'),
+	Ui = require('includes/ui'),
+	sharekit = require("com.0x82.sharekit"),
+
+	win = Ti.UI.currentWindow;
 
 Ti.include('/includes/normalize_url.js');
 Ti.include('/includes/lib/json.i18n.js');
-
-var win = Ti.UI.currentWindow;
 
 win.addEventListener('focus', updateProps);
 Ti.App.addEventListener('changeProfile', updateProps);
@@ -172,24 +172,24 @@ scrollView.add(lbl_description);
 
 var view_btn_container = Ti.UI.createView({
 	bottom: 10,
-	left: 0,
-	right: 0
+	height: 50,
+	left: 10,
+	right: 10
 });
 
 //the button used to get more info about the program
 var b_openweb = Ti.UI.createButton({
 	title: I('epg.details.buttons.moreInfo'),
-	height: 50,
-	width: 90,
-	bottom: 10,
-	left: 10,
+	height: Ti.UI.FILL,
+	width: '30%',
+	left: 0,
 	font: {
 		fontSize: 15
 	},
 	backgroundColor: '#a5a5a5',
 	borderColor: '#9b9b9b',
 	selectedColor: '#3f3f3f',
-	borderRadius: 2,
+	borderRadius: 3,
 	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
@@ -213,10 +213,8 @@ view_btn_container.add(b_openweb);
 //the button used to watch the channel concerned
 var b_watch = Ti.UI.createButton({
 	title: I('epg.details.buttons.watch'),
-	height: 50,
-	width: 110,
-	bottom: 10,
-	left: 105,
+	height: Ti.UI.FILL,
+	width: '35%',
 	font: {
 		fontSize: 17,
 		fontWeight: 'bold'
@@ -224,7 +222,7 @@ var b_watch = Ti.UI.createButton({
 	backgroundColor: '#a5a5a5',
 	borderColor: '#9b9b9b',
 	selectedColor: '#3f3f3f',
-	borderRadius: 2,
+	borderRadius: 3,
 	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
@@ -238,17 +236,16 @@ view_btn_container.add(b_watch);
 //the button used to open the IMDb post of the program
 var b_imdb = Ti.UI.createButton({
 	title: I('epg.details.buttons.imdb'),
-	height: 50,
-	width: 90,
-	bottom: 10,
-	right: 10,
+	height: Ti.UI.FILL,
+	width: '30%',
+	right: 0,
 	font: {
 		fontSize: 15
 	},
 	backgroundColor: '#a5a5a5',
 	borderColor: '#9b9b9b',
 	selectedColor: '#3f3f3f',
-	borderRadius: 2,
+	borderRadius: 3,
 	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
 });
 
