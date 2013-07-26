@@ -98,7 +98,7 @@ function getItem(label) {
 				offset: 1
 			}]
 		},
-		borderRadius: 43,
+		borderRadius: 42.5,
 		height: 85,
 		width: 85
 	});

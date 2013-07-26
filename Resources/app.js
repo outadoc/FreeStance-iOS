@@ -10,25 +10,25 @@
 		barColor: Ui.getBarColor()
 	});
 
-	var win1 = Ti.UI.createWindow({
+	var win_main = Ti.UI.createWindow({
 		url: 'views/main.js',
 		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
-	var win2 = Ti.UI.createWindow({
+	var win_mosaic = Ti.UI.createWindow({
 		url: 'views/mosaic.js',
 		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
-	var win3 = Ti.UI.createWindow({
+	var win_epg = Ti.UI.createWindow({
 		url: 'views/epg.js',
 		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
-	var win4 = Ti.UI.createWindow({
+	var win_more = Ti.UI.createWindow({
 		title: I('labels.more'),
 		url: 'views/more.js',
 		backgroundColor: Ui.getDefaultBackground(),
@@ -36,36 +36,36 @@
 	});
 
 	//add tabs
-	var tab1 = Ti.UI.createTab({
+	var tab_main = Ti.UI.createTab({
 		icon: '/img/remote.png',
 		title: Ti.App.name,
-		window: win1
+		window: win_main
 	});
 
-	var tab2 = Ti.UI.createTab({
+	var tab_mosaic = Ti.UI.createTab({
 		icon: '/img/planet.png',
 		title: I('labels.mosaic'),
-		window: win2
+		window: win_mosaic
 	});
 
-	var tab3 = Ti.UI.createTab({
+	var tab_epg = Ti.UI.createTab({
 		icon: '/img/tv.png',
 		title: I('labels.epg'),
-		window: win3
+		window: win_epg
 	});
 
-	var tab4 = Ti.UI.createTab({
+	var tab_more = Ti.UI.createTab({
 		icon: 'img/gear.png',
 		title: I('labels.more'),
-		window: win4
+		window: win_more
 	});
 
-	tabGroup.addTab(tab1);
-	tabGroup.addTab(tab2);
-	tabGroup.addTab(tab3);
-	tabGroup.addTab(tab4);
+	tabGroup.addTab(tab_main);
+	tabGroup.addTab(tab_mosaic);
+	tabGroup.addTab(tab_epg);
+	tabGroup.addTab(tab_more);
 
-	win1.tabGroup = tabGroup;
+	win_main.tabGroup = tabGroup;
 	
 	Ti.UI.setOrientation(Ti.UI.PORTRAIT);
 	tabGroup.open();
