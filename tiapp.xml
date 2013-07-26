@@ -5,7 +5,7 @@
         <target device="tizen">false</target>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
-        <target device="ipad">false</target>
+        <target device="ipad">true</target>
         <target device="blackberry">false</target>
         <target device="android">false</target>
     </deployment-targets>
