@@ -134,7 +134,6 @@ tableView.addEventListener('click', function(e) {
 			backButtonTitle: I('labels.epg'),
 			orientationModes: [Ti.UI.PORTRAIT],
 			backgroundColor: Ui.getDefaultBackground(),
-			barColor: Ui.getBarColor(),
 			layout: 'vertical',
 			data: e.rowData.data
 		});

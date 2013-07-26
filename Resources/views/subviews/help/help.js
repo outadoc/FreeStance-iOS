@@ -32,8 +32,7 @@ tableView.addEventListener('click', function(e) {
 	var win = Ti.UI.createWindow({
 		title: e.rowData.thisTitle,
 		helpTo: e.rowData.helpTo,
-		backgroundColor: Ui.getDefaultBackground(),
-		barColor: Ui.getBarColor()
+		backgroundColor: Ui.getDefaultBackground()
 	});
 
 	//if the user needs help about config, we directly go to the help content page

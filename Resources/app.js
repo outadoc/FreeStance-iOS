@@ -6,26 +6,24 @@
 	Ti.include('/includes/enums.js');
 
 	var tabGroup = Ti.UI.createTabGroup({
-		activeTabIconTint: '#bbbbbb'
+		activeTabIconTint: '#bbbbbb',
+		barColor: Ui.getBarColor()
 	});
 
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
-		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win2 = Ti.UI.createWindow({
 		url: 'views/mosaic.js',
-		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win3 = Ti.UI.createWindow({
 		url: 'views/epg.js',
-		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
@@ -33,7 +31,6 @@
 	var win4 = Ti.UI.createWindow({
 		title: I('labels.more'),
 		url: 'views/more.js',
-		barColor: Ui.getBarColor(),
 		backgroundColor: Ui.getDefaultBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});

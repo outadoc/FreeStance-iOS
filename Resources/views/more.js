@@ -33,14 +33,12 @@ tableView.addEventListener('click', function(e) {
 				title: e.rowData.title,
 				tabBarHidden: true,
 				backgroundColor: '#fff',
-				barColor: Ui.getBarColor(),
 				isModalWin: false
 			});
 		} else {
 			win = Ti.UI.createWindow({
 				url: e.rowData.path,
 				title: e.rowData.title,
-				barColor: Ui.getBarColor(),
 				backgroundColor: Ui.getDefaultBackground()
 			});
 		}

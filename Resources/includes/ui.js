@@ -117,8 +117,7 @@
 				title: title,
 				rowName: rowName,
 				configID: configID,
-				backgroundColor: exports.getDefaultBackground(),
-				barColor: Ui.getBarColor()
+				backgroundColor: exports.getDefaultBackground()
 			});
 			Ti.UI.currentTab.open(win, {
 				animated: true
