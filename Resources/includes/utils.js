@@ -1,12 +1,11 @@
 (function() {
 	exports.getFullDate = function() {
-		var date = new Date();
-	
-		var year = date.getFullYear();
-		var month = date.getMonth() + 1;
-		var day = date.getDate();
-		var hours = date.getHours();
-		var minutes = date.getMinutes();
+		var date = new Date(),
+			year = date.getFullYear(),
+			month = date.getMonth() + 1,
+			day = date.getDate(),
+			hours = date.getHours(),
+			minutes = date.getMinutes();
 	
 		if(month < 10) {
 			month = "0" + month;
@@ -297,9 +296,9 @@
 	
 			alert.addEventListener('click', function(e) {
 				if(e.index == 1) {
-					var Ui = require('includes/ui');
+					var Ui = require('includes/ui'),
 					
-					var helpwin = Ti.UI.createWindow({
+					helpwin = Ti.UI.createWindow({
 						url: '/views/subviews/options/options.js',
 						title: I('labels.options'),
 						backgroundColor: '#d8d8d8',

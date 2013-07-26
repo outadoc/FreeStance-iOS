@@ -1,32 +1,31 @@
-var Utils = require('includes/utils');
-var Ui = require('includes/ui');
-var Parser = require('includes/parse');
-
 Ti.include('/includes/enums.js');
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/strip_tags.js');
 
-var win = Ti.UI.currentWindow;
-var defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT);
-var cachedData = [];
+var Utils = require('includes/utils'),
+	Ui = require('includes/ui'),
+	Parser = require('includes/parse'),
 
-var searchBar = Titanium.UI.createSearchBar({
+
+win = Ti.UI.currentWindow,
+defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT),
+cachedData = [],
+
+searchBar = Titanium.UI.createSearchBar({
 	hintText: I('epg.searchHint'),
 	barColor: Ui.getBarColor()
-});
+}),
 
-var tableView = require('/includes/pull_to_refresh')({
+tableView = require('/includes/pull_to_refresh')({
 	filterAttribute: 'searchFilter',
 	search: searchBar
-});
-
-win.add(tableView);
+}),
 
 //the window that will show a loading message while the epg is loading
-var loadingWin = Ui.createLoadingWindow('45%');
+loadingWin = Ui.createLoadingWindow('45%'),
 
 //the tabbedbar used to select the program schedule
-var tabbedBar = Ti.UI.iOS.createTabbedBar({
+tabbedBar = Ti.UI.iOS.createTabbedBar({
 	labels: [I('epg.now'), I('epg.tonight')],
 	style: Ti.UI.iPhone.SystemButtonStyle.BAR,
 	backgroundColor: Ui.getBarColor(),
@@ -35,6 +34,8 @@ var tabbedBar = Ti.UI.iOS.createTabbedBar({
 	index: defaultTab,
 	lastIndex: defaultTab
 });
+
+win.add(tableView);
 
 tabbedBar.addEventListener('click', function(e) {
 	if(e.index != null) {
@@ -73,10 +74,9 @@ function loadRSSFeed(useCache, displayLoad) {
 			var xhr = Ti.Network.createHTTPClient({
 				timeout: 15000,
 				onload: function() {
-					var xml_txt = this.getResponseText();
-					xml_txt = xml_txt.replace(/(\r\n|\n|\r)/m, '');
-					var xml = Ti.XML.parseString(xml_txt);
-					var itemList = xml.documentElement.getElementsByTagName('item');
+					var xml_txt = (this.getResponseText()).replace(/(\r\n|\n|\r)/m, ''),
+					xml = Ti.XML.parseString(xml_txt),
+					itemList = xml.documentElement.getElementsByTagName('item');
 
 					tableView.setData([]);
 					cachedData[tabbedBar.getIndex()] = [];

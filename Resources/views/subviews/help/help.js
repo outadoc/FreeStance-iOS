@@ -1,9 +1,10 @@
 Ti.include('/includes/lib/json.i18n.js');
-var Ui = require('includes/ui');
 
-var win = Ti.UI.currentWindow;
+var Ui = require('includes/ui'),
 
-var data = [{
+win = Ti.UI.currentWindow,
+
+data = [{
 	title: I('more.help.hd.title'),
 	hasChild: true,
 	helpTo: 'hd',
@@ -18,9 +19,9 @@ var data = [{
 	hasChild: true,
 	helpTo: 'config',
 	thisTitle: I('more.help.config')
-}];
+}],
 
-var tableView = Ti.UI.createTableView({
+tableView = Ti.UI.createTableView({
 	data: data,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',

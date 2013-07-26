@@ -18,22 +18,22 @@
 			width: 320,
 			height: Ti.Platform.displayCaps.platformHeight,
 			orientationModes: [Ti.UI.PORTRAIT]
-		});
+		}),
 	
-		var view = Ti.UI.createView({
+		view = Ti.UI.createView({
 			height: 60,
 			width: 60,
 			top: top,
 			borderRadius: 10,
 			backgroundColor: '#000',
 			opacity: 0.6
-		});
-	
-		win.add(view);
-	
-		var spinWheel = Ti.UI.createActivityIndicator({
+		}),
+		
+		spinWheel = Ti.UI.createActivityIndicator({
 			style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
 		});
+
+		win.add(view);
 	
 		view.add(spinWheel);
 		spinWheel.show();
@@ -61,9 +61,9 @@
 			top: 10,
 			height: 45,
 			width: 300
-		});
+		}),
 	
-		var lbl_title = Ti.UI.createLabel({
+		lbl_title = Ti.UI.createLabel({
 			text: title,
 			shadowColor: '#8c2a31',
 			shadowOffset: {
@@ -79,13 +79,13 @@
 			width: 300,
 			height: 45,
 			textAlign: 'center'
-		});
+		}),
 	
-		b_destruction.add(lbl_title);
-		var view = Ti.UI.createView({
+		view = Ti.UI.createView({
 			height: b_destruction.height + 30
 		});
 	
+		b_destruction.add(lbl_title);
 		view.add(b_destruction);
 	
 		return view;
@@ -97,10 +97,10 @@
 			title: title,
 			hasChild: true,
 			header: header
-		});
+		}),
 	
 		//the label containing the value you want to display
-		var lbl = Ti.UI.createLabel({
+		lbl = Ti.UI.createLabel({
 			right: 10,
 			height: 35,
 			textAlign: 'right',
@@ -119,10 +119,12 @@
 				configID: configID,
 				backgroundColor: exports.getDefaultBackground()
 			});
+			
 			Ti.UI.currentTab.open(win, {
 				animated: true
 			});
 		});
+		
 		return row;
 	}
 	
@@ -131,9 +133,9 @@
 		var row = Ti.UI.createTableViewRow({
 			title: text,
 			selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
-		});
+		}),
 	
-		var textfield = Ti.UI.createTextField({
+		textfield = Ti.UI.createTextField({
 			color: '#336699',
 			height: 35,
 			top: 4,

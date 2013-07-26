@@ -1,55 +1,44 @@
 (function() {
-	var RequestHandler = require('includes/callurl');
-	var Utils = require('includes/utils');
-	var Ui = require('includes/ui');
-
 	Ti.include('/includes/lib/json.i18n.js');
 	Ti.include('/includes/enums.js');
-	
-	var win = Ti.UI.currentWindow;
+
+	var RequestHandler = require('includes/callurl'),
+		Utils = require('includes/utils'),
+		Ui = require('includes/ui'),
+
+	win = Ti.UI.currentWindow,
 
 	//the properties for the current profile
-	var isConfShown = false;
+	isConfShown = false,
 
 	//advanced options
-	var prefs = {
+	prefs = {
 		volumeRepeat: null,
 		volumeRepeatFrequency: null,
 		progRepeat: null,
 		progRepeatFrequency: null,
 		longPress: null,
 		longPressLength: null
-	};
+	},
 
-	var timeouts = {
+	timeouts = {
 		repeatIntervalID: null,
 		longPressTimeoutID: null
-	};
-
+	},
+	
 	//a tabbed bar used to select the profile the user wants to use
-	var tabbedBar = Ti.UI.iOS.createTabbedBar({
+	tabbedBar = Ti.UI.iOS.createTabbedBar({
 		labels: [I('profile.1'), I('profile.2'), I('profile.3')],
 		style: Ti.UI.iPhone.SystemButtonStyle.BAR,
 		bottom: 7,
 		height: '30',
 		width: '300',
 		backgroundColor: Ui.getBarColor()
-	});
-
-	tabbedBar.addEventListener('click', function(e) {
-		//setting the new profile to use
-		Ti.App.Properties.setInt('profileToUse', e.index + 1);
-		Ti.App.fireEvent('changeProfile', {
-			profile: e.index + 1
-		});
-	});
-
-	//setting the toolbar
-	win.setTitleControl(tabbedBar);
+	}),
 
 	//the buttons and their placing
 	/*@formatter:off*/
-	var buttonList = [
+	buttonList = [
 		{id: 'red', height: 35, width: 35, left: 37, top: 25, canBeLong: false, isColor: true},
 		{id: 'up', height: 40, width: 40, left: 77, top: 20, canBeLong: false, isArrow: true},
 		{id: 'blue', height: 35, width: 35, left: 122, top: 25, canBeLong: false, isColor: true},
@@ -80,6 +69,7 @@
 		{title: I('buttons.mute'), id: 'mute', height: 35, width: 95, left: 200, top: 265, canBeLong: false},
 		{title: '...', id: 'other', height: 35, width: 95, left: 200, top: 310, canBeLong: false}
 	];
+	/*@formatter:on*/
 	
 	if(Ti.Platform.displayCaps.platformHeight >= 568) {
 		buttonList.push(
@@ -92,7 +82,16 @@
 		);
 	}
 	
-	/*@formatter:on*/
+	tabbedBar.addEventListener('click', function(e) {
+		//setting the new profile to use
+		Ti.App.Properties.setInt('profileToUse', e.index + 1);
+		Ti.App.fireEvent('changeProfile', {
+			profile: e.index + 1
+		});
+	});
+
+	//setting the toolbar
+	win.setTitleControl(tabbedBar);
 
 	function on_btn_touchstart(e) {
 		//if the button press can be repeated as long as the user keeps pressing it the functionnality is compatible only with the volume and program buttons
@@ -208,8 +207,9 @@
 			font: {
 				fontSize: 14
 			}
-		});
-		var lbl_prgm = Ti.UI.createLabel({
+		}),
+		
+		lbl_prgm = Ti.UI.createLabel({
 			text: I('labels.program'),
 			left: 257,
 			height: Ti.UI.SIZE,
@@ -218,13 +218,13 @@
 			font: {
 				fontSize: 14
 			}
-		});
+		}), i;
 
 		view.add(lbl_prgm);
 		view.add(lbl_vol);
 
 		//looping through each element of the array
-		for(var i = 0; i < buttonList.length; i++) {
+		for(i = 0; i < buttonList.length; i++) {
 			var button = Ti.UI.createButton(buttonList[i]);
 
 			button.setFont({
@@ -243,6 +243,7 @@
 					height: 25,
 					width: 60
 				});
+				
 				button.add(logo);
 			}
 
@@ -292,6 +293,7 @@
 					height: 20,
 					width: 20
 				});
+				
 				button.add(img_button);
 			}
 
@@ -302,6 +304,7 @@
 					width: 20,
 					touchEnabled: false
 				});
+				
 				button.add(img_button);
 			}
 

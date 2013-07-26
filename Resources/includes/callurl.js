@@ -1,8 +1,9 @@
 (function() {
 	Ti.include('/includes/enums.js');
 	
-	var Utils = require('includes/utils');
-	var hd, code, model, profile;
+	var Utils = require('includes/utils'),
+	
+	hd, code, model, profile;
 	
 	//can call any key, but it must be formatted as in the freebox API
 	exports.callKey = function(key, isLong, callback) {

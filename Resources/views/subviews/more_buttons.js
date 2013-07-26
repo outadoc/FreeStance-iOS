@@ -1,25 +1,19 @@
 (function() {
-	var RequestHandler = require('includes/callurl');
 	Ti.include('/includes/lib/json.i18n.js');
-
-	var win = Ti.UI.currentWindow;
 	
-	RequestHandler.setProfile(win.thisProfile);
-	RequestHandler.setHd(win.thisHd);
-	RequestHandler.setCode(win.thisCode);
-	RequestHandler.setModel(win.thisModel);
-
-	var view = Ti.UI.createView({
+	var RequestHandler = require('includes/callurl'),
+	win = Ti.UI.currentWindow,
+	i,
+	
+	view = Ti.UI.createView({
 		height: 250,
 		width: 237,
 		bottom: 80
-	});
-
-	win.add(view);
+	}),
 
 	//another button array, for the popup this time
 	/*@formatter:off*/
-	var buttonList = [
+	buttonList = [
 		{title: I('buttons.list'), id: 'list', height: 40, width: 113, top: 20, left: 0},
 		{title: I('buttons.hdd'), id: 'mail', height: 40, width: 114, top: 20, left: 122, isLong: true},
 		{title: I('buttons.epg'), id: 'epg', height: 40, width: 113, top: 65, left: 0},
@@ -35,9 +29,16 @@
 		{title: '»', id: 'next', height: 30, width: 28, top: 165, left: 208, font: {fontSize: 25}},
 		{title: I('buttons.close'), id: 'close', height: 40, width: 237, bottom: 0, left: 0}
 	];
-	/*@formatter:on*/
 
-	for(var i = 0; i < buttonList.length; i++) {
+	win.add(view);
+	
+	/*@formatter:on*/
+	RequestHandler.setProfile(win.thisProfile);
+	RequestHandler.setHd(win.thisHd);
+	RequestHandler.setCode(win.thisCode);
+	RequestHandler.setModel(win.thisModel);
+	
+	for(i = 0; i < buttonList.length; i++) {
 		var button = Ti.UI.createButton(buttonList[i]);
 
 		button.setBorderRadius(2);
@@ -66,6 +67,7 @@
 				width: 20,
 				top: 6
 			});
+			
 			button.add(img_button);
 		} else if(button.id == 'rec') {
 			var img_button = Ti.UI.createImageView({
@@ -74,6 +76,7 @@
 				width: 20,
 				top: 6
 			});
+			
 			button.add(img_button);
 		} else if(button.id == 'stop') {
 			var img_button = Ti.UI.createImageView({
@@ -82,6 +85,7 @@
 				width: 20,
 				top: 6
 			});
+			
 			button.add(img_button);
 		}
 

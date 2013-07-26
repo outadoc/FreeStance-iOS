@@ -1,12 +1,11 @@
 function tv_pull(data) {
 	function formatDate() {
-		var date = new Date();
-
-		var year = date.getFullYear();
-		var month = date.getMonth() + 1;
-		var day = date.getDate();
-		var hours = date.getHours();
-		var minutes = date.getMinutes();
+		var date = new Date(),
+			year = date.getFullYear(),
+			month = date.getMonth() + 1,
+			day = date.getDate(),
+			hours = date.getHours(),
+			minutes = date.getMinutes();
 
 		if(month < 10) {
 			month = "0" + month;
@@ -25,33 +24,29 @@ function tv_pull(data) {
 		return datestr;
 	}
 
-	var tableView = Ti.UI.createTableView(data);
+	var tableView = Ti.UI.createTableView(data),
 
-	var tableHeader = Ti.UI.createView({
+	tableHeader = Ti.UI.createView({
 		backgroundColor: '#e2e7ed',
 		width: 320,
 		height: 80
-	});
+	}),
 
-	var border = Ti.UI.createView({
+	border = Ti.UI.createView({
 		backgroundColor: '#576c89',
 		height: 1,
 		bottom: 0
-	});
-
-	tableHeader.add(border);
-
-	var arrow = Ti.UI.createView({
+	}),
+	
+	arrow = Ti.UI.createView({
 		backgroundImage: '/img/arrow.png',
 		width: 23,
 		height: 53,
 		bottom: 15,
 		left: 50
-	});
+	}),
 
-	tableHeader.add(arrow);
-
-	var statusLabel = Ti.UI.createLabel({
+	statusLabel = Ti.UI.createLabel({
 		text: I('epg.refresh.pullToRefresh'),
 		left: 95,
 		width: 200,
@@ -68,11 +63,9 @@ function tv_pull(data) {
 			x: 0,
 			y: 1
 		}
-	});
+	}),
 
-	tableHeader.add(statusLabel);
-
-	var lastUpdatedLabel = Ti.UI.createLabel({
+	lastUpdatedLabel = Ti.UI.createLabel({
 		text: I('epg.refresh.updated', formatDate()),
 		left: 95,
 		width: 200,
@@ -88,23 +81,26 @@ function tv_pull(data) {
 			x: 0,
 			y: 1
 		}
-	});
+	}),
 
-	tableHeader.add(lastUpdatedLabel);
-
-	var actInd = Ti.UI.createActivityIndicator({
+	actInd = Ti.UI.createActivityIndicator({
 		left: 50,
 		bottom: 18,
 		width: 30,
 		height: 30,
 		style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK
-	});
+	}),
+
+	pulling = false,
+	reloading = false;
+	
+	tableHeader.add(border);
+	tableHeader.add(arrow);
+	tableHeader.add(statusLabel);
+	tableHeader.add(lastUpdatedLabel);
 
 	tableHeader.add(actInd);
 	tableView.headerPullView = tableHeader;
-
-	var pulling = false;
-	var reloading = false;
 
 	function beginReloading() {
 		Ti.App.fireEvent('beginreload', null);

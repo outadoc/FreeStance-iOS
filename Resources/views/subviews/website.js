@@ -1,12 +1,31 @@
 //page containing a simple webview that is used to show the program dedicated page
-var Ui = require('includes/ui');
-
 Ti.include('/includes/lib/json.i18n.js');
 
-var win = Ti.UI.currentWindow;
+var Ui = require('includes/ui'),
+win = Ti.UI.currentWindow,
 
-var webView = Ti.UI.createWebView({
+webView = Ti.UI.createWebView({
 	url: win.thisUrl
+}),
+
+b_prev = Ti.UI.createButton({
+	image: '/img/arrow_left.png'
+}),
+
+b_fwd = Ti.UI.createButton({
+	image: '/img/arrow_right.png'
+}),
+
+b_cancel = Ti.UI.createButton({
+	systemButton: Ti.UI.iPhone.SystemButton.STOP
+}),
+
+b_refresh = Ti.UI.createButton({
+	systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+}),
+
+loading_wheel = Ti.UI.createButton({
+	systemButton: Ti.UI.iPhone.SystemButton.ACTIVITY
 });
 
 if(win.isModalWin) {
@@ -21,26 +40,6 @@ if(win.isModalWin) {
 
 	win.setLeftNavButton(b_close);
 }
-
-var b_prev = Ti.UI.createButton({
-	image: '/img/arrow_left.png'
-});
-
-var b_fwd = Ti.UI.createButton({
-	image: '/img/arrow_right.png'
-});
-
-var b_cancel = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.STOP
-});
-
-var b_refresh = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-});
-
-var loading_wheel = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.ACTIVITY
-});
 
 b_prev.addEventListener('click', function() {
 	webView.goBack();
@@ -86,11 +85,13 @@ function stoppedLoading() {
 webView.addEventListener('load', stoppedLoading);
 webView.addEventListener('error', function(e) {
 	stoppedLoading();
+	
 	var errorDialog = Ti.UI.createAlertDialog({
 		title: I('more.webview.error.title'),
 		message: I('more.webview.error.message', webView.getUrl(), e.message.split('"')[1]),
 		buttons: ['Ok']
 	});
+	
 	errorDialog.show();
 });
 

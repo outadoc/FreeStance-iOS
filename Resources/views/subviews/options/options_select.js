@@ -1,14 +1,22 @@
 //page used to select a value in a simple tableview, like you would do with the picker element
-var Utils = require('includes/utils');
-
 Ti.include('/includes/enums.js');
 
-var win = Ti.UI.currentWindow;
-var data = [];
+var Utils = require('includes/utils'),
+
+win = Ti.UI.currentWindow,
+data = [],
 
 //getting the profile we need to modify
-var profile = Ti.App.Properties.getInt('profileToModify', Profile.PROFILE_1);
-var selectedRow;
+profile = Ti.App.Properties.getInt('profileToModify', Profile.PROFILE_1),
+selectedRow, i,
+
+tableView = Ti.UI.createTableView({
+	data: data,
+	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	backgroundColor: 'transparent',
+	rowBackgroundColor: 'white',
+	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
+});
 
 //setting the selected row: the -1 thing is because the tableview index starts with 0
 if(win.configID == 'profile') {
@@ -19,7 +27,7 @@ else {
 	selectedRow = Ti.App.Properties.getInt('profile' + profile + '.' + win.configID, Profile.PROFILE_1) - 1;
 }
 
-for(var i = 0; i <= 2; i++) {
+for(i = 0; i <= 2; i++) {
 	var row = Ti.UI.createTableViewRow();
 	if(i == selectedRow) {
 		row.setHasCheck(true);
@@ -37,14 +45,6 @@ for(var i = 0; i <= 2; i++) {
 
 	data[i] = row;
 }
-
-var tableView = Ti.UI.createTableView({
-	data: data,
-	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	backgroundColor: 'transparent',
-	rowBackgroundColor: 'white',
-	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
-});
 
 tableView.addEventListener('click', function(e) {
 	//timeout so we check the row after a certain delay (more "realistic")

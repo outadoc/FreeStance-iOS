@@ -1,26 +1,26 @@
 //the page used to configure the application
-var Utils = require('includes/utils');
-var Ui = require('includes/ui');
-
 Ti.include('/includes/enums.js');
 Ti.include('/includes/lib/json.i18n.js');
 
-var win = Ti.UI.currentWindow;
+var Utils = require('includes/utils'),
+	Ui = require('includes/ui'),
 
-var profileRow = Ui.createParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile');
-var codeRow = Ui.createTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header'));
-var hdRow = Ui.createParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd');
-var modelRow = Ui.createParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model');
+win = Ti.UI.currentWindow,
 
-var settingsSection = Ti.UI.createTableViewSection({
+profileRow = Ui.createParentRow(I('more.settings.profile.title'), I('more.settings.profile.header'), I('more.settings.profile.prefix', ''), 'profile'),
+codeRow = Ui.createTextFieldRow(I('more.settings.code.title'), I('more.settings.code.header')),
+hdRow = Ui.createParentRow(I('more.settings.hd.title'), null, I('more.settings.hd.prefix', ''), 'hd'),
+modelRow = Ui.createParentRow(I('more.settings.model'), null, I('more.settings.model'), 'model'),
+
+settingsSection = Ti.UI.createTableViewSection({
 	headerTitle: I('more.settings.code.header'),
 	rows: [codeRow, hdRow, modelRow]
-});
+}),
 
 //values to store the properties
-var profile, code, hd, model;
+profile, code, hd, model,
 
-var tableView = Ti.UI.createTableView({
+tableView = Ti.UI.createTableView({
 	top: (Utils.isiPad()) ? 10 : undefined,
 	data: [profileRow, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,

@@ -2,29 +2,30 @@
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/enums.js');
 
-var win = Ti.UI.currentWindow;
+var win = Ti.UI.currentWindow,
 
 //we're displaying the webview inside a tableview row, the rendering is a lot better
-var row_content = Ti.UI.createTableViewRow({
+row_content = Ti.UI.createTableViewRow({
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
-});
+}),
 
-var tableView = Ti.UI.createTableView({
+tableView = Ti.UI.createTableView({
 	data: [row_content],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
 	rowBackgroundColor: 'white'
-});
+}),
 
-var webView = Ti.UI.createWebView({
+webView = Ti.UI.createWebView({
 	backgroundColor: 'transparent'
-});
+}),
+
+//so much better in Helvetica <3
+css = '<style>body{font-family:Helvetica;font-size:15px;}</style>';
 
 row_content.add(webView);
 win.add(tableView);
 
-//so much better in Helvetica <3
-var css = '<style>body{font-family:Helvetica;font-size:15px;}</style>';
 
 //depending on the requested help, we display the corresponding information
 if(win.helpTo == 'config') {

@@ -1,11 +1,11 @@
-var Ui = require('includes/ui'),
-	Utils = require('includes/utils');
-
 Ti.include('/includes/lib/json.i18n.js');
 
-var win = Ti.UI.currentWindow;
+var Ui = require('includes/ui'),
+	Utils = require('includes/utils'),
 
-var tableView = Ti.UI.createTableView({
+win = Ti.UI.currentWindow,
+
+tableView = Ti.UI.createTableView({
 	/*@formatter:off*/
 	data: [
 		{leftImage: '/img/icon_settings.png', title: I('more.settings.title'), hasChild: true, path: 'subviews/options/options.js', header: I('more.preferences')},
@@ -44,6 +44,7 @@ tableView.addEventListener('click', function(e) {
 				backgroundColor: Ui.getDefaultBackground()
 			});
 		}
+		
 		Ti.UI.currentTab.open(win, {
 			animated: true
 		});
@@ -58,6 +59,7 @@ tableView.addEventListener('click', function(e) {
 			email.setHtml(true);
 			email.setMessageBody(I('more.bugReport.content', Ti.App.name, Ti.App.version, Ti.Platform.name, Ti.Platform.version, Ti.Platform.model, Ti.version));
 		}
+		
 		email.open();
 	}
 });

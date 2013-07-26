@@ -1,18 +1,18 @@
 (function() {
 	exports.parseSingleProgram = function(item) {
 		try {
-			var fullTitle = (item.getElementsByTagName('title').item(0).text).replace(/\n/gi, ' ').replace('CANAL+', 'Canal+').replace('ARTE', 'Arte');
-			var desc = strip_tags(((item.getElementsByTagName('description').item(0).text).replace(/\n/gi, ' ').replace('&nbsp;', '').replace('[...]', '').split('/>'))[1], null);
-			var category = 'N/A';
+			var fullTitle = (item.getElementsByTagName('title').item(0).text).replace(/\n/gi, ' ').replace('CANAL+', 'Canal+').replace('ARTE', 'Arte'),
+			desc = strip_tags(((item.getElementsByTagName('description').item(0).text).replace(/\n/gi, ' ').replace('&nbsp;', '').replace('[...]', '').split('/>'))[1], null),
+			category = 'N/A',
 
-			var descParts = desc.split('. ');
+			descParts = desc.split('. '),
+			
+			titleComps = fullTitle.match(/(.*) : ([0-9]{2}h[0-9]{2}) (.*)/);
 
 			if(descParts[1] != null) {
 				category = Utils.capitalize(descParts.shift());
 				desc = descParts.join('. ');
 			}
-			
-			var titleComps = fullTitle.match(/(.*) : ([0-9]{2}h[0-9]{2}) (.*)/);
 
 			return {
 				title: titleComps[3],
@@ -29,12 +29,12 @@
 	}
 
 	exports.getAllRows = function(itemList, callback) {
-		var lastChannelID;
+		var lastChannelID, i;
 		
-		for(var i = 0; i < itemList.length; i++) {
-			var progData = exports.parseSingleProgram(itemList.item(i));
+		for(i = 0; i < itemList.length; i++) {
+			var progData = exports.parseSingleProgram(itemList.item(i)),
 			
-			var row = Ti.UI.createTableViewRow({
+			row = Ti.UI.createTableViewRow({
 				hasChild: true,
 				height: Ti.UI.SIZE,
 				selectedBackgroundColor: '#565656',
@@ -51,17 +51,17 @@
 						borderColor: 'darkGray',
 						borderRadius: 1,
 						isHeader: true
-					});
+					}),
 
-					var img = Ti.UI.createImageView({
+					img = Ti.UI.createImageView({
 						image: '/img/logo/' + row.data.channelID + '.png',
 						defaultImage: '/img/default_epg.png',
 						height: 27,
 						width: 27,
 						left: 10
-					});
+					}),
 
-					var lbl_channel = Ti.UI.createLabel({
+					lbl_channel = Ti.UI.createLabel({
 						text: row.data.channelString,
 						left: 50,
 						top: 1,
@@ -96,9 +96,9 @@
 						fontSize: 16
 					},
 					highlightedColor: 'white'
-				});
+				}),
 
-				var row_title = Ti.UI.createLabel({
+				row_title = Ti.UI.createLabel({
 					text: row.data.title,
 					color: '#000',
 					textAlign: 'left',
