@@ -58,7 +58,7 @@
 	tabGroup.addTab(tab_more);
 	
 	if(Utils.isiPad()) {
-		var nav = Ti.UI.iPhone.createNavigationGroup({
+		var nav_win_main = Ti.UI.iPhone.createNavigationGroup({
 		   window: Ti.UI.createWindow({
 				url: 'views/main.js',
 				backgroundColor: Ui.getDarkBackground(),
@@ -68,7 +68,7 @@
 		 
 		var splitwin = Ti.UI.iPad.createSplitWindow({
 		    detailView: tabGroup,
-		    masterView: nav,
+		    masterView: nav_win_main,
 		    showMasterInPortrait: true
 		});
 		 

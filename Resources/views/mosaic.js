@@ -36,11 +36,15 @@ var dashboardTabs = Ti.UI.iOS.createTabbedBar({
 	index: 0
 });
 
-win.setToolbar([Ui.createFlexibleSpace(), dashboardTabs, Ui.createFlexibleSpace()], {
-	animated: false
-});
-
-win.setTitleControl(tabbedBar);
+if(Utils.isiPad()) {
+	win.setTitleControl(dashboardTabs);
+} else {
+	win.setToolbar([Ui.createFlexibleSpace(), dashboardTabs, Ui.createFlexibleSpace()], {
+		animated: false
+	});
+	
+	win.setTitleControl(tabbedBar);
+}
 
 //we're loading things
 loadingWin.open();

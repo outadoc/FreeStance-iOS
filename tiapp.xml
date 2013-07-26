@@ -31,6 +31,12 @@
             <orientation>Ti.UI.PORTRAIT</orientation>
             <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
         </orientations>
+        <orientations device="ipad">
+        	<orientation>Ti.UI.PORTRAIT</orientation>
+        	<orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+        </orientations>
     </iphone>
     <ios>
         <min-ios-ver>4.3</min-ios-ver>
