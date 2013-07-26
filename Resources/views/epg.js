@@ -132,7 +132,6 @@ tableView.addEventListener('click', function(e) {
 			url: 'subviews/epg/epg_details.js',
 			title: I('epg.details.title'),
 			backButtonTitle: I('labels.epg'),
-			orientationModes: [Ti.UI.PORTRAIT],
 			backgroundColor: Ui.getDefaultBackground(),
 			layout: 'vertical',
 			data: e.rowData.data

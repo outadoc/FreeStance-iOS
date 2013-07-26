@@ -66,7 +66,6 @@ var img = Ti.UI.createImageView({
 	top: 10,
 	bottom: 10,
 	left: 15,
-	right: 193,
 	defaultImage: '/img/default_epg.png'
 });
 
