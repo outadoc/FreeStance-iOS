@@ -127,11 +127,22 @@ function getItem(label) {
 function getDashboard(labels, visible) {
 	var dashboard = Ti.UI.createDashboardView({
 		editable: false,
-		height: (Ti.Platform.displayCaps.platformHeight < 568) ? 350 : 430,
-		rowCount: (Ti.Platform.displayCaps.platformHeight < 568) ? 3 : 4,
 		top: 5,
 		visible: visible
 	});
+	
+	if(Utils.isiPad()) {
+		dashboard.rowCount = 5;
+		dashboard.columnCount = 5;
+		dashboard.top = 15;
+		dashboard.height = Ti.UI.FILL;
+	} else if(Ti.Platform.displayCaps.platformHeight < 568) {
+		dashboard.rowCount = 3;
+		dashboard.height = 350;
+	} else {
+		dashboard.rowCount = 4;
+		dashboard.height = 430;
+	}
 
 	var data = [];
 

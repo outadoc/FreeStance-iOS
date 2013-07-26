@@ -268,6 +268,10 @@
 		}
 	}
 	
+	exports.isiPad = function() {
+		return (Ti.Platform.getOsname() === 'ipad');
+	}
+	
 	exports.capitalize = function(string) {
 		return string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 	};
