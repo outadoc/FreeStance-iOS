@@ -123,8 +123,8 @@
 						"height": "270"
 					},
 					"hd": {
-						"content": "<p>L'identifiant du Freebox player n'est désormais plus affiché sur ce dernier.<br />Essayez d'utiliser les numéros de boîtier un par un dans FreeStance, puis déduisez-en celui qui fonctionne.</p>",
-						"height": "120"
+						"content": "<p>Pour connaître l'identifiant du boîtier de votre Freebox Player : </p><ol><li>Allez sur l'écran d'accueil en appuyant sur la touche <strong>Free</strong> de votre télécommande</li><li>Naviguez vers la gauche jusqu'à <strong>Réglages</strong></li><li>Séléctionnez <strong>Système</strong></li></ol><p>L'identifiant du boîtier se trouve sur la ligne <strong>Identifiant</strong>.</p>",
+						"height": "250"
 					}
 				}
 			},
