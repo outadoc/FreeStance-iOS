@@ -1,4 +1,5 @@
-var Ui = require('includes/ui');
+var Ui = require('includes/ui'),
+	Utils = require('includes/utils');
 
 Ti.include('/includes/lib/json.i18n.js');
 
@@ -16,6 +17,7 @@ var tableView = Ti.UI.createTableView({
 		{leftImage: '/img/icon_heart.png',title: I('more.credits.title'), hasChild: true, path: 'subviews/credits.js', header: '', isCredits: true}
 	],
 	/*@formatter:on*/
+	top: (Utils.isiPad()) ? 15 : undefined,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
 	rowBackgroundColor: 'white',

@@ -21,6 +21,7 @@ var settingsSection = Ti.UI.createTableViewSection({
 var profile, code, hd, model;
 
 var tableView = Ti.UI.createTableView({
+	top: (Utils.isiPad()) ? 10 : undefined,
 	data: [profileRow, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: Ui.createDestructionView(I('more.settings.reset.title')),
