@@ -15,9 +15,8 @@
 		if(top === undefined) { top = '38%'; }
 	
 		var win = Ti.UI.createWindow({
-			width: 320,
-			height: Ti.Platform.displayCaps.platformHeight,
-			orientationModes: [Ti.UI.PORTRAIT]
+			width: Ti.UI.FILL,
+			height: Ti.Platform.displayCaps.platformHeight
 		}),
 	
 		view = Ti.UI.createView({
