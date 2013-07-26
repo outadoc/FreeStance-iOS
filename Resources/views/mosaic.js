@@ -133,7 +133,7 @@ function getDashboard(labels, visible) {
 	
 	if(Utils.isiPad()) {
 		dashboard.rowCount = 5;
-		dashboard.columnCount = 5;
+		dashboard.columnCount = 4;
 		dashboard.top = 15;
 		dashboard.height = Ti.UI.FILL;
 	} else if(Ti.Platform.displayCaps.platformHeight < 568) {

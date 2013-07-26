@@ -7,66 +7,73 @@
 
 	var tabGroup = Ti.UI.createTabGroup({
 		activeTabIconTint: '#bbbbbb',
-		barColor: Ui.getBarColor()
-	});
-
-	var win_main = Ti.UI.createWindow({
-		url: 'views/main.js',
-		backgroundColor: Ui.getDarkBackground(),
-		orientationModes: [Ti.UI.PORTRAIT]
-	});
-
-	var win_mosaic = Ti.UI.createWindow({
-		url: 'views/mosaic.js',
-		backgroundColor: Ui.getDarkBackground(),
-		orientationModes: [Ti.UI.PORTRAIT]
-	});
-
-	var win_epg = Ti.UI.createWindow({
-		url: 'views/epg.js',
-		backgroundColor: Ui.getDefaultBackground(),
-		orientationModes: [Ti.UI.PORTRAIT]
-	});
-
-	var win_more = Ti.UI.createWindow({
-		title: I('labels.more'),
-		url: 'views/more.js',
-		backgroundColor: Ui.getDefaultBackground(),
-		orientationModes: [Ti.UI.PORTRAIT]
+		barColor: Ui.getBarColor(),
+		orientationModes: (Utils.isiPad()) ? undefined : [Ti.UI.PORTRAIT]
 	});
 
 	//add tabs
 	var tab_main = Ti.UI.createTab({
 		icon: '/img/remote.png',
 		title: Ti.App.name,
-		window: win_main
+		window: Ti.UI.createWindow({
+			url: 'views/main.js',
+			backgroundColor: Ui.getDarkBackground()
+		})
 	});
 
 	var tab_mosaic = Ti.UI.createTab({
 		icon: '/img/planet.png',
 		title: I('labels.mosaic'),
-		window: win_mosaic
+		window: Ti.UI.createWindow({
+			url: 'views/mosaic.js',
+			backgroundColor: Ui.getDarkBackground()
+		})
 	});
 
 	var tab_epg = Ti.UI.createTab({
 		icon: '/img/tv.png',
 		title: I('labels.epg'),
-		window: win_epg
+		window: Ti.UI.createWindow({
+			url: 'views/epg.js',
+			backgroundColor: Ui.getDefaultBackground()
+		})
 	});
 
 	var tab_more = Ti.UI.createTab({
 		icon: 'img/gear.png',
 		title: I('labels.more'),
-		window: win_more
+		window: Ti.UI.createWindow({
+			title: I('labels.more'),
+			url: 'views/more.js',
+			backgroundColor: Ui.getDefaultBackground()
+		})
 	});
-
-	tabGroup.addTab(tab_main);
+	
+	if(!Utils.isiPad()) {
+		tabGroup.addTab(tab_main);
+	}
+	
 	tabGroup.addTab(tab_mosaic);
 	tabGroup.addTab(tab_epg);
 	tabGroup.addTab(tab_more);
-
-	win_main.tabGroup = tabGroup;
 	
-	Ti.UI.setOrientation(Ti.UI.PORTRAIT);
+	if(Utils.isiPad()) {
+		var nav = Ti.UI.iPhone.createNavigationGroup({
+		   window: Ti.UI.createWindow({
+				url: 'views/main.js',
+				backgroundColor: Ui.getDarkBackground(),
+				barColor: Ui.getBarColor()
+			})
+		});
+		 
+		var splitwin = Ti.UI.iPad.createSplitWindow({
+		    detailView: tabGroup,
+		    masterView: nav,
+		    showMasterInPortrait: true
+		});
+		 
+		splitwin.open();
+	}
+	
 	tabGroup.open();
 })();
