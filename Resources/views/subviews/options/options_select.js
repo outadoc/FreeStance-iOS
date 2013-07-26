@@ -11,7 +11,6 @@ profile = Ti.App.Properties.getInt('profileToModify', Profile.PROFILE_1),
 selectedRow, i,
 
 tableView = Ti.UI.createTableView({
-	data: data,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
 	rowBackgroundColor: 'white',
@@ -27,7 +26,7 @@ else {
 	selectedRow = Ti.App.Properties.getInt('profile' + profile + '.' + win.configID, Profile.PROFILE_1) - 1;
 }
 
-for(i = 0; i <= 2; i++) {
+for(i = 0; i < 3; i++) {
 	var row = Ti.UI.createTableViewRow();
 	if(i == selectedRow) {
 		row.setHasCheck(true);
@@ -63,4 +62,5 @@ tableView.addEventListener('click', function(e) {
 	}, 150);
 });
 
+tableView.setData(data);
 win.add(tableView);

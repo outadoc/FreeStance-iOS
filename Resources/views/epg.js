@@ -85,8 +85,9 @@ function loadRSSFeed(useCache, displayLoad) {
 						tableView.appendRow(row, {
 							animated: true
 						});
+						
 						cachedData[tabbedBar.getIndex()].push(row);
-					})
+					});
 
 					tabbedBar.lastIndex = tabbedBar.getIndex();
 

@@ -114,17 +114,17 @@ function getItem(label) {
 		defaultImage: '/img/default_epg.png',
 		height: Ti.UI.SIZE,
 		width: 55
-	}),
+	});
 
-	item = Ti.UI.createDashboardItem({
+	img_icon.add(img_logo);
+	
+	var item = Ti.UI.createDashboardItem({
 		canDelete: false,
 		image: img_icon.toImage(null, true),
 		channel: Utils.getChannelID(label),
 		height: 90,
 		width: 90
 	});
-	
-	img_icon.add(img_logo);
 
 	return item;
 }
