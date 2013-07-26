@@ -3,12 +3,12 @@
 		return '#dfdfdf';
 	}
 	
-	exports.getWhitishBackground = function() {
-		return '#f9f9f9';
+	exports.getDarkBackground = function() {
+		return '#3e3e3e';
 	}
 	
 	exports.getBarColor = function() {
-		return '#909090';
+		return '#707070';
 	}
 	
 	exports.createLoadingWindow = function(top) {

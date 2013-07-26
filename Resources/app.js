@@ -10,14 +10,14 @@
 	var win1 = Ti.UI.createWindow({
 		url: 'views/main.js',
 		barColor: Ui.getBarColor(),
-		backgroundColor: Ui.getWhitishBackground(),
+		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 
 	var win2 = Ti.UI.createWindow({
 		url: 'views/mosaic.js',
 		barColor: Ui.getBarColor(),
-		backgroundColor: Ui.getWhitishBackground(),
+		backgroundColor: Ui.getDarkBackground(),
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 

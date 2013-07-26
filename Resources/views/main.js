@@ -137,7 +137,7 @@
 			//creating the window
 			var win_more = Ti.UI.createWindow({
 				url: 'subviews/more_buttons.js',
-				backgroundColor: '#f5f5f5',
+				backgroundColor: Ui.getDarkBackground(),
 				navBarHidden: true,
 				thisHd: RequestHandler.getHd(),
 				thisCode: RequestHandler.getCode(),
@@ -201,7 +201,7 @@
 			left: 207,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#a2a2a2',
+			color: '#ffffff',
 			font: {
 				fontSize: 14
 			}
@@ -211,7 +211,7 @@
 			left: 257,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#a2a2a2',
+			color: '#ffffff',
 			font: {
 				fontSize: 14
 			}
@@ -265,8 +265,22 @@
 				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundColor('#cccccc');
-				button.setSelectedColor('#3f3f3f');
+				button.setBackgroundGradient({
+					type: 'linear',
+					colors: [{
+						color: '#868686',
+						offset: 0
+					}, {
+						color: '#818181',
+						offset: 0.25
+					}, {
+						color: '#5d5d5d',
+						offset: 1
+					}]
+				});
+				
+				button.setBorderColor('gray');
+				button.setSelectedColor('#2f2f2f');
 			}
 
 			if(button.isArrow) {

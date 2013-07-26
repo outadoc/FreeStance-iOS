@@ -42,8 +42,22 @@
 
 		button.setBorderRadius(2);
 		button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
-		button.setBackgroundColor('#cccccc');
-		button.setSelectedColor('#3f3f3f');
+		button.setBackgroundGradient({
+			type: 'linear',
+			colors: [{
+				color: '#868686',
+				offset: 0
+			}, {
+				color: '#818181',
+				offset: 0.25
+			}, {
+				color: '#5d5d5d',
+				offset: 1
+			}]
+		});
+		
+		button.setBorderColor('gray');
+		button.setSelectedColor('#2f2f2f');
 
 		if(button.id == 'play') {
 			var img_button = Ti.UI.createImageView({
