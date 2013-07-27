@@ -112,9 +112,9 @@
 			{title: '0', id: '0', height: 35, width: 45, left: 75, top: 465, canBeLong: true },
 			{title: '↻', id: 'swap', height: 35, width: 45, left: 130, top: 465, canBeLong: true},
 			
-			{id: 'power', height: 35, width: 95, left: 200, top: 330, canBeLong: false},
-			{id: 'home', height: 35, width: 95, left: 200, top: 375, canBeLong: true},
-			{title: I('buttons.mute'), id: 'mute', height: 35, width: 95, left: 200, top: 420, canBeLong: false},
+			{id: 'power', height: 50, width: 95, left: 200, top: 330, canBeLong: false},
+			{id: 'home', height: 50, width: 95, left: 200, top: 390, canBeLong: true},
+			{title: I('buttons.mute'), id: 'mute', height: 50, width: 95, left: 200, top: 450, canBeLong: false},
 			
 			{title: I('buttons.list'), id: 'list', height: 35, width: 133, top: 522, left: 20},
 			{title: I('buttons.hdd'), id: 'mail', height: 35, width: 134, top: 522, left: 162, isLong: true},
@@ -128,7 +128,7 @@
 			{title: '‹', id: 'bwd', height: 30, width: 32, top: 660, left: 102, bFontSize: 27},
 			{id: 'play', height: 30, width: 32, top: 660, left: 142, bFontSize: 13},
 			{id: 'stop', height: 30, width: 32, top: 660, left: 183},
-			{title: '›', id: 'fwd', height: 30, width: 32, top: 660, left: 225, bFontSize: 27},
+			{title: '›', id: 'fwd', height: 30, width: 32, top: 660, left: 224, bFontSize: 27},
 			{title: '»', id: 'next', height: 30, width: 32, top: 660, left: 264, bFontSize: 25}
 		];
 		
@@ -148,10 +148,10 @@
 			},
 			borderColor: 'gray',
 			borderRadius: 5,
-			top: 170,
+			top: 180,
 			left: 20,
-			right: 20,
-			height: 140,
+			right: 25,
+			height: 120,
 			zIndex: 5
 		});
 
