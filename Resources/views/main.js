@@ -133,36 +133,66 @@
 		];
 		
 		var view_trackpad = Ti.UI.createView({
-			backgroundGradient: {
-				type: 'linear',
-				colors: [{
-					color: '#868686',
-					offset: 0
-				}, {
-					color: '#818181',
-					offset: 0.25
-				}, {
-					color: '#6d6d6d',
-					offset: 1
-				}]
-			},
+			backgroundColor: '#606060',
 			borderColor: 'gray',
 			borderRadius: 5,
 			top: 180,
 			left: 20,
 			right: 25,
 			height: 120,
+			layout: 'horizontal',
 			zIndex: 5
+		}),
+		
+		view_trackpad_vol = Ti.UI.createView({
+			left: 0,
+			width: '15%',
+			height: Ti.UI.FILL,
+			backgroundColor: '#808080',
+			opacity: 0.4
+		}),
+		
+		view_trackpad_main = Ti.UI.createView({
+			width: '70%',
+			height: Ti.UI.FILL
+		}),
+		
+		view_trackpad_prgm = Ti.UI.createView({
+			right: 0,
+			width: '15%',
+			height: Ti.UI.FILL,
+			backgroundColor: '#808080',
+			opacity: 0.4
 		});
+		
+		view_trackpad.add(view_trackpad_vol);
+		view_trackpad.add(view_trackpad_main);
+		view_trackpad.add(view_trackpad_prgm);
 
-		view_trackpad.addEventListener('swipe', function(e) {
+		view_trackpad_main.addEventListener('swipe', function(e) {
 			if(e.direction == 'up' || e.direction == 'down' || e.direction == 'left' || e.direction == 'right') {
 				RequestHandler.callKey(e.direction, false);
 			}
 		});
 		
-		view_trackpad.addEventListener('click', function(e) {
+		view_trackpad_main.addEventListener('click', function(e) {
 			RequestHandler.callKey('ok', false);
+		});
+		
+		view_trackpad_prgm.addEventListener('swipe', function(e) {
+			if(e.direction == 'up') {
+				RequestHandler.callKey('prgm_inc', false);
+			} else if(e.direction == 'down') {
+				RequestHandler.callKey('prgm_dec', false);
+			}
+		});
+		
+		view_trackpad_vol.addEventListener('swipe', function(e) {
+			if(e.direction == 'up') {
+				RequestHandler.callKey('vol_inc', false);
+			} else if(e.direction == 'down') {
+				RequestHandler.callKey('vol_dec', false);
+			}
 		});
 		
 		win.add(view_trackpad);
