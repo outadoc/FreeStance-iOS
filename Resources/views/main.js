@@ -156,7 +156,9 @@
 		});
 
 		view_trackpad.addEventListener('swipe', function(e) {
-			RequestHandler.callKey(e.direction, false);
+			if(e.direction == 'up' || e.direction == 'down' || e.direction == 'left' || e.direction == 'right') {
+				RequestHandler.callKey(e.direction, false);
+			}
 		});
 		
 		view_trackpad.addEventListener('click', function(e) {
