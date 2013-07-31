@@ -20,7 +20,16 @@
 			backgroundColor: Ui.getDarkBackground()
 		})
 	}),
-
+	
+	tab_trackpad = Ti.UI.createTab({
+		//icon: '/img/planet.png',
+		title: I('labels.trackpad'),
+		window: Ti.UI.createWindow({
+			url: 'views/trackpad.js',
+			backgroundColor: Ui.getDarkBackground()
+		})
+	}),
+	
 	tab_mosaic = Ti.UI.createTab({
 		icon: '/img/planet.png',
 		title: I('labels.mosaic'),
@@ -53,6 +62,7 @@
 	
 	if(!Utils.isiPad()) {
 		tabGroup.addTab(tab_main);
+		tabGroup.addTab(tab_trackpad);
 	}
 	
 	tabGroup.addTab(tab_mosaic);
