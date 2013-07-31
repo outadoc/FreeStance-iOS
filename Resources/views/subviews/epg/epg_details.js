@@ -97,7 +97,7 @@ lbl_category = Ti.UI.createLabel({
 
 //the scrollview that will contain the program description
 scrollView = Ti.UI.createScrollView({
-	height: (Ti.Platform.displayCaps.platformHeight >= 568) ? 250 : 190,
+	height: (Ti.Platform.displayCaps.platformHeight >= 568) ? 250 : 170,
 	top: 10,
 	contentHeight: 'auto',
 	showVerticalScrollIndicator: true,
@@ -126,10 +126,11 @@ lbl_description = Ti.UI.createLabel({
 }),
 
 view_btn_container = Ti.UI.createView({
-	bottom: 10,
-	height: 70,
+	bottom: 15,
+	top: 10,
 	left: 10,
-	right: 10
+	right: 10,
+	height: (Utils.isiPad()) ? 70 : undefined
 }),
 
 //the button used to get more info about the program
