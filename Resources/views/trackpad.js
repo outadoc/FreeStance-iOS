@@ -13,7 +13,7 @@ tabbedBar = Ti.UI.iOS.createTabbedBar({
 }),
 
 view_trackpad = Ti.UI.createView({
-	backgroundImage: '/img/ipad_trackpad.png',
+	backgroundImage: getBackground(),
 	backgroundColor: '#606060',
 	borderColor: 'gray',
 	borderRadius: 5,
@@ -89,6 +89,14 @@ view_trackpad_vol.addEventListener('swipe', function(e) {
 });
 
 win.add(view_trackpad);
+
+function getBackground() {
+	if(Ti.Platform.displayCaps.platformHeight < 568) {
+		return '/img/trackpad.png';
+	} else {
+		return '/img/trackpad-tall.png';
+	}
+}
 
 //get properties
 function updateProps() {

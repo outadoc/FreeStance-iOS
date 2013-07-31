@@ -84,7 +84,7 @@
 				{title: I('buttons.aux'), id: 'tv', height: 30, width: 85, bottom: 20, left: 210, bFontSize: 15, canBeLong: false}
 			);
 		}
-	} else {//+175
+	} else {
 		buttonList = [
 			{id: 'red', height: 35, width: 35, left: 37, top: 25, canBeLong: false, isColor: true},
 			{id: 'up', height: 40, width: 40, left: 77, top: 20, canBeLong: false, isArrow: true},
