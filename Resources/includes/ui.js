@@ -16,7 +16,8 @@
 	
 		var win = Ti.UI.createWindow({
 			width: Ti.UI.FILL,
-			height: Ti.Platform.displayCaps.platformHeight
+			height: Ti.Platform.displayCaps.platformHeight,
+			left: (Utils.isiPad()) ? 320 : 0
 		}),
 	
 		view = Ti.UI.createView({
