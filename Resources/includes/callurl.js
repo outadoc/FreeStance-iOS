@@ -6,7 +6,7 @@
 	hd, code, model, profile;
 	
 	//can call any key, but it must be formatted as in the freebox API
-	exports.callKey = function(key, isLong, callback) {
+	exports.callKey = function(key, isLong, callback, nextKey) {
 		//checking if we call the function with already set config values; if we don't, get them
 		if(this.profile == null) {
 			this.profile = Ti.App.Properties.getString('profileToUse', Profile.PROFILE_1);
@@ -26,13 +26,19 @@
 	
 		if(!Ti.App.Properties.getBool('debugmode', false)) {
 			var xhr = Ti.Network.createHTTPClient({
-				onload: callback,
-				timeout: 3000
+				timeout: 3000,
+				cache: false
 			});
 			
 			//this is the url used for calling remote keys, as specified in the API
-			xhr.open('GET', 'http://' + 'hd' + this.hd + '.freebox.fr/pub/remote_control?code=' + this.code + '&key=' + key + '&long=' + isLong.toString(), true);
-			xhr.send(null);
+			xhr.open('GET', 'http://' + 'hd' + this.hd + '.freebox.fr/pub/remote_control');
+			xhr.send({
+				code: this.code,
+				key: key,
+				long: isLong
+			});
+			
+			setTimeout(callback, (nextKey === key) ? 1250 : 700);
 		} else {
 			//if debugging, show the information that was about to be sent
 			Ti.API.info('requested call for profile:' + this.profile + ', hd:' + this.hd + ', code:' + this.code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + Utils.getModelString(this.model));
@@ -49,7 +55,7 @@
 			exports.callKey(channel.charAt(0), true, function() {
 				//and when it's done, call the same function with only the remaining digits
 				exports.callMultiKeys(channel.substr(1));
-			});
+			}, channel.charAt(1));
 		}
 	}
 	//getters
