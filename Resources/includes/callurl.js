@@ -24,12 +24,12 @@
 			callback = function(){};
 		}
 	
-		var xhr = Ti.Network.createHTTPClient({
-			onload: callback,
-			timeout: 3
-		});
-	
 		if(!Ti.App.Properties.getBool('debugmode', false)) {
+			var xhr = Ti.Network.createHTTPClient({
+				onload: callback,
+				timeout: 3000
+			});
+			
 			//this is the url used for calling remote keys, as specified in the API
 			xhr.open('GET', 'http://' + 'hd' + this.hd + '.freebox.fr/pub/remote_control?code=' + this.code + '&key=' + key + '&long=' + isLong.toString(), true);
 			xhr.send(null);
@@ -46,7 +46,7 @@
 			exports.callKey(channel.charAt(0), false);
 		} else {
 			//if there's more than one digit, call the first one
-			exports.callKey(channel.charAt(0), true, function(e) {
+			exports.callKey(channel.charAt(0), true, function() {
 				//and when it's done, call the same function with only the remaining digits
 				exports.callMultiKeys(channel.substr(1));
 			});
