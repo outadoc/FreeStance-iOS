@@ -22,7 +22,7 @@
 	}),
 	
 	tab_trackpad = Ti.UI.createTab({
-		//icon: '/img/planet.png',
+		icon: '/img/swipe.png',
 		title: I('labels.trackpad'),
 		window: Ti.UI.createWindow({
 			url: 'views/trackpad.js',
