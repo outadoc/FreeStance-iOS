@@ -11,7 +11,7 @@
     </deployment-targets>
     <id>fr.outadev.freestance</id>
     <name>FreeStance</name>
-    <version>2.2</version>
+    <version>3.0</version>
     <publisher>Baptiste Candellier</publisher>
     <url>http://dev.outadoc.fr</url>
     <description>Controlez votre Freebox a distance !</description>
@@ -32,8 +32,8 @@
             <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
         </orientations>
         <orientations device="ipad">
-        	<orientation>Ti.UI.PORTRAIT</orientation>
-        	<orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
             <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
         </orientations>
