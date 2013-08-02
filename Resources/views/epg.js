@@ -2,10 +2,8 @@ Ti.include('/includes/enums.js');
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/strip_tags.js');
 
-var Utils = require('includes/utils'),
-	Ui = require('includes/ui'),
+var Ui = require('includes/ui'),
 	Parser = require('includes/parse'),
-
 
 win = Ti.UI.currentWindow,
 defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT),
