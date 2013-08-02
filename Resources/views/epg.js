@@ -2,7 +2,8 @@ Ti.include('/includes/enums.js');
 Ti.include('/includes/lib/json.i18n.js');
 Ti.include('/includes/strip_tags.js');
 
-var Ui = require('includes/ui'),
+var Utils = require('includes/utils'),
+	Ui = require('includes/ui'),
 	Parser = require('includes/parse'),
 
 win = Ti.UI.currentWindow,
