@@ -19,7 +19,7 @@
 	};
 	
 	exports.createLoadingWindow = function(top) {
-		if(top === undefined) { top = '38%'; }
+		/*if(top === undefined) { top = '38%'; }
 	
 		var win = Ti.UI.createWindow({
 			width: Ti.UI.FILL,
@@ -44,8 +44,8 @@
 	
 		view.add(spinWheel);
 		spinWheel.show();
-	
-		return win;
+	*/
+		return {open:function(){},close:function(){}};
 	};
 	
 	//just a few UI elements, so they can be used painlessly
