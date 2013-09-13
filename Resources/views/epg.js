@@ -89,8 +89,8 @@ function loadRSSFeed(useCache, displayLoad) {
 					});
 
 					tabbedBar.lastIndex = tabbedBar.getIndex();
-
 					loadingWin.close();
+					
 					Ti.App.fireEvent('endreload', null);
 				},
 				onerror: function() {

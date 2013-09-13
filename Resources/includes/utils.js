@@ -309,11 +309,12 @@
 						url: '/views/subviews/options/options.js',
 						title: I('labels.options'),
 						backgroundColor: '#d8d8d8',
-						barColor: Ui.getBarColor()
+						backgroundColor: Ui.getDefaultBackground(),
+						translucent: false
 					});
 	
-					tabGroup.tabs[3].open(helpwin);
-					tabGroup.setActiveTab(3);
+					tabGroup.tabs[4].open(helpwin);
+					tabGroup.setActiveTab(4);
 				}
 			});
 		}

@@ -2,10 +2,10 @@
 	
 	Ti.include('/includes/lib/json.i18n.js');
 	Ti.include('/includes/enums.js');
-
+	
 	var Utils = require('includes/utils'),
 		Ui = require('includes/ui'),	
-
+	
 	tabGroup = Ti.UI.createTabGroup({
 		activeTabIconTint: (Utils.getMajorOsVersion() < 7) ? '#bbbbbb' : '#000000',
 		barColor: (Utils.getMajorOsVersion() < 7) ? Ui.getBarColor() : '#cccccc',
@@ -67,6 +67,8 @@
 			translucent: false
 		})
 	});
+	
+	Ti.UI.backgroundColor = Ui.getDefaultBackground();
 	
 	if(!Utils.isiPad()) {
 		tabGroup.addTab(tab_main);
