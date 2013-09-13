@@ -3,12 +3,8 @@ Ti.include('/includes/lib/json.i18n.js');
 var RequestHandler = require('includes/callurl'),
 	Ui = require('includes/ui'),
 	Utils = require('includes/utils'),
-	
-//we're loading things
-loadingWin = Ui.createLoadingWindow();
-loadingWin.open();
 
-var win = Ti.UI.currentWindow,
+win = Ti.UI.currentWindow,
 
 labelsTNT = ['TF1', 'France 2', 'France 3', 'Canal+', 'France 5', 'M6', 'Arte', 'D8', 'W9', 'TMC', 'NT1', 'NRJ12', 'LCP', 'France 4', 'BFM TV', 'i>TELE', 'D17', 'Gulli', 'France Ô', 'HD1', 'L\'Equipe 21', '6ter', 'Numéro 23', 'RMC Découverte', 'Chérie 25'],
 labelsFree = ['RTL9', 'Vivolta', 'AB1', 'Disney Channel', 'NRJ Hits', 'Clubbing TV', 'O Five', 'BeBlack', 'TV5 Monde', 'BFM Business', 'Euronews', 'Bloomberg', 'Al Jazeera', 'Sky News', 'Guysen TV', 'CNBC', 'MCE', 'France 24', 'Game One', 'Game One Music', 'Lucky Jack', 'Men\'s up', 'Nolife', 'Fashion TV', 'World Fashion', 'Allocine', 'Equidia Live', 'Equidia Life', 'AB Moteurs', 'Poker Channel', 'Liberty TV', 'Montagne TV', 'Luxe.TV', 'Demain TV', 'KTO', 'Wild Earth', 'TNA', 'Souvenirs from Earth', 'Penthouse', 'M6 Boutique', 'Best of Shopping', 'Renault TV', 'Astro Center', 'Radio'],
@@ -56,9 +52,6 @@ if(Utils.isiPad()) {
 for(i = 0; i < dashboards.length; i++) {
 	win.add(dashboards[i]);
 }
-
-//stop loading
-loadingWin.close();
 
 //if we want to switch to another dashboard
 dashboardTabs.addEventListener('click', function(e) {

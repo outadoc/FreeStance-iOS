@@ -50,17 +50,22 @@ Ti.App.addEventListener('beginreload', function(e) {
 });
 
 win.addEventListener('focus', function() {
-	if(!initialPaddingWasSet && Utils.getMajorOsVersion() >= 7) {
-		tableView.setContentInsets({
-			top: 65,
-			bottom: 50
-		}, {
-			animated: false
-		});
+	if(!initialPaddingWasSet) {
+		loadRSSFeed(false, true);
 		
-		tableView.scrollToTop(-65, {
-			animated: false
-		});
+		if(Utils.getMajorOsVersion() >= 7) {
+			tableView.setContentInsets({
+				top: 65,
+				bottom: 50
+			}, {
+				animated: false
+			});
+			
+			tableView.scrollToTop(-65, {
+				animated: false
+			});
+		}
+		
 		initialPaddingWasSet = true;
 	}
 });
@@ -163,5 +168,3 @@ tableView.addEventListener('click', function(e) {
 		});
 	}
 });
-
-loadRSSFeed(false, true);
