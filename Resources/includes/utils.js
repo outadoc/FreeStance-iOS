@@ -24,6 +24,11 @@
 		return datestr;
 	}
 	
+	exports.getMajorOsVersion = function() {
+		var version = Titanium.Platform.version.split(".");
+		return parseInt(version[0]);
+	};
+	
 	exports.getChannelID = function(channel) {
 		var id;
 		switch(channel) {

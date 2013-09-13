@@ -6,8 +6,9 @@
 		Ui = require('includes/ui'),	
 
 	tabGroup = Ti.UI.createTabGroup({
-		activeTabIconTint: '#bbbbbb',
-		barColor: Ui.getBarColor(),
+		activeTabIconTint: (Utils.getMajorOsVersion() < 7) ? '#bbbbbb' : '#000000',
+		barColor: (Utils.getMajorOsVersion() < 7) ? Ui.getBarColor() : '#cccccc',
+		tintColor: '#333333',
 		orientationModes: (Utils.isiPad()) ? undefined : [Ti.UI.PORTRAIT]
 	}),
 
@@ -17,7 +18,8 @@
 		title: Ti.App.name,
 		window: Ti.UI.createWindow({
 			url: 'views/main.js',
-			backgroundColor: Ui.getDarkBackground()
+			backgroundColor: Ui.getDarkBackground(),
+			translucent: false
 		})
 	}),
 	
@@ -26,7 +28,8 @@
 		title: I('labels.trackpad'),
 		window: Ti.UI.createWindow({
 			url: 'views/trackpad.js',
-			backgroundColor: Ui.getDarkBackground()
+			backgroundColor: Ui.getDarkBackground(),
+			translucent: false
 		})
 	}),
 	
@@ -37,7 +40,8 @@
 			url: 'views/mosaic.js',
 			backgroundColor: (Utils.isiPad()) ? null : Ui.getDarkBackground(),
 			backgroundImage: (Utils.isiPad()) ? '/img/bg_ipad.png' : null,
-			backgroundRepeat: true
+			backgroundRepeat: true,
+			translucent: false
 		})
 	}),
 
@@ -46,7 +50,9 @@
 		title: I('labels.epg'),
 		window: Ti.UI.createWindow({
 			url: 'views/epg.js',
-			backgroundColor: Ui.getDefaultBackground()
+			backgroundColor: Ui.getDefaultBackground(),
+			extendEdges:[Ti.UI.EXTEND_EDGE_BOTTOM, Ti.UI.EXTEND_EDGE_TOP],
+			autoAdjustScrollViewInsets: true
 		})
 	}),
 
@@ -56,7 +62,8 @@
 		window: Ti.UI.createWindow({
 			title: I('labels.more'),
 			url: 'views/more.js',
-			backgroundColor: Ui.getDefaultBackground()
+			backgroundColor: Ui.getDefaultBackground(),
+			translucent: false
 		})
 	});
 	

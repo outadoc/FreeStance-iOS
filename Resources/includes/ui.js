@@ -1,4 +1,7 @@
 (function() {
+	
+	exports.Utils = require('/includes/utils');
+	
 	exports.getDefaultBackground = function() {
 		return '#dfdfdf';
 	}
@@ -8,7 +11,11 @@
 	}
 	
 	exports.getBarColor = function() {
-		return '#707070';
+		if(exports.Utils.getMajorOsVersion() < 7) {
+			return '#707070';
+		} else {
+			return '#555555';
+		}
 	}
 	
 	exports.createLoadingWindow = function(top) {
