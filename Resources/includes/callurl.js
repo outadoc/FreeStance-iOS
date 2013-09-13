@@ -1,4 +1,5 @@
 (function() {
+	
 	Ti.include('/includes/enums.js');
 	
 	var Utils = require('includes/utils'),

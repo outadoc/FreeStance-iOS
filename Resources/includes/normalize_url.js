@@ -1,4 +1,5 @@
 (function() {
+	
 	//can be used to normalize an URL in a string
 	String.prototype.normalizeUrl = function() {
 		var url = this;
