@@ -25,6 +25,7 @@ function tv_pull(data) {
 	}
 
 	var tableView = Ti.UI.createTableView(data),
+		paddingShift = (Utils.getMajorOsVersion() >= 7) ? 65.0 : 0,
 
 	tableHeader = Ti.UI.createView({
 		backgroundColor: '#e2e7ed',
@@ -111,17 +112,21 @@ function tv_pull(data) {
 
 		actInd.hide();
 		arrow.show();
+		
 		tableView.setContentInsets({
-			top: 0
+			top: paddingShift,
+			bottom: (Utils.getMajorOsVersion() > 7) ? 50 : 0
 		}, {
 			animated: true
 		});
+		
+		tableView.scrollToTop(-paddingShift, true);
 	});
 
 
 	tableView.addEventListener('scroll', function(e) {
 		var offset = e.contentOffset.y;
-		if(offset <= -70.0 && !pulling && !reloading) {
+		if(offset <= -70.0 - paddingShift && !pulling && !reloading) {
 			var t = Ti.UI.create2DMatrix();
 			t = t.rotate(-180);
 			pulling = true;
@@ -130,7 +135,7 @@ function tv_pull(data) {
 				duration: 180
 			});
 			statusLabel.text = I('epg.refresh.releaseToRefresh');
-		} else if((offset > -70.0 && offset < 0 ) && pulling && !reloading) {
+		} else if((offset > -70.0 - paddingShift && offset < 0 ) && pulling && !reloading) {
 			pulling = false;
 			var t = Ti.UI.create2DMatrix();
 			arrow.animate({
@@ -150,12 +155,13 @@ function tv_pull(data) {
 			statusLabel.setText(I('epg.refresh.loading'));
 
 			tableView.setContentInsets({
-				top: 70
+				top: 70 + paddingShift
 			}, {
 				animated: true
 			});
 
-			tableView.scrollToTop(-70, true);
+			tableView.scrollToTop(-70 - paddingShift, true);
+			
 			arrow.setTransform(Ti.UI.create2DMatrix());
 			beginReloading();
 		}

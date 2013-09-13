@@ -9,6 +9,7 @@ var Utils = require('includes/utils'),
 win = Ti.UI.currentWindow,
 defaultTab = Ti.App.Properties.getInt('epg.defaultTab', EPG.TONIGHT),
 cachedData = [],
+initialPaddingWasSet = false,
 
 searchBar = Titanium.UI.createSearchBar({
 	hintText: I('epg.searchHint'),
@@ -46,6 +47,22 @@ win.setTitleControl(tabbedBar);
 
 Ti.App.addEventListener('beginreload', function(e) {
 	loadRSSFeed(false, false);
+});
+
+win.addEventListener('focus', function() {
+	if(!initialPaddingWasSet && Utils.getMajorOsVersion() >= 7) {
+		tableView.setContentInsets({
+			top: 65,
+			bottom: 50
+		}, {
+			animated: false
+		});
+		
+		tableView.scrollToTop(-65, {
+			animated: false
+		});
+		initialPaddingWasSet = true;
+	}
 });
 
 function loadRSSFeed(useCache, displayLoad) {
