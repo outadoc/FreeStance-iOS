@@ -44,7 +44,8 @@
 			Ti.API.info('requested call for profile:' + this.profile + ', hd:' + this.hd + ', code:' + this.code + ', key:' + key + ', long:' + isLong.toString() + ', model:' + Utils.getModelString(this.model));
 			callback();
 		}
-	}
+	};
+	
 	//can call a precise channel (1 digit or more)
 	exports.callMultiKeys = function(channel) {
 		//if there's only one digit, call it simply
@@ -57,37 +58,39 @@
 				exports.callMultiKeys(channel.substr(1));
 			}, channel.charAt(1));
 		}
-	}
+	};
+	
 	//getters
 	exports.getHd = function() {
 		return this.hd;
-	}
+	};
 	
 	exports.getCode = function() {
 		return this.code;
-	}
+	};
 	
 	exports.getModel = function() {
 		return this.model;
-	}
+	};
 	
 	exports.getProfile = function() {
 		return this.profile;
-	}
+	};
 	//setters
 	exports.setHd = function(value) {
 		this.hd = value;
-	}
+	};
 	
 	exports.setCode = function(value) {
 		this.code = value;
-	}
+	};
 	
 	exports.setModel = function(value) {
 		this.model = value;
-	}
+	};
 	
 	exports.setProfile = function(value) {
 		this.profile = value;
-	}
+	};
+	
 })();

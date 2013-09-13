@@ -7,7 +7,8 @@
 		url = url.replace(/[^a-z|^0-9|^-|\s]/gi, '').trim();
 		url = url.replace(/\s+/gi, '+');
 		return url;
-	}
+	};
+	
 	//these are used by the normalizeUrl method
 	String.prototype.trim = function() {
 		return this.replace(/^\s+|\s+$/g, "");
@@ -57,4 +58,5 @@
 		}
 		return str;
 	}
+	
 })();

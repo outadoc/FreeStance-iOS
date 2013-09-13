@@ -1,4 +1,5 @@
 (function() {
+	
 	exports.parseSingleProgram = function(item) {
 		try {
 			var fullTitle = (item.getElementsByTagName('title').item(0).text).replace(/\n/gi, ' ').replace('CANAL+', 'Canal+').replace('ARTE', 'Arte'),
@@ -26,7 +27,7 @@
 		} catch(e) {
 			return null;
 		}
-	}
+	};
 
 	exports.getAllRows = function(itemList, callback) {
 		var lastChannelID, i;
@@ -119,5 +120,6 @@
 				callback(row);
 			}
 		}
-	}
+	};
+	
 })();

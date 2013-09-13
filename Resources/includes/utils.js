@@ -1,4 +1,5 @@
 (function() {
+	
 	exports.getFullDate = function() {
 		var date = new Date(),
 			year = date.getFullYear(),
@@ -22,7 +23,7 @@
 	
 		var datestr = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
 		return datestr;
-	}
+	};
 	
 	exports.getMajorOsVersion = function() {
 		var version = Titanium.Platform.version.split(".");
@@ -258,7 +259,8 @@
 		}
 	
 		return id;
-	}
+	};
+	
 	//used to get the string equivalent of a given freebox model
 	exports.getModelString = function(model) {
 		if(model == Model.FREEBOX_HD) {
@@ -270,11 +272,11 @@
 		} else {
 			return 'Unknow model';
 		}
-	}
+	};
 	
 	exports.isiPad = function() {
 		return (Ti.Platform.getOsname() === 'ipad');
-	}
+	};
 	
 	exports.capitalize = function(string) {
 		return string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1);
@@ -315,5 +317,6 @@
 				}
 			});
 		}
-	}
+	};
+	
 })();

@@ -4,11 +4,11 @@
 	
 	exports.getDefaultBackground = function() {
 		return '#dfdfdf';
-	}
+	};
 	
 	exports.getDarkBackground = function() {
 		return '#3e3e3e';
-	}
+	};
 	
 	exports.getBarColor = function() {
 		if(exports.Utils.getMajorOsVersion() < 7) {
@@ -16,7 +16,7 @@
 		} else {
 			return '#555555';
 		}
-	}
+	};
 	
 	exports.createLoadingWindow = function(top) {
 		if(top === undefined) { top = '38%'; }
@@ -46,21 +46,21 @@
 		spinWheel.show();
 	
 		return win;
-	}
+	};
 	
 	//just a few UI elements, so they can be used painlessly
 	exports.createFlexibleSpace = function() {
 		return Ti.UI.createButton({
 			systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 		});
-	}
+	};
 	
 	exports.createFixedSpace = function(width) {
 		return Ti.UI.createButton({
 			systemButton: Ti.UI.iPhone.SystemButton.FIXED_SPACE,
 			width: width
 		});
-	}
+	};
 	
 	exports.createDestructionView = function(title) {
 		var b_destruction = Ti.UI.createButton({
@@ -96,7 +96,7 @@
 		view.add(b_destruction);
 	
 		return view;
-	}
+	};
 	
 	//returns a row containing a title and a value. opens a window when clicked
 	exports.createParentRow = function(title, header, rowName, configID) {
@@ -133,7 +133,7 @@
 		});
 		
 		return row;
-	}
+	};
 	
 	//returns a row containing a text field
 	exports.createTextFieldRow = function(text) {
@@ -161,5 +161,6 @@
 	
 		row.add(textfield);
 		return row;
-	}
+	};
+	
 })();
