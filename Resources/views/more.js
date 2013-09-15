@@ -42,8 +42,8 @@ tableView.addEventListener('click', function(e) {
 				title: e.rowData.title,
 				tabBarHidden: true,
 				backgroundColor: '#fff',
-				isModalWin: false,
-				extendEdges:[Ti.UI.EXTEND_EDGE_BOTTOM, Ti.UI.EXTEND_EDGE_TOP]
+				translucent: false,
+				isModalWin: false
 			});
 		} else {
 			win = Ti.UI.createWindow({
