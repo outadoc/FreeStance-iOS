@@ -100,5 +100,6 @@
 	}
 	
 	tabGroup.open();
+	Utils.confCheck(tabGroup);
 	
 })();

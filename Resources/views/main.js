@@ -9,9 +9,6 @@
 
 	win = Ti.UI.currentWindow,
 
-	//the properties for the current profile
-	isConfShown = false,
-
 	//advanced options
 	prefs = {
 		volumeRepeat: null,
@@ -476,11 +473,6 @@
 		}
 
 		win.add(view);
-
-		if(!isConfShown) {
-			Utils.confCheck(win.tabGroup);
-			isConfShown = true;
-		}
 	}
 	
 	function loadPrefs() {

@@ -313,8 +313,8 @@
 						translucent: false
 					});
 	
-					tabGroup.tabs[4].open(helpwin);
-					tabGroup.setActiveTab(4);
+					tabGroup.tabs[tabGroup.tabs.length - 1].open(helpwin);
+					tabGroup.setActiveTab(tabGroup.tabs.length - 1);
 				}
 			});
 		}
