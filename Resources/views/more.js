@@ -17,12 +17,19 @@ tableView = Ti.UI.createTableView({
 		{leftImage: '/img/icon_heart.png',title: I('more.credits.title'), hasChild: true, path: 'subviews/credits.js', header: '', isCredits: true}
 	],
 	/*@formatter:on*/
-	top: (Utils.isiPad()) ? 15 : undefined,
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	backgroundColor: 'transparent',
 	rowBackgroundColor: 'white',
 	selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
 });
+
+if(Utils.getMajorOsVersion() >= 7) {
+	tableView.setContentInsets({
+		top: 40,
+		bottom: 40
+	});
+	tableView.scrollToTop(-40);
+}
 
 tableView.addEventListener('click', function(e) {
 	if(e.rowData.path !== undefined) {
@@ -35,8 +42,8 @@ tableView.addEventListener('click', function(e) {
 				title: e.rowData.title,
 				tabBarHidden: true,
 				backgroundColor: '#fff',
-				translucent: false,
-				isModalWin: false
+				isModalWin: false,
+				extendEdges:[Ti.UI.EXTEND_EDGE_BOTTOM, Ti.UI.EXTEND_EDGE_TOP]
 			});
 		} else {
 			win = Ti.UI.createWindow({

@@ -64,7 +64,7 @@
 			title: I('labels.more'),
 			url: 'views/more.js',
 			backgroundColor: Ui.getDefaultBackground(),
-			translucent: false
+			extendEdges:[Ti.UI.EXTEND_EDGE_BOTTOM, Ti.UI.EXTEND_EDGE_TOP]
 		})
 	});
 	

@@ -21,7 +21,6 @@ settingsSection = Ti.UI.createTableViewSection({
 profile, code, hd, model,
 
 tableView = Ti.UI.createTableView({
-	top: (Utils.isiPad()) ? 10 : undefined,
 	data: [profileRow, settingsSection],
 	style: Ti.UI.iPhone.TableViewStyle.GROUPED,
 	footerView: Ui.createDestructionView(I('more.settings.reset.title')),
@@ -67,6 +66,7 @@ b_help.addEventListener('click', function(e) {
 		title: I('more.help.title'),
 		backgroundColor: Ui.getDefaultBackground()
 	});
+	
 	Ti.UI.currentTab.open(win, {
 		animated: true
 	});
