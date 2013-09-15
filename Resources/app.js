@@ -84,7 +84,9 @@
 		   window: Ti.UI.createWindow({
 				url: 'views/main.js',
 				backgroundColor: Ui.getDarkBackground(),
-				barColor: Ui.getBarColor()
+				barColor: (Utils.getMajorOsVersion() < 7) ? Ui.getBarColor() : '#cccccc',
+				tintColor: '#333333',
+				translucent: false
 			})
 		});
 		 
