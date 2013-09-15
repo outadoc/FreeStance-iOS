@@ -113,7 +113,7 @@
 			textAlign: 'right',
 			width: 150,
 			highlightedColor: 'white',
-			color: '#336699'
+			color: (exports.Utils.getMajorOsVersion() < 7) ? '#336699' : '#000000'
 		});
 	
 		row.add(lbl);
