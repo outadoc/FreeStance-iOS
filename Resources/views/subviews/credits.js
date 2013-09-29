@@ -11,7 +11,8 @@ scrollView = Ti.UI.createScrollView({
 
 img_logo = Ti.UI.createImageView({
 	image: '/img/icon-large.png',
-	top: 10
+	top: 10,
+	width: 130
 }),
 
 lbl_app = Ti.UI.createLabel({
