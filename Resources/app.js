@@ -80,7 +80,7 @@
 	tabGroup.addTab(tab_more);
 	
 	if(Utils.isiPad()) {
-		var nav_win_main = Ti.UI.iPhone.createNavigationGroup({
+		var nav_win_main = Ti.UI.iOS.createNavigationWindow({
 		   window: Ti.UI.createWindow({
 				url: 'views/main.js',
 				backgroundColor: Ui.getDarkBackground(),
