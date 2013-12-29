@@ -8,6 +8,10 @@
 		Ui = require('includes/ui'),
 
 	win = Ti.UI.currentWindow,
+	view = Ti.UI.createView({
+		height: '100%',
+		width: '100%'
+	}),
 
 	//advanced options
 	prefs = {
@@ -35,6 +39,8 @@
 	}),
 	
 	buttonList = [];
+	
+	win.add(view);
 	
 	if(!Utils.isiPad()) {
 		//the buttons and their placing
@@ -194,7 +200,7 @@
 			}
 		});
 		
-		win.add(view_trackpad);
+		view.add(view_trackpad);
 	}
 	
 	tabbedBar.addEventListener('click', function(e) {
@@ -312,9 +318,6 @@
 
 	//the function resets the view so we can update it (to change buttons,..)
 	function updateButtons() {
-		//resetting the view
-		view = Ti.UI.createView();
-
 		//those can't be placed above as they are not buttons but labels...
 		var lbl_vol = Ti.UI.createLabel({
 			text: I('labels.volume'),
@@ -464,8 +467,6 @@
 
 			view.add(button);
 		}
-
-		win.add(view);
 	}
 	
 	function loadPrefs() {
