@@ -7,7 +7,7 @@
 	};
 	
 	exports.getDarkBackground = function() {
-		return '#3e3e3e';
+		return exports.getDefaultBackground();
 	};
 	
 	exports.getBarColor = function() {

@@ -53,17 +53,17 @@
 			{title: '-', id: 'vol_dec', height: 50, width: 40, left: 200, top: 93, bFontSize: 28, canRepeat: true},
 			{title: '+', id: 'prgm_inc', height: 50, width: 40, left: 255, top: 23, bFontSize: 23, canRepeat: false},
 			{title: '-', id: 'prgm_dec', height: 50, width: 40, left: 255, top: 93, bFontSize: 28, canRepeat: false},
-			{title: '1', id: '1', height: 35, width: 45, left: 20, top: 175, canBeLong: true},
-			{title: '2', id: '2', height: 35, width: 45, left: 75, top: 175, canBeLong: true},
-			{title: '3', id: '3', height: 35, width: 45, left: 130, top: 175, canBeLong: true},
-			{title: '4', id: '4', height: 35, width: 45, left: 20, top: 220, canBeLong: true},
-			{title: '5', id: '5', height: 35, width: 45, left: 75, top: 220, canBeLong: true},
-			{title: '6', id: '6', height: 35, width: 45, left: 130, top: 220, canBeLong: true},
-			{title: '7', id: '7', height: 35, width: 45, left: 20, top: 265, canBeLong: true},
-			{title: '8', id: '8', height: 35, width: 45, left: 75, top: 265, canBeLong: true},
-			{title: '9', id: '9', height: 35, width: 45, left: 130, top: 265, canBeLong: true},
+			{title: '1', id: '1', height: 35, width: 45, left: 20, top: 175, canBeLong: true, isDigit: true},
+			{title: '2', id: '2', height: 35, width: 45, left: 75, top: 175, canBeLong: true, isDigit: true},
+			{title: '3', id: '3', height: 35, width: 45, left: 130, top: 175, canBeLong: true, isDigit: true},
+			{title: '4', id: '4', height: 35, width: 45, left: 20, top: 220, canBeLong: true, isDigit: true},
+			{title: '5', id: '5', height: 35, width: 45, left: 75, top: 220, canBeLong: true, isDigit: true},
+			{title: '6', id: '6', height: 35, width: 45, left: 130, top: 220, canBeLong: true, isDigit: true},
+			{title: '7', id: '7', height: 35, width: 45, left: 20, top: 265, canBeLong: true, isDigit: true},
+			{title: '8', id: '8', height: 35, width: 45, left: 75, top: 265, canBeLong: true, isDigit: true},
+			{title: '9', id: '9', height: 35, width: 45, left: 130, top: 265, canBeLong: true, isDigit: true},
 			{title: ' ←', id: 'back', height: 35, width: 45, left: 20, top: 310, bFontSize: 23, canBeLong: false},
-			{title: '0', id: '0', height: 35, width: 45, left: 75, top: 310, canBeLong: true },
+			{title: '0', id: '0', height: 35, width: 45, left: 75, top: 310, canBeLong: true, isDigit: true},
 			{title: '↻', id: 'swap', height: 35, width: 45, left: 130, top: 310, canBeLong: true},
 			{id: 'power', height: 35, width: 95, left: 200, top: 175, canBeLong: false},
 			{id: 'home', height: 35, width: 95, left: 200, top: 220, canBeLong: true},
@@ -323,7 +323,7 @@
 			left: 207,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#ffffff',
+			color: 'gray',
 			font: {
 				fontSize: 14
 			}
@@ -334,7 +334,7 @@
 			left: 257,
 			height: Ti.UI.SIZE,
 			top: 73,
-			color: '#ffffff',
+			color: 'gray',
 			font: {
 				fontSize: 14
 			}
@@ -352,9 +352,11 @@
 				fontSize: (button.bFontSize !== undefined) ? button.bFontSize : 19
 			});
 			
-			button.setBorderRadius(2);
 			button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
 			button.hasBeenPressed = false;
+			
+			button.setColor('gray');
+			button.setBorderColor('gray');
 
 			//if we're setting the home button, we add an image in it
 			if(button.id == 'home') {
@@ -372,7 +374,7 @@
 				if(button.id == 'red') {
 					button.setBackgroundColor('#e20f07');
 				} else if(button.id == 'yellow') {
-					button.setBackgroundColor('#fce60f');
+					button.setBackgroundColor('#e7d52a');
 				} else if(button.id == 'blue') {
 					button.setBackgroundColor('#058cf5');
 				} else if(button.id == 'green') {
@@ -389,22 +391,12 @@
 				button.add(img_button);
 			} else {
 				//else, we change it to the default ones
-				button.setBackgroundGradient({
-					type: 'linear',
-					colors: [{
-						color: '#868686',
-						offset: 0
-					}, {
-						color: '#818181',
-						offset: 0.25
-					}, {
-						color: '#5d5d5d',
-						offset: 1
-					}]
-				});
-				
-				button.setBorderColor('gray');
+				button.setBorderRadius(10);
 				button.setSelectedColor('#2f2f2f');
+			}
+			
+			if(button.isDigit || button.isArrow) {
+				button.setBorderRadius(button.height / 2);
 			}
 
 			if(button.isArrow) {

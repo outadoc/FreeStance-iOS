@@ -20,13 +20,13 @@
 		{title: I('buttons.pip'), id: 'pip', height: 40, width: 114, top: 65, left: 122},
 		{title: I('buttons.mail'), id: 'mail', height: 40, width: 113, top: 110, left: 0},
 		{title: I('buttons.aux'), id: 'tv', height: 40, width: 114, top: 110, left: 122},
-		{id: 'rec', height: 30, width: 28, top: 165, left: 0},
-		{title: '«', id: 'prev', height: 30, width: 28, top: 165, left: 33, font: {fontSize: 25}},
-		{title: '‹', id: 'bwd', height: 30, width: 28, top: 165, left: 68, font: {fontSize: 27}},
-		{id: 'play', height: 30, width: 28, top: 165, left: 103, font: {fontSize:13}},
-		{id: 'stop', height: 30, width: 28, top: 165, left: 138},
-		{title: '›', id: 'fwd', height: 30, width: 28, top: 165, left: 173, font: {fontSize: 27}},
-		{title: '»', id: 'next', height: 30, width: 28, top: 165, left: 208, font: {fontSize: 25}},
+		{id: 'rec', height: 30, width: 28, top: 165, left: 0, type: 'control'},
+		{title: '«', id: 'prev', height: 30, width: 28, top: 165, left: 33, font: {fontSize: 25}, type: 'control'},
+		{title: '‹', id: 'bwd', height: 30, width: 28, top: 165, left: 68, font: {fontSize: 27}, type: 'control'},
+		{id: 'play', height: 30, width: 28, top: 165, left: 103, font: {fontSize:13}, type: 'control'},
+		{id: 'stop', height: 30, width: 28, top: 165, left: 138, type: 'control'},
+		{title: '›', id: 'fwd', height: 30, width: 28, top: 165, left: 173, font: {fontSize: 27}, type: 'control'},
+		{title: '»', id: 'next', height: 30, width: 28, top: 165, left: 208, font: {fontSize: 25}, type: 'control'},
 		{title: I('buttons.close'), id: 'close', height: 40, width: 237, bottom: 0, left: 0}
 	];
 
@@ -41,31 +41,20 @@
 	for(i = 0; i < buttonList.length; i++) {
 		var button = Ti.UI.createButton(buttonList[i]);
 
-		button.setBorderRadius(2);
 		button.setStyle(Ti.UI.iPhone.SystemButtonStyle.PLAIN);
-		button.setBackgroundGradient({
-			type: 'linear',
-			colors: [{
-				color: '#868686',
-				offset: 0
-			}, {
-				color: '#818181',
-				offset: 0.25
-			}, {
-				color: '#5d5d5d',
-				offset: 1
-			}]
-		});
-		
-		button.setBorderColor('gray');
+		button.setBorderRadius(10);
+		button.setColor('gray');
 		button.setSelectedColor('#2f2f2f');
-
+		button.setBorderColor('gray');
+		
+		if(button.type === 'control') {
+			button.setBorderRadius(button.height / 2);
+		}
+		
 		if(button.id == 'play') {
 			var img_button = Ti.UI.createImageView({
 				image: '/img/play_pause.png',
-				height: 20,
-				width: 20,
-				top: 6
+				width: 20
 			});
 			
 			button.add(img_button);
@@ -73,8 +62,7 @@
 			var img_button = Ti.UI.createImageView({
 				image: '/img/rec.png',
 				height: 20,
-				width: 20,
-				top: 6
+				width: 20
 			});
 			
 			button.add(img_button);
@@ -82,8 +70,7 @@
 			var img_button = Ti.UI.createImageView({
 				image: '/img/stop.png',
 				height: 20,
-				width: 20,
-				top: 6
+				width: 20
 			});
 			
 			button.add(img_button);
