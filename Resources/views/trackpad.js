@@ -14,9 +14,6 @@ tabbedBar = Ti.UI.iOS.createTabbedBar({
 
 view_trackpad = Ti.UI.createView({
 	backgroundImage: getBackground(),
-	backgroundColor: '#606060',
-	borderColor: 'gray',
-	borderRadius: 5,
 	top: 10,
 	left: 10,
 	right: 10,
@@ -29,14 +26,14 @@ view_trackpad_prgm = Ti.UI.createView({
 	top: 0,
 	height: '15%',
 	width: Ti.UI.FILL,
-	backgroundColor: '#808080',
-	opacity: 0.4
+	opacity: 0.4,
+	borderColor: 'gray',
+	borderRadius: 5
 }),
 
 view_trackpad_main = Ti.UI.createView({
 	height: '70%',
 	width: Ti.UI.FILL,
-	backgroundColor: '#505050',
 	opacity: 0.3
 }),
 
@@ -44,8 +41,9 @@ view_trackpad_vol = Ti.UI.createView({
 	bottom: 0,
 	height: '15%',
 	width: Ti.UI.FILL,
-	backgroundColor: '#808080',
-	opacity: 0.4
+	opacity: 0.4,
+	borderColor: 'gray',
+	borderRadius: 5
 });
 
 win.addEventListener('focus', updateProps);
