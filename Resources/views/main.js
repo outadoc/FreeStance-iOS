@@ -132,9 +132,6 @@
 		
 		var view_trackpad = Ti.UI.createView({
 			backgroundImage: '/img/ipad_trackpad.png',
-			backgroundColor: '#606060',
-			borderColor: 'gray',
-			borderRadius: 5,
 			top: 180,
 			left: 20,
 			right: 25,
@@ -147,14 +144,14 @@
 			left: 0,
 			width: '15%',
 			height: Ti.UI.FILL,
-			backgroundColor: '#808080',
-			opacity: 0.4
+			opacity: 0.4,
+			borderColor: 'gray',
+			borderRadius: 5
 		}),
 		
 		view_trackpad_main = Ti.UI.createView({
 			width: '70%',
 			height: Ti.UI.FILL,
-			backgroundColor: '#505050',
 			opacity: 0.3
 		}),
 		
@@ -162,8 +159,9 @@
 			right: 0,
 			width: '15%',
 			height: Ti.UI.FILL,
-			backgroundColor: '#808080',
-			opacity: 0.4
+			opacity: 0.4,
+			borderColor: 'gray',
+			borderRadius: 5
 		});
 		
 		view_trackpad.add(view_trackpad_vol);

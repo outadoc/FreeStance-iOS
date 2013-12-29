@@ -39,8 +39,7 @@
 		title: I('labels.mosaic'),
 		window: Ti.UI.createWindow({
 			url: 'views/mosaic.js',
-			backgroundColor: (Utils.isiPad()) ? null : Ui.getDarkBackground(),
-			backgroundImage: (Utils.isiPad()) ? '/img/bg_ipad.png' : null,
+			backgroundColor: Ui.getDarkBackground(),
 			backgroundRepeat: true,
 			translucent: false
 		})
