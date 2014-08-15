@@ -24,7 +24,6 @@ Captures d'écran
 
 ![FreeStance1](http://files.outadoc.fr/freestance/0.png "FreeStance 1")
 ![FreeStance2](http://files.outadoc.fr/freestance/1.png "FreeStance 2")
-![FreeStance3](http://files.outadoc.fr/freestance/1.png "FreeStance 3")
 
 Liens externes
 -------
