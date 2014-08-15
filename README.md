@@ -1,6 +1,8 @@
 Présentation
 ------------
 
+**FreeStance est maintenant obsolète et n'est plus disponible dans l'App Store. J'ai donc passé le repository en open-source, for science.**
+
 Grâce à FreeStance pour iOS, vous pourrez contrôler toutes vos Freebox dans une application native parfaitement dessinée.
 
 Fonctionnalités
@@ -15,7 +17,7 @@ Grâce aux fonctionnalités innovantes de FreeStance, vous pourrez...
 
 * Partager des programmes intéressants avec le reste du monde, grâce à l'intégration de Twitter dans iOS 5.
 
-FreeStance est disponible dans l'[App Store](http://www.apple.com/iphone/from-the-app-store/)… pour seulement 0,79€ !  
+FreeStance est ~~disponible dans l'[App Store](http://www.apple.com/iphone/from-the-app-store/)… pour seulement 0,79€~~ !  
 
 Captures d'écran
 ----------------
