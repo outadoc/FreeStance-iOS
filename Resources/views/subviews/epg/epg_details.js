@@ -255,17 +255,17 @@ sharekit.configure({
 	allow_offline: false,
 	allow_auto_share: true,
 
-	twitter_consumer_key: '9c5oc1VXvcn1y7WvYfzxA',
-	twitter_consumer_secret: 'enh8OJVzNhb2kYB1lYHg6slht2b2yoA8ETKDajvoCA',
+	twitter_consumer_key: 'KEY',
+	twitter_consumer_secret: 'KEY',
 	twitter_callback_url: 'http://dev.outadoc.fr/project/freestance/',
 	twitter_use_xauth: false,
 
-	bit_ly_login: '465eacd8035bacf82ac74b8037db3b6ad797b01c',
-	bit_ly_key: '7db68d159f2ca39e2c1c8f7adad6e2bcb03ad7e4',
+	bit_ly_login: 'KEY',
+	bit_ly_key: 'KEY',
 
-	facebook_key: '314611201964339',
+	facebook_key: 'KEY',
 
-	readitlater_key: '9f3T9z22gq17bX082ed4982L35pfU4aX'
+	readitlater_key: 'KEY'
 });
 
 b_share.addEventListener('click', function(e) {
